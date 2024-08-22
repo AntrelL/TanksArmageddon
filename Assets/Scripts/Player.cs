@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float _maxSpeed;
     [SerializeField] private float _availableTravelTime;
     [SerializeField] private LayerMask _layerMask;
-    [SerializeField] private Animator _animator;
     [SerializeField] private Slider _petrolTank;
 
     private float _travelTimeSpent;

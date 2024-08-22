@@ -8,6 +8,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Tank _tank;
     [SerializeField] private Transform _firePoint;
+    [SerializeField] private Transform _lineRendererStartPoint;
     [SerializeField] private ParticleSystem _muzzleFlash;
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private LineRenderer _lineRenderer;
@@ -18,7 +19,7 @@ public class Shoot : MonoBehaviour
 
     private void Start()
     {
-        _lineRenderer = _firePoint.GetComponent<LineRenderer>();
+        _lineRenderer = _lineRendererStartPoint.GetComponent<LineRenderer>();
         _initialRotationZ = _firePoint.rotation.eulerAngles.z;
     }
 
@@ -62,16 +63,16 @@ public class Shoot : MonoBehaviour
         Vector3 mousePosition = Input.mousePosition;
         mousePosition = _mainCamera.ScreenToWorldPoint(mousePosition);
 
-        Vector2 direction = (mousePosition - _firePoint.position).normalized;
+        Vector2 direction = (mousePosition - _lineRendererStartPoint.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         float clampedAngle = Mathf.Clamp(angle, _initialRotationZ - 20, _initialRotationZ + 20);
 
         Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, clampedAngle));
         Vector2 clampedDirection = rotation * Vector2.right;
-        Vector2 endPoint = _firePoint.position + (Vector3)clampedDirection * _maxLineLength;
+        Vector2 endPoint = _lineRendererStartPoint.position + (Vector3)clampedDirection * _maxLineLength;
 
-        _lineRenderer.SetPosition(0, _firePoint.position);
+        _lineRenderer.SetPosition(0, _lineRendererStartPoint.position);
         _lineRenderer.SetPosition(1, endPoint);
     }
 }

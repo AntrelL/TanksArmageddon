@@ -9,6 +9,11 @@ public class TankTurretController : MonoBehaviour
 
     private float _initialAngle;
 
+    private void OnDisable()
+    {
+        _turret.DOKill();
+    }
+
     void Start()
     {
         _initialAngle = _turret.rotation.eulerAngles.z;
@@ -21,6 +26,9 @@ public class TankTurretController : MonoBehaviour
 
     void RotateTurretTowardsMouse()
     {
+        if (Time.timeScale == 0)
+            return;
+
          // Получаем позицию мыши в мировых координатах
          Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
          mousePosition.z = 0; // Убираем компонент z, так как у нас 2D игра

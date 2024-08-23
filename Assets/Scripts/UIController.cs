@@ -14,6 +14,11 @@ public class UIController : MonoBehaviour
 
     public static event Action ButtonPressed;
 
+    private void Start()
+    {
+        Time.timeScale = 1;
+    }
+
     public void ShootButtonPressed()
     {
         ButtonPressed?.Invoke();

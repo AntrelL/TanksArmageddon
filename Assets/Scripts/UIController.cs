@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -9,6 +11,13 @@ public class UIController : MonoBehaviour
     [SerializeField] private CanvasGroup _mainMenuCanvasGroup;
     [SerializeField] private CanvasGroup _unmutedSoundCanvasGroup;
     [SerializeField] private CanvasGroup _mutedSoundCanvasGroup;
+
+    public static event Action ButtonPressed;
+
+    public void ShootButtonPressed()
+    {
+        ButtonPressed?.Invoke();
+    }
 
     public void OpenMainMenu()
     {
@@ -72,15 +81,18 @@ public class UIController : MonoBehaviour
     public void OpenHomeScene()
     {
         Debug.Log("Load Home Scene.");
+        SceneManager.LoadScene("HomeScene");
     }
 
     public void OpenShopScene()
     {
         Debug.Log("Load Shop Scene.");
+        SceneManager.LoadScene("ShopScene");
     }
 
     public void OpenHangarScene()
     {
         Debug.Log("Load Hangar Scene.");
+        SceneManager.LoadScene("HangarScene");
     }
 }

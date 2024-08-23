@@ -27,11 +27,16 @@ public class Shoot : MonoBehaviour
     {
         AimTowardsMouse();
         DrawAimLine();
+    }
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            StartShoot();
-        }
+    private void OnEnable()
+    {
+        UIController.ButtonPressed += StartShoot;
+    }
+
+    private void OnDisable()
+    {
+        UIController.ButtonPressed -= StartShoot;
     }
 
     private void StartShoot()

@@ -20,7 +20,6 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out Enemy enemy))
         {
             TankHit?.Invoke();
-            Debug.Log(collision.gameObject.name);
             Debug.Log(collision.name);
             Destroy(gameObject);
         }

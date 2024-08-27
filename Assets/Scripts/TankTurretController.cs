@@ -1,11 +1,14 @@
 using UnityEngine;
 using DG.Tweening;
 using static UnityEngine.GraphicsBuffer;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class TankTurretController : MonoBehaviour
 {
     [SerializeField] private Transform _turret;
     [SerializeField] private float _rotationSpeed = 0.2f;
+    [SerializeField] private Slider _angleSlider;
 
     private float _initialAngle;
 
@@ -17,11 +20,30 @@ public class TankTurretController : MonoBehaviour
     void Start()
     {
         _initialAngle = _turret.rotation.eulerAngles.z;
+
+        if (_angleSlider != null)
+        {
+            // Подписываемся на изменение значения слайдера
+            _angleSlider.onValueChanged.AddListener(OnSliderValueChanged);
+        }
     }
 
     void Update()
     {
-        RotateTurretTowardsMouse();
+        //RotateTurretTowardsMouse();
+    }
+
+    void OnSliderValueChanged(float value)
+    {
+        _turret.rotation = Quaternion.Euler(0, 0, value);
+    }
+
+    void OnDestroy()
+    {
+        if (_angleSlider != null)
+        {
+            _angleSlider.onValueChanged.RemoveListener(OnSliderValueChanged);
+        }
     }
 
     void RotateTurretTowardsMouse()

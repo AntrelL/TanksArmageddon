@@ -2,62 +2,72 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager Instance { get; private set; }
 
-    [SerializeField] private WeaponData[] _weapons;  // Список всех видов оружия
-    private int[] _cardCounts;  // Количество карточек для каждого вида оружия
+    private int[] _weaponCardCounts = new int[5]; // Количество карточек для каждого оружия
+    [SerializeField] private WeaponData[] _weaponDataList = new WeaponData[5]; // Данные для каждого оружия
+    private int _playerBalance = 100000; // Изначально у игрока 1000 монет (можно изменить)
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            _cardCounts = new int[_weapons.Length];
-        }
-        else
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
-    }
-
-    // Метод для получения данных оружия по индексу
-    public WeaponData GetWeaponData(int weaponIndex)
-    {
-        if (weaponIndex >= 0 && weaponIndex < _weapons.Length)
+        else
         {
-            return _weapons[weaponIndex];
-        }
-        return null;
-    }
-
-    // Метод для добавления карточек к выбранному оружию
-    public void AddCards(int weaponIndex, int count)
-    {
-        if (weaponIndex >= 0 && weaponIndex < _cardCounts.Length)
-        {
-            _cardCounts[weaponIndex] += count;
-            Debug.Log($"Added {count} cards to weapon index {weaponIndex}. Total: {_cardCounts[weaponIndex]} cards.");
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
-    // Метод для установки количества карточек (например, после улучшения)
-    public void SetCardCount(int weaponIndex, int count)
-    {
-        if (weaponIndex >= 0 && weaponIndex < _cardCounts.Length)
-        {
-            _cardCounts[weaponIndex] = count;
-            Debug.Log($"Set {count} cards for weapon index {weaponIndex}.");
-        }
-    }
-
-    // Метод для получения количества карточек для выбранного оружия
+    // Получение количества карточек для определенного оружия
     public int GetCardCount(int weaponIndex)
     {
-        if (weaponIndex >= 0 && weaponIndex < _cardCounts.Length)
+        return _weaponCardCounts[weaponIndex];
+    }
+
+    // Установка количества карточек для определенного оружия
+    public void SetCardCount(int weaponIndex, int cardCount)
+    {
+        _weaponCardCounts[weaponIndex] = cardCount;
+    }
+
+    // Получение данных оружия по индексу
+    public WeaponData GetWeaponData(int weaponIndex)
+    {
+        return _weaponDataList[weaponIndex];
+    }
+
+    // Добавление данных оружия в список
+    public void SetWeaponData(int weaponIndex, WeaponData data)
+    {
+        _weaponDataList[weaponIndex] = data;
+    }
+
+    // Получение баланса игрока
+    public int GetPlayerBalance()
+    {
+        return _playerBalance;
+    }
+
+    // Установка баланса игрока
+    public void SetPlayerBalance(int newBalance)
+    {
+        _playerBalance = newBalance;
+    }
+
+    // Метод для уменьшения баланса (используется при покупке)
+    public bool TrySpendMoney(int amount)
+    {
+        if (_playerBalance >= amount)
         {
-            return _cardCounts[weaponIndex];
+            _playerBalance -= amount;
+            return true; // Покупка успешна
         }
-        return 0;
+        else
+        {
+            return false; // Недостаточно средств
+        }
     }
 }

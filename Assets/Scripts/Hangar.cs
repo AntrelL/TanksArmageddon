@@ -6,11 +6,16 @@ public class Hangar : MonoBehaviour
     [SerializeField] private GameObject[] _upgradeIndicators; // Иконки, которые показывают возможность улучшения
     [SerializeField] private TextMeshProUGUI[] _weaponLevelTexts;
     [SerializeField] private TextMeshProUGUI[] _weaponCardTexts; // Массив TextMeshPro для отображения количества карточек
-    private int[] _requiredCardsForNextLevel = { 10, 20, 30, 50 }; // Требования по карточкам для уровней
+    [SerializeField] private TextMeshProUGUI[] _weaponDamageTexts;
+
+    private float[] _damageMultipliers = { 1.1f, 1.2f, 1.3f, 1.5f, 2.0f };
+    private int[] _requiredCardsForNextLevel = { 10, 20, 30, 50, 100 }; // Требования по карточкам для уровней
 
     private void Start()
     {
+        Time.timeScale = 1.0f;
         UpdateWeaponLevelTexts();
+        UpdateWeaponDamageTexts();
         UpdateUpgradeIndicators();
         UpdateCardInfoUI();
     }
@@ -52,8 +57,29 @@ public class Hangar : MonoBehaviour
             }
             else
             {
-                _weaponCardTexts[i].text = $"Max Level"; // Если оружие на максимальном уровне
+                _weaponCardTexts[i].text = $"Max."; // Если оружие на максимальном уровне
             }
+        }
+    }
+
+    private void UpdateWeaponDamageText(int weaponIndex)
+    {
+        if (weaponIndex >= 0 && weaponIndex < _weaponDamageTexts.Length)
+        {
+            WeaponData weaponData = GameManager.Instance.GetWeaponData(weaponIndex);
+
+            if (weaponData != null)
+            {
+                _weaponDamageTexts[weaponIndex].text = $"{weaponData.currentDamage}";
+            }
+        }
+    }
+
+    private void UpdateWeaponDamageTexts()
+    {
+        for (int i = 0; i < _weaponDamageTexts.Length; i++)
+        {
+            UpdateWeaponDamageText(i);
         }
     }
 
@@ -62,6 +88,7 @@ public class Hangar : MonoBehaviour
         if (weaponIndex >= 0 && weaponIndex < _weaponLevelTexts.Length)
         {
             WeaponData weaponData = GameManager.Instance.GetWeaponData(weaponIndex);
+
             if (weaponData != null)
             {
                 _weaponLevelTexts[weaponIndex].text = $"Lvl.{weaponData.upgradeLevel}";
@@ -99,10 +126,14 @@ public class Hangar : MonoBehaviour
             {
                 GameManager.Instance.SetCardCount(weaponIndex, currentCardCount - cardsNeeded);
                 selectedWeaponData.upgradeLevel++;
+
+                selectedWeaponData.currentDamage = Mathf.RoundToInt(selectedWeaponData.baseDamage * _damageMultipliers[currentLevel]);
                 Debug.Log($"Weapon {weaponIndex + 1} upgraded to level {selectedWeaponData.upgradeLevel}!");
+                
 
                 // Обновляем индикаторы и текстовую информацию
                 UpdateWeaponLevelText(weaponIndex);
+                UpdateWeaponDamageText(weaponIndex);
                 UpdateUpgradeIndicators();
                 UpdateCardInfoUI();
             }

@@ -39,7 +39,6 @@ public class UIController : MonoBehaviour
         _continueCanvasGroup.alpha = 1;
         _continueCanvasGroup.interactable = true;
         _continueCanvasGroup.blocksRaycasts = true;
-
     }
 
     public void CloseMainMenu()
@@ -57,6 +56,14 @@ public class UIController : MonoBehaviour
         _mainMenuCanvasGroup.alpha = 0;
         _mainMenuCanvasGroup.interactable = false;
         _mainMenuCanvasGroup.blocksRaycasts = false;
+    }
+
+    public void Restart()
+    {
+        Time.timeScale = 0f;
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
+        Time.timeScale = 1f;
     }
 
     public void MuteSound()

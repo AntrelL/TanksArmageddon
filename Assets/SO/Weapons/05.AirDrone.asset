@@ -15,3 +15,4 @@ MonoBehaviour:
   weaponName: AirDrone
   baseDamage: 100
   upgradeLevel: 0
+  currentDamage: 100

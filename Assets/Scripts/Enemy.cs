@@ -6,7 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _hitFX;
-    [SerializeField] private Transform _hitPoint;
+    //[SerializeField] private Transform _hitPoint;
     [SerializeField] private int _health = 100;
     [SerializeField] private Tank _tank;
 
@@ -31,12 +31,12 @@ public class Enemy : MonoBehaviour
         Bullet.TankHit -= PlayHitEffect;
     }
 
-    private void PlayHitEffect()
+    private void PlayHitEffect(Vector3 hitPosition)
     {
         if (_isAlive == true)
         {
             _health -= 50;
-            ParticleSystem flash = Instantiate(_hitFX, _hitPoint.position, _hitPoint.rotation);
+            ParticleSystem flash = Instantiate(_hitFX, hitPosition, Quaternion.identity);
             flash.Play();
             Destroy(flash.gameObject, flash.main.duration);
         }

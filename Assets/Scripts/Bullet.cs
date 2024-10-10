@@ -5,15 +5,22 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public static event Action<Vector3> TankHit;
+
     [SerializeField] private float _speed = 10f;
 
-    public static event Action<Vector3> TankHit;
+    private Rigidbody2D _rigidbody;
 
     private void Start()
     {
-        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-        rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        rigidbody.velocity = transform.right * _speed;
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        _rigidbody.velocity = transform.right * _speed;
+    }
+
+    private void Update()
+    {
+        transform.right = _rigidbody.velocity;
     }
 
     /*private void OnTriggerEnter2D(Collider2D collision)

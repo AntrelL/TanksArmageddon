@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 156212238261bf14b99051fcad57d21c, type: 3}
   m_Name: 02.SecondWeapon
   m_EditorClassIdentifier: 
-  weaponName: SecondWeapon
+  name: Secnd
+  icon: {fileID: 21300000, guid: 2e9a8b6ca68cd4848bd36e2fec9f0db4, type: 3}
   baseDamage: 200
-  upgradeLevel: 0
+  upgradeLevel: 2
   currentDamage: 200

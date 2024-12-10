@@ -31,6 +31,11 @@ public class Enemy : MonoBehaviour
         Bullet.TankHit -= PlayHitEffect;
     }
 
+    private void TakeDamage(int damage)
+    {
+        _health -= damage;
+    }
+
     private void PlayHitEffect(Vector3 hitPosition)
     {
         if (_isAlive == true)

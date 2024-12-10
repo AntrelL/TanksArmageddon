@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 156212238261bf14b99051fcad57d21c, type: 3}
   m_Name: 04.BigBang
   m_EditorClassIdentifier: 
-  weaponName: BigBang
+  name: Bang
+  icon: {fileID: 21300000, guid: 90a7d7a1dec9cb9478cdc75fb8b1c00a, type: 3}
   baseDamage: 500
   upgradeLevel: 0
   currentDamage: 500

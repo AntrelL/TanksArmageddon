@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 156212238261bf14b99051fcad57d21c, type: 3}
   m_Name: 05.AirDrone
   m_EditorClassIdentifier: 
-  weaponName: AirDrone
+  name: Drone
+  icon: {fileID: 21300000, guid: e6a897fd1b1a8e949b4ec2f88ec11671, type: 3}
   baseDamage: 100
   upgradeLevel: 0
   currentDamage: 100

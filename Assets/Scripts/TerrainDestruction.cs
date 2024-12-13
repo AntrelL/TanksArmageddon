@@ -4,63 +4,63 @@ using UnityEngine;
 
 public class TerrainDestruction : MonoBehaviour
 {
-    [SerializeField] private PolygonCollider2D _terrainCollider;  // PolygonCollider2D ландшафта
-    [SerializeField] private  MeshRenderer _terrainRenderer;        // MeshRenderer для визуализации
-    [SerializeField] private MeshFilter _meshFilter;               // MeshFilter для работы с Mesh
+    [SerializeField] private PolygonCollider2D _terrainCollider;  // PolygonCollider2D Р»Р°РЅРґС€Р°С„С‚Р°
+    [SerializeField] private  MeshRenderer _terrainRenderer;        // MeshRenderer РґР»СЏ РІРёР·СѓР°Р»РёР·Р°С†РёРё
+    [SerializeField] private MeshFilter _meshFilter;               // MeshFilter РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Mesh
 
-    private Mesh _terrainMesh;                   // Меш ландшафта
-    private Vector3[] _vertices;                // Вершины меша
+    private Mesh _terrainMesh;                   // РњРµС€ Р»Р°РЅРґС€Р°С„С‚Р°
+    private Vector3[] _vertices;                // Р’РµСЂС€РёРЅС‹ РјРµС€Р°
 
     private void Start()
     {
-        // Проверяем, есть ли PolygonCollider2D на объекте
+        // РџСЂРѕРІРµСЂСЏРµРј, РµСЃС‚СЊ Р»Рё PolygonCollider2D РЅР° РѕР±СЉРµРєС‚Рµ
         if (_terrainRenderer == null || _terrainCollider == null || _meshFilter == null)
         {
-            Debug.LogError("Не установлены компоненты MeshRenderer, MeshFilter или PolygonCollider2D.");
+            Debug.LogError("РќРµ СѓСЃС‚Р°РЅРѕРІР»РµРЅС‹ РєРѕРјРїРѕРЅРµРЅС‚С‹ MeshRenderer, MeshFilter РёР»Рё PolygonCollider2D.");
             return;
         }
 
-        // Получаем Mesh из MeshFilter
+        // РџРѕР»СѓС‡Р°РµРј Mesh РёР· MeshFilter
         _terrainMesh = _meshFilter.mesh;
         _vertices = _terrainMesh.vertices;
     }
 
-    // Вызывается при попадании снаряда
+    // Р’С‹Р·С‹РІР°РµС‚СЃСЏ РїСЂРё РїРѕРїР°РґР°РЅРёРё СЃРЅР°СЂСЏРґР°
     public void DestroyTerrain(Vector2 worldPosition, float radius)
     {
         if (_terrainMesh == null) return;
 
-        // Преобразуем мировые координаты в локальные координаты объекта
+        // РџСЂРµРѕР±СЂР°Р·СѓРµРј РјРёСЂРѕРІС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РІ Р»РѕРєР°Р»СЊРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РѕР±СЉРµРєС‚Р°
         Vector2 localPosition = transform.InverseTransformPoint(worldPosition);
 
-        // Обновляем вершины, чтобы удалить разрушенные области
+        // РћР±РЅРѕРІР»СЏРµРј РІРµСЂС€РёРЅС‹, С‡С‚РѕР±С‹ СѓРґР°Р»РёС‚СЊ СЂР°Р·СЂСѓС€РµРЅРЅС‹Рµ РѕР±Р»Р°СЃС‚Рё
         for (int i = 0; i < _vertices.Length; i++)
         {
             Vector2 vertex2D = new Vector2(_vertices[i].x, _vertices[i].y);
 
             if (Vector2.Distance(vertex2D, localPosition) <= radius)
             {
-                // Устанавливаем вершины в точку разрушения, чтобы "стереть" часть
-                _vertices[i] = new Vector3(_vertices[i].x, _vertices[i].y, 0); // Ставим их в 2D-плоскость
+                // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІРµСЂС€РёРЅС‹ РІ С‚РѕС‡РєСѓ СЂР°Р·СЂСѓС€РµРЅРёСЏ, С‡С‚РѕР±С‹ "СЃС‚РµСЂРµС‚СЊ" С‡Р°СЃС‚СЊ
+                _vertices[i] = new Vector3(_vertices[i].x, _vertices[i].y, 0); // РЎС‚Р°РІРёРј РёС… РІ 2D-РїР»РѕСЃРєРѕСЃС‚СЊ
             }
         }
 
-        // Обновляем меш с новыми вершинами
+        // РћР±РЅРѕРІР»СЏРµРј РјРµС€ СЃ РЅРѕРІС‹РјРё РІРµСЂС€РёРЅР°РјРё
         _terrainMesh.vertices = _vertices;
-        _terrainMesh.RecalculateBounds();   // Пересчитываем границы меша
-        _terrainMesh.RecalculateNormals();  // Пересчитываем нормали
+        _terrainMesh.RecalculateBounds();   // РџРµСЂРµСЃС‡РёС‚С‹РІР°РµРј РіСЂР°РЅРёС†С‹ РјРµС€Р°
+        _terrainMesh.RecalculateNormals();  // РџРµСЂРµСЃС‡РёС‚С‹РІР°РµРј РЅРѕСЂРјР°Р»Рё
 
-        // Обновляем коллайдер
+        // РћР±РЅРѕРІР»СЏРµРј РєРѕР»Р»Р°Р№РґРµСЂ
         UpdateCollider();
 
-        // Применяем изменения в MeshRenderer
+        // РџСЂРёРјРµРЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ РІ MeshRenderer
         _meshFilter.mesh = _terrainMesh;
     }
 
-    // Обновляем коллайдер с новыми точками после разрушения
+    // РћР±РЅРѕРІР»СЏРµРј РєРѕР»Р»Р°Р№РґРµСЂ СЃ РЅРѕРІС‹РјРё С‚РѕС‡РєР°РјРё РїРѕСЃР»Рµ СЂР°Р·СЂСѓС€РµРЅРёСЏ
     void UpdateCollider()
     {
-        // Получаем обновленные точки из Mesh
+        // РџРѕР»СѓС‡Р°РµРј РѕР±РЅРѕРІР»РµРЅРЅС‹Рµ С‚РѕС‡РєРё РёР· Mesh
         Vector2[] updatedPoints = new Vector2[_terrainCollider.points.Length];
 
         for (int i = 0; i < _terrainCollider.points.Length; i++)
@@ -68,19 +68,19 @@ public class TerrainDestruction : MonoBehaviour
             updatedPoints[i] = new Vector2(_terrainCollider.points[i].x, _terrainCollider.points[i].y);
         }
 
-        // Создаем новый список для обновленных точек
+        // РЎРѕР·РґР°РµРј РЅРѕРІС‹Р№ СЃРїРёСЃРѕРє РґР»СЏ РѕР±РЅРѕРІР»РµРЅРЅС‹С… С‚РѕС‡РµРє
         System.Collections.Generic.List<Vector2> newColliderPoints = new System.Collections.Generic.List<Vector2>();
 
-        // Добавляем точки, которые не попали в разрушенную область
+        // Р”РѕР±Р°РІР»СЏРµРј С‚РѕС‡РєРё, РєРѕС‚РѕСЂС‹Рµ РЅРµ РїРѕРїР°Р»Рё РІ СЂР°Р·СЂСѓС€РµРЅРЅСѓСЋ РѕР±Р»Р°СЃС‚СЊ
         for (int i = 0; i < updatedPoints.Length; i++)
         {
-            if (_terrainMesh.vertices[i].z == 0)  // Если вершина была разрушена
+            if (_terrainMesh.vertices[i].z == 0)  // Р•СЃР»Рё РІРµСЂС€РёРЅР° Р±С‹Р»Р° СЂР°Р·СЂСѓС€РµРЅР°
             {
                 newColliderPoints.Add(updatedPoints[i]);
             }
         }
 
-        // Обновляем путь в PolygonCollider2D
+        // РћР±РЅРѕРІР»СЏРµРј РїСѓС‚СЊ РІ PolygonCollider2D
         _terrainCollider.SetPath(0, newColliderPoints.ToArray());
     }
 }

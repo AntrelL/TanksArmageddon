@@ -43,9 +43,9 @@ public class InventoryManager : MonoBehaviour
     public void SelectWeapon(WeaponSlot slot)
     {
         if (selectedSlot != null)
-            selectedSlot.Deselect(); // Снимаем выделение с текущего оружия
+            selectedSlot.Deselect(); // РЎРЅРёРјР°РµРј РІС‹РґРµР»РµРЅРёРµ СЃ С‚РµРєСѓС‰РµРіРѕ РѕСЂСѓР¶РёСЏ
 
         selectedSlot = slot;
-        selectedSlot.Select(); // Подсвечиваем новое выбранное оружие
+        selectedSlot.Select(); // РџРѕРґСЃРІРµС‡РёРІР°РµРј РЅРѕРІРѕРµ РІС‹Р±СЂР°РЅРЅРѕРµ РѕСЂСѓР¶РёРµ
     }
 }

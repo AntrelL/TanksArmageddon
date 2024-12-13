@@ -33,9 +33,9 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out Enemy enemy))
         {
-            // Передаем позицию столкновения в событие
+            // РџРµСЂРµРґР°РµРј РїРѕР·РёС†РёСЋ СЃС‚РѕР»РєРЅРѕРІРµРЅРёСЏ РІ СЃРѕР±С‹С‚РёРµ
             TankHit?.Invoke(transform.position);
-            Debug.Log("Попал в коллайдер врага!");
+            Debug.Log("РџРѕРїР°Р» РІ РєРѕР»Р»Р°Р№РґРµСЂ РІСЂР°РіР°!");
         }
         
         {
@@ -44,29 +44,29 @@ public class Bullet : MonoBehaviour
 
             /*if (collision.gameObject.TryGetComponent(out TerrainDestruction terrain))
             {
-                //Vector2 hitPosition = transform.position;  // Позиция попадания снаряда
+                //Vector2 hitPosition = transform.position;  // РџРѕР·РёС†РёСЏ РїРѕРїР°РґР°РЅРёСЏ СЃРЅР°СЂСЏРґР°
 
-                // Разрушаем ландшафт
+                // Р Р°Р·СЂСѓС€Р°РµРј Р»Р°РЅРґС€Р°С„С‚
                 _terrainDestruction.DestroyTerrain(transform.position, _explosionRadius);
-                Debug.Log("!разрушили ландшафт!");
+                Debug.Log("!СЂР°Р·СЂСѓС€РёР»Рё Р»Р°РЅРґС€Р°С„С‚!");
             }*/
 
 
-            Destroy(gameObject); // Уничтожаем снаряд после столкновения
+            Destroy(gameObject); // РЈРЅРёС‡С‚РѕР¶Р°РµРј СЃРЅР°СЂСЏРґ РїРѕСЃР»Рµ СЃС‚РѕР»РєРЅРѕРІРµРЅРёСЏ
         }
     }
 
     /*private void OnTriggerEnter2D(Collision2D collision)
     {
-        // Проверяем, что столкнулись с ландшафтом
+        // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ СЃС‚РѕР»РєРЅСѓР»РёСЃСЊ СЃ Р»Р°РЅРґС€Р°С„С‚РѕРј
         if (collision.gameObject.TryGetComponent(out TerrainDestruction terrain))
         {
-            Vector2 hitPosition = transform.position;  // Позиция попадания снаряда
+            Vector2 hitPosition = transform.position;  // РџРѕР·РёС†РёСЏ РїРѕРїР°РґР°РЅРёСЏ СЃРЅР°СЂСЏРґР°
 
-            // Разрушаем ландшафт
+            // Р Р°Р·СЂСѓС€Р°РµРј Р»Р°РЅРґС€Р°С„С‚
             _terrainDestruction.DestroyTerrain(hitPosition, _explosionRadius);
-            Debug.Log("!разрушили ландшафт!");
-            // Уничтожаем снаряд после попадания
+            Debug.Log("!СЂР°Р·СЂСѓС€РёР»Рё Р»Р°РЅРґС€Р°С„С‚!");
+            // РЈРЅРёС‡С‚РѕР¶Р°РµРј СЃРЅР°СЂСЏРґ РїРѕСЃР»Рµ РїРѕРїР°РґР°РЅРёСЏ
             Destroy(gameObject);
         }
     }*/

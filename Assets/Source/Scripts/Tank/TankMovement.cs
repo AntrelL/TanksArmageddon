@@ -49,7 +49,10 @@ public class TankMovement : MonoBehaviour
         _motionSmoothingValue = Mathf.Min(_motionSmoothingValue, _maxSmoothingValue);
 
         if (direction < -1 || direction > 1)
-            Debug.LogError("direction must be in the range [-1;1]");
+        {
+            Debug.LogError("Direction must be in the range [-1;1]");
+            return;
+        }
 
         if (TryToRaycastToGround(direction, out RaycastHit2D hit))
         {

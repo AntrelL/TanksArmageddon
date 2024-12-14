@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8993754831700925608}
   - component: {fileID: 3785812173842318222}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Fuse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 5052459737666606437}
   - component: {fileID: -5106785254935967126}
   - component: {fileID: 3920655703824838494}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: StandardShell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,3 +257,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPower: 330
+  _explosionRadius: 0.5
+  _damage: 100
+  _groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _entityLayerMask:
+    serializedVersion: 2
+    m_Bits: 128

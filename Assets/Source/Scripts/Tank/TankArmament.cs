@@ -7,10 +7,14 @@ public class TankArmament : MonoBehaviour
     [SerializeField] private Transform _shellsStorage;
 
     private List<Shell> _shells;
+    private GameObject _mainTankObject;
 
-    public void Construct()
+    public GameObject MainTankObject => _mainTankObject;
+
+    public void Construct(GameObject mainTankObject)
     {
         _shells = new List<Shell>();
+        _mainTankObject = mainTankObject;
 
         foreach (var prefab in _shellPrefabs)
         {

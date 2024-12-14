@@ -3,6 +3,10 @@ using UnityEngine;
 public class StandardShell : Shell
 {
     [SerializeField] [Min(0)] private float _shotPower;
+    [SerializeField] [Min(0)] private float _explosionRadius;
+    [SerializeField] [Min(0)] private float _damage;
+    [SerializeField] private LayerMask _groundLayerMask;
+    [SerializeField] private LayerMask _entityLayerMask;
 
     private float _minMapHeight = -10f;
 
@@ -17,7 +21,30 @@ public class StandardShell : Shell
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("hit");
+        if (collision.gameObject == ParentTankArmament.MainTankObject)
+            return;
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(Transform.position, _explosionRadius);
+
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.TryGetComponent(out Entity entity))
+            {
+                float distance = Vector2.Distance(Transform.position, collider.ClosestPoint(Transform.position));
+
+                float damage = _damage * (_explosionRadius - distance);
+                entity.TakeDamage(damage);
+                Debug.Log($"hit entity, distance: {distance}, damage: {damage}");
+                continue;
+            }
+
+            if (collider.gameObject.layer == _groundLayerMask)
+            {
+                Debug.Log("hit: ground");
+                continue;
+            }
+        }
+
         ParentTankArmament.ReturnShell(this);
     }
 

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Tank : MonoBehaviour
+public class Tank : Entity
 {
     [SerializeField] private TankArmament _armament;
     [SerializeField] private TankCannon _cannon;
@@ -27,7 +27,7 @@ public class Tank : MonoBehaviour
     private void Awake()
     {
         _movement.Construct(GetComponent<Rigidbody2D>());
-        _armament.Construct();
+        _armament.Construct(gameObject);
         _cannon.Construct();
     }
 

@@ -26,6 +26,8 @@ public class Tank : Entity
 
     private void Awake()
     {
+        Construct();
+
         _movement.Construct(GetComponent<Rigidbody2D>());
         _armament.Construct(gameObject);
         _cannon.Construct();

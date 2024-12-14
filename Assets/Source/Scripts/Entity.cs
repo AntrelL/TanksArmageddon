@@ -19,7 +19,7 @@ public class Entity : MonoBehaviour
         }
     }
 
-    private void Awake()
+    protected void Construct()
     {
         Health = _maxHealth;
     }

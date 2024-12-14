@@ -3,6 +3,7 @@ using UnityEngine;
 public class TankCannon : MonoBehaviour
 {
     [SerializeField] private float _rotationSpeed;
+    [SerializeField] private Transform _shotPoint;
 
     private float _targetAngle;
     private float _angle;
@@ -50,5 +51,10 @@ public class TankCannon : MonoBehaviour
         }
 
         _targetAngle = angle;
+    }
+
+    public void Shoot(Shell shell)
+    {
+        shell.Activate(_shotPoint.position, _shotPoint.right);
     }
 }

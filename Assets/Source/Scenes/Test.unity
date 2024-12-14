@@ -281,7 +281,8 @@ Transform:
   m_LocalPosition: {x: 0.35, y: 0.5, z: 0}
   m_LocalScale: {x: 0.8, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1283867134}
   m_Father: {fileID: 416262433}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &154069318
@@ -297,6 +298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 0.5
+  _shotPoint: {fileID: 1283867134}
   <MinAngle>k__BackingField: -15
   <MaxAngle>k__BackingField: 45
   <StartAngle>k__BackingField: 0
@@ -683,6 +685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de0eaebd50137184baf6f2496c61de23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _armament: {fileID: 522091489}
   _cannon: {fileID: 154069318}
   _movement: {fileID: 1793547366}
   _maxFuel: 100
@@ -866,6 +869,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 439983552}
   m_CullTransparentMesh: 1
+--- !u!1 &473459040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 473459041}
+  m_Layer: 0
+  m_Name: Shells
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &473459041
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473459040}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &478481767
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,6 +986,7 @@ GameObject:
   - component: {fileID: 522091486}
   - component: {fileID: 522091487}
   - component: {fileID: 522091488}
+  - component: {fileID: 522091489}
   m_Layer: 7
   m_Name: Turret
   m_TagString: Untagged
@@ -1072,6 +1107,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &522091489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522091485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce9c8eb4ed574144788ee354138f6afd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shellPrefabs:
+  - {fileID: 3920655703824838494, guid: 48d3caf96e6394c4f8f3ebff6c61db1c, type: 3}
+  _shellsStorage: {fileID: 473459041}
 --- !u!1 &527201901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1682,6 +1732,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1793547363}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1283867133
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1283867134}
+  m_Layer: 7
+  m_Name: ShotPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1283867134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283867133}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.95, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 154069317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1393752549
 GameObject:
@@ -2880,4 +2961,5 @@ SceneRoots:
   - {fileID: 651499985}
   - {fileID: 1393752552}
   - {fileID: 1472157192}
+  - {fileID: 473459041}
   - {fileID: 416262433}

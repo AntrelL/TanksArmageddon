@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Tank : MonoBehaviour
 {
+    [SerializeField] private TankArmament _armament;
     [SerializeField] private TankCannon _cannon;
     [SerializeField] private TankMovement _movement;
     [SerializeField] [Min(0)] private float _maxFuel;
@@ -26,6 +27,7 @@ public class Tank : MonoBehaviour
     private void Awake()
     {
         _movement.Construct(GetComponent<Rigidbody2D>());
+        _armament.Construct();
         _cannon.Construct();
     }
 
@@ -61,6 +63,8 @@ public class Tank : MonoBehaviour
 
     public void Shoot()
     {
+        Shell shell = _armament.GetSelectedShell();
+        _cannon.Shoot(shell);
     }
 
     public void ResetFuel() => Fuel = _maxFuel;

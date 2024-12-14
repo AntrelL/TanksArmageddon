@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Source/Scenes/Test.unity
+    guid: 786bd916119d8f64f87195efa7c8420f
+  - enabled: 0
+    path: Assets/Source/Scenes/Loading.unity
+    guid: 50085e1c6499a6c4a92b411cdc4aa25f
+  - enabled: 0
+    path: Assets/Source/Scenes/Menu.unity
+    guid: 61d29c0a282ca15488ffaa715e911e53
+  - enabled: 0
     path: Assets/Source/Scenes/Level.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests/SceneContractTests/Decorators/Scene1.unity
-    guid: 9561978599724fa4695e4683cf4af028
   m_configObjects: {}

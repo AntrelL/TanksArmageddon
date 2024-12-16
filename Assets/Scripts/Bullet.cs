@@ -9,25 +9,23 @@ public class Bullet : MonoBehaviour
     public static event Action GroundHit;
 
     [SerializeField] private float _speed = 10f;
-    [SerializeField] private float _explosionRadius = 3f;
 
     private Rigidbody2D _rigidbody;
-    private TerrainDestruction _terrainDestruction;
+    Cutter _cut;
+    bool _dead;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         _rigidbody.velocity = transform.right * _speed;
-
-        _terrainDestruction = FindObjectOfType<TerrainDestruction>();
+        _cut = FindObjectOfType<Cutter>();
     }
 
     private void Update()
     {
         transform.right = _rigidbody.velocity;
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -37,37 +35,29 @@ public class Bullet : MonoBehaviour
             TankHit?.Invoke(transform.position);
             Debug.Log("Попал в коллайдер врага!");
         }
-        
+        else
+
+        if (collision.gameObject.TryGetComponent(out Land land))
         {
+            if (_dead) return;
+            _cut.transform.position = transform.position;
+            Invoke(nameof(DoCut), 0.001f);
 
+            _dead = true;
         }
-
-            /*if (collision.gameObject.TryGetComponent(out TerrainDestruction terrain))
-            {
-                //Vector2 hitPosition = transform.position;  // Позиция попадания снаряда
-
-                // Разрушаем ландшафт
-                _terrainDestruction.DestroyTerrain(transform.position, _explosionRadius);
-                Debug.Log("!разрушили ландшафт!");
-            }*/
-
-
-            Destroy(gameObject); // Уничтожаем снаряд после столкновения
-        }
+        //Invoke(nameof(Delay), 0.01f);
+        //Destroy(gameObject);
     }
 
-    /*private void OnTriggerEnter2D(Collision2D collision)
+    void DoCut()
     {
-        // Проверяем, что столкнулись с ландшафтом
-        if (collision.gameObject.TryGetComponent(out TerrainDestruction terrain))
-        {
-            Vector2 hitPosition = transform.position;  // Позиция попадания снаряда
+        Debug.Log("DoCut beep");
+        _cut.DoCut();
+    }
 
-            // Разрушаем ландшафт
-            _terrainDestruction.DestroyTerrain(hitPosition, _explosionRadius);
-            Debug.Log("!разрушили ландшафт!");
-            // Уничтожаем снаряд после попадания
-            Destroy(gameObject);
-        }
-    }*/
+    private void Delay()
+    {
+        Destroy(gameObject);
+    }
+}
 

@@ -31,28 +31,24 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out Enemy enemy))
         {
-            // Передаем позицию столкновения в событие
             TankHit?.Invoke(transform.position);
-            Debug.Log("Попал в коллайдер врага!");
+            Debug.Log("Hit enemy");
+            Destroy(gameObject);
         }
-        else
 
         if (collision.gameObject.TryGetComponent(out Land land))
         {
-            if (_dead) return;
             _cut.transform.position = transform.position;
+            Debug.Log("Hit land");
             Invoke(nameof(DoCut), 0.001f);
-
-            _dead = true;
         }
-        //Invoke(nameof(Delay), 0.01f);
-        //Destroy(gameObject);
     }
 
     void DoCut()
     {
         Debug.Log("DoCut beep");
         _cut.DoCut();
+        Destroy(gameObject);
     }
 
     private void Delay()

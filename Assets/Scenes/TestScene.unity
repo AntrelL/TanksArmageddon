@@ -7213,6 +7213,7 @@ GameObject:
   - component: {fileID: 556334766}
   - component: {fileID: 556334765}
   - component: {fileID: 556334764}
+  - component: {fileID: 556334767}
   m_Layer: 5
   m_Name: EnemyHealthCanvas
   m_TagString: Untagged
@@ -7303,6 +7304,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &556334767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556334762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d438cd26476ca7408986ab9b34e13ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemy: {fileID: 854206648}
+  _maxHealth: 1000
+  _healthSlider: {fileID: 1418941529071093093}
+  _smoothSpeed: 5
+  _valueText: {fileID: 1479809366}
 --- !u!1 &605505907
 GameObject:
   m_ObjectHideFlags: 0
@@ -12705,7 +12723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitFX: {fileID: 6681144130848230961}
-  _health: 100
+  _maxHealth: 1000
   _tank: {fileID: 178346279489177006}
 --- !u!61 &854206649
 BoxCollider2D:
@@ -13167,6 +13185,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 384
   _petrolTank: {fileID: 8642947710878509115}
+  _maxHealth: 1000
 --- !u!114 &1162912318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21710,9 +21729,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 1000
   m_WholeNumbers: 1
-  m_Value: 65
+  m_Value: 307
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

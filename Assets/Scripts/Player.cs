@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float _availableTravelTime;
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private Slider _petrolTank;
+    [SerializeField] private int _maxHealth = 1000;
+
+    //public event Action<int> HealthChanged;
 
     private float _travelTimeSpent;
     private Vector2 _movementDirectionForDraw;

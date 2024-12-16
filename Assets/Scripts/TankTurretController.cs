@@ -23,7 +23,7 @@ public class TankTurretController : MonoBehaviour
 
         if (_angleSlider != null)
         {
-            // Подписываемся на изменение значения слайдера
+            // РџРѕРґРїРёСЃС‹РІР°РµРјСЃСЏ РЅР° РёР·РјРµРЅРµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ СЃР»Р°Р№РґРµСЂР°
             _angleSlider.onValueChanged.AddListener(OnSliderValueChanged);
         }
     }
@@ -51,20 +51,20 @@ public class TankTurretController : MonoBehaviour
         if (Time.timeScale == 0)
             return;
 
-         // Получаем позицию мыши в мировых координатах
+         // РџРѕР»СѓС‡Р°РµРј РїРѕР·РёС†РёСЋ РјС‹С€Рё РІ РјРёСЂРѕРІС‹С… РєРѕРѕСЂРґРёРЅР°С‚Р°С…
          Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-         mousePosition.z = 0; // Убираем компонент z, так как у нас 2D игра
+         mousePosition.z = 0; // РЈР±РёСЂР°РµРј РєРѕРјРїРѕРЅРµРЅС‚ z, С‚Р°Рє РєР°Рє Сѓ РЅР°СЃ 2D РёРіСЂР°
 
-         // Вычисляем направление от пушки к мыши
+         // Р’С‹С‡РёСЃР»СЏРµРј РЅР°РїСЂР°РІР»РµРЅРёРµ РѕС‚ РїСѓС€РєРё Рє РјС‹С€Рё
          Vector3 direction = mousePosition - _turret.position;
 
-         // Вычисляем угол в градусах
+         // Р’С‹С‡РёСЃР»СЏРµРј СѓРіРѕР» РІ РіСЂР°РґСѓСЃР°С…
          float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-         // Ограничиваем угол в пределах от -20 до 20 градусов относительно начального угла
+         // РћРіСЂР°РЅРёС‡РёРІР°РµРј СѓРіРѕР» РІ РїСЂРµРґРµР»Р°С… РѕС‚ -20 РґРѕ 20 РіСЂР°РґСѓСЃРѕРІ РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РЅР°С‡Р°Р»СЊРЅРѕРіРѕ СѓРіР»Р°
          float clampedAngle = Mathf.Clamp(angle - _initialAngle, -20f, 20f) + _initialAngle;
 
-         // Анимируем изменение угла с помощью DOTween
+         // РђРЅРёРјРёСЂСѓРµРј РёР·РјРµРЅРµРЅРёРµ СѓРіР»Р° СЃ РїРѕРјРѕС‰СЊСЋ DOTween
          _turret.DORotate(new Vector3(0, 0, clampedAngle), _rotationSpeed).SetEase(Ease.OutCubic);
     }
 }

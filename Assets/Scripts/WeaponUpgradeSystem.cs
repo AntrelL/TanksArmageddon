@@ -5,8 +5,8 @@ public class WeaponUpgradeSystem : MonoBehaviour
     private WeaponData _weaponData;
     private int _currentCards;
 
-    private int[] _cardsForUpgrades = { 10, 20, 30, 50, 100 }; // Карточки для каждого уровня
-    private float[] _damageMultipliers = { 1.1f, 1.2f, 1.3f, 1.5f, 2.0f }; // Множители урона
+    private int[] _cardsForUpgrades = { 10, 20, 30, 50, 100 }; // РљР°СЂС‚РѕС‡РєРё РґР»СЏ РєР°Р¶РґРѕРіРѕ СѓСЂРѕРІРЅСЏ
+    private float[] _damageMultipliers = { 1.1f, 1.2f, 1.3f, 1.5f, 2.0f }; // РњРЅРѕР¶РёС‚РµР»Рё СѓСЂРѕРЅР°
 
     public void SetWeaponData(WeaponData weaponData)
     {
@@ -37,7 +37,7 @@ public class WeaponUpgradeSystem : MonoBehaviour
                 _currentCards -= cardsRequired;
                 _weaponData.upgradeLevel++;
 
-                // Увеличиваем урон относительно начального урона
+                // РЈРІРµР»РёС‡РёРІР°РµРј СѓСЂРѕРЅ РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РЅР°С‡Р°Р»СЊРЅРѕРіРѕ СѓСЂРѕРЅР°
                 _weaponData.baseDamage = Mathf.RoundToInt(_weaponData.currentDamage * _damageMultipliers[currentLevel]);
 
                 Debug.Log($"Weapon upgraded to level {_weaponData.upgradeLevel} with new damage {_weaponData.baseDamage}");
@@ -58,7 +58,7 @@ public class WeaponUpgradeSystem : MonoBehaviour
         return _currentCards;
     }
 
-    // Возвращает количество карточек, необходимых для следующего уровня
+    // Р’РѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ РєР°СЂС‚РѕС‡РµРє, РЅРµРѕР±С…РѕРґРёРјС‹С… РґР»СЏ СЃР»РµРґСѓСЋС‰РµРіРѕ СѓСЂРѕРІРЅСЏ
     public int GetCardsRequiredForNextLevel(int currentLevel)
     {
         if (currentLevel < _cardsForUpgrades.Length)
@@ -67,11 +67,11 @@ public class WeaponUpgradeSystem : MonoBehaviour
         }
         else
         {
-            return -1; // Если уровень максимальный
+            return -1; // Р•СЃР»Рё СѓСЂРѕРІРµРЅСЊ РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№
         }
     }
 
-    // Возвращает максимальный уровень улучшения
+    // Р’РѕР·РІСЂР°С‰Р°РµС‚ РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СѓСЂРѕРІРµРЅСЊ СѓР»СѓС‡С€РµРЅРёСЏ
     public int MaxUpgradeLevel()
     {
         return _cardsForUpgrades.Length;

@@ -9,7 +9,7 @@ public class LoadingSlider : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Transform _bulletsContainer;
     [SerializeField] private int _bulletCount = 10;
-    [SerializeField] private string _sceneToLoad = "Test"; // Название сцены для загрузки
+    [SerializeField] private string _sceneToLoad = "Test"; // РќР°Р·РІР°РЅРёРµ СЃС†РµРЅС‹ РґР»СЏ Р·Р°РіСЂСѓР·РєРё
 
     private void Start()
     {

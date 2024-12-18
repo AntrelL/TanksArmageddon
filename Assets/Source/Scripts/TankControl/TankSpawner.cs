@@ -15,9 +15,12 @@ namespace TanksArmageddon.TankControl
         [SerializeField] private List<Tank> _enemyTankPrefabs;
         [SerializeField] private List<Transform> _enemySpawnPoints;
 
+        private Player _player;
+
         [Inject]
-        public void Construct()
+        public void Construct(Player player)
         {
+            _player = player;
             SpawnAll();
         }
 
@@ -29,7 +32,7 @@ namespace TanksArmageddon.TankControl
                 return;
             }
 
-            SpawnTank(_playerTankPrefab, _playerSpawnPoint, new Player());
+            SpawnTank(_playerTankPrefab, _playerSpawnPoint, _player);
 
             for (int i = 0; i < _enemyTankPrefabs.Count; i++)
             {

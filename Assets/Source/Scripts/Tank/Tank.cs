@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using TanksArmageddon.TankControl;
+using TanksArmageddon.CompositeRoot;
 
 namespace TanksArmageddon.TankComponents
 {
@@ -8,22 +9,22 @@ namespace TanksArmageddon.TankComponents
     [RequireComponent(typeof(TankMovement))]
     [RequireComponent(typeof(TankInventory))]
     [RequireComponent(typeof(TankSpecification))]
-    [RequireComponent(typeof(TankFuel))]
-    [RequireComponent(typeof(TankHealth))]
     [RequireComponent(typeof(TankAnimator))]
     [RequireComponent(typeof(TankEffector))]
-    public class Tank : MonoBehaviour
+    public class Tank : MonoScript, IConstructable<ITankController>, IUpdatable
     {
+        [SerializeField][Min(0)] private float _fuelConsumptionRate;
+
         private TankCannon _cannon;
         private TankMovement _movement;
         private TankInventory _inventory;
         private TankSpecification _specification;
 
-        private TankFuel _fuel;
-        private TankHealth _health;
-
         private TankAnimator _animator;
         private TankEffector _effector;
+
+        private Scale _fuel;
+        private Scale _health;
 
         private ITankController _controller;
         private List<TankPhysicalPart> _physicalParts;
@@ -40,11 +41,17 @@ namespace TanksArmageddon.TankComponents
             {
                 part.Construct(this);
             }
-
+            
             DisableTankPhysicalPartCollisions(_physicalParts);
+
+            _fuel = new Scale(startValue: 100, minValue: 0, maxValue: 100);
         }
 
-        private void Update()
+        public IReadOnlyScale Fuel => _fuel;
+
+        public IReadOnlyScale Health => _health;
+
+        public void CompositeUpdate()
         {
             int movementDirection = _controller.GetMovementDirection();
 
@@ -53,6 +60,12 @@ namespace TanksArmageddon.TankComponents
                 Debug.LogError("Direction must be in the range [-1;1]");
                 return;
             }
+
+            if (_fuel.IsEmpty)
+                return;
+
+            if (movementDirection != 0)
+                _fuel.Value -= _fuelConsumptionRate * Time.deltaTime;
 
             _movement.Move(movementDirection, Time.deltaTime);
         }
@@ -63,9 +76,6 @@ namespace TanksArmageddon.TankComponents
             _movement = GetComponent<TankMovement>();
             _inventory = GetComponent<TankInventory>();
             _specification = GetComponent<TankSpecification>();
-
-            _fuel = GetComponent<TankFuel>();
-            _health = GetComponent<TankHealth>();
 
             _animator = GetComponent<TankAnimator>();
             _effector = GetComponent<TankEffector>();

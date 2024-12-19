@@ -1,5 +1,5 @@
-using TanksArmageddon.UI;
 using UnityEngine;
+using TanksArmageddon.UI;
 
 namespace TanksArmageddon.TankControl
 {

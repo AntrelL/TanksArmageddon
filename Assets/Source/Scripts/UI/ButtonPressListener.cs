@@ -1,9 +1,9 @@
-using UnityEngine;
 using UnityEngine.EventSystems;
+using TanksArmageddon.CompositeRoot;
 
 namespace TanksArmageddon.UI
 {
-    public class ButtonPressListener : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+    public class ButtonPressListener : MonoScript, IPointerDownHandler, IPointerUpHandler
     {
         public bool IsPressed { get; private set; } = false;
 

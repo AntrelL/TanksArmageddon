@@ -1,8 +1,9 @@
 using UnityEngine;
+using TanksArmageddon.CompositeRoot;
 
 namespace TanksArmageddon.TankComponents
 {
-    public class TankInventory : MonoBehaviour
+    public class TankInventory : MonoScript
     {
     }
 }

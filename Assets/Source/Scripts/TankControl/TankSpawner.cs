@@ -1,11 +1,11 @@
-using Zenject;
 using UnityEngine;
 using System.Collections.Generic;
+using TanksArmageddon.CompositeRoot;
 using TanksArmageddon.TankComponents;
 
 namespace TanksArmageddon.TankControl
 {
-    public class TankSpawner : MonoBehaviour
+    public class TankSpawner : MonoScript, IConstructable<(Player Player, List<Tank> Tanks)>
     {
         [SerializeField] private Transform _tankStorage;
         [Space]
@@ -17,11 +17,16 @@ namespace TanksArmageddon.TankControl
 
         private Player _player;
 
-        [Inject]
-        public void Construct(Player player)
+        private Tank _playerTank;
+        private List<Tank> _enemyTanks;
+
+        public void Construct((Player Player, List<Tank> Tanks) parameters)
         {
-            _player = player;
+            _player = parameters.Player;
+
             SpawnAll();
+            parameters.Tanks.Add(_playerTank);
+            parameters.Tanks.AddRange(_enemyTanks);
         }
 
         private void SpawnAll()
@@ -32,18 +37,21 @@ namespace TanksArmageddon.TankControl
                 return;
             }
 
-            SpawnTank(_playerTankPrefab, _playerSpawnPoint, _player);
+            _playerTank = SpawnTank(_playerTankPrefab, _playerSpawnPoint, _player);
+            _enemyTanks = new List<Tank>();
 
             for (int i = 0; i < _enemyTankPrefabs.Count; i++)
             {
-                SpawnTank(_enemyTankPrefabs[i], _enemySpawnPoints[i], new Enemy());
+                _enemyTanks.Add(SpawnTank(_enemyTankPrefabs[i], _enemySpawnPoints[i], new Enemy()));
             }
         }
 
-        private void SpawnTank(Tank tankPrefab, Transform spawnPoint, ITankController tankController)
+        private Tank SpawnTank(Tank tankPrefab, Transform spawnPoint, ITankController tankController)
         {
             Tank tank = Instantiate(tankPrefab, spawnPoint.position, Quaternion.identity, _tankStorage);
             tank.Construct(tankController);
+
+            return tank;
         }
     }
 }

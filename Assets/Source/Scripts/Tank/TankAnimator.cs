@@ -1,8 +1,9 @@
 using UnityEngine;
+using TanksArmageddon.CompositeRoot;
 
 namespace TanksArmageddon.TankComponents
 {
-    public class TankAnimator : MonoBehaviour
+    public class TankAnimator : MonoScript
     {
     }
 }

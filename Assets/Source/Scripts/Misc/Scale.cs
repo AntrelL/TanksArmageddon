@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TanksArmageddon
 {
-    public class Scale
+    public class Scale : IReadOnlyScale
     {
         private float _value;
 

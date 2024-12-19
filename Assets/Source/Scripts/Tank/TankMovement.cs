@@ -1,9 +1,10 @@
 using UnityEngine;
+using TanksArmageddon.CompositeRoot;
 
 namespace TanksArmageddon.TankComponents
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class TankMovement : MonoBehaviour
+    public class TankMovement : MonoScript, IConstructable
     {
         [SerializeField][Min(0)] private float _maxSpeed;
         [SerializeField][Min(0)] private float _force;

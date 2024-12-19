@@ -1,9 +1,10 @@
 using UnityEngine;
+using TanksArmageddon.CompositeRoot;
 
 namespace TanksArmageddon.TankComponents
 {
     [RequireComponent(typeof(Collider2D))]
-    public class TankPhysicalPart : MonoBehaviour
+    public class TankPhysicalPart : MonoScript, IConstructable<Tank>
     {
         public void Construct(Tank parentTank)
         {

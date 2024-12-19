@@ -18,14 +18,9 @@ namespace TanksArmageddon.SceneControl.Level
             yield return _mainCompositeGroup.LazyConstruct();
         }
 
-        public override void Activate()
+        public override void Link()
         {
-            _mainCompositeGroup.Activate();
-        }
-
-        public override void Deactivate()
-        {
-            _mainCompositeGroup.Deactivate();
+            AddOtherScriptLinks(_mainCompositeGroup);
         }
 
         public override void PackToUpdate()

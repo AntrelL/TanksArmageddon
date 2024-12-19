@@ -11,7 +11,7 @@ namespace TanksArmageddon.TankComponents
     [RequireComponent(typeof(TankSpecification))]
     [RequireComponent(typeof(TankAnimator))]
     [RequireComponent(typeof(TankEffector))]
-    public class Tank : MonoScript, IConstructable<ITankController>, IUpdatable
+    public class Tank : MonoScriptLinked, IConstructable<ITankController>
     {
         [SerializeField][Min(0)] private float _fuelConsumptionRate;
 
@@ -51,7 +51,7 @@ namespace TanksArmageddon.TankComponents
 
         public IReadOnlyScale Health => _health;
 
-        public void CompositeUpdate()
+        public override void CompositeUpdate()
         {
             int movementDirection = _controller.GetMovementDirection();
 

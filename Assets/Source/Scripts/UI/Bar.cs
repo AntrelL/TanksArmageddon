@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 using TanksArmageddon.CompositeRoot;
 
 namespace TanksArmageddon.UI
 {
-    public class Bar : MonoScript, IConstructable<IReadOnlyScale>, ISwitchable, IUpdatable
+    public class Bar : MonoScriptLinked, IConstructable<IReadOnlyScale>, IUpdatable
     {
         [SerializeField][Min(0)] private float _valueChangeRate;
         [SerializeField] private Transform _fill;
@@ -19,17 +20,12 @@ namespace TanksArmageddon.UI
             _targetValue = _value = _scale.Value;
         }
 
-        public void Activate()
+        public override void Link()
         {
-            _scale.ValueChanged += ScaleValueChanged;
+            CreateConnection<Action<float>>(_scale, nameof(_scale.ValueChanged), ScaleValueChanged);
         }
 
-        public void Deactivate()
-        {
-            _scale.ValueChanged -= ScaleValueChanged;
-        }
-
-        public void CompositeUpdate()
+        public override void CompositeUpdate()
         {
             _value = Mathf.MoveTowards(_value, _targetValue, _valueChangeRate * Time.deltaTime);
             _fill.localScale = _fill.localScale.SetValues(x: _value / _scale.MaxValue);

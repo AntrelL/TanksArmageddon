@@ -38,24 +38,15 @@ namespace TanksArmageddon.SceneControl.Level
             yield return null;
         }
 
-        public override void Activate()
+        public override void Link()
         {
-            _fuelBar.Activate();
-        }
-
-        public override void Deactivate()
-        {
-            _fuelBar.Deactivate();
+            AddScriptLinks(_fuelBar);
         }
 
         public override void PackToUpdate()
         {
             Updatables.AddRange(_tanks);
             Updatables.Add(_fuelBar);
-        }
-
-        public override void PackToFixedUpdate()
-        {
         }
     }
 }

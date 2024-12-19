@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     private bool _isAlive = true;
 
     public event Action<int> HealthChanged;
+    public event Action Defeated;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class Enemy : MonoBehaviour
     {
         if (_currentHealth <= 0)
         {
+            Defeated?.Invoke();
             _tank.Destroy();
             _isAlive = false;
         }

@@ -11,12 +11,29 @@ public class UIController : MonoBehaviour
     [SerializeField] private CanvasGroup _mainMenuCanvasGroup;
     [SerializeField] private CanvasGroup _unmutedSoundCanvasGroup;
     [SerializeField] private CanvasGroup _mutedSoundCanvasGroup;
+    [SerializeField] private GameObject _levelFinishedCanvas;
+    [SerializeField] private Enemy _enemy;
 
     public static event Action ButtonPressed;
 
     private void Start()
     {
         Time.timeScale = 1;
+    }
+
+    private void OnEnable()
+    {
+        _enemy.Defeated += ShowWinnerScreen;
+    }
+
+    private void OnDisable()
+    {
+        _enemy.Defeated -= ShowWinnerScreen;
+    }
+
+    private void ShowWinnerScreen()
+    {
+        _levelFinishedCanvas.SetActive(true);
     }
 
     public void ShootButtonPressed()

@@ -14,11 +14,15 @@ namespace TanksArmageddon.TankControl
         [SerializeField] private List<Tank> _enemyTankPrefabs;
         [SerializeField] private List<Transform> _enemySpawnPoints;
 
+        private Player _player;
+
         private Tank _playerTank;
         private List<Tank> _enemyTanks;
 
-        public void Construct()
+        public void Construct(Player player)
         {
+            _player = player;
+
             SpawnAll();
         }
 
@@ -30,18 +34,21 @@ namespace TanksArmageddon.TankControl
                 return;
             }
 
-            _playerTank = SpawnTank(_playerTankPrefab, _playerSpawnPoint);
+            _playerTank = SpawnTank(_playerTankPrefab, _playerSpawnPoint, _player);
             _enemyTanks = new List<Tank>();
 
             for (int i = 0; i < _enemyTankPrefabs.Count; i++)
             {
-                _enemyTanks.Add(SpawnTank(_enemyTankPrefabs[i], _enemySpawnPoints[i]));
+                _enemyTanks.Add(SpawnTank(_enemyTankPrefabs[i], _enemySpawnPoints[i], new Enemy()));
             }
         }
 
-        private Tank SpawnTank(Tank tankPrefab, Transform spawnPoint)
+        private Tank SpawnTank(Tank tankPrefab, Transform spawnPoint, ITankController tankController)
         {
-            return Instantiate(tankPrefab, spawnPoint.position, Quaternion.identity, _tankStorage);
+            Tank tank = Instantiate(tankPrefab, spawnPoint.position, Quaternion.identity, _tankStorage);
+            tank.Construct(tankController);
+
+            return tank;
         }
     }
 }

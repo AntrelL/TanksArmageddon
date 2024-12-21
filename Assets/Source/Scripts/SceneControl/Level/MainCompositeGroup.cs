@@ -12,17 +12,17 @@ namespace TanksArmageddon.SceneControl.Level
         [SerializeField] private ColliderVisualizer _groundColliderVisualizer;
         [Space]
         [SerializeField] private TankSpawner _tankSpawner;
+        [Space]
         [SerializeField] private ButtonPressListener _moveLeftButton;
         [SerializeField] private ButtonPressListener _moveRightButton;
-
-        private Player _player;
+        [SerializeField] private Bar _fuelBar;
 
         public override void Construct()
         {
             _groundColliderVisualizer.Construct();
 
-            _player = new Player(_moveLeftButton, _moveRightButton);
-            _tankSpawner.Construct(_player);
+            _tankSpawner.Construct(new Player(_moveLeftButton, _moveRightButton));
+            _fuelBar.Construct(_tankSpawner.PlayerTank.Fuel);
         }
 
         public override IEnumerator LazyConstruct()

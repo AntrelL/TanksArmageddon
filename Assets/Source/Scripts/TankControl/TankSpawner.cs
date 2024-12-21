@@ -16,7 +16,6 @@ namespace TanksArmageddon.TankControl
 
         private Player _player;
 
-        private Tank _playerTank;
         private List<Tank> _enemyTanks;
 
         public void Construct(Player player)
@@ -26,6 +25,10 @@ namespace TanksArmageddon.TankControl
             SpawnAll();
         }
 
+        public Tank PlayerTank { get; private set; }
+
+        public IReadOnlyList<Tank> EnemyTanks => _enemyTanks;
+
         private void SpawnAll()
         {
             if (_enemyTankPrefabs.Count != _enemySpawnPoints.Count)
@@ -34,7 +37,7 @@ namespace TanksArmageddon.TankControl
                 return;
             }
 
-            _playerTank = SpawnTank(_playerTankPrefab, _playerSpawnPoint, _player);
+            PlayerTank = SpawnTank(_playerTankPrefab, _playerSpawnPoint, _player);
             _enemyTanks = new List<Tank>();
 
             for (int i = 0; i < _enemyTankPrefabs.Count; i++)

@@ -970,6 +970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c1a7f53d50c87c43a3cc3a236b1ad01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fuelConsumptionRate: 12
 --- !u!1 &6899517797917781640
 GameObject:
   m_ObjectHideFlags: 0

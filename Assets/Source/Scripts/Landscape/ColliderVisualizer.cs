@@ -1,11 +1,10 @@
-using TanksArmageddon.CompositeRoot;
 using UnityEngine;
 
 namespace TanksArmageddon.Landscape
 {
     [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(MeshFilter))]
-    public class ColliderVisualizer : MonoBehaviour, IConstructible
+    public class ColliderVisualizer : MonoBehaviour
     {
         public void Construct()
         {

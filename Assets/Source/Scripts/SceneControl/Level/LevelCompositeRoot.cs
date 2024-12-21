@@ -1,6 +1,6 @@
-using UnityEngine;
 using System.Collections;
 using TanksArmageddon.CompositeRoot;
+using UnityEngine;
 
 namespace TanksArmageddon.SceneControl.Level
 {

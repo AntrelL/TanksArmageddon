@@ -11,12 +11,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Entity
+  - Tank
+  - TankPart
+  - Shell
+  - Ground
+  - Logic
   - 
   - 
   - 

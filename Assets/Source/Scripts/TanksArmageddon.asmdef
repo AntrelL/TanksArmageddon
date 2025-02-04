@@ -1,7 +1,10 @@
 {
     "name": "TanksArmageddon",
     "rootNamespace": "TanksArmageddon",
-    "references": [],
+    "references": [
+        "GUID:f9f957da93006434b9197edb871816a4",
+        "GUID:eeabf044097e8ea40ab0092a1958bf87"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

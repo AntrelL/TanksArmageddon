@@ -1,7 +1,9 @@
 {
     "name": "TanksArmageddon.Core.Editor",
     "rootNamespace": "TanksArmageddon.Core.Editor",
-    "references": [],
+    "references": [
+        "GUID:f9f957da93006434b9197edb871816a4"
+    ],
     "includePlatforms": [
         "Editor"
     ],

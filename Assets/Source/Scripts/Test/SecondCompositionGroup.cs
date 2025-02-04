@@ -5,7 +5,7 @@ namespace TanksArmageddon
 {
     public class SecondCompositionGroup : BaseCompositionGroup
     {
-        public override void Create()
+        public override void CreateEnvironment()
         {
         }
 

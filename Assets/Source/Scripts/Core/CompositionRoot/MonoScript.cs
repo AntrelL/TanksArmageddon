@@ -4,29 +4,30 @@ namespace TanksArmageddon.Core.CompositionRoot
 {
     public class MonoScript : MonoBehaviour
     {
-        private bool _isConstructed = false;
-        private bool _isLazyConstructed = false;
+        public bool IsConstructed { get; private set; } = false;
+
+        public bool IsLazyConstructed { get; private set; } = false;
 
         protected void OnConstructed()
         {
-            if (_isConstructed)
+            if (IsConstructed)
             {
                 Debug.LogError("The constructor can only be called once");
                 return;
             }
 
-            _isConstructed = true;
+            IsConstructed = true;
         }
 
         protected void OnLazyConstructed()
         {
-            if (_isLazyConstructed)
+            if (IsLazyConstructed)
             {
                 Debug.LogError("The lazy constructor can only be called once");
                 return;
             }
 
-            _isLazyConstructed = true;
+            IsLazyConstructed = true;
         }
     }
 }

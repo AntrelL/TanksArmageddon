@@ -28,15 +28,15 @@ namespace TanksArmageddon.Core.CompositionRoot.Editor
 
         private void DrawChildFields()
         {
-            SerializedProperty iterator = serializedObject.GetIterator();
+            SerializedProperty serializedProperty = serializedObject.GetIterator();
             bool childFieldsLeft = true;
 
-            while (iterator.NextVisible(childFieldsLeft))
+            while (serializedProperty.NextVisible(childFieldsLeft))
             {
-                if (iterator.propertyPath != ScriptFieldName 
-                    && iterator.propertyPath != OtherGroupsFieldName)
+                if (serializedProperty.propertyPath != ScriptFieldName 
+                    && serializedProperty.propertyPath != OtherGroupsFieldName)
                 {
-                    EditorGUILayout.PropertyField(iterator, true);
+                    EditorGUILayout.PropertyField(serializedProperty, true);
                 }
 
                 childFieldsLeft = false;

@@ -9,9 +9,9 @@ namespace TanksArmageddon
     {
         [SerializeField] private FirstCompositionGroup _firstCompositionGroup;
 
-        public override void Create()
+        public override void CreateEnvironment()
         {
-            _firstCompositionGroup.Create();
+            _firstCompositionGroup.CreateEnvironment();
         }
 
         public override void Construct()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TanksArmageddon.Core.PrefabControl;
 using UnityEngine;
 
 namespace TanksArmageddon.Core.CompositionRoot
@@ -14,8 +15,11 @@ namespace TanksArmageddon.Core.CompositionRoot
 
         private void Awake()
         {
-            Create();
-            _otherGroups.ForEach(group => group.Create());
+            if (PrefabStorage.IsPrefabsLoaded == false)
+                PrefabStorage.LoadPrefabs();
+
+            CreateEnvironment();
+            _otherGroups.ForEach(group => group.CreateEnvironment());
 
             Construct();
             _otherGroups.ForEach(group => group.Construct());

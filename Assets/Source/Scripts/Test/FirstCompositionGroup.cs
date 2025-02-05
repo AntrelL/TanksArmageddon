@@ -12,7 +12,7 @@ namespace TanksArmageddon
 
         public override void Construct()
         {
-            ObjectBuilder.CreateNew(PrefabName.MainScreenCanvas);
+            //ObjectBuilder.CreateNew(PrefabName.MainScreenCanvas);
 
             /*TestObject1 testObject1Prefab = ObjectBuilder.CreateNew<TestObject1>(PrefabName.GameObject1);
 

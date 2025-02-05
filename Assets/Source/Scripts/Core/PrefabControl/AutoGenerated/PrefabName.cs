@@ -14,7 +14,6 @@ namespace TanksArmageddon.Core.PrefabControl
     public enum PrefabName
     {
         GameObject1,
-        MainScreenCanvas,
         TestObject2,
     }
 }

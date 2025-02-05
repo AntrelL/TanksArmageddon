@@ -1,14 +1,15 @@
-using TanksArmageddon.Core.CompositionRoot;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using IJunior.TypedScenes;
 
 namespace TanksArmageddon
 {
-    public class StartButtonPressed : MonoScript, IPointerClickHandler
+    public class StartButtonPressed : MonoBehaviour, IPointerClickHandler
     {
         public void OnPointerClick(PointerEventData eventData)
         {
             Debug.Log("Start button pressed!");
+            
         }
     }
 }

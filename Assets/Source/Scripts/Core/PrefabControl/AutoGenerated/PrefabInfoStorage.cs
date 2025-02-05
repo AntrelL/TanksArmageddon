@@ -24,6 +24,7 @@ namespace TanksArmageddon.Core.PrefabControl
         static PrefabInfoStorage()
         {
             _pathsToPrefabs.Add(PrefabName.GameObject1, "Prefabs/GameObject1");
+            _pathsToPrefabs.Add(PrefabName.MainScreenCanvas, "Prefabs/MainScreenCanvas");
             _pathsToPrefabs.Add(PrefabName.TestObject2, "Prefabs/Test/TestObject2");
         }
         

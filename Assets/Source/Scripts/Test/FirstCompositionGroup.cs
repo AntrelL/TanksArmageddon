@@ -12,9 +12,9 @@ namespace TanksArmageddon
 
         public override void Construct()
         {
-            ObjectBuilder.CreateNew(PrefabName.TestObject2);
+            ObjectBuilder.CreateNew(PrefabName.MainScreenCanvas);
 
-            TestObject1 testObject1Prefab = ObjectBuilder.CreateNew<TestObject1>(PrefabName.GameObject1);
+            /*TestObject1 testObject1Prefab = ObjectBuilder.CreateNew<TestObject1>(PrefabName.GameObject1);
 
             ObjectBuilder.CreateNew<TestObject1>(
                 PrefabName.GameObject1, (testObject1) => testObject1.Construct("text"));
@@ -27,7 +27,7 @@ namespace TanksArmageddon
             var testObject3Prefab = PrefabStorage.Get<TestObject1>(PrefabName.GameObject1);
             ObjectBuilder.CreateNew(testObject3Prefab,
                 () => Instantiate(testObject3Prefab),
-                (testObject3) => testObject3.Construct("text"));
+                (testObject3) => testObject3.Construct("text"));*/
         }
 
         public override IEnumerator LazyConstruct()

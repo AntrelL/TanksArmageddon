@@ -12,7 +12,7 @@ namespace TanksArmageddon
 
         public override void Construct()
         {
-            ObjectBuilder.CreateNew(PrefabName.MainScreenCanvas);
+
         }
 
         public override IEnumerator LazyConstruct()

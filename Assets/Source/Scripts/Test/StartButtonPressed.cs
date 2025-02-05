@@ -9,6 +9,7 @@ namespace TanksArmageddon
         public void OnPointerClick(PointerEventData eventData)
         {
             Debug.Log("Start button pressed!");
+            TrainingScene.Load();
         }
     }
 }

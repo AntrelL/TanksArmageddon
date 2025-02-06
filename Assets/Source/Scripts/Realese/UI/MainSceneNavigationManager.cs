@@ -14,7 +14,7 @@ public class MainSceneNavigationManager : MonoBehaviour
     public void LoadHangarScene()
     {
         Debug.Log("Load HangarScene");
-        //MainScene.Load();
+        HangarScene.Load();
     }
 
     public void LoadZeroLevel()

@@ -657,7 +657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 5.261719e-25
-  m_labelHash: -1.2985474e-36
+  m_labelHash: 1.2985474e-36
   m_SpriteKey: 0
   m_SpriteHash: 698539360
 --- !u!1 &5725958631352002403
@@ -814,7 +814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 5.261719e-25
-  m_labelHash: -1.2985474e-36
+  m_labelHash: 1.2985474e-36
   m_SpriteKey: 0
   m_SpriteHash: 698539360
 --- !u!1 &6409200276303943728
@@ -861,7 +861,7 @@ GameObject:
   m_Layer: 5
   m_Name: GunPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -874,7 +874,7 @@ Transform:
   m_GameObject: {fileID: 7491497605675488781}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4, y: 0.85, z: 0}
+  m_LocalPosition: {x: 1.2, y: 0.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

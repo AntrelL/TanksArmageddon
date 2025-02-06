@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using TanksArmageddon;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -10,6 +12,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _waitTime = 1.5f;
 
     private bool followingPlayer = false;
+
+    public event Action UnlockMovement;
 
     private void Start()
     {
@@ -28,6 +32,7 @@ public class CameraController : MonoBehaviour
         yield return new WaitForSeconds(_waitTime);
 
         followingPlayer = true;
+        UnlockMovement?.Invoke();
     }
 
     private IEnumerator MoveToTarget(Vector3 targetPosition)

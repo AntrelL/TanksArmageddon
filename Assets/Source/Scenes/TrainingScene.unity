@@ -216,6 +216,7 @@ MonoBehaviour:
   _maxHealth: 1000
   _leftButton: {fileID: 7034066852522786870}
   _rightButton: {fileID: 2658534051386627851}
+  _cameraController: {fileID: 1493516531}
 --- !u!70 &408297839
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -397,7 +398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 422059129}
-  _meshFilter: {fileID: 1705284050}
+  _meshFilter: {fileID: 1705284052}
 --- !u!114 &422059128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 422059129}
-  _meshFilter: {fileID: 1705284050}
+  _meshFilter: {fileID: 1705284052}
   _colliderRenderer: {fileID: 422059127}
 --- !u!60 &422059129
 PolygonCollider2D:
@@ -463,22 +464,43 @@ PolygonCollider2D:
       - {x: 0.49925828, y: -2.5332115}
       - {x: -3.5714834, y: -3.0047219}
       - {x: -16.887028, y: 0.823514}
-      - {x: -17.04098, y: -7.946134}
-      - {x: -3.6047225, y: -7.5561275}
-      - {x: 2.3345745, y: -7.33685}
-      - {x: 10.430375, y: -7.609014}
-      - {x: 20.667427, y: -8.45528}
-      - {x: 30.433422, y: -8.449289}
-      - {x: 48.913677, y: -7.7365193}
+      - {x: -14.0544815, y: 4.2241454}
+      - {x: -13.975362, y: 9.321247}
+      - {x: -23.42549, y: 10.0648155}
+      - {x: -29.052732, y: -3.56938}
+      - {x: -26.792978, y: -10.384132}
+      - {x: -24.713385, y: -16.645102}
+      - {x: -13.532918, y: -18.19723}
+      - {x: -3.0196023, y: -19.258526}
+      - {x: 11.989054, y: -18.746689}
+      - {x: 22.230295, y: -18.823812}
+      - {x: 31.102068, y: -21.035357}
+      - {x: 36.57718, y: -21.02937}
+      - {x: 39.87279, y: -20.19618}
+      - {x: 48.1007, y: -18.571392}
+      - {x: 55.740074, y: -8.7117195}
+      - {x: 51.458504, y: 1.8998275}
       - {x: 49.88831, y: -3.5580857}
       - {x: 46.456688, y: -4.3368406}
       - {x: 41.927437, y: -5.355656}
       - {x: 37.709946, y: -4.2955317}
       - {x: 35.597828, y: -2.234486}
-      - {x: 31.898579, y: -1.8971784}
+      - {x: 35.163685, y: 2.5366802}
+      - {x: 35.77921, y: 5.279961}
+      - {x: 32.4975, y: 5.9208913}
+      - {x: 32.960373, y: 8.525255}
+      - {x: 34.959324, y: 8.20167}
+      - {x: 36.56255, y: 9.067617}
+      - {x: 34.187103, y: 11.877362}
+      - {x: 31.46505, y: 10.550307}
+      - {x: 29.19202, y: 9.346344}
+      - {x: 27.681381, y: 6.6841955}
+      - {x: 28.975918, y: 4.916987}
+      - {x: 32.737827, y: 2.490497}
+      - {x: 31.025211, y: -1.6884499}
       - {x: 27.644981, y: -1.6525699}
       - {x: 23.92198, y: -3.147497}
-      - {x: 20.095133, y: -3.813107}
+      - {x: 20.188265, y: -3.813107}
       - {x: 16.86208, y: -3.4233396}
   m_UseDelaunayMesh: 0
 --- !u!4 &422059130
@@ -1139,7 +1161,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 100
+  far clip plane: 95.6
   field of view: 84
   orthographic: 0
   orthographic size: 5
@@ -1539,7 +1561,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1705284051}
-  - component: {fileID: 1705284050}
+  - component: {fileID: 1705284052}
   - component: {fileID: 1705284049}
   m_Layer: 0
   m_Name: LandMesh
@@ -1590,14 +1612,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1705284050
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705284048}
-  m_Mesh: {fileID: 0}
 --- !u!4 &1705284051
 Transform:
   m_ObjectHideFlags: 0
@@ -1613,6 +1627,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 422059130}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1705284052
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705284048}
+  m_Mesh: {fileID: 0}
 --- !u!1 &1750636968
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,7 +2061,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 600745200}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: CloseMainMenu
         m_Mode: 1
@@ -3041,7 +3063,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 600745200}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: OpenHangarScene
         m_Mode: 1
@@ -3497,7 +3519,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 600745200}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: OpenShopScene
         m_Mode: 1
@@ -9625,7 +9647,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 600745200}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: OpenHangarScene
         m_Mode: 1
@@ -20055,8 +20077,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7443244586814667758}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalPosition: {x: 0, y: 0, z: 98}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5356002944185177017}
@@ -20869,7 +20891,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 600745200}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: UnmuteSound
         m_Mode: 1
@@ -21117,7 +21139,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 600745200}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: OpenHomeScene
         m_Mode: 1
@@ -22145,7 +22167,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 1493516528}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 23.2
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -22155,7 +22177,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 200
+  m_SortingOrder: -15
   m_TargetDisplay: 0
 --- !u!224 &4894746645857729083
 RectTransform:
@@ -23357,7 +23379,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 600745200}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: MuteSound
         m_Mode: 1
@@ -23721,7 +23743,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 600745200}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: CloseMainMenu
         m_Mode: 1
@@ -24234,7 +24256,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 600745200}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: OpenMainMenu
         m_Mode: 1
@@ -31337,7 +31359,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 600745200}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
@@ -31765,7 +31787,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 600745200}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: OpenHomeScene
         m_Mode: 1
@@ -32224,7 +32246,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 600745200}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1

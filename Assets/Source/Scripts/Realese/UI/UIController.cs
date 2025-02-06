@@ -31,8 +31,8 @@ public class UIController : MonoBehaviour
 
     private void ShowWinnerScreen()
     {
-        _levelFinishedCanvas.SetActive(true);
         Time.timeScale = 0f;
+        _levelFinishedCanvas.SetActive(true);
     }
 
     public void ShootButtonPressed()
@@ -78,7 +78,6 @@ public class UIController : MonoBehaviour
     {
         Time.timeScale = 0f;
         TrainingScene.Load();
-        Time.timeScale = 1f;
     }
 
     public void MuteSound()

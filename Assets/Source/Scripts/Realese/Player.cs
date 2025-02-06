@@ -17,10 +17,12 @@ namespace TanksArmageddon
         [SerializeField] private int _maxHealth = 1000;
         [SerializeField] private Button _leftButton;
         [SerializeField] private Button _rightButton;
+        [SerializeField] private CameraController _cameraController;
 
         private float _travelTimeSpent;
         private bool _leftButtonPressed = false;
         private bool _rightButtonPressed = false;
+        private bool _canMove = false;
 
         private void Start()
         {
@@ -35,6 +37,8 @@ namespace TanksArmageddon
 
         private void FixedUpdate()
         {
+            if (!_canMove) return;
+
             float horizontalInput = Input.GetAxis("Horizontal");
 
             if (_leftButtonPressed)
@@ -73,6 +77,21 @@ namespace TanksArmageddon
 
             if (_rigidbody2D.velocity.magnitude > _maxSpeed)
                 _rigidbody2D.velocity = _rigidbody2D.velocity.normalized * _maxSpeed;
+        }
+
+        private void OnEnable()
+        {
+            _cameraController.UnlockMovement += OnMovementUnlocked;
+        }
+
+        private void OnDisable()
+        {
+            _cameraController.UnlockMovement -= OnMovementUnlocked;
+        }
+
+        private void OnMovementUnlocked()
+        {
+            _canMove = true;
         }
 
         private void AddEventTrigger(GameObject target, EventTriggerType eventType, System.Action action)

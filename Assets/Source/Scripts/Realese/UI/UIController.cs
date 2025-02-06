@@ -1,3 +1,4 @@
+using IJunior.TypedScenes;
 using System;
 using UnityEngine;
 
@@ -31,6 +32,7 @@ public class UIController : MonoBehaviour
     private void ShowWinnerScreen()
     {
         _levelFinishedCanvas.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void ShootButtonPressed()
@@ -75,8 +77,7 @@ public class UIController : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 0f;
-        //int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        //SceneManager.LoadScene(currentSceneIndex);
+        TrainingScene.Load();
         Time.timeScale = 1f;
     }
 

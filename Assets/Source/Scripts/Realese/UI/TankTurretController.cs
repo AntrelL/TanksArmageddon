@@ -14,11 +14,6 @@ public class TankTurretController : MonoBehaviour
         _initialGunAngle = GetLocalGunAngle();
     }
 
-    /*private void OnSliderValueChanged(float value)
-    {
-        _turret.rotation = Quaternion.Euler(0, 0, value);
-    }*/
-
     private void OnSliderValueChanged(float value)
     {
         float clampedAngle = Mathf.Clamp(value, _angleSlider.minValue, _angleSlider.maxValue);

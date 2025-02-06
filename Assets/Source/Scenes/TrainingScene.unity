@@ -214,6 +214,8 @@ MonoBehaviour:
     m_Bits: 512
   _petrolTank: {fileID: 5016692757208734663}
   _maxHealth: 1000
+  _leftButton: {fileID: 7034066852522786870}
+  _rightButton: {fileID: 2658534051386627851}
 --- !u!70 &408297839
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using Assets.Constructors.FuturisticTanks.Scripts;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace TanksArmageddon
@@ -14,19 +15,36 @@ namespace TanksArmageddon
         [SerializeField] private LayerMask _layerMask;
         [SerializeField] private Slider _petrolTank;
         [SerializeField] private int _maxHealth = 1000;
+        [SerializeField] private Button _leftButton;
+        [SerializeField] private Button _rightButton;
 
         private float _travelTimeSpent;
-        private Vector2 _movementDirectionForDraw;
+        private bool _leftButtonPressed = false;
+        private bool _rightButtonPressed = false;
 
         private void Start()
         {
             _petrolTank.maxValue = _availableTravelTime;
             _petrolTank.value = _availableTravelTime;
+
+            AddEventTrigger(_leftButton.gameObject, EventTriggerType.PointerDown, () => _leftButtonPressed = true);
+            AddEventTrigger(_leftButton.gameObject, EventTriggerType.PointerUp, () => _leftButtonPressed = false);
+            AddEventTrigger(_rightButton.gameObject, EventTriggerType.PointerDown, () => _rightButtonPressed = true);
+            AddEventTrigger(_rightButton.gameObject, EventTriggerType.PointerUp, () => _rightButtonPressed = false);
         }
 
         private void FixedUpdate()
         {
             float horizontalInput = Input.GetAxis("Horizontal");
+
+            if (_leftButtonPressed)
+            {
+                horizontalInput = -1f;
+            }
+            else if (_rightButtonPressed)
+            {
+                horizontalInput = 1f;
+            }
 
             if (_travelTimeSpent >= _availableTravelTime)
                 return;
@@ -50,12 +68,19 @@ namespace TanksArmageddon
                 Vector2 direction = Vector2.right * horizontalInput;
                 direction = direction - (Vector2.Dot(direction, hit.normal) * hit.normal);
 
-                _movementDirectionForDraw = direction;
                 _rigidbody2D.AddForce(direction * _force);
             }
 
             if (_rigidbody2D.velocity.magnitude > _maxSpeed)
                 _rigidbody2D.velocity = _rigidbody2D.velocity.normalized * _maxSpeed;
+        }
+
+        private void AddEventTrigger(GameObject target, EventTriggerType eventType, System.Action action)
+        {
+            EventTrigger trigger = target.GetComponent<EventTrigger>() ?? target.AddComponent<EventTrigger>();
+            EventTrigger.Entry entry = new EventTrigger.Entry { eventID = eventType };
+            entry.callback.AddListener((data) => action());
+            trigger.triggers.Add(entry);
         }
     }
 }

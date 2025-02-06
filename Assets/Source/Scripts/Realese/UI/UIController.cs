@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private Enemy _enemy;
 
     public event Action ButtonPressed;
+    public static event Action EnemyDefeated;
 
     private void Start()
     {
@@ -31,6 +32,7 @@ public class UIController : MonoBehaviour
 
     private void ShowWinnerScreen()
     {
+        EnemyDefeated?.Invoke();
         Time.timeScale = 0f;
         _levelFinishedCanvas.SetActive(true);
     }
@@ -107,18 +109,18 @@ public class UIController : MonoBehaviour
     public void OpenHomeScene()
     {
         Debug.Log("Load Home Scene.");
-        //SceneManager.LoadScene("HomeScene");
+        MainScene.Load();
     }
 
     public void OpenShopScene()
     {
         Debug.Log("Load Shop Scene.");
-        //SceneManager.LoadScene("ShopScene");
+        ShopScene.Load();
     }
 
     public void OpenHangarScene()
     {
         Debug.Log("Load Hangar Scene.");
-        //SceneManager.LoadScene("HangarScene");
+        HangarScene.Load();
     }
 }

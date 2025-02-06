@@ -8,6 +8,7 @@ public class Shop : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1f;
         UpdatePlayerBalanceUI();
     }
 

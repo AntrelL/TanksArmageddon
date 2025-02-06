@@ -5,10 +5,15 @@ using UnityEngine;
 
 public class MainSceneNavigationManager : MonoBehaviour
 {
+    private void Start()
+    {
+        Time.timeScale = 1f;
+    }
+
     public void LoadShopScene()
     {
         Debug.Log("Load ShopScene");
-        MainScene.Load();
+        ShopScene.Load();
     }
 
     public void LoadHangarScene()

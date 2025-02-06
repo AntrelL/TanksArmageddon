@@ -24,6 +24,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        UIController.EnemyDefeated += OnEnemyDefeated;
+    }
+
+    private void OnDisable()
+    {
+        UIController.EnemyDefeated -= OnEnemyDefeated;
+    }
+
+    private void OnEnemyDefeated()
+    {
+        _playerBalance += 500;
+    }
+
     public int GetCardCount(int weaponIndex)
     {
         return _weaponCardCounts[weaponIndex];

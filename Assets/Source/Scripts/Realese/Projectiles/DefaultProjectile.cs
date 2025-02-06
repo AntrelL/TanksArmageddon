@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TanksArmageddon;
 using UnityEngine;
 
@@ -30,12 +28,12 @@ public class DefaultProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*if (collision.gameObject.TryGetComponent(out Enemy enemy))
+        if (collision.gameObject.TryGetComponent(out Enemy enemy))
         {
             TankHit?.Invoke(transform.position);
             Debug.Log("Hit enemy");
             Destroy(gameObject);
-        }*/
+        }
 
         if (collision.gameObject.TryGetComponent(out Land land))
         {

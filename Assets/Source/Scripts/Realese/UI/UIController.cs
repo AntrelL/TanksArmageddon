@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIController : MonoBehaviour
@@ -11,7 +9,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private CanvasGroup _unmutedSoundCanvasGroup;
     [SerializeField] private CanvasGroup _mutedSoundCanvasGroup;
     [SerializeField] private GameObject _levelFinishedCanvas;
-    //[SerializeField] private Enemy _enemy;
+    [SerializeField] private Enemy _enemy;
 
     public event Action ButtonPressed;
 
@@ -22,12 +20,12 @@ public class UIController : MonoBehaviour
 
     private void OnEnable()
     {
-        //_enemy.Defeated += ShowWinnerScreen;
+        _enemy.Defeated += ShowWinnerScreen;
     }
 
     private void OnDisable()
     {
-        //_enemy.Defeated -= ShowWinnerScreen;
+        _enemy.Defeated -= ShowWinnerScreen;
     }
 
     private void ShowWinnerScreen()

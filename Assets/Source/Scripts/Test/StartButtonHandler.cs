@@ -4,7 +4,7 @@ using IJunior.TypedScenes;
 
 namespace TanksArmageddon
 {
-    public class StartButtonPressed : MonoBehaviour, IPointerClickHandler
+    public class StartButtonHandler : MonoBehaviour, IPointerClickHandler
     {
         public void OnPointerClick(PointerEventData eventData)
         {

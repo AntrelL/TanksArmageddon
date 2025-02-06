@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5266637044610361999}
   - component: {fileID: 8102609717806388283}
   - component: {fileID: 2360080346186156951}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: FX_Fire_Small_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4591,7 +4591,7 @@ GameObject:
   - component: {fileID: 6443900453562941403}
   - component: {fileID: 2080543088765159590}
   - component: {fileID: 3623667095773285811}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: FX_Fire_Embers_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9172,7 +9172,7 @@ GameObject:
   - component: {fileID: 5046143941570129872}
   - component: {fileID: 8863032324315366864}
   - component: {fileID: 379530961637966326}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: DefaultProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

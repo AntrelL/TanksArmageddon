@@ -14,6 +14,25 @@ namespace TanksArmageddon.Core.PrefabControl
     public enum PrefabName
     {
         GameObject1,
+        Hangar,
+        DefaultProjectile,
         TestObject2,
+        AimSlider,
+        BackgroundCanvas,
+        ContinueCanvas,
+        EnemyHealthCanvas,
+        HangarUI,
+        LeftMovingButton,
+        LevelFailedCanvas,
+        LevelFinishedCanvas,
+        MainMenuCanvas,
+        MutedSoundCanvas,
+        PauseCanvas,
+        PetrolTankCanvas,
+        PlayerHealthCanvas,
+        RightMovingButton,
+        ShootCanvas,
+        ShopUI,
+        UnmutedSoundCanvas,
     }
 }

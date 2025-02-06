@@ -27,6 +27,7 @@ namespace TanksArmageddon
 
         private void OnDrawGizmos()
         {
+#if UNITY_EDITOR
             for (int p = 0; p < _collider.pathCount; p++)
             {
                 for (int i = 0; i < _collider.GetPath(p).Length; i++)
@@ -34,6 +35,7 @@ namespace TanksArmageddon
                     Handles.Label(_collider.transform.TransformPoint(_collider.GetPath(p)[i]), i.ToString());
                 }
             }
+#endif
         }
     }
 }

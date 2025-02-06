@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace TanksArmageddon.Core.PrefabControl.Editor
 {
-    public class PrefabInfoGenerator : IPreprocessBuildWithReport
+    public class PrefabInfoGenerator// : IPreprocessBuildWithReport
     {
         private const string PathToPrefabsFolder = "Assets/Resources/Prefabs";
         private const string PrefabsFindFilter = "t:Prefab";
@@ -14,9 +14,9 @@ namespace TanksArmageddon.Core.PrefabControl.Editor
         private const string ExtraPartOfPath = "Assets/Resources/";
         private const string PrefabExtension = ".prefab";
 
-        public int callbackOrder => 0;
+        //public int callbackOrder => 0;
 
-        public void OnPreprocessBuild(BuildReport report) => UpdatePrefabsInfo();
+        //public void OnPreprocessBuild(BuildReport report) => UpdatePrefabsInfo();
 
         [MenuItem("Tools/Update Prefabs Info")]
         private static void UpdatePrefabsInfo()

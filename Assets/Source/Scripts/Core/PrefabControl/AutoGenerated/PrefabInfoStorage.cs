@@ -24,7 +24,26 @@ namespace TanksArmageddon.Core.PrefabControl
         static PrefabInfoStorage()
         {
             _pathsToPrefabs.Add(PrefabName.GameObject1, "Prefabs/GameObject1");
+            _pathsToPrefabs.Add(PrefabName.Hangar, "Prefabs/Logic/Hangar");
+            _pathsToPrefabs.Add(PrefabName.DefaultProjectile, "Prefabs/Projectiles/DefaultProjectile");
             _pathsToPrefabs.Add(PrefabName.TestObject2, "Prefabs/Test/TestObject2");
+            _pathsToPrefabs.Add(PrefabName.AimSlider, "Prefabs/UI/AimSlider");
+            _pathsToPrefabs.Add(PrefabName.BackgroundCanvas, "Prefabs/UI/BackgroundCanvas");
+            _pathsToPrefabs.Add(PrefabName.ContinueCanvas, "Prefabs/UI/ContinueCanvas");
+            _pathsToPrefabs.Add(PrefabName.EnemyHealthCanvas, "Prefabs/UI/EnemyHealthCanvas");
+            _pathsToPrefabs.Add(PrefabName.HangarUI, "Prefabs/UI/HangarUI");
+            _pathsToPrefabs.Add(PrefabName.LeftMovingButton, "Prefabs/UI/LeftMovingButton");
+            _pathsToPrefabs.Add(PrefabName.LevelFailedCanvas, "Prefabs/UI/LevelFailedCanvas");
+            _pathsToPrefabs.Add(PrefabName.LevelFinishedCanvas, "Prefabs/UI/LevelFinishedCanvas");
+            _pathsToPrefabs.Add(PrefabName.MainMenuCanvas, "Prefabs/UI/MainMenuCanvas");
+            _pathsToPrefabs.Add(PrefabName.MutedSoundCanvas, "Prefabs/UI/MutedSoundCanvas");
+            _pathsToPrefabs.Add(PrefabName.PauseCanvas, "Prefabs/UI/PauseCanvas");
+            _pathsToPrefabs.Add(PrefabName.PetrolTankCanvas, "Prefabs/UI/PetrolTankCanvas");
+            _pathsToPrefabs.Add(PrefabName.PlayerHealthCanvas, "Prefabs/UI/PlayerHealthCanvas");
+            _pathsToPrefabs.Add(PrefabName.RightMovingButton, "Prefabs/UI/RightMovingButton");
+            _pathsToPrefabs.Add(PrefabName.ShootCanvas, "Prefabs/UI/ShootCanvas");
+            _pathsToPrefabs.Add(PrefabName.ShopUI, "Prefabs/UI/ShopUI");
+            _pathsToPrefabs.Add(PrefabName.UnmutedSoundCanvas, "Prefabs/UI/UnmutedSoundCanvas");
         }
         
         public static GameObject GetPrefab(PrefabName prefabName)

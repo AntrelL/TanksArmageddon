@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] private GameObject _blockUICanvas;
     [SerializeField] private Transform _player;
     [SerializeField] private Transform _enemy;
     [SerializeField] private float _moveSpeed = 3f;
@@ -22,6 +23,8 @@ public class CameraController : MonoBehaviour
 
     private IEnumerator CameraIntroSequence()
     {
+        _blockUICanvas.SetActive(true);
+
         yield return MoveToTarget(_player.position);
         yield return new WaitForSeconds(_waitTime);
 
@@ -33,6 +36,7 @@ public class CameraController : MonoBehaviour
 
         followingPlayer = true;
         UnlockMovement?.Invoke();
+        _blockUICanvas.SetActive(false);
     }
 
     private IEnumerator MoveToTarget(Vector3 targetPosition)

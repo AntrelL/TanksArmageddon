@@ -24,14 +24,34 @@ public class DefaultProjectile : MonoBehaviour
     private void Update()
     {
         transform.right = _rigidbody.velocity;
+
+        if (transform.position.y < -50)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.TryGetComponent(out EdgeOfMap edgeOfMap))
+        {
+            Debug.Log("Hit edge of map");
+            Destroy(gameObject);
+        }
+
         if (collision.gameObject.TryGetComponent(out Enemy enemy))
         {
-            TankHit?.Invoke(transform.position);
+            //TankHit?.Invoke(transform.position);
+            enemy.PlayHitEffect(transform.position);
             Debug.Log("Hit enemy");
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.TryGetComponent(out Player player))
+        {
+            //TankHit?.Invoke(transform.position);
+            player.PlayHitEffect(transform.position);
+            Debug.Log("Hit player");
             Destroy(gameObject);
         }
 

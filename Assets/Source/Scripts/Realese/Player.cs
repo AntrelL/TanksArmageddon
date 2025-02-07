@@ -1,4 +1,5 @@
 using Assets.Constructors.FuturisticTanks.Scripts;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -7,6 +8,7 @@ namespace TanksArmageddon
 {
     public class Player : MonoBehaviour
     {
+        [SerializeField] private Transform _centerOfMass;
         [SerializeField] private Rigidbody2D _rigidbody2D;
         [SerializeField] private Tank _tank;
         [SerializeField] private float _force;
@@ -18,11 +20,24 @@ namespace TanksArmageddon
         [SerializeField] private Button _leftButton;
         [SerializeField] private Button _rightButton;
         [SerializeField] private CameraController _cameraController;
+        [SerializeField] private ParticleSystem _hitFX;
 
         private float _travelTimeSpent;
         private bool _leftButtonPressed = false;
         private bool _rightButtonPressed = false;
         private bool _canMove = false;
+
+        private int _currentHealth;
+        private bool _isAlive = true;
+
+        public event Action<int> HealthChanged;
+        public event Action Defeated;
+
+        private void Awake()
+        {
+            _currentHealth = _maxHealth;
+            _rigidbody2D.centerOfMass = _centerOfMass.localPosition;
+        }
 
         private void Start()
         {
@@ -51,7 +66,10 @@ namespace TanksArmageddon
             }
 
             if (_travelTimeSpent >= _availableTravelTime)
+            {
+                _tank.Idle();
                 return;
+            }
 
             if (horizontalInput != 0)
             {
@@ -100,6 +118,27 @@ namespace TanksArmageddon
             EventTrigger.Entry entry = new EventTrigger.Entry { eventID = eventType };
             entry.callback.AddListener((data) => action());
             trigger.triggers.Add(entry);
+        }
+
+        private void TakeDamage(int damage)
+        {
+            _currentHealth -= damage;
+        }
+
+        public void PlayHitEffect(Vector3 hitPosition)
+        {
+            if (_isAlive == true)
+            {
+                _currentHealth -= 100;
+                HealthChanged?.Invoke(_currentHealth);
+                ParticleSystem flash = Instantiate(_hitFX, hitPosition, Quaternion.identity);
+                flash.Play();
+                Destroy(flash.gameObject, flash.main.duration);
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }

@@ -1,9 +1,11 @@
+using TanksArmageddon;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
+    [SerializeField] private Player _player;
     [SerializeField] private Enemy _enemy;
     [SerializeField] private int _maxHealth = 1000;
     [SerializeField] private Slider _healthSlider;
@@ -32,12 +34,20 @@ public class HealthBar : MonoBehaviour
 
     private void OnEnable()
     {
-        _enemy.HealthChanged += UpdateValue;
+        if (_player != null)
+            _player.HealthChanged += UpdateValue;
+
+        if (_enemy != null)
+            _enemy.HealthChanged += UpdateValue;
     }
 
     private void OnDisable()
     {
-        _enemy.HealthChanged -= UpdateValue;
+        if (_player != null)
+            _player.HealthChanged -= UpdateValue;
+
+        if (_enemy != null)
+            _enemy.HealthChanged -= UpdateValue;
     }
 
     private void UpdateValue(int value)

@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
         _currentHealth -= damage;
     }
 
-    private void PlayHitEffect(Vector3 hitPosition)
+    public void PlayHitEffect(Vector3 hitPosition)
     {
         if (_isAlive == true)
         {

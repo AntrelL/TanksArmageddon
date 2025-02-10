@@ -23,9 +23,10 @@ public class Enemy : MonoBehaviour
     {
         if (_currentHealth <= 0)
         {
-            Defeated?.Invoke();
+            //Defeated?.Invoke();
             _tank.Destroy();
             _isAlive = false;
+            gameObject.SetActive(false);
         }
     }
 

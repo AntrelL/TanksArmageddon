@@ -6,6 +6,7 @@ public class DefaultProjectile : MonoBehaviour
 {
     public static event Action<Vector3> TankHit;
     public static event Action GroundHit;
+    public static event Action ProjectileDestroyed;
 
     [SerializeField] private float _speed = 10f;
 
@@ -27,6 +28,7 @@ public class DefaultProjectile : MonoBehaviour
 
         if (transform.position.y < -50)
         {
+            ProjectileDestroyed?.Invoke();
             Destroy(gameObject);
         }
     }
@@ -36,6 +38,7 @@ public class DefaultProjectile : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out EdgeOfMap edgeOfMap))
         {
             Debug.Log("Hit edge of map");
+            ProjectileDestroyed?.Invoke();
             Destroy(gameObject);
         }
 
@@ -44,6 +47,7 @@ public class DefaultProjectile : MonoBehaviour
             //TankHit?.Invoke(transform.position);
             enemy.PlayHitEffect(transform.position);
             Debug.Log("Hit enemy");
+            ProjectileDestroyed?.Invoke();
             Destroy(gameObject);
         }
 
@@ -52,6 +56,7 @@ public class DefaultProjectile : MonoBehaviour
             //TankHit?.Invoke(transform.position);
             player.PlayHitEffect(transform.position);
             Debug.Log("Hit player");
+            ProjectileDestroyed?.Invoke();
             Destroy(gameObject);
         }
 
@@ -67,6 +72,7 @@ public class DefaultProjectile : MonoBehaviour
     {
         Debug.Log("DoCut beep");
         _cutter.DoCut();
+        ProjectileDestroyed?.Invoke();
         Destroy(gameObject);
     }
 

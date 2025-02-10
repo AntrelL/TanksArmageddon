@@ -13,8 +13,11 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _waitTime = 1.5f;
 
     private bool followingPlayer = false;
+    private bool _introFinished = false;
 
-    public event Action UnlockMovement;
+    public bool IntroFinished => _introFinished;
+
+    public event Action<bool> UnlockMovement;
 
     private void Start()
     {
@@ -35,7 +38,8 @@ public class CameraController : MonoBehaviour
         yield return new WaitForSeconds(_waitTime);
 
         followingPlayer = true;
-        UnlockMovement?.Invoke();
+        _introFinished = true;
+        UnlockMovement?.Invoke(true);
         _blockUICanvas.SetActive(false);
     }
 

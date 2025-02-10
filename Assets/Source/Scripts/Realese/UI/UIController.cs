@@ -1,6 +1,7 @@
 using IJunior.TypedScenes;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private CanvasGroup _unmutedSoundCanvasGroup;
     [SerializeField] private CanvasGroup _mutedSoundCanvasGroup;
     [SerializeField] private GameObject _levelFinishedCanvas;
+    [SerializeField] private Button _playerShootButton;
     [SerializeField] private Enemy _enemy;
 
     public event Action ButtonPressed;
@@ -22,12 +24,16 @@ public class UIController : MonoBehaviour
 
     private void OnEnable()
     {
-        _enemy.Defeated += ShowWinnerScreen;
+        //_enemy.Defeated += ShowWinnerScreen;
+        TurnManager.AllEnemiesDead += ShowWinnerScreen;
+        TurnManager.CanPlayerShoot += IsShootButtonInteractable;
     }
 
     private void OnDisable()
     {
-        _enemy.Defeated -= ShowWinnerScreen;
+        //_enemy.Defeated -= ShowWinnerScreen;
+        TurnManager.AllEnemiesDead -= ShowWinnerScreen;
+        TurnManager.CanPlayerShoot -= IsShootButtonInteractable;
     }
 
     private void ShowWinnerScreen()
@@ -37,8 +43,17 @@ public class UIController : MonoBehaviour
         _levelFinishedCanvas.SetActive(true);
     }
 
+    private void IsShootButtonInteractable(bool isInteractable)
+    {
+        _playerShootButton.interactable = isInteractable;
+    }
+
     public void ShootButtonPressed()
     {
+        if (!_playerShootButton.interactable)
+            return;
+
+        _playerShootButton.interactable = false;
         ButtonPressed?.Invoke();
     }
 
@@ -122,5 +137,10 @@ public class UIController : MonoBehaviour
     {
         Debug.Log("Load Hangar Scene.");
         HangarScene.Load();
+    }
+
+    public void ShowVictoryScreen()
+    {
+        _levelFinishedCanvas.SetActive(true);
     }
 }

@@ -100,16 +100,18 @@ namespace TanksArmageddon
         private void OnEnable()
         {
             _cameraController.UnlockMovement += OnMovementUnlocked;
+            TurnManager.CanPlayerControl += OnMovementUnlocked;
         }
 
         private void OnDisable()
         {
             _cameraController.UnlockMovement -= OnMovementUnlocked;
+            TurnManager.CanPlayerControl -= OnMovementUnlocked;
         }
 
-        private void OnMovementUnlocked()
+        private void OnMovementUnlocked(bool canPlayerMove)
         {
-            _canMove = true;
+            _canMove = canPlayerMove;
         }
 
         private void AddEventTrigger(GameObject target, EventTriggerType eventType, System.Action action)

@@ -14,6 +14,7 @@ public class TurnManager : MonoBehaviour
 
     [Header("Параметры ходов")]
     [SerializeField] private float _enemyTurnDuration = 3f;
+    [SerializeField] private float _projectileTransitionDuration = 1f;
 
     private int _turnCount = 0;
     private bool _isPlayerTurn = true;
@@ -103,7 +104,20 @@ public class TurnManager : MonoBehaviour
 
         DefaultProjectile.ProjectileDestroyed -= onProjectileDestroyed;
 
-        UnblockPlayerControls(false);
+        Transform nextTarget = null;
+        foreach (var enemy in _enemies)
+        {
+            if (enemy != null && enemy.gameObject.activeSelf)
+            {
+                nextTarget = enemy.transform;
+                break;
+            }
+        }
+
+        if (nextTarget != null)
+        {
+            yield return StartCoroutine(_cameraController.TransitionToTarget(nextTarget, _projectileTransitionDuration));
+        }
 
         Debug.Log($"[Ход {_turnCount}] Ход игрока завершён");
         _isPlayerTurn = false;
@@ -156,7 +170,6 @@ public class TurnManager : MonoBehaviour
             return;
 
         _allEnemiesDead = true;
-
         AllEnemiesDead?.Invoke();
 
         Debug.Log($"Все враги мертвы. Общее число ходов: {_turnCount}");
@@ -164,7 +177,7 @@ public class TurnManager : MonoBehaviour
 
     private void OnPlayerShoot()
     {
-        if (_isPlayerTurn == false)
+        if (!_isPlayerTurn)
         {
             Debug.LogWarning("Игрок попытался выстрелить не в свой ход!");
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DefaultProjectile : MonoBehaviour
 {
+    public static Transform CurrentProjectile { get; private set; }
     public static event Action<Vector3> TankHit;
     public static event Action GroundHit;
     public static event Action ProjectileDestroyed;
@@ -20,6 +21,7 @@ public class DefaultProjectile : MonoBehaviour
         _rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         _rigidbody.velocity = transform.right * _speed;
         _cutter = FindObjectOfType<Cutter>();
+        CurrentProjectile = transform;
     }
 
     private void Update()
@@ -79,5 +81,10 @@ public class DefaultProjectile : MonoBehaviour
     private void Delay()
     {
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        CurrentProjectile = null;
     }
 }

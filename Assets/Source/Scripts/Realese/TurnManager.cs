@@ -22,12 +22,11 @@ public class TurnManager : MonoBehaviour
     public static event Action AllEnemiesDead;
     public static event Action<bool> CanPlayerControl;
     public static event Action<bool> CanPlayerShoot;
+    public static event Action<Transform> TurnStarted;
 
     private void Start()
     {
         _uiController.ButtonPressed += OnPlayerShoot;
-
-        //StartCoroutine(TurnCycle());
 
         if (_cameraController.IntroFinished)
         {
@@ -84,6 +83,7 @@ public class TurnManager : MonoBehaviour
 
         Debug.Log($"[Ход {_turnCount}] Ход игрока начался");
 
+        TurnStarted?.Invoke(_player.transform);
         UnblockPlayerControls(true);
 
         bool shotFired = false;
@@ -114,7 +114,7 @@ public class TurnManager : MonoBehaviour
         _turnCount++;
         Debug.Log($"[Ход {_turnCount}] Ход врага {enemy.name} начался");
 
-
+        TurnStarted?.Invoke(enemy.transform);
         UnblockPlayerControls(false);
 
         float timer = 0f;
@@ -159,10 +159,7 @@ public class TurnManager : MonoBehaviour
 
         AllEnemiesDead?.Invoke();
 
-
         Debug.Log($"Все враги мертвы. Общее число ходов: {_turnCount}");
-
-        //_uiController.ShowVictoryScreen();
     }
 
     private void OnPlayerShoot()

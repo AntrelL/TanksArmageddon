@@ -14,10 +14,26 @@ public class CameraController : MonoBehaviour
 
     private bool followingPlayer = false;
     private bool _introFinished = false;
+    private Transform _currentTarget;
 
     public bool IntroFinished => _introFinished;
 
     public event Action<bool> UnlockMovement;
+
+    private void Awake()
+    {
+        _currentTarget = _player;
+    }
+
+    private void OnEnable()
+    {
+        TurnManager.TurnStarted += OnTurnStarted;
+    }
+
+    private void OnDisable()
+    {
+        TurnManager.TurnStarted -= OnTurnStarted;
+    }
 
     private void Start()
     {
@@ -37,7 +53,6 @@ public class CameraController : MonoBehaviour
         yield return MoveToTarget(_player.position);
         yield return new WaitForSeconds(_waitTime);
 
-        followingPlayer = true;
         _introFinished = true;
         UnlockMovement?.Invoke(true);
         _blockUICanvas.SetActive(false);
@@ -54,11 +69,16 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    private void OnTurnStarted(Transform target)
+    {
+        _currentTarget = target;
+    }
+
     private void LateUpdate()
     {
-        if (followingPlayer && _player != null)
+        if (_introFinished && _currentTarget != null)
         {
-            Vector3 targetPosition = new Vector3(_player.position.x, _player.position.y, transform.position.z);
+            Vector3 targetPosition = new Vector3(_currentTarget.position.x, _currentTarget.position.y, transform.position.z);
             transform.position = Vector3.Lerp(transform.position, targetPosition, _followSpeed * Time.deltaTime);
         }
     }

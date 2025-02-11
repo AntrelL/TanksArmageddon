@@ -27,7 +27,7 @@ namespace TanksArmageddon
         private bool _rightButtonPressed = false;
         private bool _canMove = false;
 
-        private int _currentHealth;
+        private int _value;
         private bool _isAlive = true;
 
         public event Action<int> HealthChanged;
@@ -35,7 +35,7 @@ namespace TanksArmageddon
 
         private void Awake()
         {
-            _currentHealth = _maxHealth;
+            _value = _maxHealth;
             _rigidbody2D.centerOfMass = _centerOfMass.localPosition;
         }
 
@@ -124,15 +124,15 @@ namespace TanksArmageddon
 
         private void TakeDamage(int damage)
         {
-            _currentHealth -= damage;
+            _value -= damage;
         }
 
         public void PlayHitEffect(Vector3 hitPosition)
         {
             if (_isAlive == true)
             {
-                _currentHealth -= 100;
-                HealthChanged?.Invoke(_currentHealth);
+                _value -= 100;
+                HealthChanged?.Invoke(_value);
                 ParticleSystem flash = Instantiate(_hitFX, hitPosition, Quaternion.identity);
                 flash.Play();
                 Destroy(flash.gameObject, flash.main.duration);

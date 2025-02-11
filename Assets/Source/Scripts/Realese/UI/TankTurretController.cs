@@ -25,9 +25,20 @@ public class TankTurretController : MonoBehaviour
         return _turret.localEulerAngles.z;
     }
 
+    private void OnEnable()
+    {
+        TurnManager.CanPlayerShoot += OnCanPlayerShoot;
+    }
+
     private void OnDisable()
     {
+        TurnManager.CanPlayerShoot -= OnCanPlayerShoot;
         _turret.DOKill();
+    }
+
+    private void OnCanPlayerShoot(bool canShoot)
+    {
+        _angleSlider.interactable = canShoot;
     }
 
     private void OnDestroy()

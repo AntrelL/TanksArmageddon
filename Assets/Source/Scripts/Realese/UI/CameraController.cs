@@ -11,6 +11,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _moveSpeed = 3f;
     [SerializeField] private float _followSpeed = 5f;
     [SerializeField] private float _waitTime = 1.5f;
+    [SerializeField] private float _delayBeforeSwitch = 0f;
+    [SerializeField] private float _timeSinceSwitch = 0f;
 
     private bool _introFinished = false;
     private Transform _currentTarget;
@@ -27,11 +29,13 @@ public class CameraController : MonoBehaviour
     private void OnEnable()
     {
         TurnManager.TurnStarted += OnTurnStarted;
+        DefaultProjectile.ProjectileDestroyed += OnProjectileDestroyed;
     }
 
     private void OnDisable()
     {
         TurnManager.TurnStarted -= OnTurnStarted;
+        DefaultProjectile.ProjectileDestroyed -= OnProjectileDestroyed;
     }
 
     private void Start()
@@ -99,8 +103,20 @@ public class CameraController : MonoBehaviour
                 _currentTarget = DefaultProjectile.CurrentProjectile;
             }
 
-            Vector3 targetPosition = new Vector3(_currentTarget.position.x, _currentTarget.position.y, transform.position.z);
-            transform.position = Vector3.Lerp(transform.position, targetPosition, _followSpeed * Time.deltaTime);
+            if (_timeSinceSwitch >= _delayBeforeSwitch)
+            {
+                Vector3 targetPosition = new Vector3(_currentTarget.position.x, _currentTarget.position.y, transform.position.z);
+                transform.position = Vector3.Lerp(transform.position, targetPosition, _followSpeed * Time.deltaTime);
+            }
+            else
+            {
+                _timeSinceSwitch += Time.deltaTime;
+            }
         }
+    }
+
+    private void OnProjectileDestroyed()
+    {
+        _timeSinceSwitch = 0f;
     }
 }

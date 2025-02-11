@@ -13,7 +13,7 @@ public class DefaultProjectile : MonoBehaviour
 
     private Rigidbody2D _rigidbody;
     private Cutter _cutter;
-    private bool _IsDead;
+    private bool _isDead;
 
     private void Start()
     {
@@ -24,13 +24,12 @@ public class DefaultProjectile : MonoBehaviour
         CurrentProjectile = transform;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         transform.right = _rigidbody.velocity;
 
         if (transform.position.y < -50)
         {
-            ProjectileDestroyed?.Invoke();
             Destroy(gameObject);
         }
     }
@@ -40,25 +39,20 @@ public class DefaultProjectile : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out EdgeOfMap edgeOfMap))
         {
             Debug.Log("Hit edge of map");
-            ProjectileDestroyed?.Invoke();
             Destroy(gameObject);
         }
 
         if (collision.gameObject.TryGetComponent(out Enemy enemy))
         {
-            //TankHit?.Invoke(transform.position);
             enemy.PlayHitEffect(transform.position);
             Debug.Log("Hit enemy");
-            ProjectileDestroyed?.Invoke();
             Destroy(gameObject);
         }
 
         if (collision.gameObject.TryGetComponent(out Player player))
         {
-            //TankHit?.Invoke(transform.position);
             player.PlayHitEffect(transform.position);
             Debug.Log("Hit player");
-            ProjectileDestroyed?.Invoke();
             Destroy(gameObject);
         }
 
@@ -74,17 +68,17 @@ public class DefaultProjectile : MonoBehaviour
     {
         Debug.Log("DoCut beep");
         _cutter.DoCut();
-        ProjectileDestroyed?.Invoke();
         Destroy(gameObject);
     }
 
-    private void Delay()
+    /*private void Delay()
     {
         Destroy(gameObject);
-    }
+    }*/
 
     private void OnDestroy()
     {
+        ProjectileDestroyed?.Invoke();
         CurrentProjectile = null;
     }
 }

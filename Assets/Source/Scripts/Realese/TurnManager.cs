@@ -14,7 +14,7 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private EnemyTurretController turretController;
 
     [Header("Параметры ходов")]
-    [SerializeField] private float _enemyTurnDuration = 3f;
+    [SerializeField] private float _enemyTurnDuration = 6f;
     [SerializeField] private float _projectileTransitionDuration = 1f;
 
     private int _turnCount = 0;
@@ -132,7 +132,9 @@ public class TurnManager : MonoBehaviour
         TurnStarted?.Invoke(enemy.transform);
         UnblockPlayerControls(false);
 
-        yield return new WaitForSeconds(1f);
+        float availableMovementTime = 10f;
+        float movementPhaseDuration = 2f;
+        yield return enemy.MoveTowards(_player.transform, movementPhaseDuration, availableMovementTime);
 
         if (turretController != null)
         {
@@ -143,14 +145,16 @@ public class TurnManager : MonoBehaviour
             Debug.LogWarning("Установи компонент EnemyTurretController!");
         }
 
-        float timer = 1f;
-        while (timer < _enemyTurnDuration)
+        float remainingTime = _enemyTurnDuration - movementPhaseDuration;
+        float timer = 0f;
+        while (timer < remainingTime)
         {
             timer += Time.deltaTime;
             yield return null;
         }
 
         Debug.Log($"[Ход {_turnCount}] Ход врага {enemy.name} завершён");
+        yield return StartCoroutine(_cameraController.TransitionToTarget(_player.transform, _projectileTransitionDuration));
     }
 
     private bool CheckAllEnemiesDead()

@@ -11,7 +11,7 @@ public class DefaultProjectile : MonoBehaviour
 
     public bool IsEnemyProjectile { get; set; } = false;
 
-    [SerializeField] private float _speed = 10f;
+    [SerializeField] private float _speed = 20f;
 
     private Rigidbody2D _rigidbody;
     private Cutter _cutter;

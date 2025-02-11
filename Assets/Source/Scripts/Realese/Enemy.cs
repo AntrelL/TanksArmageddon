@@ -1,5 +1,6 @@
 using Assets.Constructors.FuturisticTanks.Scripts;
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -7,9 +8,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private ParticleSystem _hitFX;
     [SerializeField] private int _maxHealth = 1000;
     [SerializeField] private Tank _tank;
+    [SerializeField] private float _movementForce = 15f;
+    [SerializeField] private float _maxSpeed = 5f;
+    [SerializeField] private Transform _centerOfMass;
 
     private int _currentHealth;
     private bool _isAlive = true;
+    private Rigidbody2D _rigidbody;
 
     public event Action<int> HealthChanged;
     public event Action Defeated;
@@ -17,13 +22,14 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         _currentHealth = _maxHealth;
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _rigidbody.centerOfMass = _centerOfMass.localPosition;
     }
 
     private void FixedUpdate()
     {
         if (_currentHealth <= 0)
         {
-            //Defeated?.Invoke();
             _tank.Destroy();
             _isAlive = false;
             gameObject.SetActive(false);
@@ -58,6 +64,38 @@ public class Enemy : MonoBehaviour
         else
         {
             return;
+        }
+    }
+
+    public IEnumerator MoveTowards(Transform target, float duration, float availableMovementTime)
+    {
+        float timer = 0f;
+
+        while (timer < duration && availableMovementTime > 0f)
+        {
+
+            float horizontalInput = Mathf.Sign(target.position.x - transform.position.x);
+
+            if (Mathf.Abs(horizontalInput) > 0.001f)
+            {
+                _tank.Move();
+            }
+            else
+            {
+                _tank.Idle();
+            }
+
+            Vector2 forceDirection = new Vector2(horizontalInput, 0f);
+            _rigidbody.AddForce(forceDirection * _movementForce);
+
+            if (_rigidbody.velocity.magnitude > _maxSpeed)
+            {
+                _rigidbody.velocity = _rigidbody.velocity.normalized * _maxSpeed;
+            }
+
+            timer += Time.deltaTime;
+            availableMovementTime -= Time.deltaTime;
+            yield return null;
         }
     }
 }

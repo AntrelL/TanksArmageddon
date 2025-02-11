@@ -5993,6 +5993,37 @@ MonoBehaviour:
   _levelFinishedCanvas: {fileID: 6140456712650664308}
   _playerShootButton: {fileID: 5769065162723444670}
   _enemy: {fileID: 1539040248}
+--- !u!1 &605333535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 605333536}
+  m_Layer: 8
+  m_Name: CenterOfMass
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &605333536
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605333535}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.199, y: -1.242, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1539040247}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &630247929
 GameObject:
   m_ObjectHideFlags: 0
@@ -11615,7 +11646,7 @@ MonoBehaviour:
   _cameraController: {fileID: 1493516531}
   _uiController: {fileID: 600745200}
   turretController: {fileID: 5838288223750837900}
-  _enemyTurnDuration: 3
+  _enemyTurnDuration: 6
   _projectileTransitionDuration: 1
 --- !u!4 &1325542176
 Transform:
@@ -11972,6 +12003,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2725423577368321621}
+  - {fileID: 605333536}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.939}
 --- !u!114 &1539040248
@@ -11989,6 +12021,9 @@ MonoBehaviour:
   _hitFX: {fileID: 1496682345538995766, guid: fcaa4e2ecbf6a574599fbe32b484c330, type: 3}
   _maxHealth: 1000
   _tank: {fileID: 2338904199811200210}
+  _movementForce: 15
+  _maxSpeed: 5
+  _centerOfMass: {fileID: 605333536}
 --- !u!50 &1539040249
 Rigidbody2D:
   serializedVersion: 4

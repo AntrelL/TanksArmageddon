@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TankTurretController : MonoBehaviour
+public class PlayerTurretController : MonoBehaviour
 {
     [SerializeField] private Transform _turret;
     [SerializeField] private Slider _angleSlider;

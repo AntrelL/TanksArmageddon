@@ -11,6 +11,7 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private List<Enemy> _enemies;
     [SerializeField] private CameraController _cameraController;
     [SerializeField] private UIController _uiController;
+    [SerializeField] private EnemyTurretController turretController;
 
     [Header("Параметры ходов")]
     [SerializeField] private float _enemyTurnDuration = 3f;
@@ -131,8 +132,18 @@ public class TurnManager : MonoBehaviour
         TurnStarted?.Invoke(enemy.transform);
         UnblockPlayerControls(false);
 
-        float timer = 0f;
+        yield return new WaitForSeconds(1f);
 
+        if (turretController != null)
+        {
+            turretController.AimAndShootAt(_player.transform);
+        }
+        else
+        {
+            Debug.LogWarning("Установи компонент EnemyTurretController!");
+        }
+
+        float timer = 1f;
         while (timer < _enemyTurnDuration)
         {
             timer += Time.deltaTime;

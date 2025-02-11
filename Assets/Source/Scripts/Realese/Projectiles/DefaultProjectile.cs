@@ -9,6 +9,8 @@ public class DefaultProjectile : MonoBehaviour
     public static event Action GroundHit;
     public static event Action ProjectileDestroyed;
 
+    public bool IsEnemyProjectile { get; set; } = false;
+
     [SerializeField] private float _speed = 10f;
 
     private Rigidbody2D _rigidbody;
@@ -42,18 +44,23 @@ public class DefaultProjectile : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (collision.gameObject.TryGetComponent(out Enemy enemy))
+        if (IsEnemyProjectile)
         {
-            enemy.PlayHitEffect(transform.position);
-            Debug.Log("Hit enemy");
-            Destroy(gameObject);
+            if (collision.gameObject.TryGetComponent(out Player player))
+            {
+                player.PlayHitEffect(transform.position);
+                Debug.Log("Hit player");
+                Destroy(gameObject);
+            }
         }
-
-        if (collision.gameObject.TryGetComponent(out Player player))
+        else
         {
-            player.PlayHitEffect(transform.position);
-            Debug.Log("Hit player");
-            Destroy(gameObject);
+            if (collision.gameObject.TryGetComponent(out Enemy enemy))
+            {
+                enemy.PlayHitEffect(transform.position);
+                Debug.Log("Hit enemy");
+                Destroy(gameObject);
+            }
         }
 
         if (collision.gameObject.TryGetComponent(out Land land))

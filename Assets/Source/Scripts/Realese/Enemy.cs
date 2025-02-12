@@ -11,10 +11,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _movementForce = 15f;
     [SerializeField] private float _maxSpeed = 5f;
     [SerializeField] private Transform _centerOfMass;
+    [SerializeField] private EnemyTurretController _turretController;
 
     private int _currentHealth;
     private bool _isAlive = true;
     private Rigidbody2D _rigidbody;
+
+    public EnemyTurretController TurretController => _turretController;
 
     public event Action<int> HealthChanged;
     public event Action Defeated;
@@ -67,13 +70,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public IEnumerator MoveTowards(Transform target, float duration, float availableMovementTime)
+    public IEnumerator MoveAndCheckShooting(Transform target, float availableMovementTime, float difficultyFactor)
     {
         float timer = 0f;
+        bool canShoot = false;
 
-        while (timer < duration && availableMovementTime > 0f)
+        while (timer < availableMovementTime)
         {
-
             float horizontalInput = Mathf.Sign(target.position.x - transform.position.x);
 
             if (Mathf.Abs(horizontalInput) > 0.001f)
@@ -93,9 +96,17 @@ public class Enemy : MonoBehaviour
                 _rigidbody.velocity = _rigidbody.velocity.normalized * _maxSpeed;
             }
 
+            if (timer % 0.5f < Time.deltaTime)
+            {
+                canShoot = _turretController.CanShoot(target, difficultyFactor);
+
+                if (canShoot) break;
+            }
+
             timer += Time.deltaTime;
-            availableMovementTime -= Time.deltaTime;
             yield return null;
         }
+
+        _turretController.Shoot(target, difficultyFactor);
     }
 }

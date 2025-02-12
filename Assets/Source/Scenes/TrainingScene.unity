@@ -6018,7 +6018,7 @@ Transform:
   m_GameObject: {fileID: 605333535}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.199, y: -1.242, z: 0}
+  m_LocalPosition: {x: -0.12, y: -0.79, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11646,8 +11646,9 @@ MonoBehaviour:
   _cameraController: {fileID: 1493516531}
   _uiController: {fileID: 600745200}
   turretController: {fileID: 5838288223750837900}
-  _enemyTurnDuration: 6
   _projectileTransitionDuration: 1
+  _enemyMaxMovementTime: 5
+  _difficultyFactor: 0.1
 --- !u!4 &1325542176
 Transform:
   m_ObjectHideFlags: 0
@@ -11961,6 +11962,8 @@ MonoBehaviour:
   _blockUICanvas: {fileID: 1634081024}
   _player: {fileID: 408297837}
   _enemy: {fileID: 1539040247}
+  _enemies:
+  - {fileID: 1539040248}
   _moveSpeed: 3
   _followSpeed: 5
   _waitTime: 1.5
@@ -12024,6 +12027,7 @@ MonoBehaviour:
   _movementForce: 15
   _maxSpeed: 5
   _centerOfMass: {fileID: 605333536}
+  _turretController: {fileID: 5838288223750837900}
 --- !u!50 &1539040249
 Rigidbody2D:
   serializedVersion: 4
@@ -44468,6 +44472,9 @@ MonoBehaviour:
   _muzzleFlash: {fileID: 1965974867}
   _aimDuration: 1
   _tank: {fileID: 2338904199811200210}
+  _minAngle: -30
+  _maxAngle: 30
+  _projectilePrefab: {fileID: 379530961637966326, guid: c612696982287dc459094416535a1dba, type: 3}
 --- !u!1 &5870387534794965871
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class DefaultProjectile : MonoBehaviour
     public static event Action GroundHit;
     public static event Action ProjectileDestroyed;
 
+    public float Speed => _speed;
     public bool IsEnemyProjectile { get; set; } = false;
 
     [SerializeField] private float _speed = 20f;
@@ -78,10 +79,6 @@ public class DefaultProjectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    /*private void Delay()
-    {
-        Destroy(gameObject);
-    }*/
 
     private void OnDestroy()
     {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TanksArmageddon;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private GameObject _blockUICanvas;
     [SerializeField] private Transform _player;
-    [SerializeField] private Transform _enemy;
+    [SerializeField] private List<Enemy> _enemies;
     [SerializeField] private float _moveSpeed = 3f;
     [SerializeField] private float _followSpeed = 5f;
     [SerializeField] private float _waitTime = 1.5f;
@@ -50,8 +51,11 @@ public class CameraController : MonoBehaviour
         yield return MoveToTarget(_player.position);
         yield return new WaitForSeconds(_waitTime);
 
-        yield return MoveToTarget(_enemy.position);
-        yield return new WaitForSeconds(_waitTime);
+        if (_enemies.Count > 0)
+        {
+            yield return MoveToTarget(_enemies[0].transform.position);
+            yield return new WaitForSeconds(_waitTime);
+        }
 
         yield return MoveToTarget(_player.position);
         yield return new WaitForSeconds(_waitTime);
@@ -100,7 +104,7 @@ public class CameraController : MonoBehaviour
         {
             if (DefaultProjectile.CurrentProjectile != null)
             {
-                _currentTarget = DefaultProjectile.CurrentProjectile;
+                _currentTarget = DefaultProjectile.CurrentProjectile.transform;
             }
 
             if (_timeSinceSwitch >= _delayBeforeSwitch)
@@ -118,5 +122,29 @@ public class CameraController : MonoBehaviour
     private void OnProjectileDestroyed()
     {
         _timeSinceSwitch = 0f;
+        UpdateCameraTarget();
+    }
+
+    private void UpdateCameraTarget()
+    {
+        Transform nextTarget = _player.transform;
+
+        float closestDistance = Mathf.Infinity;
+
+        foreach (var enemy in _enemies)
+        {
+            if (enemy != null && enemy.gameObject.activeSelf)
+            {
+                float distance = Vector3.Distance(transform.position, enemy.transform.position);
+
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    nextTarget = enemy.transform;
+                }
+            }
+        }
+
+        _currentTarget = nextTarget;
     }
 }

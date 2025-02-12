@@ -10,30 +10,75 @@ public class EnemyTurretController : MonoBehaviour
     [SerializeField] private ParticleSystem _muzzleFlash;
     [SerializeField] private float _aimDuration = 1f;
     [SerializeField] private Tank _tank;
+    [SerializeField] private float _minAngle = -30f;
+    [SerializeField] private float _maxAngle = 30f;
+    [SerializeField] private DefaultProjectile _projectilePrefab;
 
-    public void AimAndShootAt(Transform target)
+    private float _projectileSpeed;
+
+    private void Start()
     {
-        Vector2 direction = (target.position - _turret.position).normalized;
-        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 180f;
-
-        _turret.DORotate(new Vector3(0, 0, targetAngle), _aimDuration)
-               .OnComplete(() => Shoot());
-    }
-
-    private void Shoot()
-    {
-        _tank.Shot();
-
-        GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation * Quaternion.Euler(0, 0, -180));
-        DefaultProjectile projectile = bullet.GetComponent<DefaultProjectile>();
+        DefaultProjectile projectile = _bulletPrefab.GetComponent<DefaultProjectile>();
 
         if (projectile != null)
         {
-            projectile.IsEnemyProjectile = true;
+            _projectileSpeed = _projectilePrefab.Speed;
         }
+    }
+
+    public bool CanShoot(Transform target, float difficultyFactor)
+    {
+        Vector2 firePosition = _firePoint.position;
+        float targetX = GetRandomTargetX(target.position.x, difficultyFactor);
+        Vector2 targetPos = new Vector2(targetX, target.position.y);
+        float angle = CalculateBallisticAngle(firePosition, targetPos, _projectileSpeed);
+
+        return angle >= _minAngle && angle <= _maxAngle;
+    }
+
+    public void Shoot(Transform target, float difficultyFactor)
+    {
+        Vector2 firePosition = _firePoint.position;
+        float targetX = GetRandomTargetX(target.position.x, difficultyFactor);
+        Vector2 targetPos = new Vector2(targetX, target.position.y);
+        float angle = CalculateBallisticAngle(firePosition, targetPos, _projectileSpeed);
+
+        angle = Mathf.Clamp(angle, _minAngle, _maxAngle);
+
+        _turret.DORotate(new Vector3(0, 0, angle), _aimDuration)
+               .OnComplete(() => Fire());
+    }
+
+    private void Fire()
+    {
+        _tank.Shot();
+        GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation * Quaternion.Euler(0, 0, -180));
+        DefaultProjectile projectile = bullet.GetComponent<DefaultProjectile>();
+        if (projectile != null) projectile.IsEnemyProjectile = true;
 
         ParticleSystem flash = Instantiate(_muzzleFlash, _firePoint.position, _firePoint.rotation);
         flash.Play();
         Destroy(flash.gameObject, flash.main.duration);
+    }
+
+    private float GetRandomTargetX(float playerX, float difficultyFactor)
+    {
+        float offset = playerX * difficultyFactor;
+        return Random.Range(playerX - offset, playerX + offset);
+    }
+
+    private float CalculateBallisticAngle(Vector2 start, Vector2 target, float speed)
+    {
+        float g = Mathf.Abs(Physics2D.gravity.y);
+        float d = Mathf.Abs(target.x - start.x);
+        float y = target.y - start.y;
+
+        float v2 = speed * speed;
+        float disc = v2 * v2 - g * (g * d * d + 2 * y * v2);
+        if (disc < 0) return 0f;
+
+        float sqrtDisc = Mathf.Sqrt(disc);
+        float angle = Mathf.Atan((v2 - sqrtDisc) / (g * d));
+        return angle * Mathf.Rad2Deg;
     }
 }

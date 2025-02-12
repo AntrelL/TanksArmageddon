@@ -51,10 +51,13 @@ public class CameraController : MonoBehaviour
         yield return MoveToTarget(_player.position);
         yield return new WaitForSeconds(_waitTime);
 
-        if (_enemies.Count > 0)
+        foreach (var enemy in _enemies)
         {
-            yield return MoveToTarget(_enemies[0].transform.position);
-            yield return new WaitForSeconds(_waitTime);
+            if (enemy != null && enemy.gameObject.activeSelf)
+            {
+                yield return MoveToTarget(enemy.transform.position);
+                yield return new WaitForSeconds(_waitTime);
+            }
         }
 
         yield return MoveToTarget(_player.position);
@@ -129,20 +132,20 @@ public class CameraController : MonoBehaviour
     {
         Transform nextTarget = _player.transform;
 
-        float closestDistance = Mathf.Infinity;
-
-        foreach (var enemy in _enemies)
+        if (TurnManager.CurrentTurnIsPlayer == false)
         {
-            if (enemy != null && enemy.gameObject.activeSelf)
+            foreach (var enemy in _enemies)
             {
-                float distance = Vector3.Distance(transform.position, enemy.transform.position);
-
-                if (distance < closestDistance)
+                if (enemy != null && enemy.gameObject.activeSelf)
                 {
-                    closestDistance = distance;
                     nextTarget = enemy.transform;
+                    break;
                 }
             }
+        }
+        else
+        {
+            nextTarget = _player.transform;
         }
 
         _currentTarget = nextTarget;

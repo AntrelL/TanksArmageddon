@@ -28,6 +28,9 @@ public class TurnManager : MonoBehaviour
     public static event Action<bool> CanPlayerShoot;
     public static event Action<Transform> TurnStarted;
 
+    // Свойство для отслеживания текущего хода
+    public static bool CurrentTurnIsPlayer { get; private set; }
+
     private void Start()
     {
         _uiController.ButtonPressed += OnPlayerShoot;
@@ -84,6 +87,7 @@ public class TurnManager : MonoBehaviour
     {
         _isPlayerTurn = true;
         _turnCount++;
+        CurrentTurnIsPlayer = true;  // Устанавливаем, что ход игрока
 
         Debug.Log($"[Ход {_turnCount}] Ход игрока начался");
 
@@ -121,6 +125,8 @@ public class TurnManager : MonoBehaviour
     private IEnumerator EnemyTurn(Enemy enemy)
     {
         _turnCount++;
+        CurrentTurnIsPlayer = false;  // Устанавливаем, что ход врага
+
         Debug.Log($"[Ход {_turnCount}] Ход врага {enemy.name} начался");
 
         TurnStarted?.Invoke(enemy.transform);

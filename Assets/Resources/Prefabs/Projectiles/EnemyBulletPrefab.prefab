@@ -4549,7 +4549,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -9128,7 +9128,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_RenderMode: 1
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -9171,9 +9171,9 @@ GameObject:
   - component: {fileID: 1059140285265410980}
   - component: {fileID: 5046143941570129872}
   - component: {fileID: 8863032324315366864}
-  - component: {fileID: 379530961637966326}
+  - component: {fileID: 2704592019841129929}
   m_Layer: 10
-  m_Name: DefaultProjectile
+  m_Name: EnemyBulletPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9238,7 +9238,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b7b7bc795bb984e4ba6d41accefcd255, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8.31, y: 6.37}
@@ -9306,10 +9306,10 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.2022878, y: -0.26717544}
+  m_Offset: {x: 0.65, y: -0.01}
   serializedVersion: 2
   m_Radius: 3.2198846
---- !u!114 &379530961637966326
+--- !u!114 &2704592019841129929
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9318,8 +9318,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9021275895625707222}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f7db451bb9daba49a2a10536ad145cf, type: 3}
+  m_Script: {fileID: 11500000, guid: ec06a918849eb294f8da5c7b20eb5e40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 20
-  _gravity: 9.81

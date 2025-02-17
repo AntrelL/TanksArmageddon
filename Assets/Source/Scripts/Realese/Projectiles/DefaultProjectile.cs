@@ -13,10 +13,14 @@ public class DefaultProjectile : MonoBehaviour
     public bool IsEnemyProjectile { get; set; } = false;
 
     [SerializeField] private float _speed = 20f;
+    [SerializeField] private float _gravity = 9.81f;
 
     private Rigidbody2D _rigidbody;
     private Cutter _cutter;
     private bool _isDead;
+
+    private float _targetX;
+    private float _targetY;
 
     private void Start()
     {
@@ -35,6 +39,16 @@ public class DefaultProjectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void SetupBalleticTrajectory(float targetX, float targetY)
+    {
+        _targetX = targetX;
+        _targetY = targetY;
+
+        Vector2 direction = new Vector2(_targetX - transform.position.x, _targetY - transform.position.y);
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        _rigidbody.velocity = new Vector2(Mathf.Cos(angle) * _speed, Mathf.Sin(angle) * _speed);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -72,13 +86,12 @@ public class DefaultProjectile : MonoBehaviour
         }
     }
 
-    void DoCut()
+    private void DoCut()
     {
         Debug.Log("DoCut beep");
         _cutter.DoCut();
         Destroy(gameObject);
     }
-
 
     private void OnDestroy()
     {

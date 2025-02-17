@@ -11,12 +11,12 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private List<Enemy> _enemies;
     [SerializeField] private CameraController _cameraController;
     [SerializeField] private UIController _uiController;
-    [SerializeField] private EnemyTurretController turretController;
+    [SerializeField] private ProjectileShooter2D _enemyTurett;
 
     [Header("Параметры ходов")]
     [SerializeField] private float _projectileTransitionDuration = 1f;
     [SerializeField] private float _enemyMaxMovementTime = 5f;
-    [SerializeField] private float _difficultyFactor = 0.1f;
+    [SerializeField] public float _difficultyFactor = 0.1f;
 
     private int _turnCount = 0;
     private bool _isPlayerTurn = true;
@@ -28,7 +28,6 @@ public class TurnManager : MonoBehaviour
     public static event Action<bool> CanPlayerShoot;
     public static event Action<Transform> TurnStarted;
 
-    // Свойство для отслеживания текущего хода
     public static bool CurrentTurnIsPlayer { get; private set; }
 
     private void Start()
@@ -52,11 +51,12 @@ public class TurnManager : MonoBehaviour
             if (_player != null)
             {
                 yield return StartCoroutine(PlayerTurn());
+
                 if (CheckAllEnemiesDead())
                     break;
             }
 
-            for (int i = 0; i < _enemies.Count; i++)
+            /*for (int i = 0; i < _enemies.Count; i++)
             {
                 if (_enemies[i] == null)
                     continue;
@@ -70,7 +70,7 @@ public class TurnManager : MonoBehaviour
                     if (CheckAllEnemiesDead())
                         break;
                 }
-            }
+            }*/
         }
     }
 
@@ -87,7 +87,7 @@ public class TurnManager : MonoBehaviour
     {
         _isPlayerTurn = true;
         _turnCount++;
-        CurrentTurnIsPlayer = true;  // Устанавливаем, что ход игрока
+        CurrentTurnIsPlayer = true;
 
         Debug.Log($"[Ход {_turnCount}] Ход игрока начался");
 
@@ -122,27 +122,29 @@ public class TurnManager : MonoBehaviour
         _isPlayerTurn = false;
     }
 
-    private IEnumerator EnemyTurn(Enemy enemy)
+    /*private IEnumerator EnemyTurn(Enemy enemy)
     {
         _turnCount++;
-        CurrentTurnIsPlayer = false;  // Устанавливаем, что ход врага
+        CurrentTurnIsPlayer = false;
 
         Debug.Log($"[Ход {_turnCount}] Ход врага {enemy.name} начался");
 
         TurnStarted?.Invoke(enemy.transform);
         UnblockPlayerControls(false);
 
-        bool canShoot = enemy.TurretController.CanShoot(_player.transform, _difficultyFactor);
+        // Врагу передается difficultyFactor для расчета возможности выстрела
+        bool canShoot = _enemyTurett.ShootIfPossible();
 
         if (!canShoot)
         {
             Debug.Log($"Враг {enemy.name} не может выстрелить с текущей позиции, начинает движение.");
-            yield return enemy.MoveAndCheckShooting(_player.transform, _enemyMaxMovementTime, _difficultyFactor);
+            // Передаем врагу возможность двигаться и проверять, может ли он стрелять
+            yield return enemy.MoveAndCheckShooting(_player.transform, _enemyMaxMovementTime);
         }
         else
         {
             Debug.Log($"Враг {enemy.name} сразу стреляет.");
-            enemy.TurretController.Shoot(_player.transform, _difficultyFactor);
+            enemy.TurretController.Shoot(_player.transform);
         }
 
         Debug.Log($"[Ход {_turnCount}] Ход врага {enemy.name} завершён");
@@ -150,7 +152,7 @@ public class TurnManager : MonoBehaviour
         _nextTarget = GetNextTargetForCamera();
 
         yield return StartCoroutine(_cameraController.TransitionToTarget(_nextTarget, _projectileTransitionDuration));
-    }
+    }*/
 
     private Transform GetNextTargetForCamera()
     {

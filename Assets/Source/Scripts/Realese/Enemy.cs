@@ -11,13 +11,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _movementForce = 15f;
     [SerializeField] private float _maxSpeed = 5f;
     [SerializeField] private Transform _centerOfMass;
-    [SerializeField] private EnemyTurretController _turretController;
+    [SerializeField] private Rigidbody2D _rigidbody2D;
 
     private int _currentHealth;
     private bool _isAlive = true;
-    private Rigidbody2D _rigidbody;
-
-    public EnemyTurretController TurretController => _turretController;
 
     public event Action<int> HealthChanged;
     public event Action Defeated;
@@ -25,8 +22,8 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         _currentHealth = _maxHealth;
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _rigidbody.centerOfMass = _centerOfMass.localPosition;
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _rigidbody2D.centerOfMass = _centerOfMass.localPosition;
     }
 
     private void FixedUpdate()
@@ -49,11 +46,6 @@ public class Enemy : MonoBehaviour
         DefaultProjectile.TankHit -= PlayHitEffect;
     }
 
-    private void TakeDamage(int damage)
-    {
-        _currentHealth -= damage;
-    }
-
     public void PlayHitEffect(Vector3 hitPosition)
     {
         if (_isAlive == true)
@@ -68,45 +60,5 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
-    }
-
-    public IEnumerator MoveAndCheckShooting(Transform target, float availableMovementTime, float difficultyFactor)
-    {
-        float timer = 0f;
-        bool canShoot = false;
-
-        while (timer < availableMovementTime)
-        {
-            float horizontalInput = Mathf.Sign(target.position.x - transform.position.x);
-
-            if (Mathf.Abs(horizontalInput) > 0.001f)
-            {
-                _tank.Move();
-            }
-            else
-            {
-                _tank.Idle();
-            }
-
-            Vector2 forceDirection = new Vector2(horizontalInput, 0f);
-            _rigidbody.AddForce(forceDirection * _movementForce);
-
-            if (_rigidbody.velocity.magnitude > _maxSpeed)
-            {
-                _rigidbody.velocity = _rigidbody.velocity.normalized * _maxSpeed;
-            }
-
-            if (timer % 0.5f < Time.deltaTime)
-            {
-                canShoot = _turretController.CanShoot(target, difficultyFactor);
-
-                if (canShoot) break;
-            }
-
-            timer += Time.deltaTime;
-            yield return null;
-        }
-
-        _turretController.Shoot(target, difficultyFactor);
     }
 }

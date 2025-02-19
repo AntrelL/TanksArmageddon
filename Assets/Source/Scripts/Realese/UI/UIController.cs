@@ -1,4 +1,5 @@
 using IJunior.TypedScenes;
+using TanksArmageddon;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,8 +12,10 @@ public class UIController : MonoBehaviour
     [SerializeField] private CanvasGroup _unmutedSoundCanvasGroup;
     [SerializeField] private CanvasGroup _mutedSoundCanvasGroup;
     [SerializeField] private GameObject _levelFinishedCanvas;
+    [SerializeField] private GameObject _levelFailedCanvas;
     [SerializeField] private Button _playerShootButton;
     [SerializeField] private Enemy _enemy;
+    [SerializeField] private Player _player;
 
     public event Action ButtonPressed;
     public static event Action EnemyDefeated;
@@ -27,6 +30,7 @@ public class UIController : MonoBehaviour
         //_enemy.Defeated += ShowWinnerScreen;
         TurnManager.AllEnemiesDead += ShowWinnerScreen;
         TurnManager.CanPlayerShoot += IsShootButtonInteractable;
+        _player.Defeated += ShowDefeatedScreen;
     }
 
     private void OnDisable()
@@ -34,6 +38,7 @@ public class UIController : MonoBehaviour
         //_enemy.Defeated -= ShowWinnerScreen;
         TurnManager.AllEnemiesDead -= ShowWinnerScreen;
         TurnManager.CanPlayerShoot -= IsShootButtonInteractable;
+        _player.Defeated -= ShowDefeatedScreen;
     }
 
     private void ShowWinnerScreen()
@@ -41,6 +46,12 @@ public class UIController : MonoBehaviour
         EnemyDefeated?.Invoke();
         Time.timeScale = 0f;
         _levelFinishedCanvas.SetActive(true);
+    }
+
+    private void ShowDefeatedScreen()
+    {
+        Time.timeScale = 0f;
+        _levelFailedCanvas.SetActive(true);
     }
 
     private void IsShootButtonInteractable(bool isInteractable)

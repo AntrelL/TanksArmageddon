@@ -67,34 +67,29 @@ public class EnemyTurretController : MonoBehaviour
 
     public void Shoot(Transform target)
     {
-        float difficultyFactor = _turnManager._difficultyFactor;  // Получаем сложность из TurnManager
+        float difficultyFactor = _turnManager._difficultyFactor;
         Vector2 firePosition = _firePoint.position;
 
-        // Получаем случайную цель по X с учетом коэффициента сложности
         float targetX = GetRandomTargetX(target.position.x, difficultyFactor);
         Vector2 targetPos = new Vector2(targetX, target.position.y);
 
-        // Расчет угла для выстрела
         float angle = CalculateBallisticAngle(firePosition, targetPos, _projectileSpeed);
         angle = Mathf.Clamp(angle, _minAngle, _maxAngle);
 
-        // Поворот пушки для выстрела
         _turret.DORotate(new Vector3(0, 0, angle), _aimDuration)
                .OnComplete(() => Fire(target, targetX, target.position.y));
     }
 
-    // Обновленный метод для выстрела с учетом баллистической траектории
     private void Fire(Transform target, float targetX, float targetY)
     {
         _tank.Shot();
         GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
 
-        // Настройка снаряда с учетом баллистической траектории
         DefaultProjectile projectile = bullet.GetComponent<DefaultProjectile>();
         if (projectile != null)
         {
             projectile.IsEnemyProjectile = true;
-            projectile.SetupBalleticTrajectory(targetX, targetY);
+            projectile.SetupBallisticTrajectory(targetX, targetY);
         }
 
         ParticleSystem flash = Instantiate(_muzzleFlash, _firePoint.position, _firePoint.rotation);

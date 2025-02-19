@@ -41,7 +41,7 @@ public class DefaultProjectile : MonoBehaviour
         }
     }
 
-    public void SetupBalleticTrajectory(float targetX, float targetY)
+    public void SetupBallisticTrajectory(float targetX, float targetY)
     {
         _targetX = targetX;
         _targetY = targetY;

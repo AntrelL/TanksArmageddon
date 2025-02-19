@@ -55,22 +55,6 @@ public class TurnManager : MonoBehaviour
                 if (CheckAllEnemiesDead())
                     break;
             }
-
-            /*for (int i = 0; i < _enemies.Count; i++)
-            {
-                if (_enemies[i] == null)
-                    continue;
-
-                Enemy currentEnemy = _enemies[i];
-
-                if (currentEnemy.gameObject.activeSelf)
-                {
-                    yield return StartCoroutine(EnemyTurn(currentEnemy));
-
-                    if (CheckAllEnemiesDead())
-                        break;
-                }
-            }*/
         }
     }
 
@@ -121,38 +105,6 @@ public class TurnManager : MonoBehaviour
         Debug.Log($"[Ход {_turnCount}] Ход игрока завершён");
         _isPlayerTurn = false;
     }
-
-    /*private IEnumerator EnemyTurn(Enemy enemy)
-    {
-        _turnCount++;
-        CurrentTurnIsPlayer = false;
-
-        Debug.Log($"[Ход {_turnCount}] Ход врага {enemy.name} начался");
-
-        TurnStarted?.Invoke(enemy.transform);
-        UnblockPlayerControls(false);
-
-        // Врагу передается difficultyFactor для расчета возможности выстрела
-        bool canShoot = _enemyTurett.ShootIfPossible();
-
-        if (!canShoot)
-        {
-            Debug.Log($"Враг {enemy.name} не может выстрелить с текущей позиции, начинает движение.");
-            // Передаем врагу возможность двигаться и проверять, может ли он стрелять
-            yield return enemy.MoveAndCheckShooting(_player.transform, _enemyMaxMovementTime);
-        }
-        else
-        {
-            Debug.Log($"Враг {enemy.name} сразу стреляет.");
-            enemy.TurretController.Shoot(_player.transform);
-        }
-
-        Debug.Log($"[Ход {_turnCount}] Ход врага {enemy.name} завершён");
-
-        _nextTarget = GetNextTargetForCamera();
-
-        yield return StartCoroutine(_cameraController.TransitionToTarget(_nextTarget, _projectileTransitionDuration));
-    }*/
 
     private Transform GetNextTargetForCamera()
     {

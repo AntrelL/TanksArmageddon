@@ -5,8 +5,10 @@ public class ProjectileShooter2D : MonoBehaviour
 {
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Transform _shootPoint;
+    [SerializeField] private Transform _muzzlePoint;
     [SerializeField] private float _initialSpeed = 15f;
     [SerializeField] private Transform _player;
+    [SerializeField] private ParticleSystem _muzzleFlash;
 
     [Header("Поворот пушки")]
     [SerializeField] private Transform _turret;
@@ -26,7 +28,7 @@ public class ProjectileShooter2D : MonoBehaviour
         }*/
     }
 
-    public bool ShootIfPossible()
+    public void ShootIfPossible()
     {
         if (TryCalculateBallisticAngle2D(_player.position, out float lowAngleDeg, out float highAngleDeg))
         {
@@ -39,7 +41,7 @@ public class ProjectileShooter2D : MonoBehaviour
             {
                 Debug.Log("Цель справа, стреляем только влево.");
 
-                return false;
+                //return false;
             }
            
             float userAngle = -chosenAngle;
@@ -55,13 +57,13 @@ public class ProjectileShooter2D : MonoBehaviour
 
             StartCoroutine(RotateThenShoot(userAngle));
 
-            return true;
+            //return true;
         }
         else
         {
-            Debug.Log("2D Выстрел невозможен: нет баллистического решения.");
+            Debug.Log("Выстрел невозможен: нет баллистического решения.");
 
-            return false;
+            //return false;
         }
     }
 
@@ -100,6 +102,11 @@ public class ProjectileShooter2D : MonoBehaviour
         Vector2 direction = new Vector2(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
 
         rigidbody.velocity = direction * _initialSpeed;
+
+        ParticleSystem flash = Instantiate(_muzzleFlash, _muzzlePoint.position, _muzzlePoint.rotation);
+        flash.Play();
+
+        Destroy(flash.gameObject, flash.main.duration);
     }
 
     private bool TryCalculateBallisticAngle2D(Vector2 targetPos,

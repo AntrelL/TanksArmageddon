@@ -28,8 +28,8 @@ public class EnemyBullet : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent(out Enemy enemy))
         {
-            enemy.PlayHitEffect(transform.position);
-            Debug.Log("Hit enemy");
+            //enemy.PlayHitEffect(transform.position);
+            Debug.Log("Enemy hit enemy");
             Destroy(gameObject);
         }
 

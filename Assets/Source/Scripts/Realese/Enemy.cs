@@ -1,5 +1,6 @@
 using Assets.Constructors.FuturisticTanks.Scripts;
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -12,12 +13,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform _centerOfMass;
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private float _availableTravelTime = 10f;
+    [SerializeField] private ProjectileShooter2D _projectileShooter;
+    [SerializeField] private Transform _player;
 
     private int _currentHealth;
     private bool _isAlive = true;
 
     private float _movementTimeUsed = 0f;
-    private float _movementDirection = 0f;
+    private float _moveDirection = 0f;
 
     public event Action<int> HealthChanged;
     public event Action Defeated;
@@ -25,51 +28,9 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         _currentHealth = _maxHealth;
-        _rigidbody2D = GetComponent<Rigidbody2D>();
+        if (!_rigidbody2D)
+            _rigidbody2D = GetComponent<Rigidbody2D>();
         _rigidbody2D.centerOfMass = _centerOfMass.localPosition;
-    }
-
-    private void Update()
-    {
-        if (!_isAlive) return;
-
-        if (_movementTimeUsed < _availableTravelTime)
-        {
-            if (Input.GetKey(KeyCode.K))
-            {
-                _movementDirection = -1f;
-                _movementTimeUsed += Time.deltaTime;
-            }
-            else if (Input.GetKey(KeyCode.L))
-            {
-                _movementDirection = 1f;
-                _movementTimeUsed += Time.deltaTime;
-            }
-            else
-            {
-                _movementDirection = 0f;
-            }
-        }
-        else
-        {
-            _movementDirection = 0f;
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (_currentHealth <= 0)
-        {
-            _tank.Destroy();
-            _isAlive = false;
-            gameObject.SetActive(false);
-            return;
-        }
-
-        if (_isAlive && Mathf.Abs(_rigidbody2D.velocity.x) < _maxSpeed)
-        {
-            _rigidbody2D.AddForce(new Vector2(_movementDirection * _movementForce, 0f));
-        }
     }
 
     private void OnEnable()
@@ -80,6 +41,84 @@ public class Enemy : MonoBehaviour
     private void OnDisable()
     {
         DefaultProjectile.TankHit -= PlayHitEffect;
+    }
+
+    private void FixedUpdate()
+    {
+        if (!_isAlive)
+            return;
+
+        if (_currentHealth <= 0)
+        {
+            _tank.Destroy();
+            _isAlive = false;
+            gameObject.SetActive(false);
+            Defeated?.Invoke();
+            return;
+        }
+        if (_movementTimeUsed < _availableTravelTime && _moveDirection != 0f)
+        {
+            if (Mathf.Abs(_rigidbody2D.velocity.x) < _maxSpeed)
+            {
+                _rigidbody2D.AddForce(new Vector2(_moveDirection * _movementForce, 0f));
+            }
+
+            _movementTimeUsed += Time.fixedDeltaTime;
+        }
+        else
+        {
+
+            _moveDirection = 0f;
+        }
+    }
+
+    public IEnumerator DoEnemyTurn()
+    {
+        _movementTimeUsed = 0f;
+        float maxMovementTime = 10f;
+
+        bool shotSucceeded = _projectileShooter.ShootIfPossible();
+
+        if (shotSucceeded)
+        {
+            yield return WaitProjectileFly();
+            yield break;
+        }
+
+        Debug.Log($"Враг {name}: нет баллистического решения — начинаю двигаться к игроку.");
+
+        _moveDirection = -1f;
+
+        float elapsed = 0f;
+        float checkInterval = 0.5f;
+
+        while (elapsed < maxMovementTime)
+        {
+            yield return new WaitForSeconds(checkInterval);
+            elapsed += checkInterval;
+
+            shotSucceeded = _projectileShooter.ShootIfPossible();
+
+            if (shotSucceeded)
+            {
+                _moveDirection = 0f;
+                yield return WaitProjectileFly();
+                yield break;
+            }
+        }
+
+        _moveDirection = 0f;
+        Debug.Log($"Враг {name} завершил ход после движения и не может попасть в игрока.");
+    }
+
+    private IEnumerator WaitProjectileFly()
+    {
+        bool projectileEnded = false;
+        Action onProjectileDestroyed = () => { projectileEnded = true; };
+        EnemyBullet.EnemyBulletDestroyed += onProjectileDestroyed;
+
+        yield return new WaitUntil(() => projectileEnded);
+        EnemyBullet.EnemyBulletDestroyed -= onProjectileDestroyed;
     }
 
     public void PlayHitEffect(Vector3 hitPosition)

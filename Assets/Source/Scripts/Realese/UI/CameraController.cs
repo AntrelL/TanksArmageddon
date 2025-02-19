@@ -31,12 +31,14 @@ public class CameraController : MonoBehaviour
     {
         TurnManager.TurnStarted += OnTurnStarted;
         DefaultProjectile.ProjectileDestroyed += OnProjectileDestroyed;
+        EnemyBullet.EnemyBulletDestroyed += OnProjectileDestroyed;
     }
 
     private void OnDisable()
     {
         TurnManager.TurnStarted -= OnTurnStarted;
         DefaultProjectile.ProjectileDestroyed -= OnProjectileDestroyed;
+        EnemyBullet.EnemyBulletDestroyed -= OnProjectileDestroyed;
     }
 
     private void Start()

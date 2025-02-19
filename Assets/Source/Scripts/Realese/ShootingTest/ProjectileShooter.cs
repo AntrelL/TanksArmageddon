@@ -28,7 +28,7 @@ public class ProjectileShooter2D : MonoBehaviour
         }*/
     }
 
-    public void ShootIfPossible()
+    public bool ShootIfPossible()
     {
         if (TryCalculateBallisticAngle2D(_player.position, out float lowAngleDeg, out float highAngleDeg))
         {
@@ -41,7 +41,7 @@ public class ProjectileShooter2D : MonoBehaviour
             {
                 Debug.Log("Цель справа, стреляем только влево.");
 
-                //return false;
+                return false;
             }
            
             float userAngle = -chosenAngle;
@@ -57,13 +57,13 @@ public class ProjectileShooter2D : MonoBehaviour
 
             StartCoroutine(RotateThenShoot(userAngle));
 
-            //return true;
+            return true;
         }
         else
         {
             Debug.Log("Выстрел невозможен: нет баллистического решения.");
 
-            //return false;
+            return false;
         }
     }
 

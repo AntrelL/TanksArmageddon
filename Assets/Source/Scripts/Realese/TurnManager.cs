@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TanksArmageddon;
 using UnityEngine;
+using TanksArmageddon;
 
 public class TurnManager : MonoBehaviour
 {
@@ -11,17 +11,13 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private List<Enemy> _enemies;
     [SerializeField] private CameraController _cameraController;
     [SerializeField] private UIController _uiController;
-    [SerializeField] private ProjectileShooter2D _enemyTurett;
 
     [Header("Параметры ходов")]
     [SerializeField] private float _projectileTransitionDuration = 1f;
-    [SerializeField] private float _enemyMaxMovementTime = 5f;
     [SerializeField] public float _difficultyFactor = 0.1f;
 
     private int _turnCount = 0;
-    private bool _isPlayerTurn = true;
     private bool _allEnemiesDead = false;
-    private Transform _nextTarget;
 
     public static event Action AllEnemiesDead;
     public static event Action<bool> CanPlayerControl;
@@ -48,14 +44,106 @@ public class TurnManager : MonoBehaviour
     {
         while (!_allEnemiesDead)
         {
-            if (_player != null)
+            if (_player != null && _player.gameObject.activeSelf)
             {
                 yield return StartCoroutine(PlayerTurn());
-
                 if (CheckAllEnemiesDead())
                     break;
             }
+
+            for (int i = 0; i < _enemies.Count; i++)
+            {
+                Enemy enemy = _enemies[i];
+
+                if (enemy != null && enemy.gameObject.activeSelf)
+                {
+                    yield return StartCoroutine(EnemyTurn(enemy));
+                    if (CheckAllEnemiesDead())
+                        break;
+                }
+            }
         }
+    }
+
+    private IEnumerator PlayerTurn()
+    {
+        _turnCount++;
+        CurrentTurnIsPlayer = true;
+        Debug.Log($"[Ход {_turnCount}] Ход игрока начался");
+
+        TurnStarted?.Invoke(_player.transform);
+        UnblockPlayerControls(true);
+
+        bool shotFired = false;
+
+        Action onShot = () => { shotFired = true; };
+        _uiController.ButtonPressed += onShot;
+
+        yield return new WaitUntil(() => shotFired);
+
+        UnblockPlayerControls(false);
+        _uiController.ButtonPressed -= onShot;
+
+        bool projectileEnded = false;
+        Action onProjectileDestroyed = () => { projectileEnded = true; };
+        DefaultProjectile.ProjectileDestroyed += onProjectileDestroyed;
+        yield return new WaitUntil(() => projectileEnded);
+        DefaultProjectile.ProjectileDestroyed -= onProjectileDestroyed;
+
+        Transform nextTarget = GetNextTargetForCamera();
+        if (nextTarget != null)
+        {
+            yield return StartCoroutine(_cameraController.TransitionToTarget(nextTarget, _projectileTransitionDuration));
+        }
+
+        Debug.Log($"[Ход {_turnCount}] Ход игрока завершён");
+        CurrentTurnIsPlayer = false;
+    }
+
+    private IEnumerator EnemyTurn(Enemy enemy)
+    {
+        _turnCount++;
+        Debug.Log($"[Ход {_turnCount}] Ход врага {enemy.name}");
+
+        TurnStarted?.Invoke(enemy.transform);
+
+        yield return StartCoroutine(enemy.DoEnemyTurn());
+
+        bool projectileEnded = false;
+        Action onEnemyProjectileDestroyed = () => { projectileEnded = true; };
+        EnemyBullet.EnemyBulletDestroyed += onEnemyProjectileDestroyed;
+
+        yield return new WaitUntil(() => projectileEnded);
+        EnemyBullet.EnemyBulletDestroyed -= onEnemyProjectileDestroyed;
+
+        yield return StartCoroutine(_cameraController.TransitionToTarget(_player.transform, _projectileTransitionDuration));
+
+        Debug.Log($"[Ход {_turnCount}] Ход врага {enemy.name} завершён");
+    }
+
+    private bool CheckAllEnemiesDead()
+    {
+        foreach (Enemy enemy in _enemies)
+        {
+            if (enemy != null && enemy.gameObject.activeSelf)
+                return false;
+        }
+
+        OnAllEnemiesDead();
+        return true;
+    }
+
+    private Transform GetNextTargetForCamera()
+    {
+        foreach (Enemy enemy in _enemies)
+        {
+            if (enemy != null && enemy.gameObject.activeSelf)
+            {
+                return enemy.transform;
+            }
+        }
+
+        return _player ? _player.transform : null;
     }
 
     private void OnCameraIntroFinished(bool unlocked)
@@ -65,80 +153,6 @@ public class TurnManager : MonoBehaviour
             _cameraController.UnlockMovement -= OnCameraIntroFinished;
             StartCoroutine(TurnCycle());
         }
-    }
-
-    private IEnumerator PlayerTurn()
-    {
-        _isPlayerTurn = true;
-        _turnCount++;
-        CurrentTurnIsPlayer = true;
-
-        Debug.Log($"[Ход {_turnCount}] Ход игрока начался");
-
-        TurnStarted?.Invoke(_player.transform);
-        UnblockPlayerControls(true);
-
-        bool shotFired = false;
-        Action onShot = () => { shotFired = true; };
-        _uiController.ButtonPressed += onShot;
-
-        yield return new WaitUntil(() => shotFired);
-        UnblockPlayerControls(false);
-
-        _uiController.ButtonPressed -= onShot;
-        bool projectileEnded = false;
-        Action onProjectileDestroyed = () => { projectileEnded = true; };
-
-        DefaultProjectile.ProjectileDestroyed += onProjectileDestroyed;
-
-        yield return new WaitUntil(() => projectileEnded);
-
-        DefaultProjectile.ProjectileDestroyed -= onProjectileDestroyed;
-
-        Transform nextTarget = GetNextTargetForCamera();
-
-        if (nextTarget != null)
-        {
-            yield return StartCoroutine(_cameraController.TransitionToTarget(nextTarget, _projectileTransitionDuration));
-        }
-
-        Debug.Log($"[Ход {_turnCount}] Ход игрока завершён");
-        _isPlayerTurn = false;
-    }
-
-    private Transform GetNextTargetForCamera()
-    {
-        foreach (var enemy in _enemies)
-        {
-            if (enemy != null && enemy.gameObject.activeSelf)
-            {
-                return enemy.transform;
-            }
-        }
-
-        return _player.transform;
-    }
-
-    private bool CheckAllEnemiesDead()
-    {
-        bool anyAlive = false;
-
-        foreach (Enemy enemy in _enemies)
-        {
-            if (enemy != null && enemy.gameObject.activeSelf)
-            {
-                anyAlive = true;
-                break;
-            }
-        }
-
-        if (!anyAlive)
-        {
-            OnAllEnemiesDead();
-            return true;
-        }
-
-        return false;
     }
 
     private void OnAllEnemiesDead()
@@ -153,7 +167,7 @@ public class TurnManager : MonoBehaviour
 
     private void OnPlayerShoot()
     {
-        if (!_isPlayerTurn)
+        if (!CurrentTurnIsPlayer)
         {
             Debug.LogWarning("Игрок попытался выстрелить не в свой ход!");
         }

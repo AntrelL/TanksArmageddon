@@ -11978,9 +11978,7 @@ MonoBehaviour:
   - {fileID: 1539040248}
   _cameraController: {fileID: 1493516531}
   _uiController: {fileID: 600745200}
-  _enemyTurett: {fileID: 0}
   _projectileTransitionDuration: 1
-  _enemyMaxMovementTime: 5
   _difficultyFactor: 0.1
 --- !u!4 &1325542176
 Transform:
@@ -12362,6 +12360,8 @@ MonoBehaviour:
   _centerOfMass: {fileID: 605333536}
   _rigidbody2D: {fileID: 1539040249}
   _availableTravelTime: 10
+  _projectileShooter: {fileID: 1539040255}
+  _player: {fileID: 408297837}
 --- !u!50 &1539040249
 Rigidbody2D:
   serializedVersion: 4

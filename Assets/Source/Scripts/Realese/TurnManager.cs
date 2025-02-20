@@ -87,10 +87,13 @@ public class TurnManager : MonoBehaviour
         bool projectileEnded = false;
         Action onProjectileDestroyed = () => { projectileEnded = true; };
         DefaultProjectile.ProjectileDestroyed += onProjectileDestroyed;
+
         yield return new WaitUntil(() => projectileEnded);
+
         DefaultProjectile.ProjectileDestroyed -= onProjectileDestroyed;
 
         Transform nextTarget = GetNextTargetForCamera();
+
         if (nextTarget != null)
         {
             yield return StartCoroutine(_cameraController.TransitionToTarget(nextTarget, _projectileTransitionDuration));
@@ -108,13 +111,6 @@ public class TurnManager : MonoBehaviour
         TurnStarted?.Invoke(enemy.transform);
 
         yield return StartCoroutine(enemy.DoEnemyTurn());
-
-        bool projectileEnded = false;
-        Action onEnemyProjectileDestroyed = () => { projectileEnded = true; };
-        EnemyBullet.EnemyBulletDestroyed += onEnemyProjectileDestroyed;
-
-        yield return new WaitUntil(() => projectileEnded);
-        EnemyBullet.EnemyBulletDestroyed -= onEnemyProjectileDestroyed;
 
         yield return StartCoroutine(_cameraController.TransitionToTarget(_player.transform, _projectileTransitionDuration));
 

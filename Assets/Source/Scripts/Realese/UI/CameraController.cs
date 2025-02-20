@@ -109,7 +109,14 @@ public class CameraController : MonoBehaviour
         {
             if (DefaultProjectile.CurrentProjectile != null)
             {
-                _currentTarget = DefaultProjectile.CurrentProjectile.transform;
+                //убрал .transform у CurrentProjectile
+                _currentTarget = DefaultProjectile.CurrentProjectile;
+            }
+
+            //добавил этот if
+            if (EnemyBullet.CurrentEnemyBullet != null)
+            {
+                _currentTarget = EnemyBullet.CurrentEnemyBullet;
             }
 
             if (_timeSinceSwitch >= _delayBeforeSwitch)
@@ -141,6 +148,7 @@ public class CameraController : MonoBehaviour
                 if (enemy != null && enemy.gameObject.activeSelf)
                 {
                     nextTarget = enemy.transform;
+
                     break;
                 }
             }

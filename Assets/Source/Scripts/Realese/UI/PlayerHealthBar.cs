@@ -3,17 +3,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+public class PlayerHealthBar : MonoBehaviour
 {
     [SerializeField] private Player _player;
-    [SerializeField] private Enemy _enemy;
     [SerializeField] private int _maxHealth = 1000;
     [SerializeField] private Slider _healthSlider;
     [SerializeField] private float _smoothSpeed = 5f;
     [SerializeField] private TextMeshProUGUI _valueText;
 
     private float _targetHealth;
-    private float _targetHealth2;
 
     private void Awake()
     {
@@ -36,18 +34,12 @@ public class HealthBar : MonoBehaviour
     {
         if (_player != null)
             _player.HealthChanged += UpdateValue;
-
-        if (_enemy != null)
-            _enemy.HealthChanged += UpdateValue;
     }
 
     private void OnDisable()
     {
         if (_player != null)
             _player.HealthChanged -= UpdateValue;
-
-        if (_enemy != null)
-            _enemy.HealthChanged -= UpdateValue;
     }
 
     private void UpdateValue(int value)

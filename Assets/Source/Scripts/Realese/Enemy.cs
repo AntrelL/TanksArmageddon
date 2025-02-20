@@ -56,10 +56,12 @@ public class Enemy : MonoBehaviour
             Defeated?.Invoke();
             return;
         }
+
         if (_movementTimeUsed < _availableTravelTime && _moveDirection != 0f)
         {
             if (Mathf.Abs(_rigidbody2D.velocity.x) < _maxSpeed)
             {
+                _tank.Move();
                 _rigidbody2D.AddForce(new Vector2(_moveDirection * _movementForce, 0f));
             }
 
@@ -75,7 +77,6 @@ public class Enemy : MonoBehaviour
     public IEnumerator DoEnemyTurn()
     {
         _movementTimeUsed = 0f;
-        float maxMovementTime = 10f;
 
         bool shotSucceeded = _projectileShooter.ShootIfPossible();
 
@@ -85,14 +86,14 @@ public class Enemy : MonoBehaviour
             yield break;
         }
 
-        Debug.Log($"Âðàã {name}: íåò áàëëèñòè÷åñêîãî ðåøåíèÿ — íà÷èíàþ äâèãàòüñÿ ê èãðîêó.");
+        Debug.Log($"Ð’Ñ€Ð°Ð³ {name}: Ð½ÐµÑ‚ Ð±Ð°Ð»Ð»Ð¸ÑÑ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ð³Ð¾ Ñ€ÐµÑˆÐµÐ½Ð¸Ñ â€” Ð½Ð°Ñ‡Ð¸Ð½Ð°ÑŽ Ð´Ð²Ð¸Ð³Ð°Ñ‚ÑŒÑÑ Ðº Ð¸Ð³Ñ€Ð¾ÐºÑƒ.");
 
         _moveDirection = -1f;
 
         float elapsed = 0f;
         float checkInterval = 0.5f;
 
-        while (elapsed < maxMovementTime)
+        while (elapsed < _availableTravelTime)
         {
             yield return new WaitForSeconds(checkInterval);
             elapsed += checkInterval;
@@ -108,7 +109,7 @@ public class Enemy : MonoBehaviour
         }
 
         _moveDirection = 0f;
-        Debug.Log($"Âðàã {name} çàâåðøèë õîä ïîñëå äâèæåíèÿ è íå ìîæåò ïîïàñòü â èãðîêà.");
+        Debug.Log($"Ð’Ñ€Ð°Ð³ {name} Ð·Ð°Ð²ÐµÑ€ÑˆÐ¸Ð» Ñ…Ð¾Ð´ Ð¿Ð¾ÑÐ»Ðµ Ð´Ð²Ð¸Ð¶ÐµÐ½Ð¸Ñ Ð¸ Ð½Ðµ Ð¼Ð¾Ð¶ÐµÑ‚ Ð¿Ð¾Ð¿Ð°ÑÑ‚ÑŒ Ð² Ð¸Ð³Ñ€Ð¾ÐºÐ°.");
     }
 
     private IEnumerator WaitProjectileFly()

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Assets.Constructors.FuturisticTanks.Scripts;
 
 public class ProjectileShooter2D : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class ProjectileShooter2D : MonoBehaviour
     [SerializeField] private float _initialSpeed = 15f;
     [SerializeField] private Transform _player;
     [SerializeField] private ParticleSystem _muzzleFlash;
+    [SerializeField] private Tank _enemyTank;
 
     [Header("Поворот пушки")]
     [SerializeField] private Transform _turret;
@@ -85,6 +87,7 @@ public class ProjectileShooter2D : MonoBehaviour
         }
 
         _turret.eulerAngles = new Vector3(0f, 0f, targetUserAngle);
+        _enemyTank.Shot();
         ShootBullet();
     }
 

@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class Hangar : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Hangar : MonoBehaviour
 
     private float[] _damageMultipliers = { 1.1f, 1.2f, 1.3f, 1.5f, 2.0f };
     private int[] _requiredCardsForNextLevel = { 10, 20, 30, 50, 100 }; // Требования по карточкам для уровней
+
+    public static event Action ButtonClicked;
 
     private void Start()
     {
@@ -107,6 +110,7 @@ public class Hangar : MonoBehaviour
     // Метод для выбора и улучшения оружия при нажатии на кнопку
     public void SelectAndUpgradeWeapon(int weaponIndex)
     {
+        ButtonClicked?.Invoke();
         WeaponData selectedWeaponData = GameManager.Instance.GetWeaponData(weaponIndex);
 
         if (selectedWeaponData == null)

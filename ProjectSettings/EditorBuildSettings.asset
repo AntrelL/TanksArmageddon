@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Source/Scenes/HangarScene.unity
     guid: 5473ba8e60cd3a04790138b8611e3dd0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Source/Scenes/ShootingTestScene.unity
     guid: 618196e42cde8d4489ad2b96ded76a50
   m_configObjects: {}

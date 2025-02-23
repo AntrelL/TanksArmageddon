@@ -18,29 +18,35 @@ public class Enemy : MonoBehaviour
 
     private int _currentHealth;
     private bool _isAlive = true;
+    private int _playerDamage = 100;
 
     private float _movementTimeUsed = 0f;
     private float _moveDirection = 0f;
 
     public event Action<int> HealthChanged;
     public event Action Defeated;
+    public static event Action EnemyHitted;
 
     private void Awake()
     {
         _currentHealth = _maxHealth;
+
         if (!_rigidbody2D)
             _rigidbody2D = GetComponent<Rigidbody2D>();
+
         _rigidbody2D.centerOfMass = _centerOfMass.localPosition;
     }
 
     private void OnEnable()
     {
         DefaultProjectile.TankHit += PlayHitEffect;
+        InventoryManager.UpdatePlayerDamage += OnUpdatedPlayerDamage;
     }
 
     private void OnDisable()
     {
         DefaultProjectile.TankHit -= PlayHitEffect;
+        InventoryManager.UpdatePlayerDamage -= OnUpdatedPlayerDamage;
     }
 
     private void FixedUpdate()
@@ -122,11 +128,22 @@ public class Enemy : MonoBehaviour
         EnemyBullet.EnemyBulletDestroyed -= onProjectileDestroyed;
     }
 
+    private void OnUpdatedPlayerDamage(int value)
+    {
+        _playerDamage = value;
+    }
+
+    private void TakeDamage(int value)
+    {
+        _currentHealth -= value;
+    }
+
     public void PlayHitEffect(Vector3 hitPosition)
     {
         if (_isAlive)
         {
-            _currentHealth -= 100;
+            EnemyHitted?.Invoke();
+            TakeDamage(_playerDamage);
             HealthChanged?.Invoke(_currentHealth);
             ParticleSystem flash = Instantiate(_hitFX, hitPosition, Quaternion.identity);
             flash.Play();

@@ -7,6 +7,7 @@ public class DefaultProjectile : MonoBehaviour
     public static Transform CurrentProjectile { get; private set; }
     public static event Action<Vector3> TankHit;
     public static event Action GroundHit;
+    public static event Action EdgeOfMapHit;
     public static event Action ProjectileDestroyed;
 
     public float Speed => _speed;
@@ -56,6 +57,7 @@ public class DefaultProjectile : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out EdgeOfMap edgeOfMap))
         {
             Debug.Log("Hit edge of map");
+            EdgeOfMapHit?.Invoke();
             Destroy(gameObject);
         }
 
@@ -90,6 +92,7 @@ public class DefaultProjectile : MonoBehaviour
     {
         Debug.Log("DoCut beep");
         _cutter.DoCut();
+        GroundHit?.Invoke();
         Destroy(gameObject);
     }
 

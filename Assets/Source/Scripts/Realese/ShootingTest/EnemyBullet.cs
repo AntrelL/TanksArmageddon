@@ -8,6 +8,8 @@ public class EnemyBullet : MonoBehaviour
     public static Transform CurrentEnemyBullet { get; private set; }
 
     public static event Action EnemyBulletDestroyed;
+    public static event Action GroundHit;
+    public static event Action EdgeOfMapHit;
 
     private Cutter _cutter;
 
@@ -22,6 +24,7 @@ public class EnemyBullet : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out EdgeOfMap edgeOfMap))
         {
             Debug.Log("Hit edge of map");
+            EdgeOfMapHit?.Invoke();
             Destroy(gameObject);
         }
 
@@ -42,6 +45,7 @@ public class EnemyBullet : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out Land land))
         {
             _cutter.transform.position = transform.position;
+            GroundHit?.Invoke();
             Debug.Log("Hit land");
             Invoke(nameof(DoCut), 0.001f);
         }

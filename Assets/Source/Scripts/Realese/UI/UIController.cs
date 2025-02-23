@@ -16,9 +16,20 @@ public class UIController : MonoBehaviour
     [SerializeField] private Button _playerShootButton;
     [SerializeField] private Enemy _enemy;
     [SerializeField] private Player _player;
+    [SerializeField] private GameObject _textGoal1;
+    [SerializeField] private GameObject _textGoal2;
+    [SerializeField] private GameObject _textGoal3;
+    [SerializeField] private TurnManager _turnManager;
 
-    public event Action ButtonPressed;
+    private int _turnCount;
+
+    public event Action PlayerShootButtonPressed;
     public static event Action EnemyDefeated;
+    public static event Action SoundTurnedOff;
+    public static event Action SoundTurnedOn;
+    public static event Action ButtonClicked;
+    public static event Action FinishedCanvasShown;
+    public static event Action FailedCanvasShown;
 
     private void Start()
     {
@@ -27,7 +38,6 @@ public class UIController : MonoBehaviour
 
     private void OnEnable()
     {
-        //_enemy.Defeated += ShowWinnerScreen;
         TurnManager.AllEnemiesDead += ShowWinnerScreen;
         TurnManager.CanPlayerShoot += IsShootButtonInteractable;
         _player.Defeated += ShowDefeatedScreen;
@@ -35,10 +45,32 @@ public class UIController : MonoBehaviour
 
     private void OnDisable()
     {
-        //_enemy.Defeated -= ShowWinnerScreen;
         TurnManager.AllEnemiesDead -= ShowWinnerScreen;
         TurnManager.CanPlayerShoot -= IsShootButtonInteractable;
         _player.Defeated -= ShowDefeatedScreen;
+    }
+
+    private void UpdateGoalStatus()
+    {
+        _turnCount = _turnManager.TurnCount;
+
+        if (_turnCount <= 5)
+        {
+            _textGoal1.SetActive(true);
+            _textGoal2.SetActive(true);
+            _textGoal3.SetActive(true);
+        }
+
+        if (_turnCount <= 10 && _turnCount > 5)
+        {
+            _textGoal1.SetActive(true);
+            _textGoal2.SetActive(true);
+        }
+
+        if (_turnCount <= 40 && _turnCount > 10)
+        {
+            _textGoal1.SetActive(true);
+        }
     }
 
     private void ShowWinnerScreen()
@@ -46,12 +78,15 @@ public class UIController : MonoBehaviour
         EnemyDefeated?.Invoke();
         Time.timeScale = 0f;
         _levelFinishedCanvas.SetActive(true);
+        FinishedCanvasShown?.Invoke();
+        UpdateGoalStatus();
     }
 
     private void ShowDefeatedScreen()
     {
         Time.timeScale = 0f;
         _levelFailedCanvas.SetActive(true);
+        FailedCanvasShown?.Invoke();
     }
 
     private void IsShootButtonInteractable(bool isInteractable)
@@ -65,11 +100,13 @@ public class UIController : MonoBehaviour
             return;
 
         _playerShootButton.interactable = false;
-        ButtonPressed?.Invoke();
+        ButtonClicked?.Invoke();
+        PlayerShootButtonPressed?.Invoke();
     }
 
     public void OpenMainMenu()
     {
+        ButtonClicked?.Invoke();
         Time.timeScale = 0f;
 
         _mainMenuCanvasGroup.alpha = 1;
@@ -87,6 +124,7 @@ public class UIController : MonoBehaviour
 
     public void CloseMainMenu()
     {
+        ButtonClicked?.Invoke();
         Time.timeScale = 1f;
 
         _pauseCanvasGroup.alpha = 1;
@@ -104,12 +142,16 @@ public class UIController : MonoBehaviour
 
     public void Restart()
     {
+        ButtonClicked?.Invoke();
         Time.timeScale = 0f;
         TrainingScene.Load();
     }
 
     public void MuteSound()
     {
+        ButtonClicked?.Invoke();
+        SoundTurnedOff?.Invoke();
+
         Debug.Log("Sound muted.");
         _mutedSoundCanvasGroup.alpha = 1;
         _mutedSoundCanvasGroup.interactable = true;
@@ -122,6 +164,8 @@ public class UIController : MonoBehaviour
 
     public void UnmuteSound()
     {
+        ButtonClicked?.Invoke();
+        SoundTurnedOn?.Invoke();
         Debug.Log("Sound unmuted.");
         _unmutedSoundCanvasGroup.alpha = 1;
         _unmutedSoundCanvasGroup.interactable = true;
@@ -134,24 +178,28 @@ public class UIController : MonoBehaviour
 
     public void OpenHomeScene()
     {
-        Debug.Log("Load Home Scene.");
+        ButtonClicked?.Invoke();
+        Debug.Log("Load Main Scene.");
         MainScene.Load();
     }
 
     public void OpenShopScene()
     {
+        ButtonClicked?.Invoke();
         Debug.Log("Load Shop Scene.");
         ShopScene.Load();
     }
 
     public void OpenHangarScene()
     {
+        ButtonClicked?.Invoke();
         Debug.Log("Load Hangar Scene.");
         HangarScene.Load();
     }
 
     public void ShowVictoryScreen()
     {
+        ButtonClicked?.Invoke();
         _levelFinishedCanvas.SetActive(true);
     }
 }

@@ -30,6 +30,8 @@ namespace TanksArmageddon
         private int _currentHealth;
         private bool _isAlive = true;
 
+        public static event Action ButtonClicked;
+        public static event Action PlayerHit;
         public event Action<int> HealthChanged;
         public event Action Defeated;
 
@@ -142,6 +144,7 @@ namespace TanksArmageddon
         {
             if (_isAlive == true)
             {
+                PlayerHit?.Invoke();
                 TakeDamage(100);
                 HealthChanged?.Invoke(_currentHealth);
                 ParticleSystem flash = Instantiate(_hitFX, hitPosition, Quaternion.identity);

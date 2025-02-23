@@ -58,7 +58,6 @@ public class WeaponUpgradeSystem : MonoBehaviour
         return _currentCards;
     }
 
-    // Возвращает количество карточек, необходимых для следующего уровня
     public int GetCardsRequiredForNextLevel(int currentLevel)
     {
         if (currentLevel < _cardsForUpgrades.Length)
@@ -67,11 +66,10 @@ public class WeaponUpgradeSystem : MonoBehaviour
         }
         else
         {
-            return -1; // Если уровень максимальный
+            return -1;
         }
     }
 
-    // Возвращает максимальный уровень улучшения
     public int MaxUpgradeLevel()
     {
         return _cardsForUpgrades.Length;

@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ public class Shop : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _playerBalanceText;
     [SerializeField] private TextMeshProUGUI[] _cardCostTexts;
+
+    public static event Action CardClicked;
 
     private void Start()
     {
@@ -20,7 +23,7 @@ public class Shop : MonoBehaviour
         {
             int currentCardCount = GameManager.Instance.GetCardCount(weaponIndex);
             GameManager.Instance.SetCardCount(weaponIndex, currentCardCount + 1);
-
+            CardClicked?.Invoke();
             Debug.Log($"Card bought for weapon {weaponIndex + 1}. You now have {currentCardCount + 1} cards.");
 
             UpdatePlayerBalanceUI();

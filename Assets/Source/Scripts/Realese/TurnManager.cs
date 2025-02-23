@@ -17,6 +17,7 @@ public class TurnManager : MonoBehaviour
     [SerializeField] public float _difficultyFactor = 0.1f;
 
     private int _turnCount = 0;
+    public int TurnCount => _turnCount;
     private bool _allEnemiesDead = false;
 
     public static event Action AllEnemiesDead;
@@ -28,7 +29,7 @@ public class TurnManager : MonoBehaviour
 
     private void Start()
     {
-        _uiController.ButtonPressed += OnPlayerShoot;
+        _uiController.PlayerShootButtonPressed += OnPlayerShoot;
 
         if (_cameraController.IntroFinished)
         {
@@ -77,12 +78,12 @@ public class TurnManager : MonoBehaviour
         bool shotFired = false;
 
         Action onShot = () => { shotFired = true; };
-        _uiController.ButtonPressed += onShot;
+        _uiController.PlayerShootButtonPressed += onShot;
 
         yield return new WaitUntil(() => shotFired);
 
         UnblockPlayerControls(false);
-        _uiController.ButtonPressed -= onShot;
+        _uiController.PlayerShootButtonPressed -= onShot;
 
         bool projectileEnded = false;
         Action onProjectileDestroyed = () => { projectileEnded = true; };

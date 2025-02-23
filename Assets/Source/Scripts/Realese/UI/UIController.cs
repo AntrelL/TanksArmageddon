@@ -11,6 +11,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private CanvasGroup _mainMenuCanvasGroup;
     [SerializeField] private CanvasGroup _unmutedSoundCanvasGroup;
     [SerializeField] private CanvasGroup _mutedSoundCanvasGroup;
+    [SerializeField] private CanvasGroup _inventoryCanvasGroup;
     [SerializeField] private GameObject _levelFinishedCanvas;
     [SerializeField] private GameObject _levelFailedCanvas;
     [SerializeField] private Button _playerShootButton;
@@ -40,6 +41,7 @@ public class UIController : MonoBehaviour
     {
         TurnManager.AllEnemiesDead += ShowWinnerScreen;
         TurnManager.CanPlayerShoot += IsShootButtonInteractable;
+        TurnManager.CanPlayerShoot += IsInventoryInteractabe;
         _player.Defeated += ShowDefeatedScreen;
     }
 
@@ -47,7 +49,13 @@ public class UIController : MonoBehaviour
     {
         TurnManager.AllEnemiesDead -= ShowWinnerScreen;
         TurnManager.CanPlayerShoot -= IsShootButtonInteractable;
+        TurnManager.CanPlayerShoot -= IsInventoryInteractabe;
         _player.Defeated -= ShowDefeatedScreen;
+    }
+
+    private void IsInventoryInteractabe(bool value)
+    {
+        _inventoryCanvasGroup.interactable = value;
     }
 
     private void UpdateGoalStatus()

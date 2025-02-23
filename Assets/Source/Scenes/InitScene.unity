@@ -277,6 +277,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: f4a7394a8988a894f816bfb948701ac5, type: 3}
     - target: {fileID: 559381607974100662, guid: 06718e84ede0b1f4e92f226f53429ad0, type: 3}
+      propertyPath: _levelFailedSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b767b3ec409d4544ea8ec4b6619d94af, type: 3}
+    - target: {fileID: 559381607974100662, guid: 06718e84ede0b1f4e92f226f53429ad0, type: 3}
+      propertyPath: _levelFinishedSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7b91a4ed2e852034a95912e80fefcc7d, type: 3}
+    - target: {fileID: 559381607974100662, guid: 06718e84ede0b1f4e92f226f53429ad0, type: 3}
       propertyPath: _projectileShootedSound
       value: 
       objectReference: {fileID: 8300000, guid: 6572e64817773824f8ac913f23e83d4e, type: 3}
@@ -323,6 +331,10 @@ PrefabInstance:
     - target: {fileID: 5178443626919915934, guid: 06718e84ede0b1f4e92f226f53429ad0, type: 3}
       propertyPath: m_Volume
       value: 0.055
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537173258595212030, guid: 06718e84ede0b1f4e92f226f53429ad0, type: 3}
+      propertyPath: m_Volume
+      value: 0.878
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -6023,6 +6023,7 @@ MonoBehaviour:
   _mainMenuCanvasGroup: {fileID: 79080342218644484}
   _unmutedSoundCanvasGroup: {fileID: 3805311347391265408}
   _mutedSoundCanvasGroup: {fileID: 1868473243528543611}
+  _inventoryCanvasGroup: {fileID: 1869804871}
   _levelFinishedCanvas: {fileID: 6140456712650664308}
   _levelFailedCanvas: {fileID: 8443539823514980312}
   _playerShootButton: {fileID: 5769065162723444670}
@@ -12063,7 +12064,6 @@ GameObject:
   - component: {fileID: 1539040253}
   - component: {fileID: 1539040252}
   - component: {fileID: 1539040251}
-  - component: {fileID: 1539040250}
   - component: {fileID: 1539040249}
   - component: {fileID: 1539040248}
   - component: {fileID: 1539040255}
@@ -12140,51 +12140,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &1539040250
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1539040246}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.95649636, y: 0.61075044}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.0001, y: 0.57449114}
-  m_EdgeRadius: 0
 --- !u!61 &1539040251
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12262,7 +12217,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08220053, y: 0.5313805}
+  m_Offset: {x: 0.20140445, y: 0.5313805}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -12273,7 +12228,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0687313, y: 1.2290269}
+  m_Size: {x: 1.8303235, y: 1.2290269}
   m_EdgeRadius: 0
 --- !u!61 &1539040253
 BoxCollider2D:
@@ -12370,7 +12325,7 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 9021275895625707222, guid: d8a48d12c71bff74896257302098cfbf, type: 3}
   _shootPoint: {fileID: 683207909}
   _muzzlePoint: {fileID: 1257905833}
-  _initialSpeed: 15
+  _initialSpeed: 20
   _player: {fileID: 385661036}
   _muzzleFlash: {fileID: 1965974867}
   _enemyTank: {fileID: 2338904199811200210}
@@ -12567,7 +12522,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 50
+  m_SortingOrder: 102
   m_TargetDisplay: 0
 --- !u!1 &1705284048
 GameObject:
@@ -17588,13 +17543,33 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2148094299043954691, guid: e0b913f85e4752346be16130ab2dd404, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1869804871}
   m_SourcePrefab: {fileID: 100100000, guid: e0b913f85e4752346be16130ab2dd404, type: 3}
 --- !u!224 &1869804869 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7398037984356022822, guid: e0b913f85e4752346be16130ab2dd404, type: 3}
   m_PrefabInstance: {fileID: 1869804868}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1869804870 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2148094299043954691, guid: e0b913f85e4752346be16130ab2dd404, type: 3}
+  m_PrefabInstance: {fileID: 1869804868}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1869804871
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869804870}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1965974864
 GameObject:
   m_ObjectHideFlags: 0
@@ -29985,7 +29960,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &2551314013762550639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40845,7 +40820,7 @@ RectTransform:
   m_GameObject: {fileID: 7443244586814667758}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 98}
-  m_LocalScale: {x: 1.19, y: 1.19, z: 1.19}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5356002944185177017}
@@ -42087,7 +42062,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 103
   m_TargetDisplay: 0
 --- !u!4 &4271818670696531601
 Transform:
@@ -42567,7 +42542,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 104
   m_TargetDisplay: 0
 --- !u!224 &4644389966641843495
 RectTransform:
@@ -42932,7 +42907,7 @@ Canvas:
   m_GameObject: {fileID: 4182950827775429302}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 2
+  m_RenderMode: 1
   m_Camera: {fileID: 1493516528}
   m_PlaneDistance: 23.2
   m_PixelPerfect: 0
@@ -42987,7 +42962,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 103
   m_TargetDisplay: 0
 --- !u!212 &4906172297361505757
 SpriteRenderer:
@@ -43050,7 +43025,7 @@ Transform:
   m_GameObject: {fileID: 7808265438428171168}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4, y: 1, z: -0.85}
+  m_LocalPosition: {x: -1.4, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -43816,9 +43791,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4182950827775429302}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 44.58}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3478493262238810341}
@@ -43827,8 +43802,8 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920.6416, y: 1079.6392}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &5395376600693706711
 GameObject:
   m_ObjectHideFlags: 0
@@ -45567,7 +45542,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 103
   m_TargetDisplay: 0
 --- !u!114 &6363428823467621947
 MonoBehaviour:
@@ -50685,7 +50660,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 103
   m_TargetDisplay: 0
 --- !u!222 &6767029629147555467
 CanvasRenderer:
@@ -52044,7 +52019,7 @@ GameObject:
   m_Layer: 8
   m_Name: GunPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

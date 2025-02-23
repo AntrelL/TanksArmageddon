@@ -53,21 +53,19 @@ public class EnemyTurretController : MonoBehaviour
 
     public bool CanShoot(Transform target)
     {
-        float difficultyFactor = _turnManager._difficultyFactor;  // Получаем сложность из TurnManager
+        float difficultyFactor = _turnManager.DifficultyFactor;
         Vector2 firePosition = _firePoint.position;
 
-        // Получаем случайную цель по X с учетом коэффициента сложности
         float targetX = GetRandomTargetX(target.position.x, difficultyFactor);
         Vector2 targetPos = new Vector2(targetX, target.position.y);
 
-        // Расчет угла для выстрела
         float angle = CalculateBallisticAngle(firePosition, targetPos, _projectileSpeed);
         return angle >= _minAngle && angle <= _maxAngle;
     }
 
     public void Shoot(Transform target)
     {
-        float difficultyFactor = _turnManager._difficultyFactor;
+        float difficultyFactor = _turnManager.DifficultyFactor;
         Vector2 firePosition = _firePoint.position;
 
         float targetX = GetRandomTargetX(target.position.x, difficultyFactor);

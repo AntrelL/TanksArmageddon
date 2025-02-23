@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TanksArmageddon;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class EnemyBullet : MonoBehaviour
     public static event Action EnemyBulletDestroyed;
     public static event Action GroundHit;
     public static event Action EdgeOfMapHit;
+    public static event Action<int> PlayerHit;
 
     private Cutter _cutter;
 
@@ -30,6 +32,8 @@ public class EnemyBullet : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent(out Player player))
         {
+            int damage = GetRandomDamage();
+            PlayerHit(damage);
             player.PlayHitEffect(transform.position);
             Debug.Log("Hit player");
             Destroy(gameObject);
@@ -48,6 +52,28 @@ public class EnemyBullet : MonoBehaviour
             GroundHit?.Invoke();
             Debug.Log("Hit land");
             Invoke(nameof(DoCut), 0.001f);
+        }
+    }
+
+    private int GetRandomDamage()
+    {
+        int randomResult = UnityEngine.Random.Range(0, 100);
+
+        if (randomResult < 60)
+        {
+            return 100;
+        }
+        else if (randomResult < 80)
+        {
+            return 200;
+        }
+        else if (randomResult < 90)
+        {
+            return 250;
+        }
+        else
+        {
+            return 500;
         }
     }
 

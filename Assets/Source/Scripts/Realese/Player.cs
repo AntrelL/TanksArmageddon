@@ -14,7 +14,7 @@ namespace TanksArmageddon
         [SerializeField] private float _force;
         [SerializeField] private float _maxSpeed;
         [SerializeField] private float _availableTravelTime;
-        [SerializeField] private LayerMask _layerMask;
+        [SerializeField] private LayerMask _landLayer;
         [SerializeField] private Slider _petrolTank;
         [SerializeField] private int _maxHealth = 1000;
         [SerializeField] private Button _leftButton;
@@ -96,7 +96,7 @@ namespace TanksArmageddon
 
             _petrolTank.value = _availableTravelTime - _travelTimeSpent;
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 1f, _layerMask);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 1f, _landLayer);
 
             if (hit.collider != null)
             {
@@ -114,12 +114,33 @@ namespace TanksArmageddon
         {
             _cameraController.UnlockMovement += OnMovementUnlocked;
             TurnManager.CanPlayerControl += OnMovementUnlocked;
+            EnemyBullet.PlayerHit += TakeDamage;
         }
 
         private void OnDisable()
         {
             _cameraController.UnlockMovement -= OnMovementUnlocked;
             TurnManager.CanPlayerControl -= OnMovementUnlocked;
+            EnemyBullet.PlayerHit -= TakeDamage;
+        }
+
+        private void OnDrawGizmos()
+        {
+            // Отрисовываем рейкаст, как он используется в FixedUpdate
+            Gizmos.color = Color.red;
+            Vector2 rayDirection = -Vector2.up;
+            float rayLength = 1f;
+            Gizmos.DrawRay(transform.position, rayDirection * rayLength);
+
+            // Выполняем рейкаст для определения точки столкновения
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, rayLength, _landLayer);
+
+            if (hit.collider != null)
+            {
+                // Отрисовываем точку столкновения зелёным шариком
+                Gizmos.color = Color.green;
+                Gizmos.DrawSphere(hit.point, 0.1f);
+            }
         }
 
         private void OnMovementUnlocked(bool canPlayerMove)
@@ -138,6 +159,7 @@ namespace TanksArmageddon
         private void TakeDamage(int damage)
         {
             _currentHealth -= damage;
+            HealthChanged?.Invoke(_currentHealth);
         }
 
         public void PlayHitEffect(Vector3 hitPosition)
@@ -145,8 +167,6 @@ namespace TanksArmageddon
             if (_isAlive == true)
             {
                 PlayerHit?.Invoke();
-                TakeDamage(100);
-                HealthChanged?.Invoke(_currentHealth);
                 ParticleSystem flash = Instantiate(_hitFX, hitPosition, Quaternion.identity);
                 flash.Play();
                 Destroy(flash.gameObject, flash.main.duration);

@@ -14,10 +14,11 @@ public class TurnManager : MonoBehaviour
 
     [Header("Параметры ходов")]
     [SerializeField] private float _projectileTransitionDuration = 1f;
-    [SerializeField] public float _difficultyFactor = 0.1f;
+    [SerializeField] private float _difficultyFactor = 0.1f;
 
     private int _turnCount = 0;
     public int TurnCount => _turnCount;
+    public float DifficultyFactor => _difficultyFactor;
     private bool _allEnemiesDead = false;
 
     public static event Action AllEnemiesDead;

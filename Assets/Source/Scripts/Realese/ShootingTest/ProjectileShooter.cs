@@ -12,6 +12,7 @@ public class ProjectileShooter2D : MonoBehaviour
     [SerializeField] private Transform _player;
     [SerializeField] private ParticleSystem _muzzleFlash;
     [SerializeField] private Tank _enemyTank;
+    [SerializeField] private TurnManager _turnManager;
 
     [Header("Поворот пушки")]
     [SerializeField] private Transform _turret;
@@ -34,7 +35,14 @@ public class ProjectileShooter2D : MonoBehaviour
 
     public bool ShootIfPossible()
     {
-        if (TryCalculateBallisticAngle2D(_player.position, out float lowAngleDeg, out float highAngleDeg))
+        float difficultyFactor = _turnManager.DifficultyFactor;
+
+        Vector2 playerPos = _player.position;
+        float deviation = Mathf.Abs(playerPos.x) * difficultyFactor;
+        float randomX = UnityEngine.Random.Range(playerPos.x - deviation, playerPos.x + deviation);
+        Vector2 target = new Vector2(randomX, playerPos.y);
+
+        if (TryCalculateBallisticAngle2D(target, out float lowAngleDeg, out float highAngleDeg))
         {
             float chosenAngle = lowAngleDeg;
 
@@ -47,7 +55,7 @@ public class ProjectileShooter2D : MonoBehaviour
 
                 return false;
             }
-           
+
             float userAngle = -chosenAngle;
 
             //float angleDifference = userAngle - _turretInitialAngle;
@@ -96,7 +104,7 @@ public class ProjectileShooter2D : MonoBehaviour
 
     private void ShootBullet()
     {
-        if (_bulletPrefab == null) 
+        if (_bulletPrefab == null)
             return;
 
         GameObject bullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);

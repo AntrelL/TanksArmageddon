@@ -4,13 +4,13 @@ using System;
 
 public class Hangar : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _upgradeIndicators; // Иконки, которые показывают возможность улучшения
+    [SerializeField] private GameObject[] _upgradeIndicators;
     [SerializeField] private TextMeshProUGUI[] _weaponLevelTexts;
-    [SerializeField] private TextMeshProUGUI[] _weaponCardTexts; // Массив TextMeshPro для отображения количества карточек
+    [SerializeField] private TextMeshProUGUI[] _weaponCardTexts;
     [SerializeField] private TextMeshProUGUI[] _weaponDamageTexts;
 
     private float[] _damageMultipliers = { 1.1f, 1.2f, 1.3f, 1.5f, 2.0f };
-    private int[] _requiredCardsForNextLevel = { 10, 20, 30, 50, 100 }; // Требования по карточкам для уровней
+    private int[] _requiredCardsForNextLevel = { 10, 20, 30, 50, 100 };
 
     public static event Action ButtonClicked;
 
@@ -23,7 +23,6 @@ public class Hangar : MonoBehaviour
         UpdateCardInfoUI();
     }
 
-    // Метод для обновления иконок улучшения
     private void UpdateUpgradeIndicators()
     {
         for (int i = 0; i < _upgradeIndicators.Length; i++)
@@ -44,7 +43,6 @@ public class Hangar : MonoBehaviour
         }
     }
 
-    // Метод для обновления информации о карточках в UI
     private void UpdateCardInfoUI()
     {
         for (int i = 0; i < _weaponCardTexts.Length; i++)
@@ -60,7 +58,7 @@ public class Hangar : MonoBehaviour
             }
             else
             {
-                _weaponCardTexts[i].text = $"Max."; // Если оружие на максимальном уровне
+                _weaponCardTexts[i].text = $"Max.";
             }
         }
     }
@@ -107,7 +105,6 @@ public class Hangar : MonoBehaviour
         }
     }
 
-    // Метод для выбора и улучшения оружия при нажатии на кнопку
     public void SelectAndUpgradeWeapon(int weaponIndex)
     {
         ButtonClicked?.Invoke();
@@ -135,7 +132,6 @@ public class Hangar : MonoBehaviour
                 Debug.Log($"Weapon {weaponIndex + 1} upgraded to level {selectedWeaponData.upgradeLevel}!");
                 
 
-                // Обновляем индикаторы и текстовую информацию
                 UpdateWeaponLevelText(weaponIndex);
                 UpdateWeaponDamageText(weaponIndex);
                 UpdateUpgradeIndicators();

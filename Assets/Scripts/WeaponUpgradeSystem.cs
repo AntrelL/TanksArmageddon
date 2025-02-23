@@ -37,7 +37,6 @@ public class WeaponUpgradeSystem : MonoBehaviour
                 _currentCards -= cardsRequired;
                 _weaponData.upgradeLevel++;
 
-                // Увеличиваем урон относительно начального урона
                 _weaponData.baseDamage = Mathf.RoundToInt(_weaponData.currentDamage * _damageMultipliers[currentLevel]);
 
                 Debug.Log($"Weapon upgraded to level {_weaponData.upgradeLevel} with new damage {_weaponData.baseDamage}");

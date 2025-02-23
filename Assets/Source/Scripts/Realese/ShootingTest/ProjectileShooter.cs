@@ -56,7 +56,8 @@ public class ProjectileShooter2D : MonoBehaviour
                 return false;
             }
 
-            float userAngle = -chosenAngle;
+            float usedAngle = -chosenAngle;
+            Debug.Log("Угол стрельбы: " + usedAngle);
 
             //float angleDifference = userAngle - _turretInitialAngle;
 
@@ -67,7 +68,7 @@ public class ProjectileShooter2D : MonoBehaviour
                 return;
             }*/
 
-            StartCoroutine(RotateThenShoot(userAngle));
+            StartCoroutine(RotateThenShoot(usedAngle));
 
             return true;
         }

@@ -11880,8 +11880,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.43, y: 12.99, z: -1.2446737}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1750636969}
   m_Father: {fileID: 275422983}
@@ -11914,7 +11914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _landCollider: {fileID: 422059129}
   _circleCollider: {fileID: 1411630460}
-  _testIterations: 500
+  _testIterations: 200
 --- !u!114 &1411630459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12164,10 +12164,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1539040247}
   - component: {fileID: 1539040254}
+  - component: {fileID: 1539040256}
   - component: {fileID: 1539040249}
   - component: {fileID: 1539040248}
   - component: {fileID: 1539040255}
-  - component: {fileID: 1539040256}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -12207,7 +12207,7 @@ MonoBehaviour:
   _hitFX: {fileID: 1496682345538995766, guid: fcaa4e2ecbf6a574599fbe32b484c330, type: 3}
   _maxHealth: 1000
   _tank: {fileID: 2338904199811200210}
-  _movementForce: 20
+  _movementForce: 15
   _maxSpeed: 5
   _centerOfMass: {fileID: 605333536}
   _rigidbody2D: {fileID: 1539040249}
@@ -12351,9 +12351,9 @@ PolygonCollider2D:
       - {x: 1.1486794, y: 3.1593606}
       - {x: 0.3815331, y: 3.1101341}
       - {x: 0.29134595, y: 2.6899898}
-      - {x: -0.74486333, y: 2.6683552}
-      - {x: -0.7623053, y: 2.37365}
-      - {x: -0.6273422, y: 2.3234484}
+      - {x: -0.5844027, y: 2.6635497}
+      - {x: -0.5880728, y: 2.370224}
+      - {x: -0.493465, y: 2.3201556}
       - {x: -0.5761734, y: 1.9505944}
       - {x: -0.7589187, y: 1.8065418}
       - {x: -0.6930552, y: 1.4698925}

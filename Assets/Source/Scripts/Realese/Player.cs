@@ -124,24 +124,21 @@ namespace TanksArmageddon
             EnemyBullet.PlayerHit -= TakeDamage;
         }
 
-        private void OnDrawGizmos()
+        /*private void OnDrawGizmos()
         {
-            // Отрисовываем рейкаст, как он используется в FixedUpdate
             Gizmos.color = Color.red;
             Vector2 rayDirection = -Vector2.up;
             float rayLength = 1f;
             Gizmos.DrawRay(transform.position, rayDirection * rayLength);
 
-            // Выполняем рейкаст для определения точки столкновения
             RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, rayLength, _landLayer);
 
             if (hit.collider != null)
             {
-                // Отрисовываем точку столкновения зелёным шариком
                 Gizmos.color = Color.green;
                 Gizmos.DrawSphere(hit.point, 0.1f);
             }
-        }
+        }*/
 
         private void OnMovementUnlocked(bool canPlayerMove)
         {

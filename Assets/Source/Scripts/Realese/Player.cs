@@ -13,7 +13,7 @@ namespace TanksArmageddon
         [SerializeField] private Tank _tank;
         [SerializeField] private float _force;
         [SerializeField] private float _maxSpeed;
-        [SerializeField] private float _availableTravelTime;
+        [SerializeField] private float _availableTravelTime = 5f;
         [SerializeField] private LayerMask _landLayer;
         [SerializeField] private Slider _petrolTank;
         [SerializeField] private int _maxHealth = 1000;
@@ -142,6 +142,9 @@ namespace TanksArmageddon
 
         private void OnMovementUnlocked(bool canPlayerMove)
         {
+            _availableTravelTime = 5f;
+            _travelTimeSpent = 0f;
+            _petrolTank.value = _availableTravelTime;
             _canMove = canPlayerMove;
         }
 

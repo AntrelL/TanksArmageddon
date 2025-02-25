@@ -57,17 +57,17 @@ public class EnemyBullet : MonoBehaviour
 
     private int GetRandomDamage()
     {
-        int randomResult = UnityEngine.Random.Range(0, 100);
+        int randomDamage = UnityEngine.Random.Range(0, 100);
 
-        if (randomResult < 60)
+        if (randomDamage < 60)
         {
             return 100;
         }
-        else if (randomResult < 80)
+        else if (randomDamage < 80)
         {
             return 200;
         }
-        else if (randomResult < 90)
+        else if (randomDamage < 90)
         {
             return 250;
         }

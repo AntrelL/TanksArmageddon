@@ -25,6 +25,8 @@ public class TurnManager : MonoBehaviour
     public static event Action<bool> CanPlayerControl;
     public static event Action<bool> CanPlayerShoot;
     public static event Action<Transform> TurnStarted;
+    public static event Action PlayerTurnFinished;
+    public static event Action<int> CompletedTurns;
 
     public static bool CurrentTurnIsPlayer { get; private set; }
 
@@ -102,6 +104,8 @@ public class TurnManager : MonoBehaviour
         }
 
         Debug.Log($"[Ход {_turnCount}] Ход игрока завершён");
+        PlayerTurnFinished?.Invoke();
+        CompletedTurns?.Invoke(_turnCount);
         CurrentTurnIsPlayer = false;
     }
 
@@ -116,6 +120,7 @@ public class TurnManager : MonoBehaviour
 
         yield return StartCoroutine(_cameraController.TransitionToTarget(_player.transform, _projectileTransitionDuration));
 
+        CompletedTurns?.Invoke(_turnCount);
         Debug.Log($"[Ход {_turnCount}] Ход врага {enemy.name} завершён");
     }
 

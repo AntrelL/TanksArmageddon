@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _maxSpeed = 5f;
     [SerializeField] private Transform _centerOfMass;
     [SerializeField] private Rigidbody2D _rigidbody2D;
-    [SerializeField] private float _availableTravelTime = 10f;
+    [SerializeField] private float _availableTravelTime = 3f;
     [SerializeField] private ProjectileShooter2D _projectileShooter;
     [SerializeField] private Transform _player;
     [SerializeField] private LayerMask _landLayer;

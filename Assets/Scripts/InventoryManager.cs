@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private List<WeaponData> _weaponsList;
 
     private bool isInventoryVisible = false;
-    private WeaponSlot selectedSlot = null;
+    private WeaponSlot _selectedSlot = null;
+    private WeaponSlot _weaponSlotToClean;
 
     public static event Action<int> UpdatePlayerDamage;
 
@@ -29,10 +31,55 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        AirdropBox.PlayerPickedUpAirdrop += SetAirDropPickedUpWeapon;
+    }
+
+    private void OnDisable()
+    {
+        AirdropBox.PlayerPickedUpAirdrop -= SetAirDropPickedUpWeapon;
+    }
+
+    private void SetAirDropPickedUpWeapon(int index)
+    {
+        UpdateInventoryValues();
+
+        if (index == 1)
+        {
+            _weaponSlots[1].gameObject.SetActive(true);
+
+        }
+
+        if (index == 2)
+        {
+            _weaponSlots[2].gameObject.SetActive(true);
+        }
+
+        if (index == 3)
+        {
+            _weaponSlots[3].gameObject.SetActive(true);
+        }
+
+        if (index == 4)
+        {
+            _weaponSlots[4].gameObject.SetActive(true);
+        }
+    }
+
     void ToggleInventory()
     {
         isInventoryVisible = !isInventoryVisible;
         _inventoryPanel.SetActive(isInventoryVisible);
+    }
+
+    private void UpdateInventoryValues()
+    {
+        for (int i = 0; i < _weaponSlots.Count; i++)
+        {
+            WeaponData weapon = _weaponsList[i];
+            _weaponSlots[i].SetWeaponData(weapon);
+        }
     }
 
     public void UpdateInventoryUI()
@@ -42,20 +89,40 @@ public class InventoryManager : MonoBehaviour
             WeaponData weapon = _weaponsList[i];
             _weaponSlots[i].SetWeaponData(weapon);
         }
+
+        for (int i = 1; i < _weaponSlots.Count; i++)
+        {
+            _weaponSlots[i].gameObject.SetActive(false);
+        }
     }
 
     public void SelectWeapon(WeaponSlot slot)
     {
-        if (selectedSlot != null)
+        if (_selectedSlot != null)
         {
-            selectedSlot.Deselect();
+            _selectedSlot.Deselect();
         }
 
-        selectedSlot = slot;
+        _selectedSlot = slot;
 
         int currentDamage = int.Parse(slot.currentDamage.text);
 
         UpdatePlayerDamage(currentDamage);
-        selectedSlot.Select();
+        _selectedSlot.Select();
+        Debug.Log("selected slot name: " + slot.name);
+
+        if (slot.name != "Slot01")
+        {
+            _weaponSlotToClean = slot;
+            DefaultProjectile.ProjectileDestroyed += SetSelectedSlotInvisible;
+        }
+    }
+
+    private void SetSelectedSlotInvisible()
+    {
+        Debug.Log("Hide slot with name:  " + _weaponSlotToClean.name);
+        _weaponSlotToClean.gameObject.SetActive(false);
+        SelectWeapon(_weaponSlots[0]);
+        DefaultProjectile.ProjectileDestroyed -= SetSelectedSlotInvisible;
     }
 }

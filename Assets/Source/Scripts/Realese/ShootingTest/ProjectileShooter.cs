@@ -21,16 +21,17 @@ public class ProjectileShooter2D : MonoBehaviour
     [Header("Ограничение угла (±) выстрела")]
     [SerializeField] private float _maxAngleDeviation = 30f;
 
-    //private float _turretInitialAngle;
+    private float _turretInitialAngle;
     public static event Action EnemyShooted;
 
 
     private void Start()
     {
-        /*if (_turret != null)
+        if (_turret != null)
         {
-            _turretInitialAngle = _turret.eulerAngles.z;
-        }*/
+            //_turretInitialAngle = _turret.eulerAngles.z;
+            _turretInitialAngle = _turret.localEulerAngles.z;
+        }
     }
 
     public bool ShootIfPossible()
@@ -57,16 +58,16 @@ public class ProjectileShooter2D : MonoBehaviour
             }
 
             float usedAngle = -chosenAngle;
-            Debug.Log("Угол стрельбы: " + usedAngle);
+            //float angleDifference = Mathf.DeltaAngle(_turretInitialAngle, targetAngle);
+            //float angleDifference = usedAngle - _turretInitialAngle;
 
-            //float angleDifference = userAngle - _turretInitialAngle;
-
-            /*if (Mathf.Abs(angleDifference) > _maxAngleDeviation)
+            if (Mathf.Abs(usedAngle + 5f) > _maxAngleDeviation)
             {
-                Debug.Log($"Выстрел невозможен: угол {userAngle}° за пределами ±{_maxAngleDeviation}°");
-            /
-                return;
-            }*/
+                Debug.Log($"Выстрел невозможен: требуется угол {usedAngle}° за пределами допустимого" +
+                    $" диапазона ±{_maxAngleDeviation}° относительно стартового угла {_turretInitialAngle}°");
+
+                return false;
+            }
 
             StartCoroutine(RotateThenShoot(usedAngle));
 

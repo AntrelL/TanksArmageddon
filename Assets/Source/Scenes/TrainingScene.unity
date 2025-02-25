@@ -12332,7 +12332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _landCollider: {fileID: 422059129}
   _circleCollider: {fileID: 1411630460}
-  _testIterations: 200
+  _testIterations: 500
 --- !u!114 &1411630459
 MonoBehaviour:
   m_ObjectHideFlags: 0

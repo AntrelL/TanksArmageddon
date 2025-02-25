@@ -33,14 +33,6 @@ public class Cutter : MonoBehaviour
     [SerializeField] private PolygonCollider2D _circleCollider;
     [SerializeField] private int _testIterations = 10;
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            DoCut();
-        }
-    }
-
     public void DoCut()
     {
         List<Vector2> _circlePointsPositions = _circleCollider.GetPath(0).ToList();
@@ -84,7 +76,7 @@ public class Cutter : MonoBehaviour
         _landCollider.GetComponent<Land>().SetPath(allSplines);
     }
 
-    public List<List<Point>> Substraction(Line landLine, Line circleLine)
+    private List<List<Point>> Substraction(Line landLine, Line circleLine)
     {
         for (int i = 0; i < circleLine.Points.Count; i++)
         {
@@ -140,6 +132,7 @@ public class Cutter : MonoBehaviour
                     Line currentLine;
 
                     bool ccw;
+
                     if (onLand)
                     {
                         currentLine = landLine;
@@ -155,11 +148,14 @@ public class Cutter : MonoBehaviour
                     int nextIndex = GetNext(currentIndex, currentLine.Points.Count, ccw);
                     thePoint.NextPoint = currentLine.Points[nextIndex];
                     allPoints.Remove(thePoint);
+
                     if (thePoint.NextPoint.IsCross)
                     {
                         onLand = !onLand;
                     }
+
                     thePoint = thePoint.NextPoint;
+
                     if (startPoint == thePoint) break;
                 }
             }
@@ -169,6 +165,7 @@ public class Cutter : MonoBehaviour
         {
             List<List<Point>> allSplines = new List<List<Point>>();
             List<Point> allPoints = new List<Point>(landLine.Points);
+
             while (allPoints.Count > 0)
             {
                 Point thePoint = allPoints[0];
@@ -188,6 +185,7 @@ public class Cutter : MonoBehaviour
 
                     newSpline.Add(point);
                     allPoints.Remove(point);
+
                     for (int i = 0; i < _testIterations; i++)
                     {
                         point = point.NextPoint;
@@ -200,16 +198,17 @@ public class Cutter : MonoBehaviour
             }
             return allSplines;
         }
-
     }
 
-    public void RecalculateLine(Line line)
+    private void RecalculateLine(Line line)
     {
         List<Point> newPoints = new List<Point>();
+
         for (int s = 0; s < line.Segments.Count; s++)
         {
             Segment segment = line.Segments[s];
             newPoints.Add(segment.A);
+
             if (segment.CrossPoints.Count > 0)
             {
                 segment.CrossPoints.Sort((p1, p2) =>
@@ -221,9 +220,10 @@ public class Cutter : MonoBehaviour
         line.Points = newPoints;
     }
 
-    void ReorderList<T>(List<T> list)
+    private void ReorderList<T>(List<T> list)
     {
         var first = list[0];
+
         for (int i = 0; i < list.Count; i++)
         {
             if (i == list.Count - 1)
@@ -237,7 +237,7 @@ public class Cutter : MonoBehaviour
         }
     }
 
-    public Line LineFromCollider(List<Vector2> list)
+    private Line LineFromCollider(List<Vector2> list)
     {
         Line line = new Line();
         List<Point> points = new List<Point>();
@@ -249,6 +249,7 @@ public class Cutter : MonoBehaviour
             point.Position = list[i];
             points.Add(point);
         }
+
         for (int i = 0; i < list.Count; i++)
         {
             Segment segment = new Segment();
@@ -260,14 +261,17 @@ public class Cutter : MonoBehaviour
             points[bIndex].CircleSegment = segment;
             segments.Add(segment);
         }
+
         line.Points = points;
         line.Segments = segments;
+
         return line;
     }
 
-    int GetNext(int index, int length, bool isCCW)
+    private int GetNext(int index, int length, bool isCCW)
     {
         int nextIndex = index + (isCCW ? 1 : -1);
+
         if (nextIndex >= length)
         {
             nextIndex = 0;
@@ -276,6 +280,7 @@ public class Cutter : MonoBehaviour
         {
             nextIndex = length - 1;
         }
+
         return nextIndex;
     }
 }

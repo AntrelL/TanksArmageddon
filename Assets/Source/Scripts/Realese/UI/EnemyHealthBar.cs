@@ -10,6 +10,7 @@ public class EnemyHealthBar : MonoBehaviour
     [SerializeField] private Slider _healthSlider;
     [SerializeField] private float _smoothSpeed = 5f;
     [SerializeField] private TextMeshProUGUI _valueText;
+    [SerializeField] private Vector3 _offset = new Vector3(0, 2, 0);
 
     private float _targetHealth;
 
@@ -23,6 +24,8 @@ public class EnemyHealthBar : MonoBehaviour
 
     private void Update()
     {
+        MoveSlider();
+
         if (_healthSlider.value != _targetHealth)
         {
             _valueText.text = _targetHealth + "/" + _maxHealth;
@@ -40,6 +43,12 @@ public class EnemyHealthBar : MonoBehaviour
     {
         if (_enemy != null)
             _enemy.HealthChanged -= UpdateValue;
+    }
+
+    private void MoveSlider()
+    {
+        Vector3 screenPosition = Camera.main.WorldToScreenPoint(_enemy.transform.position + _offset);
+        _healthSlider.transform.position = screenPosition;
     }
 
     private void UpdateValue(int value)

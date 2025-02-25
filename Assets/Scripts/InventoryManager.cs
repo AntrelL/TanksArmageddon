@@ -111,6 +111,11 @@ public class InventoryManager : MonoBehaviour
         _selectedSlot.Select();
         Debug.Log("selected slot name: " + slot.name);
 
+        if (slot.name == "Slot01")
+        {
+            _weaponSlotToClean = null;
+        }
+
         if (slot.name != "Slot01")
         {
             _weaponSlotToClean = slot;
@@ -120,9 +125,13 @@ public class InventoryManager : MonoBehaviour
 
     private void SetSelectedSlotInvisible()
     {
-        Debug.Log("Hide slot with name:  " + _weaponSlotToClean.name);
-        _weaponSlotToClean.gameObject.SetActive(false);
-        SelectWeapon(_weaponSlots[0]);
+        if (_weaponSlotToClean != null)
+        {
+            Debug.Log("Hide slot with name:  " + _weaponSlotToClean.name);
+            _weaponSlotToClean.gameObject.SetActive(false);
+            SelectWeapon(_weaponSlots[0]);
+        }
+
         DefaultProjectile.ProjectileDestroyed -= SetSelectedSlotInvisible;
     }
 }

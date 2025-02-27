@@ -113,6 +113,7 @@ namespace TanksArmageddon
         private void OnEnable()
         {
             _cameraController.UnlockMovement += OnMovementUnlocked;
+            TutorialManager.TutorialEnded += OnMovementUnlocked;
             TurnManager.CanPlayerControl += OnMovementUnlocked;
             EnemyBullet.PlayerHit += TakeDamage;
         }
@@ -120,6 +121,7 @@ namespace TanksArmageddon
         private void OnDisable()
         {
             _cameraController.UnlockMovement -= OnMovementUnlocked;
+            TutorialManager.TutorialEnded += OnMovementUnlocked;
             TurnManager.CanPlayerControl -= OnMovementUnlocked;
             EnemyBullet.PlayerHit -= TakeDamage;
         }

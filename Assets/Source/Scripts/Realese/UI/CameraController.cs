@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour
     public bool IntroFinished => _introFinished;
 
     public event Action<bool> UnlockMovement;
+    public static event Action ShowTips;
 
     private void Awake()
     {
@@ -66,6 +67,7 @@ public class CameraController : MonoBehaviour
         yield return new WaitForSeconds(_waitTime);
 
         _introFinished = true;
+        ShowTips?.Invoke();
         UnlockMovement?.Invoke(true);
         _blockUICanvas.SetActive(false);
     }

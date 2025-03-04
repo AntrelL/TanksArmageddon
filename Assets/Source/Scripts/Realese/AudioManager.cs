@@ -64,6 +64,7 @@ public class AudioManager : MonoBehaviour
         ProjectileShooter2D.EnemyShooted += PlayProjectileShoot;
         HangarSceneNavigationManager.ButtonClicked += PlayButtonClick;
         Hangar.ButtonClicked += PlayButtonClick;
+        TutorialManager.ButtonClicked += PlayButtonClick;
     }
 
     private void OnDisable()
@@ -88,6 +89,7 @@ public class AudioManager : MonoBehaviour
         ProjectileShooter2D.EnemyShooted -= PlayProjectileShoot;
         HangarSceneNavigationManager.ButtonClicked -= PlayButtonClick;
         Hangar.ButtonClicked -= PlayButtonClick;
+        TutorialManager.ButtonClicked -= PlayButtonClick;
     }
 
     private void PlayMainMusic()

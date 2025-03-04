@@ -67,8 +67,8 @@ public class CameraController : MonoBehaviour
         yield return new WaitForSeconds(_waitTime);
 
         _introFinished = true;
-        ShowTips?.Invoke();
         UnlockMovement?.Invoke(true);
+        ShowTips?.Invoke();
         _blockUICanvas.SetActive(false);
     }
 

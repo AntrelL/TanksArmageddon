@@ -13,6 +13,7 @@ public class TutorialManager : MonoBehaviour
     private int currentIndex = 0;
 
     public static event Action<bool> TutorialEnded;
+    public static event Action ButtonClicked;
 
     private void Start()
     {
@@ -35,6 +36,7 @@ public class TutorialManager : MonoBehaviour
 
     private void SetTipsStatus()
     {
+        TutorialEnded?.Invoke(false);
         _tutorialBlockUICanvas.SetActive(true);
 
         for (int i = 0; i < _tutorialTips.Length; i++)
@@ -54,6 +56,7 @@ public class TutorialManager : MonoBehaviour
 
     public void OnOkayButtonClicked()
     {
+        ButtonClicked?.Invoke();
         TutorialEnded?.Invoke(false);
         _tutorialTips[currentIndex].SetActive(false);
         currentIndex++;

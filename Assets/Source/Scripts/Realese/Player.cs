@@ -113,15 +113,15 @@ namespace TanksArmageddon
         private void OnEnable()
         {
             _cameraController.UnlockMovement += OnMovementUnlocked;
-            TutorialManager.TutorialEnded += OnMovementUnlocked;
             TurnManager.CanPlayerControl += OnMovementUnlocked;
+            //TutorialManager.TutorialEnded += DisableMovement;
             EnemyBullet.PlayerHit += TakeDamage;
         }
 
         private void OnDisable()
         {
             _cameraController.UnlockMovement -= OnMovementUnlocked;
-            TutorialManager.TutorialEnded += OnMovementUnlocked;
+            //TutorialManager.TutorialEnded += OnMovementUnlocked;
             TurnManager.CanPlayerControl -= OnMovementUnlocked;
             EnemyBullet.PlayerHit -= TakeDamage;
         }
@@ -142,12 +142,17 @@ namespace TanksArmageddon
             }
         }*/
 
+        private void DisableMovement(bool isMovementDisable)
+        {
+            _canMove = isMovementDisable;
+        }
+
         private void OnMovementUnlocked(bool canPlayerMove)
         {
+            _canMove = canPlayerMove;
             _availableTravelTime = 5f;
             _travelTimeSpent = 0f;
             _petrolTank.value = _availableTravelTime;
-            _canMove = canPlayerMove;
         }
 
         private void AddEventTrigger(GameObject target, EventTriggerType eventType, System.Action action)

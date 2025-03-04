@@ -44,6 +44,16 @@ public class TurnManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        TutorialManager.TutorialEnded += UnblockPlayerControls;
+    }
+
+    private void OnDisable()
+    {
+        TutorialManager.TutorialEnded += UnblockPlayerControls;
+    }
+
     private IEnumerator TurnCycle()
     {
         while (!_allEnemiesDead)

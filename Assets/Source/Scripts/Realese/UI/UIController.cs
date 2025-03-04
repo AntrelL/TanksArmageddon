@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
 public class UIController : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject _textGoal2;
     [SerializeField] private GameObject _textGoal3;
     [SerializeField] private TurnManager _turnManager;
+    [SerializeField] private TMP_Text _counterText;
 
     private int _turnCount;
 
@@ -43,6 +45,7 @@ public class UIController : MonoBehaviour
         TurnManager.AllEnemiesDead += ShowWinnerScreen;
         TurnManager.CanPlayerShoot += IsShootButtonInteractable;
         TurnManager.CanPlayerShoot += IsInventoryInteractabe;
+        TurnManager.CompletedTurns += UpdateTurnCounterText;
         _player.Defeated += ShowDefeatedScreen;
     }
 
@@ -51,12 +54,18 @@ public class UIController : MonoBehaviour
         TurnManager.AllEnemiesDead -= ShowWinnerScreen;
         TurnManager.CanPlayerShoot -= IsShootButtonInteractable;
         TurnManager.CanPlayerShoot -= IsInventoryInteractabe;
+        TurnManager.CompletedTurns -= UpdateTurnCounterText;
         _player.Defeated -= ShowDefeatedScreen;
     }
 
     private void IsInventoryInteractabe(bool value)
     {
         _inventoryCanvasGroup.interactable = value;
+    }
+
+    private void UpdateTurnCounterText(int turnCount)
+    {
+        _counterText.text = turnCount.ToString();
     }
 
     private void UpdateGoalStatus()

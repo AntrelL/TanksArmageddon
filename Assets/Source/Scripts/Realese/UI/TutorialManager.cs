@@ -1,3 +1,4 @@
+using Agava.WebUtility;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject[] _tutorialTips;
     [SerializeField] private GameObject _tutorialBlockUICanvas;
     [SerializeField] private TypewriterEffect _typewriter;
-    private int currentIndex = 0;
+    private int _currentIndex = 0;
 
     public static event Action<bool> TutorialEnded;
     public static event Action ButtonClicked;
@@ -41,10 +42,23 @@ public class TutorialManager : MonoBehaviour
 
         for (int i = 0; i < _tutorialTips.Length; i++)
         {
+            TMP_Text currentTipText = _tutorialTips[i].GetComponentInChildren<TMP_Text>();
+
+            if (i == 3)
+            {
+                if (Device.IsMobile == true)
+                {
+                    currentTipText.text = "Для движения используй кнопки в левом нижнем углу.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу.";
+                }
+                else
+                {
+                    currentTipText.text = "Для движения используй клавиши A/D.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу.";
+                }
+            }
+
             if (i == 0)
             {
                 _tutorialTips[i].SetActive(true);
-                TMP_Text currentTipText = _tutorialTips[i].GetComponentInChildren<TMP_Text>();
                 _typewriter.GetText(currentTipText);
             }
             else
@@ -58,13 +72,13 @@ public class TutorialManager : MonoBehaviour
     {
         ButtonClicked?.Invoke();
         TutorialEnded?.Invoke(false);
-        _tutorialTips[currentIndex].SetActive(false);
-        currentIndex++;
+        _tutorialTips[_currentIndex].SetActive(false);
+        _currentIndex++;
 
-        if (currentIndex < _tutorialTips.Length)
+        if (_currentIndex < _tutorialTips.Length)
         {
-            _tutorialTips[currentIndex].SetActive(true);
-            TMP_Text currentTipText = _tutorialTips[currentIndex].GetComponentInChildren<TMP_Text>();
+            _tutorialTips[_currentIndex].SetActive(true);
+            TMP_Text currentTipText = _tutorialTips[_currentIndex].GetComponentInChildren<TMP_Text>();
             _typewriter.GetText(currentTipText);
         }
         else

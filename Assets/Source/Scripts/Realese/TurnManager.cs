@@ -32,7 +32,7 @@ public class TurnManager : MonoBehaviour
 
     private void Start()
     {
-        _uiController.PlayerShootButtonPressed += OnPlayerShoot;
+        //_uiController.PlayerShootButtonPressed += OnPlayerShoot;
 
         if (_cameraController.IntroFinished)
         {
@@ -46,11 +46,13 @@ public class TurnManager : MonoBehaviour
 
     private void OnEnable()
     {
+        // _uiController.PlayerShootButtonPressed += OnPlayerShoot;
         TutorialManager.TutorialEnded += UnblockPlayerControls;
     }
 
     private void OnDisable()
     {
+        //_uiController.PlayerShootButtonPressed -= OnPlayerShoot;
         TutorialManager.TutorialEnded += UnblockPlayerControls;
     }
 
@@ -89,28 +91,45 @@ public class TurnManager : MonoBehaviour
         UnblockPlayerControls(true);
 
         bool shotFired = false;
+        bool skipTurn = false;
 
         Action onShot = () => { shotFired = true; };
+        Action onSkipTurn = () => { skipTurn = true; };
         _uiController.PlayerShootButtonPressed += onShot;
+        UIController.SkipTurnButtonPressed += onSkipTurn;
 
-        yield return new WaitUntil(() => shotFired);
+        yield return new WaitUntil(() => shotFired || skipTurn);
 
         UnblockPlayerControls(false);
         _uiController.PlayerShootButtonPressed -= onShot;
+        UIController.SkipTurnButtonPressed += onSkipTurn;
 
-        bool projectileEnded = false;
-        Action onProjectileDestroyed = () => { projectileEnded = true; };
-        DefaultProjectile.ProjectileDestroyed += onProjectileDestroyed;
-
-        yield return new WaitUntil(() => projectileEnded);
-
-        DefaultProjectile.ProjectileDestroyed -= onProjectileDestroyed;
-
-        Transform nextTarget = GetNextTargetForCamera();
-
-        if (nextTarget != null)
+        if (skipTurn == false)
         {
-            yield return StartCoroutine(_cameraController.TransitionToTarget(nextTarget, _projectileTransitionDuration));
+            bool projectileEnded = false;
+            Action onProjectileDestroyed = () => { projectileEnded = true; };
+            DefaultProjectile.ProjectileDestroyed += onProjectileDestroyed;
+
+            yield return new WaitUntil(() => projectileEnded);
+
+            DefaultProjectile.ProjectileDestroyed -= onProjectileDestroyed;
+
+            Transform nextTarget = GetNextTargetForCamera();
+
+            if (nextTarget != null)
+            {
+                yield return StartCoroutine(_cameraController.TransitionToTarget(nextTarget, _projectileTransitionDuration));
+            }
+        }
+
+        if (skipTurn == true)
+        {
+            Transform nextTarget = GetNextTargetForCamera();
+
+            if (nextTarget != null)
+            {
+                yield return StartCoroutine(_cameraController.TransitionToTarget(nextTarget, _projectileTransitionDuration));
+            }
         }
 
         Debug.Log($"[Ход {_turnCount}] Ход игрока завершён");
@@ -178,13 +197,13 @@ public class TurnManager : MonoBehaviour
         Debug.Log($"Все враги мертвы. Общее число ходов: {_turnCount}");
     }
 
-    private void OnPlayerShoot()
+    /*private void OnPlayerShoot()
     {
         if (!CurrentTurnIsPlayer)
         {
             Debug.LogWarning("Игрок попытался выстрелить не в свой ход!");
         }
-    }
+    }*/
 
     private void UnblockPlayerControls(bool canControl)
     {

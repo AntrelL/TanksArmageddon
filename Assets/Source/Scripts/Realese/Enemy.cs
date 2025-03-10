@@ -41,20 +41,19 @@ public class Enemy : MonoBehaviour
     private void OnEnable()
     {
         DefaultProjectile.TankHit += PlayHitEffect;
+        EdgeOfMap.CollisionWithEnemy += TakeDamage;
         InventoryManager.UpdatePlayerDamage += OnUpdatedPlayerDamage;
     }
 
     private void OnDisable()
     {
         DefaultProjectile.TankHit -= PlayHitEffect;
+        EdgeOfMap.CollisionWithEnemy -= TakeDamage;
         InventoryManager.UpdatePlayerDamage -= OnUpdatedPlayerDamage;
     }
 
     private void FixedUpdate()
     {
-        if (!_isAlive)
-            return;
-
         if (_currentHealth <= 0)
         {
             _tank.Destroy();

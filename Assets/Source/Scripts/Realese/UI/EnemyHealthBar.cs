@@ -37,12 +37,21 @@ public class EnemyHealthBar : MonoBehaviour
     {
         if (_enemy != null)
             _enemy.HealthChanged += UpdateValue;
+
+        _enemy.Defeated += DisableSlider;
     }
 
     private void OnDisable()
     {
         if (_enemy != null)
             _enemy.HealthChanged -= UpdateValue;
+
+        _enemy.Defeated -= DisableSlider;
+    }
+
+    private void DisableSlider()
+    {
+        _healthSlider.gameObject.SetActive(false);
     }
 
     private void MoveSlider()

@@ -13,7 +13,7 @@ namespace TanksArmageddon
         [SerializeField] private Tank _tank;
         [SerializeField] private float _force;
         [SerializeField] private float _maxSpeed;
-        [SerializeField] private float _availableTravelTime = 5f;
+        [SerializeField] private float _availableTravelTime;
         [SerializeField] private LayerMask _landLayer;
         [SerializeField] private Slider _petrolTank;
         [SerializeField] private int _maxHealth = 1000;
@@ -114,14 +114,14 @@ namespace TanksArmageddon
         {
             _cameraController.UnlockMovement += OnMovementUnlocked;
             TurnManager.CanPlayerControl += OnMovementUnlocked;
-            //TutorialManager.TutorialEnded += DisableMovement;
+            EdgeOfMap.CollisionWithPlayer += TakeDamage;
             EnemyBullet.PlayerHit += TakeDamage;
         }
 
         private void OnDisable()
         {
             _cameraController.UnlockMovement -= OnMovementUnlocked;
-            //TutorialManager.TutorialEnded += OnMovementUnlocked;
+            EdgeOfMap.CollisionWithPlayer -= TakeDamage;
             TurnManager.CanPlayerControl -= OnMovementUnlocked;
             EnemyBullet.PlayerHit -= TakeDamage;
         }
@@ -150,7 +150,6 @@ namespace TanksArmageddon
         private void OnMovementUnlocked(bool canPlayerMove)
         {
             _canMove = canPlayerMove;
-            _availableTravelTime = 5f;
             _travelTimeSpent = 0f;
             _petrolTank.value = _availableTravelTime;
         }

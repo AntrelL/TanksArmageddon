@@ -17,6 +17,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject _levelFinishedCanvas;
     [SerializeField] private GameObject _levelFailedCanvas;
     [SerializeField] private Button _playerShootButton;
+    [SerializeField] private Button _playerSkipTurnButton;
     [SerializeField] private Enemy _enemy;
     [SerializeField] private Player _player;
     [SerializeField] private GameObject _textGoal1;
@@ -34,6 +35,7 @@ public class UIController : MonoBehaviour
     public static event Action ButtonClicked;
     public static event Action FinishedCanvasShown;
     public static event Action FailedCanvasShown;
+    public static event Action SkipTurnButtonPressed;
 
     private void Start()
     {
@@ -44,6 +46,7 @@ public class UIController : MonoBehaviour
     {
         TurnManager.AllEnemiesDead += ShowWinnerScreen;
         TurnManager.CanPlayerShoot += IsShootButtonInteractable;
+        TurnManager.CanPlayerShoot += IsSkipTurnButtonInteractable;
         TurnManager.CanPlayerShoot += IsInventoryInteractabe;
         TurnManager.CompletedTurns += UpdateTurnCounterText;
         _player.Defeated += ShowDefeatedScreen;
@@ -53,6 +56,7 @@ public class UIController : MonoBehaviour
     {
         TurnManager.AllEnemiesDead -= ShowWinnerScreen;
         TurnManager.CanPlayerShoot -= IsShootButtonInteractable;
+        TurnManager.CanPlayerShoot -= IsSkipTurnButtonInteractable;
         TurnManager.CanPlayerShoot -= IsInventoryInteractabe;
         TurnManager.CompletedTurns -= UpdateTurnCounterText;
         _player.Defeated -= ShowDefeatedScreen;
@@ -112,6 +116,11 @@ public class UIController : MonoBehaviour
         _playerShootButton.interactable = isInteractable;
     }
 
+    private void IsSkipTurnButtonInteractable(bool isInteractable)
+    {
+        _playerSkipTurnButton.interactable = isInteractable;
+    }
+
     public void ShootButtonPressed()
     {
         if (!_playerShootButton.interactable)
@@ -120,6 +129,16 @@ public class UIController : MonoBehaviour
         _playerShootButton.interactable = false;
         ButtonClicked?.Invoke();
         PlayerShootButtonPressed?.Invoke();
+    }
+
+    public void SkipTurnButton()
+    {
+        if (!_playerSkipTurnButton.interactable)
+            return;
+
+        _playerSkipTurnButton.interactable = false;
+        ButtonClicked?.Invoke();
+        SkipTurnButtonPressed?.Invoke();
     }
 
     public void OpenMainMenu()

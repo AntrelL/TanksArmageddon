@@ -45,10 +45,12 @@ public class UIController : MonoBehaviour
 
         if (Device.IsMobile == true)
         {
+            Debug.Log("Platform: mobile!");
             _playerMovementCanvas.SetActive(true);
         }
         else
         {
+            Debug.Log("Platform: PC!");
             _playerMovementCanvas.SetActive(false);
         }
     }

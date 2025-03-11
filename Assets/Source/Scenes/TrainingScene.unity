@@ -7487,6 +7487,7 @@ MonoBehaviour:
   - {fileID: 187961562}
   _tutorialBlockUICanvas: {fileID: 1739753502}
   _typewriter: {fileID: 600745201}
+  _mobileOrPCTip: 0
 --- !u!1 &605333535
 GameObject:
   m_ObjectHideFlags: 0

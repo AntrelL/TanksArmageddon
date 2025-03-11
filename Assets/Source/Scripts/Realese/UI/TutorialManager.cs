@@ -11,6 +11,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject[] _tutorialTips;
     [SerializeField] private GameObject _tutorialBlockUICanvas;
     [SerializeField] private TypewriterEffect _typewriter;
+    [SerializeField] private int _mobileOrPCTip;
     private int _currentIndex = 0;
 
     public static event Action<bool> TutorialEnded;
@@ -44,14 +45,16 @@ public class TutorialManager : MonoBehaviour
         {
             TMP_Text currentTipText = _tutorialTips[i].GetComponentInChildren<TMP_Text>();
 
-            if (i == 3)
+            if (i == _mobileOrPCTip)
             {
                 if (Device.IsMobile == true)
                 {
+                    Debug.Log("Platform: mobile!");
                     currentTipText.text = "Для движения используй кнопки в левом нижнем углу.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу.";
                 }
                 else
                 {
+                    Debug.Log("Platform: PC!");
                     currentTipText.text = "Для движения используй клавиши A/D.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу.";
                 }
             }

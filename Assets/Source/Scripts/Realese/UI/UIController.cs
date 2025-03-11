@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
+using Agava.WebUtility;
 
 public class UIController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private CanvasGroup _inventoryCanvasGroup;
     [SerializeField] private GameObject _levelFinishedCanvas;
     [SerializeField] private GameObject _levelFailedCanvas;
+    [SerializeField] private GameObject _playerMovementCanvas;
     [SerializeField] private Button _playerShootButton;
     [SerializeField] private Button _playerSkipTurnButton;
     [SerializeField] private Enemy _enemy;
@@ -40,6 +42,15 @@ public class UIController : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
+
+        if (Device.IsMobile == true)
+        {
+            _playerMovementCanvas.SetActive(true);
+        }
+        else
+        {
+            _playerMovementCanvas.SetActive(false);
+        }
     }
 
     private void OnEnable()

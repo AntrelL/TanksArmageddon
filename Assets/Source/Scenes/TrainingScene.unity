@@ -7441,6 +7441,7 @@ MonoBehaviour:
   _inventoryCanvasGroup: {fileID: 1869804871}
   _levelFinishedCanvas: {fileID: 6140456712650664308}
   _levelFailedCanvas: {fileID: 8443539823514980312}
+  _playerMovementCanvas: {fileID: 630247929}
   _playerShootButton: {fileID: 5769065162723444670}
   _playerSkipTurnButton: {fileID: 1812816205}
   _enemy: {fileID: 1539040248}

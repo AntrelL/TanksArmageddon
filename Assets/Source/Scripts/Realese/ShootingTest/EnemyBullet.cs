@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyBullet : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem _groundCollisionFX;
+
     public static Transform CurrentEnemyBullet { get; private set; }
 
     public static event Action EnemyBulletDestroyed;
@@ -80,6 +82,10 @@ public class EnemyBullet : MonoBehaviour
     private void DoCut()
     {
         Debug.Log("DoCut beep");
+        ParticleSystem flash = Instantiate(_groundCollisionFX, transform.position, transform.rotation);
+        flash.Play();
+        Destroy(flash.gameObject, flash.main.duration);
+
         _cutter.DoCut();
         Destroy(gameObject);
     }

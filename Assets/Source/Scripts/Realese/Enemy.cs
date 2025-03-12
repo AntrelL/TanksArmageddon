@@ -38,17 +38,22 @@ public class Enemy : MonoBehaviour
         _rigidbody2D.centerOfMass = _centerOfMass.localPosition;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out EdgeOfMap edge))
+        {
+            Debug.Log("Enemy hit edge of map");
+            TakeDamage(1000);
+        }
+    }
+
     private void OnEnable()
     {
-        DefaultProjectile.TankHit += PlayHitEffect;
-        EdgeOfMap.CollisionWithEnemy += TakeDamage;
         InventoryManager.UpdatePlayerDamage += OnUpdatedPlayerDamage;
     }
 
     private void OnDisable()
     {
-        DefaultProjectile.TankHit -= PlayHitEffect;
-        EdgeOfMap.CollisionWithEnemy -= TakeDamage;
         InventoryManager.UpdatePlayerDamage -= OnUpdatedPlayerDamage;
     }
 
@@ -62,22 +67,6 @@ public class Enemy : MonoBehaviour
             Defeated?.Invoke();
             return;
         }
-
-        /*if (_movementTimeUsed < _availableTravelTime && _moveDirection != 0f)
-        {
-            if (Mathf.Abs(_rigidbody2D.velocity.x) < _maxSpeed)
-            {
-                _tank.Move();
-                _rigidbody2D.AddForce(new Vector2(_moveDirection * _movementForce, 0f));
-            }
-
-            _movementTimeUsed += Time.fixedDeltaTime;
-        }
-        else
-        {
-
-            _moveDirection = 0f;
-        }*/
 
         if (_movementTimeUsed < _availableTravelTime && _moveDirection != 0f)
         {
@@ -103,22 +92,6 @@ public class Enemy : MonoBehaviour
             _tank.Idle();
         }
     }
-
-    /*private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Vector2 rayDirection = -Vector2.up;
-        float rayLength = 1f;
-        Gizmos.DrawRay(transform.position, rayDirection * rayLength);
-
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, rayLength, _landLayer);
-
-        if (hit.collider != null)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawSphere(hit.point, 0.1f);
-        }
-    }*/
 
     public IEnumerator DoEnemyTurn()
     {

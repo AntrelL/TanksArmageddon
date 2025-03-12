@@ -27,10 +27,17 @@ public class MainSceneNavigationManager : MonoBehaviour
         HangarScene.Load();
     }
 
-    public void LoadZeroLevel()
+    public void LoadTrainingLevel()
     {
         ButtonClicked?.Invoke();
-        Debug.Log("Load ZeroLevel");
+        Debug.Log("Load TrainingLevel");
         TrainingScene.Load();
+    }
+
+    public void LoadLevel1()
+    {
+        ButtonClicked?.Invoke();
+        Debug.Log("Load Level1");
+        Level1.Load();
     }
 }

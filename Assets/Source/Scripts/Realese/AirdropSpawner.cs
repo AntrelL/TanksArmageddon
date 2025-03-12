@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TanksArmageddon;
@@ -8,9 +9,12 @@ public class AirdropSpawner : MonoBehaviour
     [SerializeField] private GameObject _airDropPrefab;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private PolygonCollider2D _land;
+    [SerializeField] private int _spawnRate;
 
     private float _minX = 0;
     private float _maxX = 0;
+
+    public static event Action Spawned;
 
     private void Start()
     {
@@ -53,7 +57,7 @@ public class AirdropSpawner : MonoBehaviour
 
     private void CheckTurnsCount(int count)
     {
-        if (count % 3 == 0)
+        if (count % _spawnRate == 0)
         {
             SpawnAirDrop();
         }
@@ -64,6 +68,7 @@ public class AirdropSpawner : MonoBehaviour
         if (_airDropPrefab != null)
         {
             Instantiate(_airDropPrefab, _spawnPoint.position, Quaternion.identity);
+            Spawned?.Invoke();
             Debug.Log("AirDrop заспавнен!");
             SetRandomSpawnPointX();
         }
@@ -75,7 +80,7 @@ public class AirdropSpawner : MonoBehaviour
 
     private void SetRandomSpawnPointX()
     {
-        float randomX = Random.Range(_minX, _maxX);
+        float randomX = UnityEngine.Random.Range(_minX, _maxX);
         Vector3 newPosition = _spawnPoint.position;
         newPosition.x = randomX;
         _spawnPoint.position = newPosition;

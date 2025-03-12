@@ -32,8 +32,6 @@ public class TurnManager : MonoBehaviour
 
     private void Start()
     {
-        //_uiController.PlayerShootButtonPressed += OnPlayerShoot;
-
         if (_cameraController.IntroFinished)
         {
             StartCoroutine(TurnCycle());
@@ -46,13 +44,11 @@ public class TurnManager : MonoBehaviour
 
     private void OnEnable()
     {
-        // _uiController.PlayerShootButtonPressed += OnPlayerShoot;
         TutorialManager.TutorialEnded += UnblockPlayerControls;
     }
 
     private void OnDisable()
     {
-        //_uiController.PlayerShootButtonPressed -= OnPlayerShoot;
         TutorialManager.TutorialEnded += UnblockPlayerControls;
     }
 
@@ -74,6 +70,7 @@ public class TurnManager : MonoBehaviour
                 if (enemy != null && enemy.gameObject.activeSelf)
                 {
                     yield return StartCoroutine(EnemyTurn(enemy));
+
                     if (CheckAllEnemiesDead())
                         break;
                 }
@@ -147,10 +144,25 @@ public class TurnManager : MonoBehaviour
 
         yield return StartCoroutine(enemy.DoEnemyTurn());
 
-        yield return StartCoroutine(_cameraController.TransitionToTarget(_player.transform, _projectileTransitionDuration));
+        if (enemy == GetLastActiveEnemy())
+        {
+            yield return StartCoroutine(_cameraController.TransitionToTarget(_player.transform, _projectileTransitionDuration));
+        }
 
         CompletedTurns?.Invoke(_turnCount);
         Debug.Log($"[Ход {_turnCount}] Ход врага {enemy.name} завершён");
+    }
+
+    private Enemy GetLastActiveEnemy()
+    {
+        for (int i = _enemies.Count - 1; i >= 0; i--)
+        {
+            if (_enemies[i] != null && _enemies[i].gameObject.activeSelf)
+            {
+                return _enemies[i];
+            }
+        }
+        return null;
     }
 
     private bool CheckAllEnemiesDead()
@@ -196,14 +208,6 @@ public class TurnManager : MonoBehaviour
         AllEnemiesDead?.Invoke();
         Debug.Log($"Все враги мертвы. Общее число ходов: {_turnCount}");
     }
-
-    /*private void OnPlayerShoot()
-    {
-        if (!CurrentTurnIsPlayer)
-        {
-            Debug.LogWarning("Игрок попытался выстрелить не в свой ход!");
-        }
-    }*/
 
     private void UnblockPlayerControls(bool canControl)
     {

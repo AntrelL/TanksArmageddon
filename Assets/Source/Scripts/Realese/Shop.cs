@@ -6,6 +6,7 @@ public class Shop : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _playerBalanceText;
     [SerializeField] private TextMeshProUGUI[] _cardCostTexts;
+    [SerializeField] private TMP_Text _purchasedCardsInfo;
 
     public static event Action CardClicked;
 
@@ -24,13 +25,15 @@ public class Shop : MonoBehaviour
             int currentCardCount = GameManager.Instance.GetCardCount(weaponIndex);
             GameManager.Instance.SetCardCount(weaponIndex, currentCardCount + 1);
             CardClicked?.Invoke();
-            Debug.Log($"Card bought for weapon {weaponIndex + 1}. You now have {currentCardCount + 1} cards.");
+            _purchasedCardsInfo.text = $"Куплена карточка для {weaponIndex + 1} снаряда. \r\nКоличество доступных карточек для улучшения: {currentCardCount + 1}";
+            //Debug.Log($"Card bought for weapon {weaponIndex + 1}. You now have {currentCardCount + 1} cards.");
 
             UpdatePlayerBalanceUI();
         }
         else
         {
-            Debug.LogError("Not enough money to buy the card!");
+            _purchasedCardsInfo.text = "Недостаточно ядер.";
+            //Debug.LogError("Not enough money to buy the card!");
         }
     }
 

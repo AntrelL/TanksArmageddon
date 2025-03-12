@@ -11,7 +11,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject[] _tutorialTips;
     [SerializeField] private GameObject _tutorialBlockUICanvas;
     [SerializeField] private TypewriterEffect _typewriter;
-    [SerializeField] private int _mobileOrPCTip;
+    [SerializeField] private int _mobileOrPCTipIndex;
     private int _currentIndex = 0;
 
     public static event Action<bool> TutorialEnded;
@@ -45,7 +45,7 @@ public class TutorialManager : MonoBehaviour
         {
             TMP_Text currentTipText = _tutorialTips[i].GetComponentInChildren<TMP_Text>();
 
-            if (i == _mobileOrPCTip)
+            if (i == _mobileOrPCTipIndex)
             {
                 if (Device.IsMobile == true)
                 {

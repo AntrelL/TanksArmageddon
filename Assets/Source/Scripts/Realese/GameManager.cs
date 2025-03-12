@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private WeaponData[] _weaponDataList = new WeaponData[5];
 
     private int[] _weaponCardCounts = new int[5];
-    private int _playerBalance = 100000;
+    [SerializeField] private int _playerBalance;
 
     public static GameManager Instance { get; private set; }
 
@@ -26,17 +26,12 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        UIController.EnemyDefeated += OnEnemyDefeated;
+        UIController.PlayerRewardReceived += SetPlayerBalance;
     }
 
     private void OnDisable()
     {
-        UIController.EnemyDefeated -= OnEnemyDefeated;
-    }
-
-    private void OnEnemyDefeated()
-    {
-        _playerBalance += 500;
+        UIController.PlayerRewardReceived -= SetPlayerBalance;
     }
 
     public int GetCardCount(int weaponIndex)
@@ -64,9 +59,10 @@ public class GameManager : MonoBehaviour
         return _playerBalance;
     }
 
-    public void SetPlayerBalance(int newBalance)
+    public void SetPlayerBalance(int amount)
     {
-        _playerBalance = newBalance;
+        _playerBalance += amount;
+        Debug.Log($"Игроку было добавлено {amount} денег.");
     }
 
     public bool TrySpendMoney(int amount)

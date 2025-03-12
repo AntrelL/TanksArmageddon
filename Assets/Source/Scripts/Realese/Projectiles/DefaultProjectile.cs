@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class DefaultProjectile : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem _groundCollisionFX;
+
     public static Transform CurrentProjectile { get; private set; }
-    public static event Action<Vector3> TankHit;
     public static event Action GroundHit;
     public static event Action EdgeOfMapHit;
     public static event Action ProjectileDestroyed;
@@ -13,8 +14,7 @@ public class DefaultProjectile : MonoBehaviour
     public float Speed => _speed;
     public bool IsEnemyProjectile { get; set; } = false;
 
-    [SerializeField] private float _speed = 20f;
-    [SerializeField] private float _gravity = 9.81f;
+    [SerializeField] private float _speed;
 
     private Rigidbody2D _rigidbody;
     private Cutter _cutter;
@@ -91,6 +91,10 @@ public class DefaultProjectile : MonoBehaviour
     private void DoCut()
     {
         Debug.Log("DoCut beep");
+        ParticleSystem flash = Instantiate(_groundCollisionFX, transform.position, transform.rotation);
+        flash.Play();
+        Destroy(flash.gameObject, flash.main.duration);
+
         _cutter.DoCut();
         GroundHit?.Invoke();
         Destroy(gameObject);

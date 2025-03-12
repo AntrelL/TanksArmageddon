@@ -6,9 +6,11 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
 using Agava.WebUtility;
+using System.Collections;
 
 public class UIController : MonoBehaviour
 {
+    [SerializeField] private CanvasGroup _airdropNotifierCanvasGroup;
     [SerializeField] private CanvasGroup _pauseCanvasGroup;
     [SerializeField] private CanvasGroup _continueCanvasGroup;
     [SerializeField] private CanvasGroup _mainMenuCanvasGroup;
@@ -27,11 +29,16 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject _textGoal3;
     [SerializeField] private TurnManager _turnManager;
     [SerializeField] private TMP_Text _counterText;
+    [SerializeField] private TMP_Text _moneyRewardText;
+    [SerializeField] private float _fadeDuration = 1.0f;
+    [SerializeField] private float _visibleDuration = 1.0f;
 
     private int _turnCount;
+    private int _levelRevardAmount = 0;
 
     public event Action PlayerShootButtonPressed;
     public static event Action EnemyDefeated;
+    public static event Action<int> PlayerRewardReceived;
     public static event Action SoundTurnedOff;
     public static event Action SoundTurnedOn;
     public static event Action ButtonClicked;
@@ -57,6 +64,7 @@ public class UIController : MonoBehaviour
 
     private void OnEnable()
     {
+        AirdropSpawner.Spawned += OnSpawned;
         TurnManager.AllEnemiesDead += ShowWinnerScreen;
         TurnManager.CanPlayerShoot += IsShootButtonInteractable;
         TurnManager.CanPlayerShoot += IsSkipTurnButtonInteractable;
@@ -67,12 +75,48 @@ public class UIController : MonoBehaviour
 
     private void OnDisable()
     {
+        AirdropSpawner.Spawned -= OnSpawned;
         TurnManager.AllEnemiesDead -= ShowWinnerScreen;
         TurnManager.CanPlayerShoot -= IsShootButtonInteractable;
         TurnManager.CanPlayerShoot -= IsSkipTurnButtonInteractable;
         TurnManager.CanPlayerShoot -= IsInventoryInteractabe;
         TurnManager.CompletedTurns -= UpdateTurnCounterText;
         _player.Defeated -= ShowDefeatedScreen;
+    }
+
+    private void OnSpawned()
+    {
+        StartCoroutine(FadeRoutine());
+    }
+
+    private IEnumerator FadeRoutine()
+    {
+        yield return Fade(0f, 1f, _fadeDuration);
+
+        yield return new WaitForSeconds(_visibleDuration);
+
+        yield return Fade(1f, 0f, _fadeDuration);
+    }
+
+    private IEnumerator Fade(float from, float to, float duration)
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            float alpha = Mathf.Lerp(from, to, elapsedTime / duration);
+            SetAlpha(alpha);
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        SetAlpha(to);
+    }
+
+    private void SetAlpha(float alpha)
+    {
+        _airdropNotifierCanvasGroup.alpha = alpha;
     }
 
     private void IsInventoryInteractabe(bool value)
@@ -94,18 +138,24 @@ public class UIController : MonoBehaviour
             _textGoal1.SetActive(true);
             _textGoal2.SetActive(true);
             _textGoal3.SetActive(true);
+            _levelRevardAmount = 2000;
         }
 
         if (_turnCount <= 10 && _turnCount > 5)
         {
             _textGoal1.SetActive(true);
             _textGoal2.SetActive(true);
+            _levelRevardAmount = 1000;
         }
 
         if (_turnCount <= 40 && _turnCount > 10)
         {
             _textGoal1.SetActive(true);
+            _levelRevardAmount = 500;
         }
+
+        _moneyRewardText.text = $"НАГРАДА: {_levelRevardAmount}";
+        PlayerRewardReceived?.Invoke(_levelRevardAmount);
     }
 
     private void ShowWinnerScreen()

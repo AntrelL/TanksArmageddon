@@ -56,7 +56,6 @@ public class AudioManager : MonoBehaviour
         UIController.ButtonClicked += PlayButtonClick;
         UIController.FinishedCanvasShown += PlayLevelFinished;
         UIController.FailedCanvasShown += PlayLevelFailed;
-        Player.ButtonClicked += PlayButtonClick;
         Player.PlayerHit += PlayTankHit;
         Enemy.EnemyHitted += PlayTankHit;
         DefaultProjectile.GroundHit += PlayTankHit;
@@ -82,7 +81,6 @@ public class AudioManager : MonoBehaviour
         UIController.ButtonClicked -= PlayButtonClick;
         UIController.FinishedCanvasShown -= PlayLevelFinished;
         UIController.FailedCanvasShown -= PlayLevelFailed;
-        Player.ButtonClicked -= PlayButtonClick;
         Player.PlayerHit -= PlayTankHit;
         Enemy.EnemyHitted -= PlayTankHit;
         DefaultProjectile.GroundHit -= PlayTankHit;

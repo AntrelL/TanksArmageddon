@@ -34,7 +34,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private float _visibleDuration = 1.0f;
 
     private int _turnCount;
-    private int _levelRevardAmount = 0;
+    private int _levelRevardAmount;
 
     public event Action PlayerShootButtonPressed;
     public static event Action EnemyDefeated;
@@ -98,20 +98,20 @@ public class UIController : MonoBehaviour
         yield return Fade(1f, 0f, _fadeDuration);
     }
 
-    private IEnumerator Fade(float from, float to, float duration)
+    private IEnumerator Fade(float startValue, float targetValue, float duration)
     {
         float elapsedTime = 0f;
 
         while (elapsedTime < duration)
         {
-            float alpha = Mathf.Lerp(from, to, elapsedTime / duration);
+            float alpha = Mathf.Lerp(startValue, targetValue, elapsedTime / duration);
             SetAlpha(alpha);
             elapsedTime += Time.deltaTime;
 
             yield return null;
         }
 
-        SetAlpha(to);
+        SetAlpha(targetValue);
     }
 
     private void SetAlpha(float alpha)
@@ -249,7 +249,7 @@ public class UIController : MonoBehaviour
 
     public void MuteSound()
     {
-        ButtonClicked?.Invoke();
+        //ButtonClicked?.Invoke();
         SoundTurnedOff?.Invoke();
 
         Debug.Log("Sound muted.");
@@ -264,7 +264,7 @@ public class UIController : MonoBehaviour
 
     public void UnmuteSound()
     {
-        ButtonClicked?.Invoke();
+        //ButtonClicked?.Invoke();
         SoundTurnedOn?.Invoke();
         Debug.Log("Sound unmuted.");
         _unmutedSoundCanvasGroup.alpha = 1;

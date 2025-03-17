@@ -16,28 +16,78 @@ public class MainSceneNavigationManager : MonoBehaviour
     public void LoadShopScene()
     {
         ButtonClicked?.Invoke();
-        Debug.Log("Load ShopScene");
         ShopScene.Load();
     }
 
     public void LoadHangarScene()
     {
         ButtonClicked?.Invoke();
-        Debug.Log("Load HangarScene");
         HangarScene.Load();
     }
 
     public void LoadTrainingLevel()
     {
         ButtonClicked?.Invoke();
-        Debug.Log("Load TrainingLevel");
         TrainingScene.Load();
     }
 
     public void LoadLevel1()
     {
         ButtonClicked?.Invoke();
-        Debug.Log("Load Level1");
         Level1.Load();
+    }
+
+    public void LoadLevel2()
+    {
+        ButtonClicked?.Invoke();
+        Level2.Load();
+    }
+
+    public void LoadLevel3() 
+    {
+        ButtonClicked?.Invoke();
+        Level3.Load();
+    }
+
+    public void LoadLevel4() 
+    {
+        ButtonClicked?.Invoke();
+        Level4.Load();
+    }
+
+    public void LoadLevel5()
+    {
+        ButtonClicked?.Invoke();
+        Level5.Load();
+    }
+
+    public void LoadLevel6()
+    {
+        ButtonClicked?.Invoke();
+        Level6.Load();
+    }
+
+    public void LoadLevel7()
+    {
+        ButtonClicked?.Invoke();
+        Level7.Load();
+    }
+
+    public void LoadLevel8()
+    {
+        ButtonClicked?.Invoke();
+        Level8.Load();
+    }
+
+    public void LoadLevel9()
+    {
+        ButtonClicked?.Invoke();
+        Level9.Load();
+    }
+
+    public void LoadLevel10()
+    {
+        ButtonClicked?.Invoke();
+        Level10.Load();
     }
 }

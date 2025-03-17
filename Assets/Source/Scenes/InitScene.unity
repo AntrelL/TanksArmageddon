@@ -718,7 +718,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -897,7 +897,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: START
+  m_text: "\u041D\u0410\u0427\u0410\u0422\u042C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1866fe9b5af8979498a31c6fe664c284, type: 2}
   m_sharedMaterial: {fileID: 942589445191879500, guid: 1866fe9b5af8979498a31c6fe664c284, type: 2}
@@ -1075,9 +1075,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'TANKS
-
-    ARMAGEDDON'
+  m_text: "\u0422\u0410\u041D\u041A\u0418\n\u0410\u0420\u041C\u0410\u0413\u0415\u0414\u0414\u041E\u041D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1866fe9b5af8979498a31c6fe664c284, type: 2}
   m_sharedMaterial: {fileID: 942589445191879500, guid: 1866fe9b5af8979498a31c6fe664c284, type: 2}
@@ -1104,11 +1102,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 180
+  m_fontSize: 165.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 180
+  m_fontSizeMin: 150
   m_fontSizeMax: 200
   m_fontStyle: 1
   m_HorizontalAlignment: 2

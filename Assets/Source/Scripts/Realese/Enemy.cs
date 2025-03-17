@@ -6,7 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _hitFX;
-    [SerializeField] private int _maxHealth = 1000;
+    [SerializeField] private int _maxHealth;
     [SerializeField] private Tank _tank;
     [SerializeField] private float _movementForce = 15f;
     [SerializeField] private float _maxSpeed = 5f;
@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out EdgeOfMap edge))
         {
             Debug.Log("Enemy hit edge of map");
-            TakeDamage(1000);
+            TakeDamage(5000);
         }
     }
 

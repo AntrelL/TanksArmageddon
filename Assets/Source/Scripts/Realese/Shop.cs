@@ -26,14 +26,13 @@ public class Shop : MonoBehaviour
             GameManager.Instance.SetCardCount(weaponIndex, currentCardCount + 1);
             CardClicked?.Invoke();
             _purchasedCardsInfo.text = $"Куплена карточка для {weaponIndex + 1} снаряда. \r\nКоличество доступных карточек для улучшения: {currentCardCount + 1}";
-            //Debug.Log($"Card bought for weapon {weaponIndex + 1}. You now have {currentCardCount + 1} cards.");
+           
 
             UpdatePlayerBalanceUI();
         }
         else
         {
             _purchasedCardsInfo.text = "Недостаточно ядер.";
-            //Debug.LogError("Not enough money to buy the card!");
         }
     }
 

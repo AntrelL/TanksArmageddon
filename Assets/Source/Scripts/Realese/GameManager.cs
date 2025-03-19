@@ -43,6 +43,11 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Игроку было добавлено {value} поинтов. Текущий рейтинг: {_playerPoints}");
     }
 
+    public int GetPlayerPoints()
+    {
+        return _playerPoints;
+    }
+
     public int GetCardCount(int weaponIndex)
     {
         return _weaponCardCounts[weaponIndex];

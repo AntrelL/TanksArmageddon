@@ -30,15 +30,18 @@ public class UIController : MonoBehaviour
     [SerializeField] private TurnManager _turnManager;
     [SerializeField] private TMP_Text _counterText;
     [SerializeField] private TMP_Text _moneyRewardText;
+    [SerializeField] private TMP_Text _pointsRewardText;
     [SerializeField] private float _fadeDuration = 1.0f;
     [SerializeField] private float _visibleDuration = 1.0f;
 
     private int _turnCount;
-    private int _levelRevardAmount;
+    private int _levelRewardAmount;
+    private int _pointsRewardAmount;
 
     public event Action PlayerShootButtonPressed;
     public static event Action EnemyDefeated;
     public static event Action<int> PlayerRewardReceived;
+    public static event Action<int> PlayerPointsReceived;
     public static event Action SoundTurnedOff;
     public static event Action SoundTurnedOn;
     public static event Action ButtonClicked;
@@ -133,29 +136,34 @@ public class UIController : MonoBehaviour
     {
         _turnCount = _turnManager.TurnCount;
 
-        if (_turnCount <= 5)
+        if (_turnCount <= 10)
         {
             _textGoal1.SetActive(true);
             _textGoal2.SetActive(true);
             _textGoal3.SetActive(true);
-            _levelRevardAmount = 2000;
+            _levelRewardAmount = 2000;
+            _pointsRewardAmount = 100;
         }
 
-        if (_turnCount <= 10 && _turnCount > 5)
+        if (_turnCount <= 20 && _turnCount > 10)
         {
             _textGoal1.SetActive(true);
             _textGoal2.SetActive(true);
-            _levelRevardAmount = 1000;
+            _levelRewardAmount = 1000;
+            _pointsRewardAmount = 50;
         }
 
-        if (_turnCount <= 40 && _turnCount > 10)
+        if (_turnCount <= 40 && _turnCount > 20)
         {
             _textGoal1.SetActive(true);
-            _levelRevardAmount = 500;
+            _levelRewardAmount = 500;
+            _pointsRewardAmount = 10;
         }
 
-        _moneyRewardText.text = $"НАГРАДА: {_levelRevardAmount}";
-        PlayerRewardReceived?.Invoke(_levelRevardAmount);
+        _moneyRewardText.text = $"НАГРАДА: {_levelRewardAmount}";
+        _pointsRewardText.text = $"НАГРАДА: {_pointsRewardAmount}";
+        PlayerRewardReceived?.Invoke(_levelRewardAmount);
+        PlayerPointsReceived?.Invoke(_pointsRewardAmount);
     }
 
     private void ShowWinnerScreen()

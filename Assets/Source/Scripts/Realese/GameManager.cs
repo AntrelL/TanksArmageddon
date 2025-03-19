@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     private int[] _weaponCardCounts = new int[5];
     [SerializeField] private int _playerBalance;
+    [SerializeField] private int _playerPoints;
 
     public static GameManager Instance { get; private set; }
 
@@ -27,11 +28,19 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         UIController.PlayerRewardReceived += SetPlayerBalance;
+        UIController.PlayerPointsReceived += SetPlayerPoints;
     }
 
     private void OnDisable()
     {
         UIController.PlayerRewardReceived -= SetPlayerBalance;
+        UIController.PlayerPointsReceived -= SetPlayerPoints;
+    }
+
+    private void SetPlayerPoints(int value)
+    {
+        _playerPoints += value;
+        Debug.Log($"Игроку было добавлено {value} поинтов. Текущий рейтинг: {_playerPoints}");
     }
 
     public int GetCardCount(int weaponIndex)

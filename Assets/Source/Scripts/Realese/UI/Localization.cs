@@ -31,12 +31,15 @@ public class Localization : MonoBehaviour
         {
             case English:
                 _leanLanguage.SetCurrentLanguage(EnglishCode);
+
                 break;
             case Turkish:
                 _leanLanguage.SetCurrentLanguage(TurkishCode);
+
                 break;
             case Russian:
                 _leanLanguage.SetCurrentLanguage(RussianCode);
+
                 break;
         }
     }

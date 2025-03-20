@@ -15,15 +15,16 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private int _mobileOrPCTipIndex;
 
     private int _currentIndex = 0;
-    private string _currentLanguage;
+    private string _currentLanguage = "ru";
 
     public static event Action<bool> TutorialEnded;
     public static event Action ButtonClicked;
 
     private void Start()
     {
+#if !UNITY_EDITOR && UNITY_WEBGL
         _currentLanguage = YandexGamesSdk.Environment.i18n.lang;
-
+#endif
         foreach (var tip in _tutorialTips)
         {
             var button = tip.GetComponentInChildren<Button>();

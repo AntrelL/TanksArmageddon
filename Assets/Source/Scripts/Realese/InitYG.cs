@@ -27,7 +27,7 @@ public class InitYG : MonoBehaviour
     private void OnInitialized()
     {
         _startButton.interactable = true;
-        YGSDKinitialized.?Invoke();
+        YGSDKinitialized?.Invoke();
         Debug.Log("YG_SDK initialized");
     }
 #endif

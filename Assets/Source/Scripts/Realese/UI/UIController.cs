@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using TMPro;
 using Agava.WebUtility;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -48,6 +49,7 @@ public class UIController : MonoBehaviour
     public static event Action FinishedCanvasShown;
     public static event Action FailedCanvasShown;
     public static event Action SkipTurnButtonPressed;
+    public static event Action<string, bool> IsPlayerWin;
 
     private void Start()
     {
@@ -160,8 +162,8 @@ public class UIController : MonoBehaviour
             _pointsRewardAmount = 10;
         }
 
-        _moneyRewardText.text = $"НАГРАДА: {_levelRewardAmount}";
-        _pointsRewardText.text = $"НАГРАДА: {_pointsRewardAmount}";
+        _moneyRewardText.text = $"{_levelRewardAmount}";
+        _pointsRewardText.text = $"{_pointsRewardAmount}";
         PlayerRewardReceived?.Invoke(_levelRewardAmount);
         PlayerPointsReceived?.Invoke(_pointsRewardAmount);
     }
@@ -172,6 +174,8 @@ public class UIController : MonoBehaviour
         Time.timeScale = 0f;
         _levelFinishedCanvas.SetActive(true);
         FinishedCanvasShown?.Invoke();
+        string sceneName = SceneManager.GetActiveScene().name;
+        IsPlayerWin?.Invoke(sceneName, true);
         UpdateGoalStatus();
     }
 

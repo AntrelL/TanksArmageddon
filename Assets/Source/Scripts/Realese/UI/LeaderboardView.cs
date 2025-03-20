@@ -12,7 +12,7 @@ public class LeaderboardView : MonoBehaviour
     [SerializeField] private string _leaderboardName = "TanksArmageddonLBTest";
 
     private const string EnglishAnonymousName = "Anonymous";
-    private const string RussianAnonymousName = "Анонимный";
+    private const string RussianAnonymousName = "Аноним";
     private const string TurkishAnonymousName = "Anonim";
 
     private int _playerScore = 0;

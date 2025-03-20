@@ -1,4 +1,5 @@
 using Agava.WebUtility;
+using Agava.YandexGames;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,13 +13,17 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject _tutorialBlockUICanvas;
     [SerializeField] private TypewriterEffect _typewriter;
     [SerializeField] private int _mobileOrPCTipIndex;
+
     private int _currentIndex = 0;
+    private string _currentLanguage;
 
     public static event Action<bool> TutorialEnded;
     public static event Action ButtonClicked;
 
     private void Start()
     {
+        _currentLanguage = YandexGamesSdk.Environment.i18n.lang;
+
         foreach (var tip in _tutorialTips)
         {
             var button = tip.GetComponentInChildren<Button>();
@@ -45,17 +50,54 @@ public class TutorialManager : MonoBehaviour
         {
             TMP_Text currentTipText = _tutorialTips[i].GetComponentInChildren<TMP_Text>();
 
-            if (i == _mobileOrPCTipIndex)
+            if (_currentLanguage == "ru")
             {
-                if (Device.IsMobile == true)
+                if (i == _mobileOrPCTipIndex)
                 {
-                    Debug.Log("Platform: mobile!");
-                    currentTipText.text = "Для движения используй кнопки в левом нижнем углу.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу.";
+                    if (Device.IsMobile == true)
+                    {
+                        Debug.Log("Platform: mobile!");
+                        currentTipText.text = "Для движения используй кнопки в левом нижнем углу.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу.";
+                    }
+                    else
+                    {
+                        Debug.Log("Platform: PC!");
+                        currentTipText.text = "Для движения используй клавиши A/D.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу.";
+                    }
                 }
-                else
+            }
+
+            if (_currentLanguage == "en")
+            {
+                if (i == _mobileOrPCTipIndex)
                 {
-                    Debug.Log("Platform: PC!");
-                    currentTipText.text = "Для движения используй клавиши A/D.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу.";
+                    if (Device.IsMobile == true)
+                    {
+                        Debug.Log("Platform: mobile!");
+                        currentTipText.text = "Use the buttons in the lower left corner to move.\r\nTo aim, use the slider on the right.\r\nTo fire, press the button in the lower right corner.";
+                    }
+                    else
+                    {
+                        Debug.Log("Platform: PC!");
+                        currentTipText.text = "Use the A/D keys to move.\r\nTo aim, use the slider on the right.\r\nTo fire, press the button in the lower right corner.";
+                    }
+                }
+            }
+
+            if (_currentLanguage == "tr")
+            {
+                if (i == _mobileOrPCTipIndex)
+                {
+                    if (Device.IsMobile == true)
+                    {
+                        Debug.Log("Platform: mobile!");
+                        currentTipText.text = "Hareket etmek için sol alt köşedeki düğmeleri kullanın.\r\nNişan almak için sağdaki kaydırıcıyı kullanın.\r\nAteş etmek için sağ alt köşedeki düğmeye basın.";
+                    }
+                    else
+                    {
+                        Debug.Log("Platform: PC!");
+                        currentTipText.text = "Taşımak için A/D tuşlarını kullanın.\r\nNişan almak için sağdaki kaydırıcıyı kullanın.\r\nAteş etmek için sağ alt köşedeki düğmeye basın.";
+                    }
                 }
             }
 

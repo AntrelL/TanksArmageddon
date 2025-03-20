@@ -4,7 +4,7 @@
 //     Runtime Version:4.0.30319.42000
 //
 //     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
+//     the code is regenerated..
 // </auto-generated>
 //------------------------------------------------------------------------------
 
@@ -13,10 +13,10 @@ namespace IJunior.TypedScenes
     using UnityEngine.SceneManagement;
     
     
-    public class Leaderboard : TypedScene
+    public class LeaderboardScene : TypedScene
     {
         
-        private const string _sceneName = "Leaderboard";
+        private const string _sceneName = "LeaderboardScene";
         
         public static void Load(LoadSceneMode loadSceneMode = LoadSceneMode.Single)
         {

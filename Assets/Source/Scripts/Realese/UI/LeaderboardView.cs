@@ -15,7 +15,7 @@ public class LeaderboardView : MonoBehaviour
     private const string RussianAnonymousName = "Аноним";
     private const string TurkishAnonymousName = "Anonim";
 
-    private int _playerScore = 0;
+    private int _playerScore;
 
     private void Start()
     {
@@ -80,9 +80,9 @@ public class LeaderboardView : MonoBehaviour
     {
         GetPlayerScore();
 
-        if (result == null || _playerScore > result.score)
-        {
-            Leaderboard.SetScore(_leaderboardName, _playerScore);
-        }
+        //if (result == null || _playerScore > result.score)
+        //{
+        Leaderboard.SetScore(_leaderboardName, _playerScore);
+        // }
     }
 }

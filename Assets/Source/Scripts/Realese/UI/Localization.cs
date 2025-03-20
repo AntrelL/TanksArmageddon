@@ -16,6 +16,7 @@ public class Localization : MonoBehaviour
     private void Awake()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
+        Debug.Log("TRY TO CHANGE LANGUAGE");
         ChangeLanguage();
 #endif
     }
@@ -23,6 +24,9 @@ public class Localization : MonoBehaviour
     private void ChangeLanguage()
     {
         string languageCode = YandexGamesSdk.Environment.i18n.lang;
+
+        Debug.LogError("languageCode: " + languageCode);
+        Debug.Log("languageCode: " + languageCode);
 
         switch (languageCode)
         {

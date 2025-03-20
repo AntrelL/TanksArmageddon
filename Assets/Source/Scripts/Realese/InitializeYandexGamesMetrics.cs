@@ -5,11 +5,11 @@ using Agava.YandexGames;
 
 public class InitializeYandexGamesMetrics : MonoBehaviour
 {
-#if !UNITY_EDITOR && UNITY_WEBGL
     private void Start()
     {
+#if !UNITY_EDITOR && UNITY_WEBGL
         YandexGamesSdk.GameReady();
+#endif
     }
 
-#endif
 }

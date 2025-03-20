@@ -471,7 +471,6 @@ GameObject:
   - component: {fileID: 803838002}
   - component: {fileID: 803838003}
   - component: {fileID: 803838005}
-  - component: {fileID: 803838006}
   m_Layer: 0
   m_Name: Logic
   m_TagString: Untagged
@@ -526,19 +525,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f450decfdf3634d4599fb9b0bfa5c0a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &803838006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803838001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb3dc74de301bd84192bb205b346f76d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _leanLanguage: {fileID: 1865594694}
 --- !u!1001 &848208082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -830,6 +816,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1865594695}
   - component: {fileID: 1865594694}
+  - component: {fileID: 1865594696}
   m_Layer: 0
   m_Name: LeanLocalization
   m_TagString: Untagged
@@ -874,6 +861,19 @@ Transform:
   - {fileID: 679285314}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1865594696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865594693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb3dc74de301bd84192bb205b346f76d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _leanLanguage: {fileID: 1865594694}
 --- !u!1 &1869834690
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,17 +5,13 @@ using Agava.YandexGames;
 using UnityEngine.UI;
 using UnityEditor;
 using System;
+using IJunior.TypedScenes;
 
 public class InitYG : MonoBehaviour
 {
-    [SerializeField] private Button _startButton;
-
-    public static event Action YGSDKinitialized;
-
 #if !UNITY_EDITOR && UNITY_WEBGL
     private void Awake()
     {
-        _startButton.interactable = false;
         YandexGamesSdk.CallbackLogging = true;
     }
 
@@ -26,9 +22,8 @@ public class InitYG : MonoBehaviour
 
     private void OnInitialized()
     {
-        _startButton.interactable = true;
-        YGSDKinitialized?.Invoke();
         Debug.Log("YG_SDK initialized");
+        InitScene.Load();
     }
 #endif
 }

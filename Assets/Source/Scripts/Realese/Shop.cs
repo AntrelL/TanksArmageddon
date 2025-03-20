@@ -16,7 +16,7 @@ public class Shop : MonoBehaviour
     {
         Time.timeScale = 1f;
 #if !UNITY_EDITOR && UNITY_WEBGL
-        _currentLanguage = YandexGamesSdk.Environment.i18n.lang;
+        _currentLanguage = Agava.YandexGames.YandexGamesSdk.Environment.i18n.lang;
 #endif
         UpdatePlayerBalanceUI();
     }

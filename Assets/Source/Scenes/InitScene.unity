@@ -470,8 +470,8 @@ GameObject:
   m_Component:
   - component: {fileID: 803838002}
   - component: {fileID: 803838003}
-  - component: {fileID: 803838004}
   - component: {fileID: 803838005}
+  - component: {fileID: 803838006}
   m_Layer: 0
   m_Name: Logic
   m_TagString: Untagged
@@ -514,19 +514,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4dd8da9e883e85047a013f5471d799d2, type: 2}
   _playerBalance: 5000
   _playerPoints: 0
---- !u!114 &803838004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803838001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7902d12b4181f47a6644fe1bfa2b25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _startButton: {fileID: 5781235664883492027}
 --- !u!114 &803838005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,6 +526,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f450decfdf3634d4599fb9b0bfa5c0a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &803838006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803838001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb3dc74de301bd84192bb205b346f76d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _leanLanguage: {fileID: 1865594694}
 --- !u!1001 &848208082
 PrefabInstance:
   m_ObjectHideFlags: 0

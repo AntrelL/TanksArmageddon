@@ -13,14 +13,11 @@ public class Localization : MonoBehaviour
 
     [SerializeField] private LeanLocalization _leanLanguage;
 
-    private void OnEnable()
+    private void Awake()
     {
-        InitYG.YGSDKinitialized += ChangeLanguage;
-    }
-
-    private void OnDisable()
-    {
-        InitYG.YGSDKinitialized -= ChangeLanguage;
+#if UNITY_WEBGL && !UNITY_EDITOR
+        ChangeLanguage();
+#endif
     }
 
     private void ChangeLanguage()

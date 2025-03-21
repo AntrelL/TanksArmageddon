@@ -171,3 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 115733eb182d7bb489c82b202a3fefa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collectableProjectiles:
+  - {fileID: 21300000, guid: b137bb65462371e4891c18e93be1793a, type: 3}
+  - {fileID: 21300000, guid: c0e4a551b7dcc354a83da4fe390d86a1, type: 3}
+  - {fileID: 21300000, guid: cf357f5fd8a7f284a9c00a31b92cac52, type: 3}
+  - {fileID: 21300000, guid: 8aef3293018879241b88b9fc27fc9849, type: 3}

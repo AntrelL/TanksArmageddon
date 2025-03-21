@@ -12,7 +12,6 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private List<WeaponSlot> _weaponSlots;
     [SerializeField] private List<WeaponData> _weaponsList;
 
-    private bool isInventoryVisible = false;
     private WeaponSlot _selectedSlot = null;
     private WeaponSlot _weaponSlotToClean;
 
@@ -20,7 +19,6 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
-        //_toggleInventoryButton.onClick.AddListener(ToggleInventory);
         UpdateInventoryUI();
         SelectWeapon(_weaponSlots[0]);
 
@@ -65,12 +63,6 @@ public class InventoryManager : MonoBehaviour
         {
             _weaponSlots[4].gameObject.SetActive(true);
         }
-    }
-
-    void ToggleInventory()
-    {
-        isInventoryVisible = !isInventoryVisible;
-        _inventoryPanel.SetActive(isInventoryVisible);
     }
 
     private void UpdateInventoryValues()

@@ -347,6 +347,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: Level5
   FallbackText: "5 \u0423\u0420\u041E\u0412\u0415\u041D\u042C"
+--- !u!1 &28203937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 28203938}
+  - component: {fileID: 28203939}
+  m_Layer: 0
+  m_Name: AuthRequest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &28203938
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28203937}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6213311703406395430}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &28203939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28203937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb15fa0e7301ff849bf4d6dcede7c12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: 0
+  entries:
+  - Language: Turkish
+    Text: "Giri\u015F yapmak istiyor musunuz?\r\nBu, liderlik tablosunu g\xF6r\xFCnt\xFClemek
+      i\xE7in gereklidir."
+    Object: {fileID: 0}
+  - Language: Russian
+    Text: "\u0425\u043E\u0442\u0438\u0442\u0435 \u0430\u0432\u0442\u043E\u0440\u0438\u0437\u043E\u0432\u0430\u0442\u044C\u0441\u044F?\r\n\u042D\u0442\u043E
+      \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E \u0434\u043B\u044F
+      \u043E\u0442\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F \u0442\u0430\u0431\u043B\u0438\u0446\u044B
+      \u043B\u0438\u0434\u0435\u0440\u043E\u0432."
+    Object: {fileID: 0}
+  - Language: English
+    Text: 'Do you want to log in?
+
+      This is necessary to display leaderboard.'
+    Object: {fileID: 0}
 --- !u!1 &38368818
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +465,7 @@ GameObject:
   - component: {fileID: 42121986}
   - component: {fileID: 42121988}
   - component: {fileID: 42121987}
+  - component: {fileID: 42121989}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -453,7 +515,7 @@ MonoBehaviour:
   m_text: "\u0425\u043E\u0442\u0438\u0442\u0435 \u0430\u0432\u0442\u043E\u0440\u0438\u0437\u043E\u0432\u0430\u0442\u044C\u0441\u044F?\r\n\u042D\u0442\u043E
     \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E \u0434\u043B\u044F
     \u043E\u0442\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F \u0442\u0430\u0431\u043B\u0438\u0446\u044B
-    \u043B\u0438\u0434\u0435\u0440\u043E\u0432"
+    \u043B\u0438\u0434\u0435\u0440\u043E\u0432."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1866fe9b5af8979498a31c6fe664c284, type: 2}
   m_sharedMaterial: {fileID: 942589445191879500, guid: 1866fe9b5af8979498a31c6fe664c284, type: 2}
@@ -530,6 +592,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 42121985}
   m_CullTransparentMesh: 1
+--- !u!114 &42121989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42121985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: AuthRequest
+  FallbackText: "\u0425\u043E\u0442\u0438\u0442\u0435 \u0430\u0432\u0442\u043E\u0440\u0438\u0437\u043E\u0432\u0430\u0442\u044C\u0441\u044F?\r\n\u042D\u0442\u043E
+    \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E \u0434\u043B\u044F
+    \u043E\u0442\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F \u0442\u0430\u0431\u043B\u0438\u0446\u044B
+    \u043B\u0438\u0434\u0435\u0440\u043E\u0432."
 --- !u!1 &43674699
 GameObject:
   m_ObjectHideFlags: 0
@@ -5462,6 +5541,7 @@ GameObject:
   - component: {fileID: 1051480169}
   - component: {fileID: 1051480171}
   - component: {fileID: 1051480170}
+  - component: {fileID: 1051480172}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -5585,6 +5665,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051480168}
   m_CullTransparentMesh: 1
+--- !u!114 &1051480172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051480168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: Shop
+  FallbackText: "\u041C\u0410\u0413\u0410\u0417\u0418\u041D"
 --- !u!1 &1106208227
 GameObject:
   m_ObjectHideFlags: 0
@@ -7832,6 +7926,7 @@ Transform:
   - {fileID: 312442268}
   - {fileID: 1396605694}
   - {fileID: 453351585}
+  - {fileID: 28203938}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6261144914041388467

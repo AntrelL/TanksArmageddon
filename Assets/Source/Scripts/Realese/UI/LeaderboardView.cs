@@ -80,9 +80,9 @@ public class LeaderboardView : MonoBehaviour
     {
         GetPlayerScore();
 
-        //if (result == null || _playerScore > result.score)
-        //{
-        Leaderboard.SetScore(_leaderboardName, _playerScore);
-        // }
+        if (result == null || _playerScore > result.score)
+        {
+            Leaderboard.SetScore(_leaderboardName, _playerScore);
+        }
     }
 }

@@ -110,13 +110,13 @@ public class MainSceneNavigationManager : MonoBehaviour
         TrainingScene.Load();
     }
 
-    /*public void LoadLevel1()
+    public void LoadLevel1()
     {
         ButtonClicked?.Invoke();
         Level1.Load();
     }
 
-    public void LoadLevel2()
+    /*public void LoadLevel2()
     {
         ButtonClicked?.Invoke();
         Level2.Load();

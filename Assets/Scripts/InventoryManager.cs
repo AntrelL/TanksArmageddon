@@ -1,9 +1,9 @@
 using DG.Tweening;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -11,6 +11,8 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private Button _toggleInventoryButton;
     [SerializeField] private List<WeaponSlot> _weaponSlots;
     [SerializeField] private List<WeaponData> _weaponsList;
+
+    private Dictionary<int, int> _weaponAmmoCount = new Dictionary<int, int>();
 
     private WeaponSlot _selectedSlot = null;
     private WeaponSlot _weaponSlotToClean;
@@ -43,26 +45,17 @@ public class InventoryManager : MonoBehaviour
     {
         UpdateInventoryValues();
 
-        if (index == 1)
+        if (_weaponAmmoCount.ContainsKey(index))
         {
-            _weaponSlots[1].gameObject.SetActive(true);
-
+            _weaponAmmoCount[index]++;
+        }
+        else
+        {
+            _weaponAmmoCount[index] = 1;
+            _weaponSlots[index].gameObject.SetActive(true);
         }
 
-        if (index == 2)
-        {
-            _weaponSlots[2].gameObject.SetActive(true);
-        }
-
-        if (index == 3)
-        {
-            _weaponSlots[3].gameObject.SetActive(true);
-        }
-
-        if (index == 4)
-        {
-            _weaponSlots[4].gameObject.SetActive(true);
-        }
+        _weaponSlots[index].UpdateAmmoCount(_weaponAmmoCount[index]);
     }
 
     private void UpdateInventoryValues()
@@ -98,17 +91,14 @@ public class InventoryManager : MonoBehaviour
         _selectedSlot = slot;
 
         int currentDamage = int.Parse(slot.currentDamage.text);
-
         UpdatePlayerDamage(currentDamage);
         _selectedSlot.Select();
-        Debug.Log("selected slot name: " + slot.name);
 
         if (slot.name == "Slot01")
         {
             _weaponSlotToClean = null;
         }
-
-        if (slot.name != "Slot01")
+        else
         {
             _weaponSlotToClean = slot;
             DefaultProjectile.ProjectileDestroyed += SetSelectedSlotInvisible;
@@ -119,9 +109,20 @@ public class InventoryManager : MonoBehaviour
     {
         if (_weaponSlotToClean != null)
         {
-            Debug.Log("Hide slot with name:  " + _weaponSlotToClean.name);
-            _weaponSlotToClean.gameObject.SetActive(false);
-            SelectWeapon(_weaponSlots[0]);
+            int index = _weaponSlots.IndexOf(_weaponSlotToClean);
+
+            if (_weaponAmmoCount.ContainsKey(index) && _weaponAmmoCount[index] > 1)
+            {
+                _weaponAmmoCount[index]--;
+                _weaponSlots[index].UpdateAmmoCount(_weaponAmmoCount[index]);
+                SelectWeapon(_weaponSlots[0]);
+            }
+            else
+            {
+                _weaponSlots[index].gameObject.SetActive(false);
+                _weaponAmmoCount.Remove(index);
+                SelectWeapon(_weaponSlots[0]);
+            }
         }
 
         DefaultProjectile.ProjectileDestroyed -= SetSelectedSlotInvisible;

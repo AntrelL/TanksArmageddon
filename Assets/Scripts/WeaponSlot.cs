@@ -10,7 +10,10 @@ public class WeaponSlot : MonoBehaviour
     public TextMeshProUGUI currentDamage;
     public Image highlight;
 
+    [SerializeField] private TMP_Text _ammoCountText;
+
     private bool _isSelected = false;
+
 
     public void SetWeaponData(WeaponData weapon)
     {
@@ -25,6 +28,21 @@ public class WeaponSlot : MonoBehaviour
         {
             UpdateHighlight();
 
+        }
+    }
+
+    public void UpdateAmmoCount(int ammoCount)
+    {
+        if (_ammoCountText == null) return;
+
+        if (ammoCount > 0)
+        {
+            _ammoCountText.text = ammoCount.ToString();
+            _ammoCountText.gameObject.SetActive(true);
+        }
+        else
+        {
+            _ammoCountText.gameObject.SetActive(false);
         }
     }
 

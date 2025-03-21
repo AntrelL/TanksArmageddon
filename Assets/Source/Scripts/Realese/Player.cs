@@ -17,12 +17,12 @@ namespace TanksArmageddon
         [SerializeField] private float _availableTravelTime;
         [SerializeField] private LayerMask _landLayer;
         [SerializeField] private Slider _petrolTank;
-        [SerializeField] private int _maxHealth = 1000;
         [SerializeField] private Button _leftButton;
         [SerializeField] private Button _rightButton;
         [SerializeField] private CameraController _cameraController;
         [SerializeField] private ParticleSystem _hitFX;
 
+        private int _maxHealth;
         private float _travelTimeSpent;
         private bool _leftButtonPressed = false;
         private bool _rightButtonPressed = false;
@@ -37,6 +37,7 @@ namespace TanksArmageddon
 
         private void Awake()
         {
+            _maxHealth = GameManager.Instance.GetPlayerMaxHealth();
             _currentHealth = _maxHealth;
             _rigidbody2D.centerOfMass = _centerOfMass.localPosition;
         }

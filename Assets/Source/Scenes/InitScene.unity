@@ -513,6 +513,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4dd8da9e883e85047a013f5471d799d2, type: 2}
   _playerBalance: 5000
   _playerPoints: 0
+  _playerHealth: 1000
 --- !u!114 &803838005
 MonoBehaviour:
   m_ObjectHideFlags: 0

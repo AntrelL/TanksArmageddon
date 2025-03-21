@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private int[] _weaponCardCounts = new int[5];
     [SerializeField] private int _playerBalance;
     [SerializeField] private int _playerPoints;
+    [SerializeField] private int _playerHealth;
 
     public static GameManager Instance { get; private set; }
 
@@ -46,6 +47,11 @@ public class GameManager : MonoBehaviour
     public int GetPlayerPoints()
     {
         return _playerPoints;
+    }
+
+    public int GetPlayerMaxHealth()
+    {
+        return _playerHealth;
     }
 
     public int GetCardCount(int weaponIndex)

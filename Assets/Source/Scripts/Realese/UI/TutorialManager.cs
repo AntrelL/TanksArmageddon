@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
@@ -44,6 +45,7 @@ public class TutorialManager : MonoBehaviour
 
     private void SetTipsStatus()
     {
+
         TutorialEnded?.Invoke(false);
         _tutorialBlockUICanvas.SetActive(true);
 

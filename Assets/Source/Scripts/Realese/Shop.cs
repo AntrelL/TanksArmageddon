@@ -50,7 +50,20 @@ public class Shop : MonoBehaviour
         }
         else
         {
-            _purchasedCardsInfo.text = "Недостаточно ядер.";
+            if (_currentLanguage == "ru")
+            {
+                _purchasedCardsInfo.text = "Недостаточно ядер.";
+            }
+
+            if (_currentLanguage == "en")
+            {
+                _purchasedCardsInfo.text = "Not enough cores.";
+            }
+
+            if (_currentLanguage == "tr")
+            {
+                _purchasedCardsInfo.text = "Yeterli çekirdek yok.";
+            }
         }
     }
 

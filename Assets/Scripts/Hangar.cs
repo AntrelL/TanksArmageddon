@@ -58,7 +58,7 @@ public class Hangar : MonoBehaviour
             }
             else
             {
-                _weaponCardTexts[i].text = $"Max.";
+                _weaponCardTexts[i].text = "";
             }
         }
     }
@@ -92,7 +92,7 @@ public class Hangar : MonoBehaviour
 
             if (weaponData != null)
             {
-                _weaponLevelTexts[weaponIndex].text = $"Lvl.{weaponData.upgradeLevel}";
+                _weaponLevelTexts[weaponIndex].text = $"{weaponData.upgradeLevel}";
             }
         }
     }
@@ -130,7 +130,7 @@ public class Hangar : MonoBehaviour
 
                 selectedWeaponData.currentDamage = Mathf.RoundToInt(selectedWeaponData.baseDamage * _damageMultipliers[currentLevel]);
                 Debug.Log($"Weapon {weaponIndex + 1} upgraded to level {selectedWeaponData.upgradeLevel}!");
-                
+
 
                 UpdateWeaponLevelText(weaponIndex);
                 UpdateWeaponDamageText(weaponIndex);

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TanksArmageddon;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class CameraController : MonoBehaviour
 
     private bool _introFinished = false;
     private Transform _currentTarget;
+    private string _currentScene;
 
     public bool IntroFinished => _introFinished;
 
@@ -25,6 +27,7 @@ public class CameraController : MonoBehaviour
 
     private void Awake()
     {
+        _currentScene = SceneManager.GetActiveScene().name;
         _currentTarget = _player;
     }
 
@@ -68,7 +71,12 @@ public class CameraController : MonoBehaviour
 
         _introFinished = true;
         UnlockMovement?.Invoke(true);
-        ShowTips?.Invoke();
+
+        if (_currentScene == "TrainingScene")
+        {
+            ShowTips?.Invoke();
+        }
+
         _blockUICanvas.SetActive(false);
     }
 

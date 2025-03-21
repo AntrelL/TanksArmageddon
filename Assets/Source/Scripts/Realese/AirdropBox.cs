@@ -11,11 +11,11 @@ public class AirdropBox : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out Land land))
+        /*if (collision.gameObject.TryGetComponent(out Land land))
         {
             Debug.Log("Касаемся только земли!");
             return;
-        }
+        }*/
 
         if (collision.gameObject.TryGetComponent(out Player player))
         {

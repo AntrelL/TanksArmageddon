@@ -21,49 +21,81 @@ public class Shop : MonoBehaviour
         UpdatePlayerBalanceUI();
     }
 
-    public void BuyWeaponCard(int weaponIndex)
+    public void BuyWeaponCard(int index)
     {
-        int cardCost = GetCardCost(weaponIndex);
+        int cardCost = GetCardCost(index);
 
         if (GameManager.Instance.TrySpendMoney(cardCost))
         {
-            int currentCardCount = GameManager.Instance.GetCardCount(weaponIndex);
-            GameManager.Instance.SetCardCount(weaponIndex, currentCardCount + 1);
+            if (index == 5)
+            {
+                GameManager.Instance.IncreasePlayerHealth();
+
+                int currentPlayerHealth = GameManager.Instance.GetPlayerHealth();
+
+                if (_currentLanguage == "ru")
+                {
+                    _purchasedCardsInfo.text = $"Здоровье игрока увеличено на 10. \r\nТекущее здоровье игрока: {currentPlayerHealth}";
+                }
+
+                if (_currentLanguage == "en")
+                {
+                    _purchasedCardsInfo.text = $"Player's health has been increased by 10. \r\nPlayer's current health: {currentPlayerHealth}";
+                }
+
+                if (_currentLanguage == "tr")
+                {
+                    _purchasedCardsInfo.text = $"Oyuncunun sağlığı 10 arttı. \r\nOyuncunun mevcut sağlığı: {currentPlayerHealth}";
+                }
+
+                UpdatePlayerBalanceUI();
+                CardClicked?.Invoke();
+
+                return;
+            }
+
+            int currentCardCount = GameManager.Instance.GetCardCount(index);
+            GameManager.Instance.SetCardCount(index, currentCardCount + 1);
             CardClicked?.Invoke();
 
             if (_currentLanguage == "ru")
             {
-                _purchasedCardsInfo.text = $"Куплена карточка для {weaponIndex + 1} снаряда. \r\nКоличество доступных карточек для улучшения: {currentCardCount + 1}";
+                _purchasedCardsInfo.text = $"Куплена карточка для {index + 1} снаряда. \r\nКоличество доступных карточек для улучшения: {currentCardCount + 1}";
             }
 
             if (_currentLanguage == "en")
             {
-                _purchasedCardsInfo.text = $"Purchased card for {weaponIndex + 1} projectile. \r\nAmount of available improvement cards: {currentCardCount + 1}";
+                _purchasedCardsInfo.text = $"Purchased card for {index + 1} projectile. \r\nAmount of available improvement cards: {currentCardCount + 1}";
             }
 
             if (_currentLanguage == "tr")
             {
-                _purchasedCardsInfo.text = $"{weaponIndex + 1} mermisi için kart satın alındı. \r\nGeliştirilebilecek kart sayısı: {currentCardCount + 1}";
+                _purchasedCardsInfo.text = $"{index + 1} mermisi için kart satın alındı. \r\nGeliştirilebilecek kart sayısı: {currentCardCount + 1}";
             }
 
             UpdatePlayerBalanceUI();
         }
         else
         {
-            if (_currentLanguage == "ru")
-            {
-                _purchasedCardsInfo.text = "Недостаточно ядер.";
-            }
+            NotEnoughCoresWarning();
+        }
+    }
 
-            if (_currentLanguage == "en")
-            {
-                _purchasedCardsInfo.text = "Not enough cores.";
-            }
+    private void NotEnoughCoresWarning()
+    {
+        if (_currentLanguage == "ru")
+        {
+            _purchasedCardsInfo.text = "Недостаточно ядер.";
+        }
 
-            if (_currentLanguage == "tr")
-            {
-                _purchasedCardsInfo.text = "Yeterli çekirdek yok.";
-            }
+        if (_currentLanguage == "en")
+        {
+            _purchasedCardsInfo.text = "Not enough cores.";
+        }
+
+        if (_currentLanguage == "tr")
+        {
+            _purchasedCardsInfo.text = "Yeterli çekirdek yok.";
         }
     }
 

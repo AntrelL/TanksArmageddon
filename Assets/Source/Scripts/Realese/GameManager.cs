@@ -38,6 +38,16 @@ public class GameManager : MonoBehaviour
         UIController.PlayerPointsReceived -= SetPlayerPoints;
     }
 
+    public void IncreasePlayerHealth()
+    {
+        _playerHealth += 10;
+    }
+
+    public int GetPlayerHealth()
+    {
+        return _playerHealth;
+    }
+
     private void SetPlayerPoints(int value)
     {
         _playerPoints += value;

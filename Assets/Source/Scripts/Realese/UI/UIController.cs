@@ -255,8 +255,9 @@ public class UIController : MonoBehaviour
     public void Restart()
     {
         ButtonClicked?.Invoke();
+        string currentScene = SceneManager.GetActiveScene().name;
         Time.timeScale = 0f;
-        TrainingScene.Load();
+        SceneManager.LoadScene(currentScene);
     }
 
     public void MuteSound()

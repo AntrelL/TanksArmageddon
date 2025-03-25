@@ -116,13 +116,13 @@ public class MainSceneNavigationManager : MonoBehaviour
         Level1.Load();
     }
 
-    /*public void LoadLevel2()
+    public void LoadLevel2()
     {
         ButtonClicked?.Invoke();
         Level2.Load();
     }
 
-    public void LoadLevel3() 
+    /*public void LoadLevel3() 
     {
         ButtonClicked?.Invoke();
         Level3.Load();

@@ -7321,7 +7321,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1112577331}
         m_TargetAssemblyTypeName: MainSceneNavigationManager, Assembly-CSharp
-        m_MethodName: LoadLevel1
+        m_MethodName: LoadLevel2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

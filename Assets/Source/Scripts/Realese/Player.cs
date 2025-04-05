@@ -22,6 +22,18 @@ namespace TanksArmageddon
         [SerializeField] private CameraController _cameraController;
         [SerializeField] private ParticleSystem _hitFX;
 
+        [Space]
+        [Header("New Physics")]
+        [SerializeField] private Transform _centerPoint;
+        [SerializeField] private Transform _leftPoint;
+        [SerializeField] private Transform _rightPoint;
+
+        private float _baseDrag;
+        private float _checkRaycastLenght = 0.8f;
+
+        private Vector3 _selectedPointPosition = new();
+        private Vector3 _forceDirection = new();
+
         private int _maxHealth;
         private float _travelTimeSpent;
         private bool _leftButtonPressed = false;
@@ -39,7 +51,8 @@ namespace TanksArmageddon
         {
             _maxHealth = GameManager.Instance.GetPlayerMaxHealth();
             _currentHealth = _maxHealth;
-            _rigidbody2D.centerOfMass = _centerOfMass.localPosition;
+            _rigidbody2D.centerOfMass = _centerPoint.localPosition;
+            _baseDrag = _rigidbody2D.drag;
         }
 
         private void Start()
@@ -100,14 +113,43 @@ namespace TanksArmageddon
 
             _petrolTank.value = _availableTravelTime - _travelTimeSpent;
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 1f, _landLayer);
 
-            if (hit.collider != null)
+            // New Physics
+            _rigidbody2D.centerOfMass = _centerPoint.localPosition;
+
+            if (horizontalInput != 0)
             {
-                Vector2 direction = Vector2.right * horizontalInput;
-                direction = direction - (Vector2.Dot(direction, hit.normal) * hit.normal);
+                _rigidbody2D.drag = _baseDrag;
+                _selectedPointPosition = horizontalInput == 1f ? _rightPoint.position : _leftPoint.position;
+                RaycastHit2D hit = Physics2D.Raycast(_selectedPointPosition, -Vector2.up, _checkRaycastLenght, _landLayer);
 
-                _rigidbody2D.AddForce(direction * _force);
+
+                if (hit.collider == null)
+                {
+                    _rigidbody2D.AddForceAtPosition(horizontalInput * Vector2.right * _force, _selectedPointPosition);
+                    hit = Physics2D.Raycast(_centerPoint.position, -Vector2.up, _checkRaycastLenght, _landLayer);
+                }
+
+                Vector2 direction = new();
+
+                if (hit.collider != null)
+                {
+                    direction = Vector2.right * horizontalInput;
+                    direction = direction - (Vector2.Dot(direction, hit.normal) * hit.normal);
+                }
+                else
+                {
+                    direction = transform.right * horizontalInput;
+                    _selectedPointPosition = transform.position;
+                }
+
+                _forceDirection = direction.normalized;
+                _rigidbody2D.AddForceAtPosition(direction.normalized * _force, _selectedPointPosition);
+
+            }
+            else
+            {
+                _rigidbody2D.drag = 50f;
             }
 
             if (_rigidbody2D.velocity.magnitude > _maxSpeed)
@@ -130,21 +172,14 @@ namespace TanksArmageddon
             EnemyBullet.PlayerHit -= TakeDamage;
         }
 
-        /*private void OnDrawGizmos()
+        private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Vector2 rayDirection = -Vector2.up;
-            float rayLength = 1f;
-            Gizmos.DrawRay(transform.position, rayDirection * rayLength);
+            Gizmos.DrawRay(_selectedPointPosition, _forceDirection * 5f);
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, rayLength, _landLayer);
-
-            if (hit.collider != null)
-            {
-                Gizmos.color = Color.green;
-                Gizmos.DrawSphere(hit.point, 0.1f);
-            }
-        }*/
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(_selectedPointPosition, -Vector2.up * _checkRaycastLenght);
+        }
 
         private void DisableMovement(bool isMovementDisable)
         {

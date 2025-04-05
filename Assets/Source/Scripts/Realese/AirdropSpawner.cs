@@ -33,7 +33,7 @@ public class AirdropSpawner : MonoBehaviour
 
     private void OnDisable()
     {
-        TurnManager.CompletedTurns += CheckTurnsCount;
+        TurnManager.CompletedTurns -= CheckTurnsCount;
     }
 
     private void CalculateWidth()

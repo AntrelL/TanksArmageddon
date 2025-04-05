@@ -49,10 +49,10 @@ namespace TanksArmageddon
 
         private void Awake()
         {
-            _maxHealth = GameManager.Instance.GetPlayerMaxHealth();
-            _currentHealth = _maxHealth;
             _rigidbody2D.centerOfMass = _centerPoint.localPosition;
             _baseDrag = _rigidbody2D.drag;
+            _maxHealth = GameManager.Instance.GetPlayerMaxHealth();
+            _currentHealth = _maxHealth;
         }
 
         private void Start()
@@ -82,7 +82,12 @@ namespace TanksArmageddon
                 return;
             }
 
-            if (!_canMove) return;
+            if (!_canMove)
+            {
+                _rigidbody2D.drag = 100f;
+
+                return;
+            }
 
             float horizontalInput = Input.GetAxis("Horizontal");
 
@@ -97,7 +102,9 @@ namespace TanksArmageddon
 
             if (_travelTimeSpent >= _availableTravelTime)
             {
+                _rigidbody2D.drag = 100f;
                 _tank.Idle();
+
                 return;
             }
 
@@ -123,7 +130,6 @@ namespace TanksArmageddon
                 _selectedPointPosition = horizontalInput == 1f ? _rightPoint.position : _leftPoint.position;
                 RaycastHit2D hit = Physics2D.Raycast(_selectedPointPosition, -Vector2.up, _checkRaycastLenght, _landLayer);
 
-
                 if (hit.collider == null)
                 {
                     _rigidbody2D.AddForceAtPosition(horizontalInput * Vector2.right * _force, _selectedPointPosition);
@@ -145,11 +151,10 @@ namespace TanksArmageddon
 
                 _forceDirection = direction.normalized;
                 _rigidbody2D.AddForceAtPosition(direction.normalized * _force, _selectedPointPosition);
-
             }
             else
             {
-                _rigidbody2D.drag = 50f;
+                _rigidbody2D.drag = 100f;
             }
 
             if (_rigidbody2D.velocity.magnitude > _maxSpeed)

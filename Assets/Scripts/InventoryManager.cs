@@ -7,8 +7,8 @@ using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
+    [SerializeField] private AdService _adService;
     [SerializeField] private GameObject _inventoryPanel;
-    [SerializeField] private Button _toggleInventoryButton;
     [SerializeField] private List<WeaponSlot> _weaponSlots;
     [SerializeField] private List<WeaponData> _weaponsList;
 
@@ -33,15 +33,15 @@ public class InventoryManager : MonoBehaviour
 
     private void OnEnable()
     {
-        AirdropBox.PlayerPickedUpAirdrop += SetAirDropPickedUpWeapon;
+        AirdropBox.PlayerPickedUpAirdrop += SetNewWeapon;
     }
 
     private void OnDisable()
     {
-        AirdropBox.PlayerPickedUpAirdrop -= SetAirDropPickedUpWeapon;
+        AirdropBox.PlayerPickedUpAirdrop -= SetNewWeapon;
     }
 
-    private void SetAirDropPickedUpWeapon(int index)
+    private void SetNewWeapon(int index)
     {
         UpdateInventoryValues();
 
@@ -65,6 +65,21 @@ public class InventoryManager : MonoBehaviour
             WeaponData weapon = _weaponsList[i];
             _weaponSlots[i].SetWeaponData(weapon);
         }
+    }
+
+    private int GenerateRandomIndex()
+    {
+        int randomIndex = UnityEngine.Random.Range(1, 5);
+
+        return randomIndex;
+    }
+
+    public void AdButtonPressed()
+    {
+#if !UNITY_EDITOR && UNITY_WEBGL
+        _adService.ShowVideoAd();
+#endif
+        SetNewWeapon(GenerateRandomIndex());
     }
 
     public void UpdateInventoryUI()

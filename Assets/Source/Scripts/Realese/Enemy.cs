@@ -17,6 +17,18 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform _player;
     [SerializeField] private LayerMask _landLayer;
 
+    [Space]
+    [Header("New Physics")]
+    [SerializeField] private Transform _centerPoint;
+    [SerializeField] private Transform _leftPoint;
+    [SerializeField] private Transform _rightPoint;
+
+    private float _baseDrag;
+    private float _checkRaycastLenght = 0.8f;
+
+    private Vector3 _selectedPointPosition = new();
+    private Vector3 _forceDirection = new();
+
     private int _currentHealth;
     private bool _isAlive = true;
     private int _playerDamage = 100;
@@ -57,7 +69,7 @@ public class Enemy : MonoBehaviour
         InventoryManager.UpdatePlayerDamage -= OnUpdatedPlayerDamage;
     }
 
-    private void FixedUpdate()
+    /*private void FixedUpdate()
     {
         if (_currentHealth <= 0)
         {
@@ -65,6 +77,7 @@ public class Enemy : MonoBehaviour
             _isAlive = false;
             gameObject.SetActive(false);
             Defeated?.Invoke();
+
             return;
         }
 
@@ -91,7 +104,64 @@ public class Enemy : MonoBehaviour
             _moveDirection = 0f;
             _tank.Idle();
         }
+    }*/
+
+    private void FixedUpdate()
+    {
+        if (_currentHealth <= 0)
+        {
+            _tank.Destroy();
+            _isAlive = false;
+            gameObject.SetActive(false);
+            Defeated?.Invoke();
+            return;
+        }
+
+        if (_movementTimeUsed >= _availableTravelTime || _moveDirection == 0f)
+        {
+            _rigidbody2D.drag = 100f;
+            _tank.Idle();
+            return;
+        }
+
+        // New Physics, borrowed from the superior being (player)
+        _rigidbody2D.centerOfMass = _centerPoint.localPosition;
+
+        _rigidbody2D.drag = _baseDrag;
+
+        _selectedPointPosition = _moveDirection == 1f ? _rightPoint.position : _leftPoint.position;
+        RaycastHit2D hit = Physics2D.Raycast(_selectedPointPosition, -Vector2.up, _checkRaycastLenght, _landLayer);
+
+        if (hit.collider == null)
+        {
+            // Если точка не над землей — всё равно толкаем
+            _rigidbody2D.AddForceAtPosition(_moveDirection * Vector2.right * _movementForce, _selectedPointPosition);
+            hit = Physics2D.Raycast(_centerPoint.position, -Vector2.up, _checkRaycastLenght, _landLayer);
+        }
+
+        Vector2 direction = new();
+
+        if (hit.collider != null)
+        {
+            direction = Vector2.right * _moveDirection;
+            direction = direction - (Vector2.Dot(direction, hit.normal) * hit.normal);
+        }
+        else
+        {
+            direction = transform.right * _moveDirection;
+            _selectedPointPosition = transform.position;
+        }
+
+        _forceDirection = direction.normalized;
+        _rigidbody2D.AddForceAtPosition(_forceDirection * _movementForce, _selectedPointPosition);
+
+        if (_rigidbody2D.velocity.magnitude > _maxSpeed)
+            _rigidbody2D.velocity = _rigidbody2D.velocity.normalized * _maxSpeed;
+
+        _tank.Move();
+        _movementTimeUsed += Time.fixedDeltaTime;
     }
+
 
     public IEnumerator DoEnemyTurn()
     {
@@ -110,7 +180,7 @@ public class Enemy : MonoBehaviour
         _moveDirection = -1f;
 
         float elapsed = 0f;
-        float checkInterval = 0.5f;
+        float checkInterval = 0.1f;
 
         while (elapsed < _availableTravelTime)
         {

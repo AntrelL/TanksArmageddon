@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 public class MainSceneNavigationManager : MonoBehaviour
 {
     [SerializeField] private GameObject _authView;
+    [SerializeField] private AdService _adService;
 
 
     private Dictionary<string, bool> _levelsStatus;
@@ -18,6 +19,9 @@ public class MainSceneNavigationManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
+#if !UNITY_EDITOR && UNITY_WEBGL
+        _adService.ShowInterstitialAd();
+#endif
     }
 
     /*private void GetLevelsStatus()

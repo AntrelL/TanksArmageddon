@@ -19,7 +19,7 @@ public class ProjectileShooter2D : MonoBehaviour
     [SerializeField] private float _rotateDuration = 0.6f;
 
     [Header("Ограничение угла (±) выстрела")]
-    [SerializeField] private float _maxAngleDeviation = 30f;
+    [SerializeField] private float _maxAngleDeviation;
 
     private float _turretInitialAngle;
     public static event Action EnemyShooted;
@@ -27,14 +27,15 @@ public class ProjectileShooter2D : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log($"Начальный угол пушки: {_turretInitialAngle}° (rotation z = {_turret.eulerAngles.z})");
+
         if (_turret != null)
         {
-            //_turretInitialAngle = _turret.eulerAngles.z;
             _turretInitialAngle = _turret.localEulerAngles.z;
         }
     }
 
-    public bool ShootIfPossible()
+    /*public bool ShootIfPossible()
     {
         float difficultyFactor = _turnManager.DifficultyFactor;
 
@@ -58,8 +59,6 @@ public class ProjectileShooter2D : MonoBehaviour
             }
 
             float usedAngle = -chosenAngle;
-            //float angleDifference = Mathf.DeltaAngle(_turretInitialAngle, targetAngle);
-            //float angleDifference = usedAngle - _turretInitialAngle;
 
             if (Mathf.Abs(usedAngle + 5f) > _maxAngleDeviation)
             {
@@ -79,9 +78,77 @@ public class ProjectileShooter2D : MonoBehaviour
 
             return false;
         }
+    }*/
+
+    public bool ShootIfPossible()
+    {
+        float difficultyFactor = _turnManager.DifficultyFactor;
+
+        Vector2 playerPos = _player.position;
+        float deviation = Mathf.Abs(playerPos.x) * difficultyFactor;
+        float randomX = UnityEngine.Random.Range(playerPos.x - deviation, playerPos.x + deviation);
+        Vector2 target = new Vector2(randomX, playerPos.y);
+
+        if (TryCalculateBallisticAngle2D(target, out float lowAngleDeg, out float highAngleDeg))
+        {
+            float chosenAngle = lowAngleDeg;
+
+            Vector2 toTarget = _player.position - _shootPoint.position;
+            bool isTargetLeft = (toTarget.x < 0f);
+
+            if (!isTargetLeft)
+            {
+                Debug.Log("Цель справа, стреляем только влево.");
+                return false;
+            }
+
+            float usedAngle = -chosenAngle;
+            //float turretTargetAngle = 180f + usedAngle;
+            float turretTargetAngle = usedAngle;
+
+            //float angleOffset = Mathf.DeltaAngle(180f, turretTargetAngle);
+            float angleOffset = Mathf.DeltaAngle(0f, turretTargetAngle);
+
+            if (Mathf.Abs(angleOffset) > _maxAngleDeviation)
+            {
+                Debug.Log($"Выстрел невозможен: угол отклонения {angleOffset}° выходит за пределы ±{_maxAngleDeviation}°");
+                return false;
+            }
+
+            StartCoroutine(RotateThenShoot(turretTargetAngle));
+            return true;
+        }
+        else
+        {
+            Debug.Log("Выстрел невозможен: нет баллистического решения.");
+            return false;
+        }
     }
 
-    private IEnumerator RotateThenShoot(float targetUserAngle)
+    private IEnumerator RotateThenShoot(float targetAngle)
+    {
+        float startAngle = _turret.eulerAngles.z;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < _rotateDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / _rotateDuration);
+
+            float interpolatedAngle = Mathf.LerpAngle(startAngle, targetAngle, t);
+            _turret.eulerAngles = new Vector3(0f, 0f, interpolatedAngle);
+
+            yield return null;
+        }
+
+        _turret.eulerAngles = new Vector3(0f, 0f, targetAngle);
+
+        EnemyShooted?.Invoke();
+        _enemyTank.Shot();
+        ShootBullet();
+    }
+
+    /*private IEnumerator RotateThenShoot(float targetUserAngle)
     {
         float startAngle = _turret.eulerAngles.z;
         float currentUserAngle = startAngle;
@@ -102,7 +169,7 @@ public class ProjectileShooter2D : MonoBehaviour
         EnemyShooted?.Invoke();
         _enemyTank.Shot();
         ShootBullet();
-    }
+    }*/
 
     private void ShootBullet()
     {
@@ -114,8 +181,9 @@ public class ProjectileShooter2D : MonoBehaviour
 
         float turretAngleDeg = _turret.eulerAngles.z;
 
-        float angleRad = (turretAngleDeg + 180f) * Mathf.Deg2Rad;
-        Vector2 direction = new Vector2(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
+        //float angleRad = (turretAngleDeg + 180f) * Mathf.Deg2Rad;
+        float angleRad = turretAngleDeg * Mathf.Deg2Rad;
+        Vector2 direction = new Vector2(Mathf.Cos(angleRad), Mathf.Sin(angleRad)) * -1;
 
         rigidbody.velocity = direction * _initialSpeed;
 
@@ -126,8 +194,8 @@ public class ProjectileShooter2D : MonoBehaviour
     }
 
     private bool TryCalculateBallisticAngle2D(Vector2 targetPos,
-                                              out float lowAngleDeg,
-                                              out float highAngleDeg)
+        out float lowAngleDeg,
+        out float highAngleDeg)
     {
         lowAngleDeg = 0f;
         highAngleDeg = 0f;
@@ -163,4 +231,42 @@ public class ProjectileShooter2D : MonoBehaviour
 
         return true;
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        if (_turret == null || _shootPoint == null)
+            return;
+
+        //float angleDeg = _turret.eulerAngles.z + 180f;
+        //float localAngle = Mathf.DeltaAngle(180f, angleDeg); // отклонение от "влево" (180°)
+        float angleDeg = _turret.eulerAngles.z + 180f;
+        float localAngle = Mathf.DeltaAngle(180f, angleDeg);
+
+        // Определяем цвет стрелки: зелёный — ок, красный — вне диапазона
+        Gizmos.color = Mathf.Abs(localAngle) > _maxAngleDeviation ? Color.red : Color.green;
+
+        float angleRad = angleDeg * Mathf.Deg2Rad;
+        Vector2 direction = new Vector2(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
+        Gizmos.DrawRay(_shootPoint.position, direction.normalized * 2f);
+
+        // Рисуем допустимые дуги (± MaxAngleDeviation)
+        UnityEditor.Handles.color = Color.cyan;
+        UnityEditor.Handles.DrawWireArc(
+            _shootPoint.position,
+            Vector3.forward,
+            Quaternion.Euler(0, 0, 180f - _maxAngleDeviation) * Vector3.right,
+            2f * _maxAngleDeviation,
+            2f
+        );
+        /*UnityEditor.Handles.DrawWireArc(
+    _shootPoint.position,
+    Vector3.forward,
+    Quaternion.Euler(0, 0, -_maxAngleDeviation) * Vector3.right,
+    2f * _maxAngleDeviation,
+    2f
+        );*/
+    }
+#endif
+
 }

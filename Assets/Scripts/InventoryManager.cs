@@ -77,8 +77,8 @@ public class InventoryManager : MonoBehaviour
 
     public void AdButtonPressed()
     {
+        string hyiPoimi = "hyi";
 #if !UNITY_EDITOR && UNITY_WEBGL
-
         YG2.RewardedAdvShow(hyiPoimi, () =>
         {
             SetNewWeapon(GenerateRandomIndex());

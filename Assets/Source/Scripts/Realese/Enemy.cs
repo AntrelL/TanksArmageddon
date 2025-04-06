@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Tank _tank;
     [SerializeField] private float _movementForce = 15f;
     [SerializeField] private float _maxSpeed = 5f;
-    [SerializeField] private Transform _centerOfMass;
+    //[SerializeField] private Transform _centerOfMass;
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private float _availableTravelTime = 3f;
     [SerializeField] private ProjectileShooter2D _projectileShooter;
@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour
         if (!_rigidbody2D)
             _rigidbody2D = GetComponent<Rigidbody2D>();
 
-        _rigidbody2D.centerOfMass = _centerOfMass.localPosition;
+        //_rigidbody2D.centerOfMass = _centerOfMass.localPosition;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

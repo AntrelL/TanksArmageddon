@@ -49,7 +49,7 @@ namespace TanksArmageddon
 
         private void Awake()
         {
-            _rigidbody2D.centerOfMass = _centerPoint.localPosition;
+            //_rigidbody2D.centerOfMass = _centerPoint.localPosition;
             _baseDrag = _rigidbody2D.drag;
             _maxHealth = GameManager.Instance.GetPlayerMaxHealth();
             _currentHealth = _maxHealth;

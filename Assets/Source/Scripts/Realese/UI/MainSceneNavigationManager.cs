@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using YG;
 
 public class MainSceneNavigationManager : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class MainSceneNavigationManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 #if !UNITY_EDITOR && UNITY_WEBGL
-        _adService.ShowInterstitialAd();
+        YG2.InterstitialAdvShow();
 #endif
     }
 

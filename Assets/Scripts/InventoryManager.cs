@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 using TMPro;
 
 public class InventoryManager : MonoBehaviour
@@ -77,9 +78,12 @@ public class InventoryManager : MonoBehaviour
     public void AdButtonPressed()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
-        _adService.ShowVideoAd();
+
+        YG2.RewardedAdvShow(hyiPoimi, () =>
+        {
+            SetNewWeapon(GenerateRandomIndex());
+        });
 #endif
-        SetNewWeapon(GenerateRandomIndex());
     }
 
     public void UpdateInventoryUI()

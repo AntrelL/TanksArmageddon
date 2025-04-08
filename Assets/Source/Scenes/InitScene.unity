@@ -470,7 +470,6 @@ GameObject:
   m_Component:
   - component: {fileID: 803838002}
   - component: {fileID: 803838003}
-  - component: {fileID: 803838005}
   m_Layer: 0
   m_Name: Logic
   m_TagString: Untagged
@@ -514,18 +513,6 @@ MonoBehaviour:
   _playerBalance: 5000
   _playerPoints: 0
   _playerHealth: 1000
---- !u!114 &803838005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803838001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f450decfdf3634d4599fb9b0bfa5c0a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &848208082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -837,7 +824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806f0696300aeac44a0e17efee222854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLanguage: English
+  currentLanguage: Russian
   detectLanguage: 1
   defaultLanguage: Russian
   saveLoad: 1
@@ -1280,7 +1267,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PLAY
+  m_text: "\u041D\u0410\u0427\u0410\u0422\u042C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1866fe9b5af8979498a31c6fe664c284, type: 2}
   m_sharedMaterial: {fileID: 942589445191879500, guid: 1866fe9b5af8979498a31c6fe664c284, type: 2}
@@ -1472,7 +1459,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "TANKS \nARMAGEDDON"
+  m_text: "\u0422\u0410\u041D\u041A\u0418\n\u0410\u0420\u041C\u0410\u0413\u0415\u0414\u0414\u041E\u041D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1866fe9b5af8979498a31c6fe664c284, type: 2}
   m_sharedMaterial: {fileID: 942589445191879500, guid: 1866fe9b5af8979498a31c6fe664c284, type: 2}

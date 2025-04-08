@@ -9,6 +9,7 @@ using IJunior.TypedScenes;
 
 public class InitYG : MonoBehaviour
 {
+    /*
 #if !UNITY_EDITOR && UNITY_WEBGL
     private void Awake()
     {
@@ -26,4 +27,5 @@ public class InitYG : MonoBehaviour
         InitScene.Load();
     }
 #endif
+    */
 }

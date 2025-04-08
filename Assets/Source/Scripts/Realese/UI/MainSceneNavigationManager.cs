@@ -9,7 +9,7 @@ using YG;
 
 public class MainSceneNavigationManager : MonoBehaviour
 {
-    //[SerializeField] private GameObject _authView;
+    [SerializeField] private GameObject _authView;
     [SerializeField] private AdService _adService;
 
 
@@ -53,29 +53,33 @@ public class MainSceneNavigationManager : MonoBehaviour
         }
     }*/
 
-    /*public void AcceptPressed()
+    private void OnEnable()
+    {
+        YG2.onGetSDKData += TryOpenLeaderboard;
+    }
+
+    private void OnDisable()
+    {
+        YG2.onGetSDKData -= TryOpenLeaderboard;
+    }
+
+    public void AcceptPressed()
     {
         ButtonClicked?.Invoke();
+        YG2.OpenAuthDialog();
+        //_authView.SetActive(false);
 
-        if (PlayerAccount.IsAuthorized == false)
+        /*if (YG2.player.auth == true)
         {
-            PlayerAccount.Authorize();
-            PlayerAccount.RequestPersonalProfileDataPermission();
-            _authView.SetActive(false);
-        }
-
-        if (PlayerAccount.IsAuthorized)
-        {
-            PlayerAccount.RequestPersonalProfileDataPermission();
             LeaderboardScene.Load();
-        }
+        }*/
     }
 
     public void DeclinePressed()
     {
         ButtonClicked?.Invoke();
         _authView.SetActive(false);
-    }*/
+    }
 
     public void LoadShopScene()
     {
@@ -107,8 +111,17 @@ public class MainSceneNavigationManager : MonoBehaviour
         {
             _authView.SetActive(true);
         }*/
-        YG2.OpenAuthDialog();
 
+        if (YG2.player.auth == true)
+        {
+            _authView.SetActive(false);
+            LeaderboardScene.Load();
+        }
+        else
+        {
+            _authView.SetActive(true);
+            //YG2.OpenAuthDialog();
+        }
     }
 
     public void LoadTrainingLevel()

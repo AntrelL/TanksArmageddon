@@ -9,7 +9,7 @@ using YG;
 
 public class MainSceneNavigationManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _authView;
+    //[SerializeField] private GameObject _authView;
     [SerializeField] private AdService _adService;
 
 
@@ -53,7 +53,7 @@ public class MainSceneNavigationManager : MonoBehaviour
         }
     }*/
 
-    public void AcceptPressed()
+    /*public void AcceptPressed()
     {
         ButtonClicked?.Invoke();
 
@@ -75,7 +75,7 @@ public class MainSceneNavigationManager : MonoBehaviour
     {
         ButtonClicked?.Invoke();
         _authView.SetActive(false);
-    }
+    }*/
 
     public void LoadShopScene()
     {
@@ -97,7 +97,7 @@ public class MainSceneNavigationManager : MonoBehaviour
 
     private void TryOpenLeaderboard()
     {
-        if (PlayerAccount.IsAuthorized)
+        /*if (PlayerAccount.IsAuthorized)
         {
             PlayerAccount.RequestPersonalProfileDataPermission();
             LeaderboardScene.Load();
@@ -106,7 +106,9 @@ public class MainSceneNavigationManager : MonoBehaviour
         if (PlayerAccount.IsAuthorized == false)
         {
             _authView.SetActive(true);
-        }
+        }*/
+        YG2.OpenAuthDialog();
+
     }
 
     public void LoadTrainingLevel()

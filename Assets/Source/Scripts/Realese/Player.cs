@@ -60,13 +60,13 @@ namespace TanksArmageddon
             _petrolTank.maxValue = _availableTravelTime;
             _petrolTank.value = _availableTravelTime;
 
-            if (Device.IsMobile == true)
+            /*if (Device.IsMobile == true)
             {
                 AddEventTrigger(_leftButton.gameObject, EventTriggerType.PointerDown, () => _leftButtonPressed = true);
                 AddEventTrigger(_leftButton.gameObject, EventTriggerType.PointerUp, () => _leftButtonPressed = false);
                 AddEventTrigger(_rightButton.gameObject, EventTriggerType.PointerDown, () => _rightButtonPressed = true);
                 AddEventTrigger(_rightButton.gameObject, EventTriggerType.PointerUp, () => _rightButtonPressed = false);
-            }
+            }*/
         }
 
         private void FixedUpdate()

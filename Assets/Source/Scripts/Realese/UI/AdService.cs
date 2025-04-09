@@ -8,8 +8,8 @@ public class AdService
     public static event Action CollectVideoAdReward;
     public static event Action ShowInteractiveElements;
 
-    public void ShowVideoAd() => Agava.YandexGames.VideoAd.Show(OnOpenAdCallback, OnRewardedCallback, OnCloseAdCallback);
-    public void ShowInterstitialAd() => Agava.YandexGames.InterstitialAd.Show(OnOpenAdCallback, OnCloseInterstitialAdCallback);
+    //public void ShowVideoAd() => Agava.YandexGames.VideoAd.Show(OnOpenAdCallback, OnRewardedCallback, OnCloseAdCallback);
+   // public void ShowInterstitialAd() => Agava.YandexGames.InterstitialAd.Show(OnOpenAdCallback, OnCloseInterstitialAdCallback);
 
     private void OnOpenAdCallback()
     {

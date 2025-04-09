@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
-using Agava.WebUtility;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
@@ -55,7 +54,7 @@ public class UIController : MonoBehaviour
     {
         Time.timeScale = 1;
 
-        if (Device.IsMobile == true)
+        /*if (Device.IsMobile == true)
         {
             Debug.Log("Platform: mobile!");
             _playerMovementCanvas.SetActive(true);
@@ -64,7 +63,7 @@ public class UIController : MonoBehaviour
         {
             Debug.Log("Platform: PC!");
             _playerMovementCanvas.SetActive(false);
-        }
+        }*/
     }
 
     private void OnEnable()

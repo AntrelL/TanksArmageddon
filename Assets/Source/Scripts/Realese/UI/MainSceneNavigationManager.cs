@@ -1,4 +1,3 @@
-using Agava.YandexGames;
 using IJunior.TypedScenes;
 using System;
 using System.Collections;

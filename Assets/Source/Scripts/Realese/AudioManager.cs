@@ -1,4 +1,4 @@
-using Agava.WebUtility;
+
 using System.Collections;
 using System.Collections.Generic;
 using TanksArmageddon;
@@ -45,7 +45,6 @@ public class AudioManager : MonoBehaviour
 
     private void OnEnable()
     {
-        WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
         Shoot.PlayerFired += PlayProjectileShoot;
         UIController.SoundTurnedOff += StopMainMusic;
         UIController.SoundTurnedOn += PlayMainMusic;
@@ -70,7 +69,6 @@ public class AudioManager : MonoBehaviour
 
     private void OnDisable()
     {
-        WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
         Shoot.PlayerFired -= PlayProjectileShoot;
         UIController.SoundTurnedOff -= StopMainMusic;
         UIController.SoundTurnedOn -= PlayMainMusic;

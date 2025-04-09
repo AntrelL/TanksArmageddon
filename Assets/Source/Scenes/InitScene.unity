@@ -470,6 +470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 803838002}
   - component: {fileID: 803838003}
+  - component: {fileID: 803838004}
   m_Layer: 0
   m_Name: Logic
   m_TagString: Untagged
@@ -513,6 +514,18 @@ MonoBehaviour:
   _playerBalance: 5000
   _playerPoints: 0
   _playerHealth: 1000
+--- !u!114 &803838004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803838001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f450decfdf3634d4599fb9b0bfa5c0a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &848208082
 PrefabInstance:
   m_ObjectHideFlags: 0

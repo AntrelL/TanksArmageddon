@@ -5783,7 +5783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af863f4c587b4e741ae70cae41cf02f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _authView: {fileID: 125320720}
+  _authView: {fileID: 0}
 --- !u!4 &1112577332
 Transform:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WeaponUpgradeSystem : MonoBehaviour
 {
-    private WeaponData _weaponData;
+    /*private WeaponData _weaponData;
     private int _currentCards;
 
     private int[] _cardsForUpgrades = { 10, 20, 30, 50, 100 }; // Карточки для каждого уровня
@@ -72,5 +72,5 @@ public class WeaponUpgradeSystem : MonoBehaviour
     public int MaxUpgradeLevel()
     {
         return _cardsForUpgrades.Length;
-    }
+    }*/
 }

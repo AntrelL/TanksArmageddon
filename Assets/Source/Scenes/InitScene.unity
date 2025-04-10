@@ -470,6 +470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 803838002}
   - component: {fileID: 803838003}
+  - component: {fileID: 803838004}
   m_Layer: 0
   m_Name: Logic
   m_TagString: Untagged
@@ -505,6 +506,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponDataList:
+  - {fileID: 11400000, guid: 1522ac3e87357f54aacffa341a705eb9, type: 2}
+  - {fileID: 11400000, guid: 5cd5f89d570dd6d42a89122cd37c3545, type: 2}
+  - {fileID: 11400000, guid: 365eb0745cb6886459c72abcf120edf8, type: 2}
+  - {fileID: 11400000, guid: d05383c3d1242a04ab9c6381e821e51e, type: 2}
+  - {fileID: 11400000, guid: 4dd8da9e883e85047a013f5471d799d2, type: 2}
+--- !u!114 &803838004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803838001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaef82bc182c545439a90818fc0a90a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapons:
   - {fileID: 11400000, guid: 1522ac3e87357f54aacffa341a705eb9, type: 2}
   - {fileID: 11400000, guid: 5cd5f89d570dd6d42a89122cd37c3545, type: 2}
   - {fileID: 11400000, guid: 365eb0745cb6886459c72abcf120edf8, type: 2}

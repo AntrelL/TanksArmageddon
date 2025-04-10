@@ -56,6 +56,7 @@ public class Shop : MonoBehaviour
             }
 
             int currentCardCount = GameManager.Instance.GetCardCount(index);
+
             GameManager.Instance.SetCardCount(index, currentCardCount + 1);
             CardClicked?.Invoke();
 

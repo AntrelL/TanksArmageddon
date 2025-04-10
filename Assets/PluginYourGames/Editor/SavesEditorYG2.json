@@ -7,9 +7,16 @@
         false,
         false
     ],
-    "idSave": 7,
-    "playerPoints": 200,
-    "playerBalance": 5650,
+    "idSave": 29,
+    "playerPoints": 300,
+    "playerBalance": 350,
     "playerHealth": 1250,
-    "trainingLevelPassed": true
+    "trainingLevelPassed": true,
+    "weaponCardCounts": [
+        5,
+        4,
+        0,
+        0,
+        0
+    ]
 }

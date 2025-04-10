@@ -27,9 +27,9 @@ public class Hangar : MonoBehaviour
     {
         for (int i = 0; i < _upgradeIndicators.Length; i++)
         {
-            WeaponData weaponData = GameManager.Instance.GetWeaponData(i);
+            ClearWeaponData weaponData = GameManager.Instance.GetWeaponData(i);
             int currentCardCount = GameManager.Instance.GetCardCount(i);
-            int currentLevel = weaponData.upgradeLevel;
+            int currentLevel = weaponData.UpgradeLevel;
 
             if (currentLevel < _requiredCardsForNextLevel.Length &&
                 currentCardCount >= _requiredCardsForNextLevel[currentLevel])
@@ -47,9 +47,9 @@ public class Hangar : MonoBehaviour
     {
         for (int i = 0; i < _weaponCardTexts.Length; i++)
         {
-            WeaponData weaponData = GameManager.Instance.GetWeaponData(i);
+            ClearWeaponData weaponData = GameManager.Instance.GetWeaponData(i);
             int currentCardCount = GameManager.Instance.GetCardCount(i);
-            int currentLevel = weaponData.upgradeLevel;
+            int currentLevel = weaponData.UpgradeLevel;
 
             if (currentLevel < _requiredCardsForNextLevel.Length)
             {
@@ -67,11 +67,11 @@ public class Hangar : MonoBehaviour
     {
         if (weaponIndex >= 0 && weaponIndex < _weaponDamageTexts.Length)
         {
-            WeaponData weaponData = GameManager.Instance.GetWeaponData(weaponIndex);
+            ClearWeaponData weaponData = GameManager.Instance.GetWeaponData(weaponIndex);
 
             if (weaponData != null)
             {
-                _weaponDamageTexts[weaponIndex].text = $"{weaponData.currentDamage}";
+                _weaponDamageTexts[weaponIndex].text = $"{weaponData.CurrentDamage}";
             }
         }
     }
@@ -88,11 +88,11 @@ public class Hangar : MonoBehaviour
     {
         if (weaponIndex >= 0 && weaponIndex < _weaponLevelTexts.Length)
         {
-            WeaponData weaponData = GameManager.Instance.GetWeaponData(weaponIndex);
+            ClearWeaponData weaponData = GameManager.Instance.GetWeaponData(weaponIndex);
 
             if (weaponData != null)
             {
-                _weaponLevelTexts[weaponIndex].text = $"{weaponData.upgradeLevel}";
+                _weaponLevelTexts[weaponIndex].text = $"{weaponData.UpgradeLevel}";
             }
         }
     }
@@ -108,7 +108,7 @@ public class Hangar : MonoBehaviour
     public void SelectAndUpgradeWeapon(int weaponIndex)
     {
         ButtonClicked?.Invoke();
-        WeaponData selectedWeaponData = GameManager.Instance.GetWeaponData(weaponIndex);
+        ClearWeaponData selectedWeaponData = GameManager.Instance.GetWeaponData(weaponIndex);
 
         if (selectedWeaponData == null)
         {
@@ -117,7 +117,7 @@ public class Hangar : MonoBehaviour
         }
 
         int currentCardCount = GameManager.Instance.GetCardCount(weaponIndex);
-        int currentLevel = selectedWeaponData.upgradeLevel;
+        int currentLevel = selectedWeaponData.UpgradeLevel;
 
         if (currentLevel < _requiredCardsForNextLevel.Length)
         {
@@ -126,10 +126,10 @@ public class Hangar : MonoBehaviour
             if (currentCardCount >= cardsNeeded)
             {
                 GameManager.Instance.SetCardCount(weaponIndex, currentCardCount - cardsNeeded);
-                selectedWeaponData.upgradeLevel++;
+                selectedWeaponData.UpgradeLevel++;
 
-                selectedWeaponData.currentDamage = Mathf.RoundToInt(selectedWeaponData.baseDamage * _damageMultipliers[currentLevel]);
-                Debug.Log($"Weapon {weaponIndex + 1} upgraded to level {selectedWeaponData.upgradeLevel}!");
+                selectedWeaponData.CurrentDamage = Mathf.RoundToInt(selectedWeaponData.BaseDamage * _damageMultipliers[currentLevel]);
+                Debug.Log($"Weapon {weaponIndex + 1} upgraded to level {selectedWeaponData.UpgradeLevel}!");
 
 
                 UpdateWeaponLevelText(weaponIndex);

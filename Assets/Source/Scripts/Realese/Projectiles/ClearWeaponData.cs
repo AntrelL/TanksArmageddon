@@ -1,0 +1,13 @@
+public class ClearWeaponData
+{
+    public ClearWeaponData(WeaponData weaponData)
+    {
+        BaseDamage = weaponData.baseDamage;
+        UpgradeLevel = weaponData.upgradeLevel;
+        CurrentDamage = weaponData.currentDamage;
+    }
+
+    public int BaseDamage { get; set; }
+    public int UpgradeLevel { get; set; }
+    public int CurrentDamage { get; set; }
+}

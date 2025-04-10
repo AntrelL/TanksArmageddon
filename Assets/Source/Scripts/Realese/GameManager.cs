@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private WeaponData[] _weaponDataList = new WeaponData[5];
 
-    private int[] _weaponCardCounts = new int[5];
+    //private int[] _weaponCardCounts = new int[5];
     //[SerializeField] private int _playerBalance;
     //[SerializeField] private int _playerPoints;
     //[SerializeField] private int _playerHealth;
@@ -67,23 +67,26 @@ public class GameManager : MonoBehaviour
 
     public int GetCardCount(int weaponIndex)
     {
-        return _weaponCardCounts[weaponIndex];
+        //return _weaponCardCounts[weaponIndex];
+        return YG2.saves.weaponCardCounts[weaponIndex];
     }
 
     public void SetCardCount(int weaponIndex, int cardCount)
     {
-        _weaponCardCounts[weaponIndex] = cardCount;
+        //_weaponCardCounts[weaponIndex] = cardCount;
+        YG2.saves.weaponCardCounts[weaponIndex] = cardCount;
     }
 
-    public WeaponData GetWeaponData(int weaponIndex)
+    public ClearWeaponData GetWeaponData(int weaponIndex)
     {
-        return _weaponDataList[weaponIndex];
+        //return _weaponDataList[weaponIndex];
+        return YG2.saves.clearWeaponsData[weaponIndex];
     }
 
-    public void SetWeaponData(int weaponIndex, WeaponData data)
+    /*public void SetWeaponData(int weaponIndex, WeaponData data)
     {
         _weaponDataList[weaponIndex] = data;
-    }
+    }*/
 
     public int GetPlayerBalance()
     {

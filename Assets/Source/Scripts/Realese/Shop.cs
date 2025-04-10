@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using YG;
 
 public class Shop : MonoBehaviour
 {
@@ -15,9 +16,10 @@ public class Shop : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
-#if !UNITY_EDITOR && UNITY_WEBGL
-        _currentLanguage = Agava.YandexGames.YandexGamesSdk.Environment.i18n.lang;
-#endif
+        //#if !UNITY_EDITOR && UNITY_WEBGL
+        //_currentLanguage
+        //YG2.lang
+//#endif
         UpdatePlayerBalanceUI();
     }
 

@@ -24,34 +24,6 @@ public class MainSceneNavigationManager : MonoBehaviour
 #endif
     }
 
-    /*private void GetLevelsStatus()
-    {
-        foreach (string level in _levelsStatus.Keys)
-        {
-            if (level == "TrainingScene")
-            {
-                _checkboxLevel1.SetActive(true);
-            }
-
-            if (level == "Level1")
-            {
-                _checkboxLevel1.SetActive(true);
-            }
-        }
-    }*/
-
-    /*private void SetLevelStatus(string name, bool value)
-    {
-        if (_levelsStatus.ContainsKey(name) == false)
-        {
-            _levelsStatus.Add(name, value);
-        }
-        else
-        {
-            return;
-        }
-    }*/
-
     private void OnEnable()
     {
         YG2.onGetSDKData += TryOpenLeaderboard;
@@ -65,18 +37,14 @@ public class MainSceneNavigationManager : MonoBehaviour
     public void AcceptPressed()
     {
         ButtonClicked?.Invoke();
+        Debug.Log("AcceptPressed");
         YG2.OpenAuthDialog();
-        //_authView.SetActive(false);
-
-        /*if (YG2.player.auth == true)
-        {
-            LeaderboardScene.Load();
-        }*/
     }
 
     public void DeclinePressed()
     {
         ButtonClicked?.Invoke();
+        Debug.Log("DeclinePressed");
         _authView.SetActive(false);
     }
 
@@ -95,31 +63,22 @@ public class MainSceneNavigationManager : MonoBehaviour
     public void LeaderboardButtonPressed()
     {
         ButtonClicked?.Invoke();
+        Debug.Log("LeaderboardButtonPressed");
         TryOpenLeaderboard();
     }
 
     private void TryOpenLeaderboard()
     {
-        /*if (PlayerAccount.IsAuthorized)
-        {
-            PlayerAccount.RequestPersonalProfileDataPermission();
-            LeaderboardScene.Load();
-        }
-
-        if (PlayerAccount.IsAuthorized == false)
-        {
-            _authView.SetActive(true);
-        }*/
-
         if (YG2.player.auth == true)
         {
+            Debug.Log("TryOpenLeaderboard, player.auth = true");
             _authView.SetActive(false);
             LeaderboardScene.Load();
         }
         else
         {
+            Debug.Log("TryOpenLeaderboard, player.auth = false");
             _authView.SetActive(true);
-            //YG2.OpenAuthDialog();
         }
     }
 

@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using YG;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -21,14 +22,13 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
-        /*
-        _currentLanguage = YandexGamesSdk.Environment.i18n.lang;
+        _currentLanguage = YG2.envir.language;
 
         foreach (var tip in _tutorialTips)
         {
             var button = tip.GetComponentInChildren<Button>();
             button.onClick.AddListener(() => OnOkayButtonClicked());
-        }*/
+        }
     }
 
     private void OnEnable()
@@ -55,16 +55,17 @@ public class TutorialManager : MonoBehaviour
             {
                 if (i == _mobileOrPCTipIndex)
                 {
-                    /* if (Device.IsMobile == true)
-                     {
-                         Debug.Log("Platform: mobile!");
-                         currentTipText.text = "Для движения используй кнопки в левом нижнем углу.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу.";
-                     }
-                     else
-                     {
-                         Debug.Log("Platform: PC!");
-                         currentTipText.text = "Для движения используй клавиши A/D.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу.";
-                     }*/
+                    if (YG2.envir.isMobile)
+                    {
+                        Debug.Log("Platform: mobile!");
+                        currentTipText.text = "Для движения используй кнопки в левом нижнем углу.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу.";
+                    }
+
+                    if (YG2.envir.isDesktop)
+                    {
+                        Debug.Log("Platform: PC!");
+                        currentTipText.text = "Для движения используй клавиши A/D.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу.";
+                    }
                 }
             }
 
@@ -72,35 +73,37 @@ public class TutorialManager : MonoBehaviour
             {
                 if (i == _mobileOrPCTipIndex)
                 {
-                    /*if (Device.IsMobile == true)
+                    if (YG2.envir.isMobile)
                     {
                         Debug.Log("Platform: mobile!");
                         currentTipText.text = "Use the buttons in the lower left corner to move.\r\nTo aim, use the slider on the right.\r\nTo fire, press the button in the lower right corner.";
                     }
-                    else
+
+                    if (YG2.envir.isDesktop)
                     {
                         Debug.Log("Platform: PC!");
                         currentTipText.text = "Use the A/D keys to move.\r\nTo aim, use the slider on the right.\r\nTo fire, press the button in the lower right corner.";
-                    }*/
+                    }
                 }
             }
 
-            /*if (_currentLanguage == "tr")
+            if (_currentLanguage == "tr")
             {
                 if (i == _mobileOrPCTipIndex)
                 {
-                    if (Device.IsMobile == true)
+                    if (YG2.envir.isMobile)
                     {
                         Debug.Log("Platform: mobile!");
                         currentTipText.text = "Hareket etmek için sol alt köşedeki düğmeleri kullanın.\r\nNişan almak için sağdaki kaydırıcıyı kullanın.\r\nAteş etmek için sağ alt köşedeki düğmeye basın.";
                     }
-                    else
+
+                    if (YG2.envir.isDesktop)
                     {
                         Debug.Log("Platform: PC!");
                         currentTipText.text = "Taşımak için A/D tuşlarını kullanın.\r\nNişan almak için sağdaki kaydırıcıyı kullanın.\r\nAteş etmek için sağ alt köşedeki düğmeye basın.";
                     }
                 }
-            }*/
+            }
 
             if (i == 0)
             {

@@ -1,10 +1,11 @@
 
 using Lean.Localization;
 using UnityEngine;
+using YG;
 
 public class Localization : MonoBehaviour
 {
-    /*private const string EnglishCode = "English";
+    private const string EnglishCode = "English";
     private const string RussianCode = "Russian";
     private const string TurkishCode = "Turkish";
     private const string Turkish = "tr";
@@ -21,7 +22,7 @@ public class Localization : MonoBehaviour
 
     private void ChangeLanguage()
     {
-        //string languageCode = YandexGamesSdk.Environment.i18n.lang;
+        string languageCode = YG2.envir.language;
 
         Debug.LogError("languageCode: " + languageCode);
         Debug.Log("languageCode: " + languageCode);
@@ -41,5 +42,5 @@ public class Localization : MonoBehaviour
 
                 break;
         }
-    }*/
+    }
 }

@@ -123,6 +123,72 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &134473848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 134473851}
+  - component: {fileID: 134473850}
+  - component: {fileID: 134473849}
+  m_Layer: 0
+  m_Name: Logic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &134473849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134473848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f06de06d70223d04ea0030e4c69cf21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerBalanceText: {fileID: 7278746302384934922}
+  _cardCostTexts:
+  - {fileID: 8973353765636403391}
+  - {fileID: 1273287075024116626}
+  - {fileID: 8236249442962381852}
+  - {fileID: 8910393031276474582}
+  - {fileID: 591702635703361245}
+  - {fileID: 249919335}
+  _purchasedCardsInfo: {fileID: 998016758}
+--- !u!114 &134473850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134473848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f6cb4c799b91e3479fc7fad98538e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &134473851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134473848}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1280.3447, y: 375.74765, z: -8.444191}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &249919333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,7 +1313,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6887519195534026022}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
         m_MethodName: BuyWeaponCard
         m_Mode: 3
@@ -1645,18 +1711,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &601392380926005625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6610400560051740904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f6cb4c799b91e3479fc7fad98538e74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &742217235883967006
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2083,7 +2137,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6887519195534026022}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
         m_MethodName: BuyWeaponCard
         m_Mode: 3
@@ -3257,7 +3311,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 601392380926005625}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ShopSceneNavigationManager, Assembly-CSharp
         m_MethodName: LoadMainScene
         m_Mode: 1
@@ -3487,7 +3541,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 806947423878604987}
-  - component: {fileID: 6887519195534026022}
   m_Layer: 0
   m_Name: Shop
   m_TagString: Untagged
@@ -3871,7 +3924,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6104687797962636626}
-  - component: {fileID: 601392380926005625}
   m_Layer: 0
   m_Name: ShopUI
   m_TagString: Untagged
@@ -4056,27 +4108,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6887519195534026022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5601972993195362908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f06de06d70223d04ea0030e4c69cf21c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerBalanceText: {fileID: 7278746302384934922}
-  _cardCostTexts:
-  - {fileID: 8973353765636403391}
-  - {fileID: 1273287075024116626}
-  - {fileID: 8236249442962381852}
-  - {fileID: 8910393031276474582}
-  - {fileID: 591702635703361245}
-  - {fileID: 249919335}
-  _purchasedCardsInfo: {fileID: 998016758}
 --- !u!114 &7002105205060688050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4863,7 +4894,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6887519195534026022}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
         m_MethodName: BuyWeaponCard
         m_Mode: 3
@@ -4942,7 +4973,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6887519195534026022}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
         m_MethodName: BuyWeaponCard
         m_Mode: 3
@@ -5022,7 +5053,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6887519195534026022}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
         m_MethodName: BuyWeaponCard
         m_Mode: 3
@@ -5078,7 +5109,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6887519195534026022}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
         m_MethodName: BuyWeaponCard
         m_Mode: 3
@@ -5520,3 +5551,4 @@ SceneRoots:
   - {fileID: 6104687797962636626}
   - {fileID: 875926191}
   - {fileID: 9178578486490712800}
+  - {fileID: 134473851}

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using TMPro;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using YG;
 
 public class UIController : MonoBehaviour
 {
@@ -54,16 +55,16 @@ public class UIController : MonoBehaviour
     {
         Time.timeScale = 1;
 
-        /*if (Device.IsMobile == true)
+        if (YG2.envir.isMobile)
         {
             Debug.Log("Platform: mobile!");
             _playerMovementCanvas.SetActive(true);
         }
-        else
+        if (YG2.envir.isDesktop)
         {
             Debug.Log("Platform: PC!");
             _playerMovementCanvas.SetActive(false);
-        }*/
+        }
     }
 
     private void OnEnable()

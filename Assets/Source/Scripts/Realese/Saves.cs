@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Saves : MonoBehaviour
+namespace YG
 {
-    // Start is called before the first frame update
-    void Start()
+    public partial class SavesYG
     {
-        
+        public int playerPoints = 0;
+        public int playerBalance = 5000;
+        public int playerHealth = 1000;
     }
 
-    // Update is called once per frame
-    void Update()
+    public partial class SavesYG
     {
-        
+        public bool trainingLevelPassed = false;
     }
 }
+

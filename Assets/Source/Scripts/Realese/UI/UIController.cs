@@ -38,6 +38,7 @@ public class UIController : MonoBehaviour
     private int _turnCount;
     private int _levelRewardAmount;
     private int _pointsRewardAmount;
+    private string _currentScene;
 
     public event Action PlayerShootButtonPressed;
     public static event Action EnemyDefeated;
@@ -54,12 +55,14 @@ public class UIController : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
+        _currentScene = SceneManager.GetActiveScene().name;
 
         if (YG2.envir.isMobile)
         {
             Debug.Log("Platform: mobile!");
             _playerMovementCanvas.SetActive(true);
         }
+
         if (YG2.envir.isDesktop)
         {
             Debug.Log("Platform: PC!");
@@ -166,10 +169,17 @@ public class UIController : MonoBehaviour
         _pointsRewardText.text = $"{_pointsRewardAmount}";
         PlayerRewardReceived?.Invoke(_levelRewardAmount);
         PlayerPointsReceived?.Invoke(_pointsRewardAmount);
+        YG2.SaveProgress();
+    }
+
+    public void Win()
+    {
+        ShowWinnerScreen();
     }
 
     private void ShowWinnerScreen()
     {
+        YG2.saves.trainingLevelPassed = true;
         EnemyDefeated?.Invoke();
         Time.timeScale = 0f;
         _levelFinishedCanvas.SetActive(true);
@@ -177,6 +187,7 @@ public class UIController : MonoBehaviour
         string sceneName = SceneManager.GetActiveScene().name;
         IsPlayerWin?.Invoke(sceneName, true);
         UpdateGoalStatus();
+        YG2.SaveProgress();
     }
 
     private void ShowDefeatedScreen()
@@ -256,13 +267,11 @@ public class UIController : MonoBehaviour
     {
         ButtonClicked?.Invoke();
         Time.timeScale = 0f;
-        string currentScene = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(currentScene);
+        SceneManager.LoadScene(_currentScene);
     }
 
     public void MuteSound()
     {
-        //ButtonClicked?.Invoke();
         SoundTurnedOff?.Invoke();
 
         Debug.Log("Sound muted.");
@@ -277,7 +286,6 @@ public class UIController : MonoBehaviour
 
     public void UnmuteSound()
     {
-        //ButtonClicked?.Invoke();
         SoundTurnedOn?.Invoke();
         Debug.Log("Sound unmuted.");
         _unmutedSoundCanvasGroup.alpha = 1;

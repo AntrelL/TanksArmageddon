@@ -510,9 +510,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 365eb0745cb6886459c72abcf120edf8, type: 2}
   - {fileID: 11400000, guid: d05383c3d1242a04ab9c6381e821e51e, type: 2}
   - {fileID: 11400000, guid: 4dd8da9e883e85047a013f5471d799d2, type: 2}
-  _playerBalance: 5000
-  _playerPoints: 0
-  _playerHealth: 1000
 --- !u!1001 &848208082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1112,7 +1109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -8.83, y: 129}
+  m_AnchoredPosition: {x: -8.83, y: 76}
   m_SizeDelta: {x: 425.56, y: 178.69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4400077975146359573

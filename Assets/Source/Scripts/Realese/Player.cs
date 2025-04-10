@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using YG;
 
 namespace TanksArmageddon
 {
@@ -60,13 +61,13 @@ namespace TanksArmageddon
             _petrolTank.maxValue = _availableTravelTime;
             _petrolTank.value = _availableTravelTime;
 
-            /*if (Device.IsMobile == true)
+            if (YG2.envir.isMobile)
             {
                 AddEventTrigger(_leftButton.gameObject, EventTriggerType.PointerDown, () => _leftButtonPressed = true);
                 AddEventTrigger(_leftButton.gameObject, EventTriggerType.PointerUp, () => _leftButtonPressed = false);
                 AddEventTrigger(_rightButton.gameObject, EventTriggerType.PointerDown, () => _rightButtonPressed = true);
                 AddEventTrigger(_rightButton.gameObject, EventTriggerType.PointerUp, () => _rightButtonPressed = false);
-            }*/
+            }
         }
 
         private void FixedUpdate()

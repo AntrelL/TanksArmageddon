@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using YG;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private WeaponData[] _weaponDataList = new WeaponData[5];
 
     private int[] _weaponCardCounts = new int[5];
-    [SerializeField] private int _playerBalance;
-    [SerializeField] private int _playerPoints;
-    [SerializeField] private int _playerHealth;
+    //[SerializeField] private int _playerBalance;
+    //[SerializeField] private int _playerPoints;
+    //[SerializeField] private int _playerHealth;
 
     public static GameManager Instance { get; private set; }
 
@@ -40,28 +41,28 @@ public class GameManager : MonoBehaviour
 
     public void IncreasePlayerHealth()
     {
-        _playerHealth += 10;
+        YG2.saves.playerHealth += 10;
     }
 
     public int GetPlayerHealth()
     {
-        return _playerHealth;
+        return YG2.saves.playerHealth;
     }
 
     private void SetPlayerPoints(int value)
     {
-        _playerPoints += value;
-        Debug.Log($"Игроку было добавлено {value} поинтов. Текущий рейтинг: {_playerPoints}");
+        YG2.saves.playerPoints += value;
+        Debug.Log($"Игроку было добавлено {value} поинтов. Текущий рейтинг: {YG2.saves.playerPoints}");
     }
 
     public int GetPlayerPoints()
     {
-        return _playerPoints;
+        return YG2.saves.playerPoints;
     }
 
     public int GetPlayerMaxHealth()
     {
-        return _playerHealth;
+        return YG2.saves.playerHealth;
     }
 
     public int GetCardCount(int weaponIndex)
@@ -86,20 +87,20 @@ public class GameManager : MonoBehaviour
 
     public int GetPlayerBalance()
     {
-        return _playerBalance;
+        return YG2.saves.playerBalance;
     }
 
     public void SetPlayerBalance(int amount)
     {
-        _playerBalance += amount;
+        YG2.saves.playerBalance += amount;
         Debug.Log($"Игроку было добавлено {amount} денег.");
     }
 
     public bool TrySpendMoney(int amount)
     {
-        if (_playerBalance >= amount)
+        if (YG2.saves.playerBalance >= amount)
         {
-            _playerBalance -= amount;
+            YG2.saves.playerBalance -= amount;
 
             return true;
         }

@@ -10,6 +10,7 @@ public class MainSceneNavigationManager : MonoBehaviour
 {
     [SerializeField] private GameObject _authView;
     [SerializeField] private AdService _adService;
+    [SerializeField] private GameObject _levelsBlockSprite;
 
 
     private Dictionary<string, bool> _levelsStatus;
@@ -19,6 +20,16 @@ public class MainSceneNavigationManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
+
+        if (YG2.saves.trainingLevelPassed)
+        {
+            _levelsBlockSprite.SetActive(false);
+        }
+        else
+        {
+            _levelsBlockSprite.SetActive(true);
+        }
+
 #if !UNITY_EDITOR && UNITY_WEBGL
         YG2.InterstitialAdvShow();
 #endif

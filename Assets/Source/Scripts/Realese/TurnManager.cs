@@ -59,6 +59,7 @@ public class TurnManager : MonoBehaviour
             if (_player != null && _player.gameObject.activeSelf)
             {
                 yield return StartCoroutine(PlayerTurn());
+
                 if (CheckAllEnemiesDead())
                     break;
             }

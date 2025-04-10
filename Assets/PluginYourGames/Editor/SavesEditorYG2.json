@@ -1,0 +1,15 @@
+{
+    "intExample": 5,
+    "strExample": "Hello!",
+    "boolExample": [
+        false,
+        false,
+        false,
+        false
+    ],
+    "idSave": 7,
+    "playerPoints": 200,
+    "playerBalance": 5650,
+    "playerHealth": 1250,
+    "trainingLevelPassed": true
+}

@@ -18,7 +18,8 @@ public class Shop : MonoBehaviour
         Time.timeScale = 1f;
         //#if !UNITY_EDITOR && UNITY_WEBGL
         //_currentLanguage
-        //YG2.lang
+       // YG2.lang
+           // YG2.en
 //#endif
         UpdatePlayerBalanceUI();
     }

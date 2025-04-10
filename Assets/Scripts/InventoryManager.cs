@@ -63,7 +63,7 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < _weaponSlots.Count; i++)
         {
-            WeaponData weapon = _weaponsList[i];
+            ClearWeaponData weapon = YG2.saves.clearWeaponsData[i];
             _weaponSlots[i].SetWeaponData(weapon);
         }
     }
@@ -90,7 +90,7 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < _weaponSlots.Count; i++)
         {
-            WeaponData weapon = _weaponsList[i];
+            ClearWeaponData weapon = YG2.saves.clearWeaponsData[i];
             _weaponSlots[i].SetWeaponData(weapon);
         }
 

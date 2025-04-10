@@ -15,10 +15,10 @@ public class WeaponSlot : MonoBehaviour
     private bool _isSelected = false;
 
 
-    public void SetWeaponData(WeaponData weapon)
+    public void SetWeaponData(ClearWeaponData weapon)
     {
-        icon.sprite = weapon.icon;
-        currentDamage.text = weapon.currentDamage.ToString();
+        icon.sprite = weapon.Icon;
+        currentDamage.text = weapon.CurrentDamage.ToString();
         UpdateHighlight();
     }
 

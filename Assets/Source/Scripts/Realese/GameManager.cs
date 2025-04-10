@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private WeaponData[] _weaponDataList = new WeaponData[5];
 
-    //private int[] _weaponCardCounts = new int[5];
+    private int[] _weaponCardCounts = new int[5];
     //[SerializeField] private int _playerBalance;
     //[SerializeField] private int _playerPoints;
     //[SerializeField] private int _playerHealth;

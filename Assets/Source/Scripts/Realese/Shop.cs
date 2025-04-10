@@ -49,15 +49,18 @@ public class Shop : MonoBehaviour
                     _purchasedCardsInfo.text = $"Oyuncunun sağlığı 10 arttı. \r\nOyuncunun mevcut sağlığı: {currentPlayerHealth}";
                 }
 
+                YG2.SaveProgress();
                 UpdatePlayerBalanceUI();
                 CardClicked?.Invoke();
 
                 return;
             }
 
-            int currentCardCount = GameManager.Instance.GetCardCount(index);
+            //int currentCardCount = GameManager.Instance.GetCardCount(index);
+            int currentCardCount = YG2.saves.weaponCardCounts[index];
 
-            GameManager.Instance.SetCardCount(index, currentCardCount + 1);
+            //GameManager.Instance.SetCardCount(index, currentCardCount + 1);
+            YG2.saves.weaponCardCounts[index] = currentCardCount + 1;
             CardClicked?.Invoke();
 
             if (_currentLanguage == "ru")
@@ -75,10 +78,12 @@ public class Shop : MonoBehaviour
                 _purchasedCardsInfo.text = $"{index + 1} mermisi için kart satın alındı. \r\nGeliştirilebilecek kart sayısı: {currentCardCount + 1}";
             }
 
+            YG2.SaveProgress();
             UpdatePlayerBalanceUI();
         }
         else
         {
+            YG2.SaveProgress();
             NotEnoughCoresWarning();
         }
     }

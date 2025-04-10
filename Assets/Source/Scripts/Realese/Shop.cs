@@ -16,10 +16,21 @@ public class Shop : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
-#if !UNITY_EDITOR && UNITY_WEBGL
         _currentLanguage = YG2.envir.language;
-#endif
         UpdatePlayerBalanceUI();
+    }
+
+    public void AdReward()
+    {
+
+        string hyiPoimiShop = "hyiShop";
+#if !UNITY_EDITOR && UNITY_WEBGL
+        YG2.RewardedAdvShow(hyiPoimiShop, () =>
+        {
+            GameManager.Instance.SetPlayerBalance(1000);
+            UpdatePlayerBalanceUI();
+        });
+#endif
     }
 
     public void BuyCard(int index)

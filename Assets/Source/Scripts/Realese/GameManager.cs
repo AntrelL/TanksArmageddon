@@ -97,6 +97,7 @@ public class GameManager : MonoBehaviour
     {
         YG2.saves.playerBalance += amount;
         Debug.Log($"Игроку было добавлено {amount} денег.");
+        YG2.SaveProgress();
     }
 
     public bool TrySpendMoney(int amount)

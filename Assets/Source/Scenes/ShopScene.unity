@@ -271,6 +271,18 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8466456404860325795, guid: d4e7013d90d17e444ae8a9ba1f856411, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 134473849}
+    - target: {fileID: 8466456404860325795, guid: d4e7013d90d17e444ae8a9ba1f856411, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AdReward
+      objectReference: {fileID: 0}
+    - target: {fileID: 8466456404860325795, guid: d4e7013d90d17e444ae8a9ba1f856411, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Shop, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

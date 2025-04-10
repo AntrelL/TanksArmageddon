@@ -72,13 +72,29 @@ namespace YG.Utils.LB
 
         public static string AnonymousName(string origName)
         {
+            string languageCode = YG2.envir.language;
+            string anonimName = "Anonim";
+
+            if (languageCode == "ru")
+            {
+                anonimName = "Анонимный";
+            }
+            if (languageCode == "en")
+            {
+                anonimName = "Anonymous";
+            }
+            if (languageCode == "tr")
+            {
+                anonimName = "Anonim";
+            }
+
             if (origName != "anonymous")
                 return origName;
             else
 #if Localization_yg
                 return UtilsLang.IsHiddenTextTranslate();
 #else
-                return "---";
+                return anonimName;
 #endif
         }
 

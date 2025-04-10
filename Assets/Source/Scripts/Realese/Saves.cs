@@ -11,5 +11,10 @@ namespace YG
     {
         public bool trainingLevelPassed = false;
     }
+
+    public partial class SavesYG
+    {
+        
+    }
 }
 

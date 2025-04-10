@@ -3398,11 +3398,31 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 64f0eac4dbfa0f34093712d64ea28e3d, type: 3}
     - target: {fileID: 427125380090051075, guid: f40a236569a66c344b68a9feb3f86a18, type: 3}
       propertyPath: onUpdateData.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 427125380090051075, guid: f40a236569a66c344b68a9feb3f86a18, type: 3}
+      propertyPath: onUpdateData.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 427125380090051075, guid: f40a236569a66c344b68a9feb3f86a18, type: 3}
+      propertyPath: onUpdateData.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1229558810}
     - target: {fileID: 427125380090051075, guid: f40a236569a66c344b68a9feb3f86a18, type: 3}
       propertyPath: onUpdateData.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 427125380090051075, guid: f40a236569a66c344b68a9feb3f86a18, type: 3}
+      propertyPath: onUpdateData.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateLB
+      objectReference: {fileID: 0}
+    - target: {fileID: 427125380090051075, guid: f40a236569a66c344b68a9feb3f86a18, type: 3}
+      propertyPath: onUpdateData.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: YG.LeaderboardYG, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 427125380090051075, guid: f40a236569a66c344b68a9feb3f86a18, type: 3}
+      propertyPath: onUpdateData.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1705290334077199572, guid: f40a236569a66c344b68a9feb3f86a18, type: 3}
       propertyPath: m_Name
@@ -4374,40 +4394,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52821df3e05419e47b8fe7739aeb528a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ranks:
-  - {fileID: 62152429}
-  - {fileID: 1047859654}
-  - {fileID: 331342645}
-  - {fileID: 1751552399}
-  - {fileID: 1695166322}
-  - {fileID: 1778514647}
-  - {fileID: 1474742125}
-  - {fileID: 525443260}
-  - {fileID: 203945967}
-  - {fileID: 632625479}
-  _leaderNames:
-  - {fileID: 1811730217}
-  - {fileID: 584738563}
-  - {fileID: 894550979}
-  - {fileID: 2035574143}
-  - {fileID: 2067644376}
-  - {fileID: 1391741491}
-  - {fileID: 1755483530}
-  - {fileID: 866708221}
-  - {fileID: 2014039210}
-  - {fileID: 424515569}
-  _scoreList:
-  - {fileID: 1849575203}
-  - {fileID: 561306177}
-  - {fileID: 1726919953}
-  - {fileID: 1347730787}
-  - {fileID: 1050780423}
-  - {fileID: 102343855}
-  - {fileID: 2106410318}
-  - {fileID: 2122340056}
-  - {fileID: 1095364608}
-  - {fileID: 619670611}
-  _leaderboardName: TanksArmageddonLBTest
 --- !u!114 &1275988316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7431,7 +7417,7 @@ GameObject:
   - component: {fileID: 2079471117}
   - component: {fileID: 2079471116}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: CanvasLB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

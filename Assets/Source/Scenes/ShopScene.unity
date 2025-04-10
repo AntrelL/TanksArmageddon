@@ -1313,9 +1313,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 134473849}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: BuyWeaponCard
+        m_MethodName: BuyCard
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2137,9 +2137,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 134473849}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: BuyWeaponCard
+        m_MethodName: BuyCard
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3311,7 +3311,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 134473850}
         m_TargetAssemblyTypeName: ShopSceneNavigationManager, Assembly-CSharp
         m_MethodName: LoadMainScene
         m_Mode: 1
@@ -4894,9 +4894,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 134473849}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: BuyWeaponCard
+        m_MethodName: BuyCard
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4973,9 +4973,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 134473849}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: BuyWeaponCard
+        m_MethodName: BuyCard
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5053,9 +5053,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 134473849}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: BuyWeaponCard
+        m_MethodName: BuyCard
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5109,9 +5109,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 134473849}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: BuyWeaponCard
+        m_MethodName: BuyCard
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

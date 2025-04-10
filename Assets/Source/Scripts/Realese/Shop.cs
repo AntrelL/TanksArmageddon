@@ -22,7 +22,7 @@ public class Shop : MonoBehaviour
         UpdatePlayerBalanceUI();
     }
 
-    public void BuyWeaponCard(int index)
+    public void BuyCard(int index)
     {
         int cardCost = GetCardCost(index);
 

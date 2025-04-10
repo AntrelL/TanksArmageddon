@@ -3397,7 +3397,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 427125380090051075, guid: f40a236569a66c344b68a9feb3f86a18, type: 3}
       propertyPath: nameLB
-      value: TanksArmageddonLBTest
+      value: TanksArmageddonLBTest2
       objectReference: {fileID: 0}
     - target: {fileID: 427125380090051075, guid: f40a236569a66c344b68a9feb3f86a18, type: 3}
       propertyPath: advanced
@@ -3405,7 +3405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 427125380090051075, guid: f40a236569a66c344b68a9feb3f86a18, type: 3}
       propertyPath: playerPhoto
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 427125380090051075, guid: f40a236569a66c344b68a9feb3f86a18, type: 3}
       propertyPath: quantityTop

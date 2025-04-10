@@ -5814,7 +5814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b8ddb5a5f77a3945becc71da23ba352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _leaderboardName: TanksArmageddonLBTest
+  _leaderboardName: TanksArmageddonLBTest2
 --- !u!1 &1144822659
 GameObject:
   m_ObjectHideFlags: 0

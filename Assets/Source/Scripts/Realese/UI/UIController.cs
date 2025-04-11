@@ -266,6 +266,9 @@ public class UIController : MonoBehaviour
     public void Restart()
     {
         ButtonClicked?.Invoke();
+#if !UNITY_EDITOR && UNITY_WEBGL
+        YG2.InterstitialAdvShow();
+#endif
         Time.timeScale = 0f;
         SceneManager.LoadScene(_currentScene);
     }

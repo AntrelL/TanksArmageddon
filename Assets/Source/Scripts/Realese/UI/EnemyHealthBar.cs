@@ -6,20 +6,21 @@ using UnityEngine.UI;
 public class EnemyHealthBar : MonoBehaviour
 {
     [SerializeField] private Enemy _enemy;
-    [SerializeField] private int _maxHealth;
     [SerializeField] private Slider _healthSlider;
     [SerializeField] private float _smoothSpeed = 5f;
     [SerializeField] private TextMeshProUGUI _valueText;
     [SerializeField] private Vector3 _offset = new Vector3(0, 2, 0);
 
+    private int _maxHealth;
     private float _targetHealth;
 
     private void Awake()
     {
-        _targetHealth = _maxHealth;
+        _maxHealth = _enemy._maxHealth;
+        _targetHealth = _enemy._maxHealth;
         _valueText.text = _targetHealth + "/" + _maxHealth;
         _healthSlider.maxValue = _maxHealth;
-        _healthSlider.value = 1000;
+        _healthSlider.value = _maxHealth;
     }
 
     private void Update()

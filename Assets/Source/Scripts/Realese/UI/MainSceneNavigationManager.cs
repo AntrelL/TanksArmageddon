@@ -20,6 +20,7 @@ public class MainSceneNavigationManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
+        _authView.SetActive(false);
 
         if (YG2.saves.trainingLevelPassed)
         {
@@ -111,13 +112,13 @@ public class MainSceneNavigationManager : MonoBehaviour
         Level2.Load();
     }
 
-    public void LoadLevel3() 
+    public void LoadLevel3()
     {
         ButtonClicked?.Invoke();
         Level3.Load();
     }
 
-    public void LoadLevel4() 
+    public void LoadLevel4()
     {
         ButtonClicked?.Invoke();
         Level4.Load();

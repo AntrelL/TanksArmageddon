@@ -6227,7 +6227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _landCollider: {fileID: 422059129}
   _circleCollider: {fileID: 1411630460}
-  _testIterations: 500
+  _testIterations: 5000
 --- !u!114 &1411630459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12238,9 +12238,9 @@ RectTransform:
   - {fileID: 5616304514882411276}
   m_Father: {fileID: 169005752066888369}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 180.00005, y: 129}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 180.00005, y: -300}
   m_SizeDelta: {x: 246, y: 220}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2690504637834800283
@@ -13321,9 +13321,9 @@ RectTransform:
   - {fileID: 2282201751610193159}
   m_Father: {fileID: 169005752066888369}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 129}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -300}
   m_SizeDelta: {x: 246, y: 220}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &3374481308155761756
@@ -18613,7 +18613,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -180, y: -320}
+  m_AnchoredPosition: {x: -180, y: -156}
   m_SizeDelta: {x: 246, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6660238481526501417
@@ -19416,7 +19416,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -320}
+  m_AnchoredPosition: {x: 0, y: -156}
   m_SizeDelta: {x: 246, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7275321034376969584
@@ -19879,9 +19879,9 @@ RectTransform:
   - {fileID: 213794621630014145}
   m_Father: {fileID: 169005752066888369}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -180.00006, y: 129}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -180.00006, y: -300}
   m_SizeDelta: {x: 246, y: 220}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &7692585783126521568
@@ -21773,7 +21773,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 180, y: -320}
+  m_AnchoredPosition: {x: 180, y: -156}
   m_SizeDelta: {x: 246, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &8770050217339757357
@@ -22219,7 +22219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemy: {fileID: 181134067}
-  _maxHealth: 500
   _healthSlider: {fileID: 5258869611693459355}
   _smoothSpeed: 5
   _valueText: {fileID: 996638380847818350}

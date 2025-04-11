@@ -23,15 +23,16 @@ public class EnemyBullet : MonoBehaviour
         CurrentEnemyBullet = transform;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
-        if (collision.gameObject.TryGetComponent(out EdgeOfMap edgeOfMap))
+        if (transform.position.y < -50)
         {
-            Debug.Log("Hit edge of map");
-            EdgeOfMapHit?.Invoke();
             Destroy(gameObject);
         }
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if (collision.gameObject.TryGetComponent(out Player player))
         {
             int damage = GetRandomDamage();

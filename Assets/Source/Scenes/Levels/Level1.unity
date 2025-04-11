@@ -48254,7 +48254,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemy: {fileID: 1539040248}
-  _maxHealth: 500
   _healthSlider: {fileID: 5258869611693459355}
   _smoothSpeed: 5
   _valueText: {fileID: 996638380847818350}

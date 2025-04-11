@@ -32,7 +32,7 @@ public class DefaultProjectile : MonoBehaviour
         CurrentProjectile = transform;
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         transform.right = _rigidbody.velocity;
 

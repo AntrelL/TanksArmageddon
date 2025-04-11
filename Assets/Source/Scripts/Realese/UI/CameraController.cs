@@ -132,7 +132,7 @@ public class CameraController : MonoBehaviour
             if (_timeSinceSwitch >= _delayBeforeSwitch)
             {
                 Vector3 targetPosition = new Vector3(_currentTarget.position.x, _currentTarget.position.y, transform.position.z);
-                transform.position = Vector3.Lerp(transform.position, targetPosition, _followSpeed * Time.deltaTime);
+                transform.position = Vector3.Lerp(transform.position, targetPosition, _followSpeed * 1000f * Time.deltaTime);
             }
             else
             {

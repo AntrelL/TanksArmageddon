@@ -5659,7 +5659,7 @@ MonoBehaviour:
   _cameraController: {fileID: 1493516531}
   _uiController: {fileID: 600745200}
   _projectileTransitionDuration: 1
-  _difficultyFactor: 2
+  _difficultyFactor: 1
 --- !u!4 &1325542176
 Transform:
   m_ObjectHideFlags: 0

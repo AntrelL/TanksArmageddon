@@ -59,7 +59,6 @@ public class AudioManager : MonoBehaviour
         DefaultProjectile.GroundHit += PlayTankHit;
         DefaultProjectile.EdgeOfMapHit += PlayButtonClick;
         EnemyBullet.GroundHit += PlayTankHit;
-        EnemyBullet.EdgeOfMapHit += PlayButtonClick;
         ProjectileShooter2D.EnemyShooted += PlayProjectileShoot;
         HangarSceneNavigationManager.ButtonClicked += PlayButtonClick;
         Hangar.ButtonClicked += PlayButtonClick;
@@ -83,7 +82,6 @@ public class AudioManager : MonoBehaviour
         DefaultProjectile.GroundHit -= PlayTankHit;
         DefaultProjectile.EdgeOfMapHit -= PlayButtonClick;
         EnemyBullet.GroundHit -= PlayTankHit;
-        EnemyBullet.EdgeOfMapHit -= PlayButtonClick;
         ProjectileShooter2D.EnemyShooted -= PlayProjectileShoot;
         HangarSceneNavigationManager.ButtonClicked -= PlayButtonClick;
         Hangar.ButtonClicked -= PlayButtonClick;

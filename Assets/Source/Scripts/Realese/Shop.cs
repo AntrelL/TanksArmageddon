@@ -60,7 +60,7 @@ public class Shop : MonoBehaviour
                     _purchasedCardsInfo.text = $"Oyuncunun sağlığı 10 arttı. \r\nOyuncunun mevcut sağlığı: {currentPlayerHealth}";
                 }
 
-                YG2.SaveProgress();
+                //YG2.SaveProgress();
                 UpdatePlayerBalanceUI();
                 CardClicked?.Invoke();
 
@@ -89,12 +89,12 @@ public class Shop : MonoBehaviour
                 _purchasedCardsInfo.text = $"{index + 1} mermisi için kart satın alındı. \r\nGeliştirilebilecek kart sayısı: {currentCardCount + 1}";
             }
 
-            YG2.SaveProgress();
+            //YG2.SaveProgress();
             UpdatePlayerBalanceUI();
         }
         else
         {
-            YG2.SaveProgress();
+            //YG2.SaveProgress();
             NotEnoughCoresWarning();
         }
     }

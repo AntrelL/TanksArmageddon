@@ -10,7 +10,11 @@ public class SetProjectilesToSaves : MonoBehaviour
 
     private void Start()
     {
-        YG2.saves.clearWeaponsData = Array.ConvertAll(weapons, weapon => new ClearWeaponData(weapon));
+        if (YG2.saves.clearWeaponsData is null)
+        {
+            YG2.saves.clearWeaponsData = Array.ConvertAll(weapons, weapon => new ClearWeaponData(weapon));
+        }
+
         YG2.SaveProgress();
     }
 }

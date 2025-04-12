@@ -12,7 +12,6 @@ public class EnemyBullet : MonoBehaviour
 
     public static event Action EnemyBulletDestroyed;
     public static event Action GroundHit;
-    public static event Action EdgeOfMapHit;
     public static event Action<int> PlayerHit;
 
     private Cutter _cutter;

@@ -139,7 +139,7 @@ public class Hangar : MonoBehaviour
                 YG2.saves.clearWeaponsData[weaponIndex].CurrentDamage = Mathf.RoundToInt(YG2.saves.clearWeaponsData[weaponIndex].BaseDamage * _damageMultipliers[currentLevel]);
                 Debug.Log($"Weapon {weaponIndex + 1} upgraded to level {YG2.saves.clearWeaponsData[weaponIndex].UpgradeLevel}!");
 
-                YG2.saves.clearWeaponsData[weaponIndex].CurrentDamage = YG2.saves.clearWeaponsData[weaponIndex].CurrentDamage;
+                //YG2.saves.clearWeaponsData[weaponIndex].CurrentDamage = YG2.saves.clearWeaponsData[weaponIndex].CurrentDamage;
                 //YG2.saves.clearWeaponsData[weaponIndex].UpgradeLevel = currentLevel;
                 YG2.SaveProgress();
                 UpdateWeaponLevelText(weaponIndex);

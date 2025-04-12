@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6cb4c799b91e3479fc7fad98538e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _helpViewCanvas: {fileID: 0}
+  _helpViewCanvas: {fileID: 2697987594353653902}
 --- !u!4 &134473851
 Transform:
   m_ObjectHideFlags: 0
@@ -3007,6 +3007,22 @@ PrefabInstance:
       propertyPath: _text
       value: 
       objectReference: {fileID: 2697987594353653901}
+    - target: {fileID: 8130067090656721478, guid: 3e3612476174e434ba47de20b1b4c57c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8130067090656721478, guid: 3e3612476174e434ba47de20b1b4c57c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8130067090656721478, guid: 3e3612476174e434ba47de20b1b4c57c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8130067090656721478, guid: 3e3612476174e434ba47de20b1b4c57c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8591431277992175370, guid: 3e3612476174e434ba47de20b1b4c57c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -3054,6 +3070,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!223 &2697987594353653902 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 5903963920630036792, guid: 3e3612476174e434ba47de20b1b4c57c, type: 3}
+  m_PrefabInstance: {fileID: 2697987594353653900}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2777114023426121619
 MonoBehaviour:
   m_ObjectHideFlags: 0

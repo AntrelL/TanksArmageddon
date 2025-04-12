@@ -134,7 +134,7 @@ public class Hangar : MonoBehaviour
             {
                 //GameManager.Instance.SetCardCount(weaponIndex, currentCardCount - cardsNeeded);
                 YG2.saves.weaponCardCounts[weaponIndex] = currentCardCount - cardsNeeded;
-                YG2.saves.clearWeaponsData[weaponIndex].UpgradeLevel++;
+                YG2.saves.clearWeaponsData[weaponIndex].UpgradeLevel = currentLevel + 1;
 
                 YG2.saves.clearWeaponsData[weaponIndex].CurrentDamage = Mathf.RoundToInt(YG2.saves.clearWeaponsData[weaponIndex].BaseDamage * _damageMultipliers[currentLevel]);
                 Debug.Log($"Weapon {weaponIndex + 1} upgraded to level {YG2.saves.clearWeaponsData[weaponIndex].UpgradeLevel}!");

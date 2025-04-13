@@ -7,7 +7,7 @@
         false,
         false
     ],
-    "idSave": 343,
+    "idSave": 344,
     "playerPoints": 1550,
     "playerBalance": 1750,
     "playerHealth": 1350,
@@ -18,5 +18,32 @@
         0,
         0,
         0
+    ],
+    "clearWeaponsData": [
+        {
+            "BaseDamage": 100,
+            "UpgradeLevel": 0,
+            "CurrentDamage": 100
+        },
+        {
+            "BaseDamage": 200,
+            "UpgradeLevel": 0,
+            "CurrentDamage": 200
+        },
+        {
+            "BaseDamage": 300,
+            "UpgradeLevel": 0,
+            "CurrentDamage": 300
+        },
+        {
+            "BaseDamage": 500,
+            "UpgradeLevel": 0,
+            "CurrentDamage": 500
+        },
+        {
+            "BaseDamage": 200,
+            "UpgradeLevel": 0,
+            "CurrentDamage": 200
+        }
     ]
 }

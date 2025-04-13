@@ -56,6 +56,7 @@ public class InventoryManager : MonoBehaviour
             _weaponSlots[index].gameObject.SetActive(true);
         }
 
+        _weaponSlots[index].GetComponent<Image>().sprite = _weaponsList[index].icon;
         _weaponSlots[index].UpdateAmmoCount(_weaponAmmoCount[index]);
     }
 

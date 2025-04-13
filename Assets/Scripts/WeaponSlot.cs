@@ -17,7 +17,7 @@ public class WeaponSlot : MonoBehaviour
 
     public void SetWeaponData(ClearWeaponData weapon)
     {
-        icon.sprite = weapon.Icon;
+        //icon.sprite = weapon.Icon;
         currentDamage.text = weapon.CurrentDamage.ToString();
         UpdateHighlight();
     }

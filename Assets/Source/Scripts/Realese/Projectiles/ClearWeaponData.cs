@@ -1,7 +1,7 @@
-
-
+using System;
 using UnityEngine;
 
+[Serializable]
 public class ClearWeaponData
 {
     public ClearWeaponData(WeaponData weaponData)
@@ -9,11 +9,9 @@ public class ClearWeaponData
         BaseDamage = weaponData.baseDamage;
         UpgradeLevel = weaponData.upgradeLevel;
         CurrentDamage = weaponData.currentDamage;
-        Icon = weaponData.icon;
     }
 
-    public int BaseDamage { get; set; }
-    public int UpgradeLevel { get; set; }
-    public int CurrentDamage { get; set; }
-    public Sprite Icon { get; set; }
+    public int BaseDamage;
+    public int UpgradeLevel;
+    public int CurrentDamage;
 }

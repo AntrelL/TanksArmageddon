@@ -2874,6 +2874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delay: 0.05
+  _text: {fileID: 0}
 --- !u!114 &600745202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10687,6 +10688,10 @@ PrefabInstance:
     - target: {fileID: 6701143332466249443, guid: b879d008ac48dc7458c0e820fd064eee, type: 3}
       propertyPath: _maxHealth
       value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6701143332466249443, guid: b879d008ac48dc7458c0e820fd064eee, type: 3}
+      propertyPath: _movementForce
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 6701143332466249443, guid: b879d008ac48dc7458c0e820fd064eee, type: 3}
       propertyPath: _availableTravelTime
@@ -19000,7 +19005,7 @@ MonoBehaviour:
   _centerOfMass: {fileID: 0}
   _rigidbody2D: {fileID: 199565089671691714}
   _tank: {fileID: 2118787033623540613}
-  _force: 70
+  _force: 120
   _maxSpeed: 4
   _availableTravelTime: 20
   _landLayer:
@@ -31222,8 +31227,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1197513913939563125}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.20899484, w: 0.9779168}
-  m_LocalPosition: {x: -37.38686, y: -2.08, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.07462584, w: 0.99721164}
+  m_LocalPosition: {x: -25.288673, y: -5.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -31234,7 +31239,7 @@ Transform:
   - {fileID: 4260094857375308852}
   - {fileID: 1529791130543962803}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -24.127}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -8.559}
 --- !u!222 &7733286411181372836
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -48390,7 +48395,7 @@ MonoBehaviour:
   _healthSlider: {fileID: 5258869611693459355}
   _smoothSpeed: 5
   _valueText: {fileID: 996638380847818350}
-  _offset: {x: 0, y: 5, z: 0}
+  _offset: {x: 0, y: 6, z: 0}
 --- !u!1 &9042819563987253369
 GameObject:
   m_ObjectHideFlags: 0

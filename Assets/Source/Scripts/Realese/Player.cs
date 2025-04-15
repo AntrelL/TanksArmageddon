@@ -134,6 +134,7 @@ namespace TanksArmageddon
                 if (hit.collider == null)
                 {
                     _rigidbody2D.AddForceAtPosition(horizontalInput * Vector2.right * _force, _selectedPointPosition);
+                    _rigidbody2D.gravityScale = 10f;
                     hit = Physics2D.Raycast(_centerPoint.position, -Vector2.up, _checkRaycastLenght, _landLayer);
                 }
 
@@ -141,6 +142,7 @@ namespace TanksArmageddon
 
                 if (hit.collider != null)
                 {
+                    _rigidbody2D.gravityScale = 1f;
                     direction = Vector2.right * horizontalInput;
                     direction = direction - (Vector2.Dot(direction, hit.normal) * hit.normal);
                 }

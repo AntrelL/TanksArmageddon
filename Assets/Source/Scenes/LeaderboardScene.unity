@@ -7965,6 +7965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6cb4c799b91e3479fc7fad98538e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _helpViewCanvas: {fileID: 0}
 --- !u!4 &803414376599463298
 Transform:
   m_ObjectHideFlags: 0
@@ -8833,6 +8834,6 @@ SceneRoots:
   - {fileID: 6104687797962636626}
   - {fileID: 875926191}
   - {fileID: 1275988318}
-  - {fileID: 2684242720323911603}
   - {fileID: 951424423}
   - {fileID: 2079471119}
+  - {fileID: 2684242720323911603}

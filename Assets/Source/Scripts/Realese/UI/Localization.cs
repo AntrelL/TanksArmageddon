@@ -22,8 +22,8 @@ public class Localization : MonoBehaviour
 
     private void ChangeLanguage()
     {
-        string languageCode = YG2.envir.language;
-
+        //string languageCode = YG2.envir.language;
+        string languageCode = Turkish;
         Debug.LogError("languageCode: " + languageCode);
         Debug.Log("languageCode: " + languageCode);
 

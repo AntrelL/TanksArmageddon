@@ -2856,6 +2856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delay: 0.05
+  _text: {fileID: 0}
 --- !u!114 &600745202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10669,6 +10670,10 @@ PrefabInstance:
     - target: {fileID: 6701143332466249443, guid: b879d008ac48dc7458c0e820fd064eee, type: 3}
       propertyPath: _maxHealth
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6701143332466249443, guid: b879d008ac48dc7458c0e820fd064eee, type: 3}
+      propertyPath: _movementForce
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 6701143332466249443, guid: b879d008ac48dc7458c0e820fd064eee, type: 3}
       propertyPath: _availableTravelTime
@@ -18962,7 +18967,7 @@ MonoBehaviour:
   _centerOfMass: {fileID: 0}
   _rigidbody2D: {fileID: 199565089671691714}
   _tank: {fileID: 2118787033623540613}
-  _force: 70
+  _force: 120
   _maxSpeed: 4
   _availableTravelTime: 15
   _landLayer:

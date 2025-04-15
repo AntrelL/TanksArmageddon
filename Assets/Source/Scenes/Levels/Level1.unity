@@ -10580,6 +10580,10 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 7719935703618628171}
+    - target: {fileID: 6701143332466249443, guid: b879d008ac48dc7458c0e820fd064eee, type: 3}
+      propertyPath: _movementForce
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 8841997395530360643, guid: b879d008ac48dc7458c0e820fd064eee, type: 3}
       propertyPath: _player
       value: 
@@ -18868,8 +18872,8 @@ MonoBehaviour:
   _centerOfMass: {fileID: 0}
   _rigidbody2D: {fileID: 199565089671691714}
   _tank: {fileID: 2118787033623540613}
-  _force: 70
-  _maxSpeed: 2
+  _force: 120
+  _maxSpeed: 4
   _availableTravelTime: 10
   _landLayer:
     serializedVersion: 2

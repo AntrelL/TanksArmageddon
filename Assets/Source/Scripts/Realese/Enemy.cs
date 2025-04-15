@@ -114,17 +114,21 @@ public class Enemy : MonoBehaviour
             _isAlive = false;
             gameObject.SetActive(false);
             Defeated?.Invoke();
+
             return;
         }
 
         if (_movementTimeUsed >= _availableTravelTime || _moveDirection == 0f)
         {
             _rigidbody2D.drag = 100f;
+            //_rigidbody2D.gravityScale = 100f;
             _tank.Idle();
+
             return;
         }
 
-        // New Physics, borrowed from the superior being (player)
+
+        // New Physics
         _rigidbody2D.centerOfMass = _centerPoint.localPosition;
 
         _rigidbody2D.drag = _baseDrag;
@@ -136,6 +140,7 @@ public class Enemy : MonoBehaviour
         {
             // Если точка не над землей — всё равно толкаем
             _rigidbody2D.AddForceAtPosition(_moveDirection * Vector2.right * _movementForce, _selectedPointPosition);
+            _rigidbody2D.gravityScale = 10f;
             hit = Physics2D.Raycast(_centerPoint.position, -Vector2.up, _checkRaycastLenght, _landLayer);
         }
 
@@ -143,6 +148,7 @@ public class Enemy : MonoBehaviour
 
         if (hit.collider != null)
         {
+            _rigidbody2D.gravityScale = 1f;
             direction = Vector2.right * _moveDirection;
             direction = direction - (Vector2.Dot(direction, hit.normal) * hit.normal);
         }

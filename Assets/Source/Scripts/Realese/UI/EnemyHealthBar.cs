@@ -23,7 +23,7 @@ public class EnemyHealthBar : MonoBehaviour
         _healthSlider.value = _maxHealth;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         MoveSlider();
 

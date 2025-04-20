@@ -1,0 +1,3 @@
+Build path: C:/Data/Projects/TanksArmageddon/Builds/TanksArmageddon
+Build number: 1
+PluginYG version: 2.0032

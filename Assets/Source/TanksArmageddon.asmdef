@@ -1,0 +1,16 @@
+{
+    "name": "TanksArmageddon",
+    "rootNamespace": "TanksArmageddon",
+    "references": [
+        "GUID:872248d673654eb4c956c95c5aec7ba9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

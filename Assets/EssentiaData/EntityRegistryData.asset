@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0645b3d8774716f4ab8cd17bddf8e539, type: 3}
   m_Name: EntityRegistryData
   m_EditorClassIdentifier: 
-  Connections: []
+  Connections:
+  - <TypeName>k__BackingField: TanksArmageddon.MainCamera
+    <Address>k__BackingField: Assets/Source/Prefabs/MainCamera.prefab
+  - <TypeName>k__BackingField: TanksArmageddon.EventSystem
+    <Address>k__BackingField: Assets/Source/Prefabs/EventSystem.prefab
+  - <TypeName>k__BackingField: TanksArmageddon.ShopScreen
+    <Address>k__BackingField: Assets/Source/Prefabs/UI/ShopScreen.prefab
+  - <TypeName>k__BackingField: TanksArmageddon.HangarScreen
+    <Address>k__BackingField: Assets/Source/Prefabs/UI/HangarScreen.prefab
+  - <TypeName>k__BackingField: TanksArmageddon.LevelsScreen
+    <Address>k__BackingField: Assets/Source/Prefabs/UI/LevelsScreen.prefab

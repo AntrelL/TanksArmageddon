@@ -16,7 +16,37 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: b98dfb2fb51c40442928df0093747333
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: fc2c39ecac549bf4788aa3675efcd17a
+    m_Address: Assets/Source/Prefabs/MainCamera.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3058183c3b134604f8f417c20ba09a51
+    m_Address: Assets/Source/Prefabs/EventSystem.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b696a36ecdf6b7344b8ce4530af59477
+    m_Address: Assets/Source/Prefabs/UI/Screen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 079cc1f2bef9ce44480704f322749388
+    m_Address: Assets/Source/Prefabs/UI/ShopScreen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 30b5c7a86ec8c4847ac6e7c7a85e8c56
+    m_Address: Assets/Source/Prefabs/UI/HangarScreen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 838202e000a5e4a4687951f5f63b5fc5
+    m_Address: Assets/Source/Prefabs/UI/LevelsScreen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 94f5e6e2dad5981419eff0ccbe7c67dd, type: 2}
   m_SchemaSet:

@@ -53,4 +53,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Source/Scenes/Levels/Level10.unity
     guid: fa762ff0de155804eb9470e5bd031bb9
+  - enabled: 1
+    path: Assets/Plugins/CW/LeanLocalization/Examples/_13_Debug.unity
+    guid: d6f200068a4b64744a766b811bdac677
+  - enabled: 1
+    path: Assets/PluginYourGames/Modules/EnvirData/Example/Scenes/Envir.unity
+    guid: b3fec4fa919d3444e803a6c7a94d28eb
+  - enabled: 1
+    path: Assets/Source/Scenes/ShootingTestScene.unity
+    guid: 618196e42cde8d4489ad2b96ded76a50
+  - enabled: 1
+    path: Assets/Source/Scenes/ZeroScene.unity
+    guid: 8d39f994c10691d459b808ba8b7f0691
+  - enabled: 1
+    path: Assets/PluginYourGames/Example/Scenes/ExampleYG2.unity
+    guid: e49bf7e58fdb4db4c9df51f0ddb8f327
+  - enabled: 1
+    path: Assets/Plugins/CW/LeanLocalization/Examples/_10_Organization.unity
+    guid: b3f50b2baaf503346a06be10a85ecea0
   m_configObjects: {}

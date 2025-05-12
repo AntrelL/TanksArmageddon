@@ -572,7 +572,7 @@ PlayerSettings:
     Stadia: DOTWEEN
     Standalone: DOTWEEN
     VisionOS: DOTWEEN
-    WebGL: DOTWEEN;PLUGIN_YG_2;TMP_YG2;InterstitialAdv_yg;RewardedAdv_yg;RU_YG2;Authorization_yg;Leaderboards_yg;Storage_yg;YandexGamesPlatform_yg;EnvirData_yg
+    WebGL: DOTWEEN;PLUGIN_YG_2;TMP_YG2;InterstitialAdv_yg;RewardedAdv_yg;RU_YG2;Authorization_yg;Leaderboards_yg;Storage_yg;EnvirData_yg;YandexGamesPlatform_yg
     Windows Store Apps: DOTWEEN
     XboxOne: DOTWEEN
     iPhone: DOTWEEN

@@ -70,6 +70,10 @@ sysinfo.txt
 *.unitypackage.meta
 *.app
 
+# YG2 plugin build cache file
+BuildLogYG2.txt
+BuildLogYG2.txt.meta
+
 # Crashlytics generated file
 crashlytics-build.properties
 

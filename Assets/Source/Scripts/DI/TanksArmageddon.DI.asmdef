@@ -1,0 +1,18 @@
+{
+    "name": "TanksArmageddon.DI",
+    "rootNamespace": "TanksArmageddon.DI",
+    "references": [
+        "GUID:d704fc4db3e2d15439905747abdcc350",
+        "GUID:3e756cf2fb90b9d47a9d9e5d133c7948",
+        "GUID:4968aca6274cc6b48a00e22401504457"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -13,10 +13,10 @@ namespace IJunior.TypedScenes
     using UnityEngine.SceneManagement;
     
     
-    public class ShootingTestScene : TypedScene
+    public class _09_CSV : TypedScene
     {
         
-        private const string _sceneName = "ShootingTestScene";
+        private const string _sceneName = "_09_CSV";
         
         public static void Load(LoadSceneMode loadSceneMode = LoadSceneMode.Single)
         {

@@ -1,15 +1,12 @@
 using IJunior.TypedScenes;
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.UIElements;
 using YG;
 
 public class MainSceneNavigationManager : MonoBehaviour
 {
     [SerializeField] private GameObject _authView;
-    [SerializeField] private AdService _adService;
     [SerializeField] private GameObject _levelsBlockSprite;
 
 

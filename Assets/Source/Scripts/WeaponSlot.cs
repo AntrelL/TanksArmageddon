@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
 
 public class WeaponSlot : MonoBehaviour
 {
@@ -17,7 +15,6 @@ public class WeaponSlot : MonoBehaviour
 
     public void SetWeaponData(ClearWeaponData weapon)
     {
-        //icon.sprite = weapon.Icon;
         currentDamage.text = weapon.CurrentDamage.ToString();
         UpdateHighlight();
     }
@@ -27,7 +24,6 @@ public class WeaponSlot : MonoBehaviour
         if (_isSelected)
         {
             UpdateHighlight();
-
         }
     }
 

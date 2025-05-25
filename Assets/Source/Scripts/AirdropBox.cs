@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TanksArmageddon;
 using UnityEngine;
 
@@ -11,17 +9,11 @@ public class AirdropBox : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        /*if (collision.gameObject.TryGetComponent(out Land land))
-        {
-            Debug.Log("Касаемся только земли!");
-            return;
-        }*/
-
         if (collision.gameObject.TryGetComponent(out Player player))
         {
             OnAirDropCollected?.Invoke(collision.gameObject);
             PlayerPickedUpAirdrop?.Invoke(GenerateRandomWeaponIndex());
-            Debug.Log("Если соприкоснулись с игроком");
+
             Destroy(gameObject);
 
             return;
@@ -31,14 +23,12 @@ public class AirdropBox : MonoBehaviour
         {
             OnAirDropCollected?.Invoke(collision.gameObject);
             Destroy(gameObject);
-            Debug.Log("Если соприкоснулись с врагом");
 
             return;
         }
 
         if (collision.gameObject.TryGetComponent(out EdgeOfMap edgeOfMap))
         {
-            Debug.Log("Hit edge of map");
             Destroy(gameObject);
 
             return;

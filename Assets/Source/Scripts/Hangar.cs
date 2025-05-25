@@ -1,6 +1,6 @@
-using UnityEngine;
-using TMPro;
 using System;
+using TMPro;
+using UnityEngine;
 using YG;
 
 public class Hangar : MonoBehaviour
@@ -28,9 +28,7 @@ public class Hangar : MonoBehaviour
     {
         for (int i = 0; i < _upgradeIndicators.Length; i++)
         {
-            //ClearWeaponData weaponData = GameManager.Instance.GetWeaponData(i);
             ClearWeaponData weaponData = YG2.saves.clearWeaponsData[i];
-            //int currentCardCount = GameManager.Instance.GetCardCount(i);
             int currentCardCount = YG2.saves.weaponCardCounts[i];
 
             int currentLevel = weaponData.UpgradeLevel;
@@ -51,8 +49,6 @@ public class Hangar : MonoBehaviour
     {
         for (int i = 0; i < _weaponCardTexts.Length; i++)
         {
-            //ClearWeaponData weaponData = YG2.saves.clearWeaponsData[i];
-            //int currentCardCount = GameManager.Instance.GetCardCount(i);
             int currentCardCount = YG2.saves.weaponCardCounts[i];
             int currentLevel = YG2.saves.clearWeaponsData[i].UpgradeLevel;
 
@@ -72,7 +68,6 @@ public class Hangar : MonoBehaviour
     {
         if (weaponIndex >= 0 && weaponIndex < _weaponDamageTexts.Length)
         {
-            //ClearWeaponData weaponData = YG2.saves.clearWeaponsData[weaponIndex];
             _weaponDamageTexts[weaponIndex].text = $"{YG2.saves.clearWeaponsData[weaponIndex].CurrentDamage}";
         }
     }
@@ -89,13 +84,6 @@ public class Hangar : MonoBehaviour
     {
         if (weaponIndex >= 0 && weaponIndex < _weaponLevelTexts.Length)
         {
-            //ClearWeaponData weaponData = GameManager.Instance.GetWeaponData(weaponIndex);
-            //ClearWeaponData weaponData = YG2.saves.clearWeaponsData[weaponIndex];
-
-            //if (weaponData != null)
-            //{
-            //_weaponLevelTexts[weaponIndex].text = $"{weaponData.UpgradeLevel}";
-            // }
             int level = YG2.saves.clearWeaponsData[weaponIndex].UpgradeLevel;
             _weaponLevelTexts[weaponIndex].text = $"{level}";
         }
@@ -112,18 +100,9 @@ public class Hangar : MonoBehaviour
     public void SelectAndUpgradeWeapon(int weaponIndex)
     {
         ButtonClicked?.Invoke();
-        //ClearWeaponData selectedWeaponData = YG2.saves.clearWeaponsData[weaponIndex];
 
-        /*if (selectedWeaponData == null)
-        {
-            Debug.LogError($"Weapon data not found for the given weapon index: {weaponIndex}");
-            return;
-        }*/
-
-        //int currentCardCount = GameManager.Instance.GetCardCount(weaponIndex);
         int currentCardCount = YG2.saves.weaponCardCounts[weaponIndex];
-        Debug.Log("currentCardCount: " + currentCardCount);
-        //int currentLevel = selectedWeaponData.UpgradeLevel;
+        
         int currentLevel = YG2.saves.clearWeaponsData[weaponIndex].UpgradeLevel;
 
         if (YG2.saves.clearWeaponsData[weaponIndex].UpgradeLevel < _requiredCardsForNextLevel.Length)
@@ -132,31 +111,19 @@ public class Hangar : MonoBehaviour
 
             if (currentCardCount >= cardsNeeded)
             {
-                //GameManager.Instance.SetCardCount(weaponIndex, currentCardCount - cardsNeeded);
                 YG2.saves.weaponCardCounts[weaponIndex] = currentCardCount - cardsNeeded;
                 YG2.saves.clearWeaponsData[weaponIndex].UpgradeLevel = currentLevel + 1;
 
                 YG2.saves.clearWeaponsData[weaponIndex].CurrentDamage = Mathf.RoundToInt(YG2.saves.clearWeaponsData[weaponIndex].BaseDamage * _damageMultipliers[currentLevel]);
-                Debug.Log($"Weapon {weaponIndex + 1} upgraded to level {YG2.saves.clearWeaponsData[weaponIndex].UpgradeLevel}!");
-
-                //YG2.saves.clearWeaponsData[weaponIndex].CurrentDamage = YG2.saves.clearWeaponsData[weaponIndex].CurrentDamage;
-                //YG2.saves.clearWeaponsData[weaponIndex].UpgradeLevel = currentLevel;
                 YG2.SaveProgress();
                 UpdateWeaponLevelText(weaponIndex);
                 UpdateWeaponDamageText(weaponIndex);
                 UpdateUpgradeIndicators();
                 UpdateCardInfoUI();
             }
-            else
-            {
-                Debug.LogError($"Not enough cards for weapon {weaponIndex + 1}. " +
-                               $"You have {currentCardCount}, but need {cardsNeeded}.");
-            }
         }
         else
         {
-            //_weaponCardTexts[weaponIndex].gameObject.SetActive(false);
-            Debug.LogError($"Weapon {weaponIndex + 1} is already at max level.");
             YG2.SaveProgress();
         }
     }

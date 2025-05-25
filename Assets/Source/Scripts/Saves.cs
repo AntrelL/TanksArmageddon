@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace YG
 {
     public partial class SavesYG
@@ -22,26 +20,6 @@ namespace YG
     public partial class SavesYG
     {
         public ClearWeaponData[] clearWeaponsData;
-
-        //Weapon01
-        //currentDamage = 100;
-        //upgradeLevel = 0;
-
-        //Weapon02
-        //currentDamage = 110;
-        //upgradeLevel = 1;
-
-        //Weapon03
-        //currentDamage = 200;
-        //upgradeLevel = 0;
-
-        //Weapon04
-        //currentDamage = 500;
-        //upgradeLevel = 0;
-
-        //Weapon05
-        //currentDamage = 300;
-        //upgradeLevel = 0;
     }
 }
 

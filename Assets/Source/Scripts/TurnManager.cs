@@ -1,8 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Collections;
+using System;
 using TanksArmageddon;
+using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
@@ -83,7 +83,6 @@ public class TurnManager : MonoBehaviour
     {
         _turnCount++;
         CurrentTurnIsPlayer = true;
-        Debug.Log($"[Ход {_turnCount}] Ход игрока начался");
 
         TurnStarted?.Invoke(_player.transform);
         UnblockPlayerControls(true);
@@ -130,7 +129,6 @@ public class TurnManager : MonoBehaviour
             }
         }
 
-        Debug.Log($"[Ход {_turnCount}] Ход игрока завершён");
         PlayerTurnFinished?.Invoke();
         CompletedTurns?.Invoke(_turnCount);
         CurrentTurnIsPlayer = false;
@@ -139,7 +137,6 @@ public class TurnManager : MonoBehaviour
     private IEnumerator EnemyTurn(Enemy enemy)
     {
         _turnCount++;
-        Debug.Log($"[Ход {_turnCount}] Ход врага {enemy.name}");
 
         TurnStarted?.Invoke(enemy.transform);
 
@@ -151,7 +148,6 @@ public class TurnManager : MonoBehaviour
         }
 
         CompletedTurns?.Invoke(_turnCount);
-        Debug.Log($"[Ход {_turnCount}] Ход врага {enemy.name} завершён");
     }
 
     private Enemy GetLastActiveEnemy()
@@ -207,7 +203,6 @@ public class TurnManager : MonoBehaviour
 
         _allEnemiesDead = true;
         AllEnemiesDead?.Invoke();
-        Debug.Log($"Все враги мертвы. Общее число ходов: {_turnCount}");
     }
 
     private void UnblockPlayerControls(bool canControl)

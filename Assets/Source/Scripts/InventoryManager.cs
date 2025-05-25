@@ -1,14 +1,11 @@
-using DG.Tweening;
-using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System;
 using UnityEngine.UI;
+using UnityEngine;
 using YG;
-using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
-    [SerializeField] private AdService _adService;
     [SerializeField] private GameObject _inventoryPanel;
     [SerializeField] private List<WeaponSlot> _weaponSlots;
     [SerializeField] private List<WeaponData> _weaponsList;

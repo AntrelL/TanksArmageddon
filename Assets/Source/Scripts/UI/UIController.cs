@@ -1,12 +1,11 @@
 using IJunior.TypedScenes;
-using TanksArmageddon;
-using System;
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
-using TMPro;
 using System.Collections;
+using System;
+using TanksArmageddon;
+using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine;
 using YG;
 
 public class UIController : MonoBehaviour

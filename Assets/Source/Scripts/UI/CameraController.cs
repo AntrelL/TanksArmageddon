@@ -1,9 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using TanksArmageddon;
-using UnityEngine;
+using System.Collections;
+using System;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {

@@ -1,4 +1,3 @@
-
 using Lean.Localization;
 using UnityEngine;
 using YG;
@@ -16,15 +15,12 @@ public class Localization : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("TRY TO CHANGE LANGUAGE");
         ChangeLanguage();
     }
 
     private void ChangeLanguage()
     {
         string languageCode = YG2.envir.language;
-        Debug.LogError("languageCode: " + languageCode);
-        Debug.Log("languageCode: " + languageCode);
 
         switch (languageCode)
         {

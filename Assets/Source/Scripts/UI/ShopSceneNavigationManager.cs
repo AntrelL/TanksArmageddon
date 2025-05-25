@@ -27,7 +27,6 @@ public class ShopSceneNavigationManager : MonoBehaviour
     {
         YG2.SaveProgress();
         ButtonClicked?.Invoke();
-        Debug.Log("Load MainScene");
         MainScene.Load();
     }
 }

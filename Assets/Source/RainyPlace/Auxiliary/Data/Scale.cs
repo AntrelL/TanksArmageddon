@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RainyPlace
+﻿namespace RainyPlace
 {
     public struct Scale
     {

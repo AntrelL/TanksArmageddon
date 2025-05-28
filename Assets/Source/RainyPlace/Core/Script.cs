@@ -4,8 +4,8 @@ namespace RainyPlace.Core
 {
     public class Script
     {
-        private readonly Contract EnableContract = new("The object is already enabled");
-        private readonly Contract DisableContract = new("The object is already disabled");
+        private readonly Contract _enableContract = new("The object is already enabled");
+        private readonly Contract _disableContract = new("The object is already disabled");
 
         private EventLinker _eventLinker = new();
 
@@ -13,7 +13,7 @@ namespace RainyPlace.Core
 
         public void Enable()
         {
-            if (EnableContract.CheckViolation(IsEnabled)) 
+            if (_enableContract.CheckViolation(IsEnabled)) 
                 return;
 
             IsEnabled = true;
@@ -24,7 +24,7 @@ namespace RainyPlace.Core
 
         public void Disable()
         {
-            if (DisableContract.CheckViolation(IsEnabled == false))
+            if (_disableContract.CheckViolation(IsEnabled == false))
                 return;
 
             IsEnabled = false;

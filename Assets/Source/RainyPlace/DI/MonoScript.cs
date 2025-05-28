@@ -5,7 +5,7 @@ namespace RainyPlace.DI
 {
     public class MonoScript : MonoBehaviour
     {
-        private readonly Contract ConstructorCallContract = 
+        private readonly Contract _constructorCallContract = 
             new("The constructor can only be called once");
 
         private bool _isUnprocessedOnEnable = false;
@@ -25,7 +25,7 @@ namespace RainyPlace.DI
 
         protected void OnConstructed()
         {
-            if (ConstructorCallContract.CheckViolation(IsConstructed))
+            if (_constructorCallContract.CheckViolation(IsConstructed))
                 return;
 
             IsConstructed = true;

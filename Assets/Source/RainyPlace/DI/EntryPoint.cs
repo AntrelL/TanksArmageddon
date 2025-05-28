@@ -1,0 +1,36 @@
+﻿using UnityEngine;
+
+namespace RainyPlace.DI
+{
+    public abstract class EntryPoint : MonoScript
+    {
+        protected const int ExecutionOrderValue = -9000;
+
+        private readonly Contract AttributeQuantityContract = 
+            new(" has no established order of execution", severity: ContractSeverity.Warning);
+
+        private readonly Contract ExecutionOrderContract =
+            new($" must have an execution order of {ExecutionOrderValue} " +
+                $"(const {nameof(ExecutionOrderValue)})", severity: ContractSeverity.Warning);
+
+        private void OnValidate() => CheckExecutionOrder();
+
+        private void Awake() => Construct();
+
+        protected abstract void Construct();
+
+        private void CheckExecutionOrder()
+        {
+            object[] attributes = GetType().GetCustomAttributes(typeof(DefaultExecutionOrder), false);
+            string typeName = GetType().Name;
+
+            if (AttributeQuantityContract.CheckViolation(attributes.Length == 0, prefix: typeName))
+                return;
+
+            int executionOrder = ((DefaultExecutionOrder)attributes[0]).order;
+
+            if (ExecutionOrderContract.CheckViolation(executionOrder != ExecutionOrderValue, prefix: typeName))
+                return;
+        }
+    }
+}

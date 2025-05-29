@@ -1,3 +1,4 @@
+using RainyPlace.DI;
 using RainyPlace.UI;
 using System;
 using UnityEngine;

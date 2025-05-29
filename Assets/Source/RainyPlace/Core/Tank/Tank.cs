@@ -1,3 +1,5 @@
+using RainyPlace.DI;
+
 namespace RainyPlace.Core
 {
     public class Tank : Script

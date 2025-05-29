@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RainyPlace.Core
+namespace RainyPlace.DI
 {
     public class Script
     {

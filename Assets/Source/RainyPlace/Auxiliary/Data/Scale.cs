@@ -10,13 +10,19 @@ namespace RainyPlace
         private T _min;
         private T _max;
 
+        private bool _autoRangeLimitation;
         private Event<T> _changed;
 
-        public Scale(T value, T min, T max)
+        public Scale(T value, T min, T max, bool autoRangeLimitation = false)
         {
+            _autoRangeLimitation = autoRangeLimitation;
+
             SetValues(value, min, max);
             _changed = new();
         }
+
+        public Scale(IReadOnlyScale<T> sample, bool autoRangeLimitation = false) : 
+            this(sample.Value, sample.Min, sample.Max, autoRangeLimitation) { }
 
         public T Value 
         { 
@@ -42,10 +48,18 @@ namespace RainyPlace
 
         protected abstract bool IsInRange(T value, T min, T max);
 
+        protected abstract T Clamp(T value, T min, T max);
+
         private void SetValues(T value, T min, T max)
         {
             bool isInRange = IsInRange(value, min, max);
             string postfix = ToString(value, min, max);
+
+            if (_autoRangeLimitation && isInRange == false)
+            {
+                value = Clamp(value, min, max);
+                isInRange = true;
+            }
 
             if (_valueInRangeContract.CheckViolation(isInRange == false, postfix: postfix))
                 return;

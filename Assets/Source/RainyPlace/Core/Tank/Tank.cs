@@ -5,12 +5,17 @@ namespace RainyPlace.Core
     public class Tank : Script
     {
         private ITankController _controller;
+        private Health _health;
 
-        public Tank(ITankController controller)
+        public Tank(ITankController controller, IReadOnlyScale<int> healthSettings)
         {
             _controller = controller;
+            _health = new(healthSettings);
+
             Link(_controller.ShotActivated, Shoot);
         }
+
+        public IProtectedHealth Health => _health;
 
         public override void Update(float deltaTime)
         {

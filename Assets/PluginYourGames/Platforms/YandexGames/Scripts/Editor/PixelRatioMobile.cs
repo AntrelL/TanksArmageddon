@@ -1,4 +1,4 @@
-﻿#if YandexGamesPlatform_yg
+﻿#if (UNITY_EDITOR && YandexGamesPlatform_yg)
 namespace YG.EditorScr.BuildModify
 {
     public partial class ModifyBuild

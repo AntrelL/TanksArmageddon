@@ -1,4 +1,4 @@
-﻿#if YandexGamesPlatform_yg
+﻿#if (UNITY_EDITOR && YandexGamesPlatform_yg)
 using UnityEngine;
 
 namespace YG.EditorScr.BuildModify

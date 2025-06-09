@@ -1,4 +1,4 @@
-﻿#if YandexGamesPlatform_yg
+﻿#if (UNITY_EDITOR && YandexGamesPlatform_yg)
 using System.IO;
 using UnityEngine;
 

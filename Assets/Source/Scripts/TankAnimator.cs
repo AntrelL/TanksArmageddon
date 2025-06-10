@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Assets.Constructors.FuturisticTanks.Scripts
 {
-    public class Tank : MonoBehaviour
+    public class TankAnimator : MonoBehaviour
     {
         public Animator Animator;
 

@@ -11,14 +11,18 @@ namespace TanksArmageddon
     {
         [SerializeField] private Transform _centerOfMass;
         [SerializeField] private Rigidbody2D _rigidbody2D;
-        [SerializeField] private Tank _tank;
+        [SerializeField] private TankAnimator _tank;
+        [SerializeField] private LayerMask _landLayer;
+
         [SerializeField] private float _force;
         [SerializeField] private float _maxSpeed;
         [SerializeField] private float _availableTravelTime;
-        [SerializeField] private LayerMask _landLayer;
+
         [SerializeField] private Slider _petrolTank;
+
         [SerializeField] private Button _leftButton;
         [SerializeField] private Button _rightButton;
+
         [SerializeField] private CameraController _cameraController;
         [SerializeField] private ParticleSystem _hitFX;
 
@@ -216,17 +220,13 @@ namespace TanksArmageddon
 
         public void PlayHitEffect(Vector3 hitPosition)
         {
-            if (_isAlive == true)
-            {
-                PlayerHit?.Invoke();
-                ParticleSystem flash = Instantiate(_hitFX, hitPosition, Quaternion.identity);
-                flash.Play();
-                Destroy(flash.gameObject, flash.main.duration);
-            }
-            else
-            {
+            if (_isAlive == false)
                 return;
-            }
+
+            PlayerHit?.Invoke();
+            ParticleSystem flash = Instantiate(_hitFX, hitPosition, Quaternion.identity);
+            flash.Play();
+            Destroy(flash.gameObject, flash.main.duration);
         }
     }
 }

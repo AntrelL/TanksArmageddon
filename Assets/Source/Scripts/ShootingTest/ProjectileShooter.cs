@@ -11,7 +11,7 @@ public class ProjectileShooter2D : MonoBehaviour
     [SerializeField] private float _initialSpeed = 15f;
     [SerializeField] private Transform _player;
     [SerializeField] private ParticleSystem _muzzleFlash;
-    [SerializeField] private Tank _enemyTank;
+    [SerializeField] private TankAnimator _enemyTank;
     [SerializeField] private TurnManager _turnManager;
 
     [Header("Поворот пушки")]

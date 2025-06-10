@@ -5,7 +5,7 @@ using UnityEngine;
 public class Shoot : MonoBehaviour
 {
     [SerializeField] private GameObject _bulletPrefab;
-    [SerializeField] private Tank _tank;
+    [SerializeField] private TankAnimator _tank;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private ParticleSystem _muzzleFlash;
     [SerializeField] private Camera _mainCamera;

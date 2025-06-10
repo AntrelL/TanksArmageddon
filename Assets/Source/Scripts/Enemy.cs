@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _hitFX;
     [SerializeField] public int _maxHealth;
-    [SerializeField] private Tank _tank;
+    [SerializeField] private TankAnimator _tank;
     [SerializeField] private float _movementForce = 15f;
     [SerializeField] private float _maxSpeed = 5f;
     [SerializeField] private Rigidbody2D _rigidbody2D;

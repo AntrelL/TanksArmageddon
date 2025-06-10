@@ -3,6 +3,7 @@ using System;
 using UnityEngine.UI;
 using UnityEngine;
 using YG;
+using UnityEngine.SceneManagement;
 
 public class InventoryManager : MonoBehaviour
 {

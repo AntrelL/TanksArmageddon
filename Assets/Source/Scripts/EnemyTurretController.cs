@@ -9,7 +9,7 @@ public class EnemyTurretController : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private ParticleSystem _muzzleFlash;
     [SerializeField] private float _aimDuration = 1f;
-    [SerializeField] private Tank _tank;
+    [SerializeField] private TankAnimator _tank;
     [SerializeField] private float _minAngle = -30f;
     [SerializeField] private float _maxAngle = 30f;
     [SerializeField] private DefaultProjectile _projectilePrefab;

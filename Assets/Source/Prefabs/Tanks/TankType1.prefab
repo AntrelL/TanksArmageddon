@@ -1003,7 +1003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 5.261719e-25
-  m_labelHash: -1.3936018e+32
+  m_labelHash: 0.00000040954276
   m_SpriteKey: 0
   m_SpriteHash: 514190838
 --- !u!1 &8079886445228046934
@@ -1128,7 +1128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 5.261719e-25
-  m_labelHash: -1.3936018e+32
+  m_labelHash: 0.00000040954276
   m_SpriteKey: 0
   m_SpriteHash: 514190838
 --- !u!1 &9054272992813631595
@@ -1177,10 +1177,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 9054272992813631595}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b0c9340f5529454b893aaf441ad27f8, type: 3}
+  m_Script: {fileID: 11500000, guid: bf8822bab5ec64645b486c1ea2519eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Animator: {fileID: 7214976635818736605}
+  Animator: {fileID: 0}
 --- !u!210 &8054421951131874341
 SortingGroup:
   m_ObjectHideFlags: 0

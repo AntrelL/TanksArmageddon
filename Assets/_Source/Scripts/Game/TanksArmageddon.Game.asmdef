@@ -1,7 +1,9 @@
 {
     "name": "TanksArmageddon.Game",
     "rootNamespace": "TanksArmageddon",
-    "references": [],
+    "references": [
+        "GUID:c02dd7af233b58b46a106b11eb0e9b88"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5053241836000675488}
   - component: {fileID: 2358995752290952337}
   - component: {fileID: 4210812521258579410}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Track
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,13 +160,13 @@ GameObject:
   - component: {fileID: 6082008006418176714}
   - component: {fileID: 8616189818884498893}
   - component: {fileID: 3921522498702025378}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5245861820090540539
 Transform:
   m_ObjectHideFlags: 0
@@ -195,6 +195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d57b34ffaf182b947891c7cadb386a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxFuel: 5
+  _fuelConsumptionPerSecond: 1
   _tankMovement: {fileID: 8616189818884498893}
   _tankCannon: {fileID: 3921522498702025378}
 --- !u!114 &8616189818884498893
@@ -210,7 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _track: {fileID: 2358995752290952337}
-  _speed: 100
+  _speed: 400
 --- !u!114 &3921522498702025378
 MonoBehaviour:
   m_ObjectHideFlags: 0

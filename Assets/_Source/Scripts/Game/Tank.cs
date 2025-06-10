@@ -1,13 +1,23 @@
+using RainyPlace;
 using UnityEngine;
 
 namespace TanksArmageddon
 {
     public class Tank : MonoBehaviour
     {
+        // TODO: Move to a separate entity
+        [SerializeField] private float _maxFuel;
+        [SerializeField] private float _fuelConsumptionPerSecond;
+        
         [SerializeField] private TankMovement _tankMovement;
         [SerializeField] private TankCannon _tankCannon;
 
         private ITankController _controller;
+        private ScaleFloat _fuelScale;
+        
+        public IReadonlyScaleFloat Fuel => _fuelScale;
+
+        private bool IsFuelEmpty => _fuelScale.Value.ApproximatelyEquals(_fuelScale.Min);
         
         public void Init(ITankController controller)
         {
@@ -15,6 +25,8 @@ namespace TanksArmageddon
             
             _tankMovement.Init();
             _tankCannon.Init();
+
+            _fuelScale = new ScaleFloat(_maxFuel, 0, _maxFuel, true);
         }
 
         private void OnEnable()
@@ -29,7 +41,14 @@ namespace TanksArmageddon
 
         private void Update()
         {
+            if (IsFuelEmpty)
+                return;
+            
+            if (_controller.MovementDirection == 0)
+                return;
+            
             _tankMovement.Move(_controller.MovementDirection, Time.deltaTime);
+            _fuelScale.Value -= _fuelConsumptionPerSecond * Time.deltaTime;
         }
 
         private void Shoot()

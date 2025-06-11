@@ -2,6 +2,7 @@
 
 namespace RainyPlace.Internal
 {
+    // TODO: Add wrappers for conversion
     public abstract class Scale<T, TReadonlyScale> 
         where T : IComparable<T>
         where TReadonlyScale : IReadonlyScale<T>

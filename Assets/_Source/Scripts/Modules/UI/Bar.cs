@@ -1,7 +1,6 @@
-﻿using RainyPlace;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace TanksArmageddon
+namespace RainyPlace.UI
 {
     public class Bar : MonoBehaviour
     {

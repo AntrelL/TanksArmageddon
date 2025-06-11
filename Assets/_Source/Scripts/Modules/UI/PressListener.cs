@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace TanksArmageddon
+namespace RainyPlace.UI
 {
-    // TODO: Move such scripts to separate modules
     public class PressListener : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         public bool IsPressed { get; private set; }

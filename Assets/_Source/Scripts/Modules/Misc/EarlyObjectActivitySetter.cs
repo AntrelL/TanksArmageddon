@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TanksArmageddon
+namespace RainyPlace
 {
     [DefaultExecutionOrder(-9000)]
     public class EarlyObjectActivitySetter : MonoBehaviour

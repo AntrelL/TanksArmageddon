@@ -7,5 +7,6 @@ namespace TanksArmageddon
         event Action ShotActivated;
         
         int MovementDirection { get; }
+        int CannonRotateDirection { get; }
     }
 }

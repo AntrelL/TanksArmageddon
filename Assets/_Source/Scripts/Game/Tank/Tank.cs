@@ -22,9 +22,6 @@ namespace TanksArmageddon
         public void Init(ITankController controller)
         {
             _controller = controller;
-            
-            _tankMovement.Init();
-            _tankCannon.Init();
 
             _fuelScale = new ScaleFloat(_maxFuel, 0, _maxFuel, true);
         }
@@ -41,6 +38,8 @@ namespace TanksArmageddon
 
         private void Update()
         {
+            _tankCannon.Rotate(_controller.CannonRotateDirection, Time.deltaTime);
+            
             if (IsFuelEmpty)
                 return;
             

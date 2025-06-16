@@ -5,26 +5,26 @@ namespace TanksArmageddon
 {
     public class Land : MonoBehaviour
     {
-        [SerializeField] PolygonCollider2D _collider;
-        [SerializeField] MeshFilter _meshFilter;
-        [SerializeField] ColliderRenderer _colliderRenderer;
+        [SerializeField] private PolygonCollider2D _collider;
+        [SerializeField] private MeshFilter _meshFilter;
+        [SerializeField] private ColliderRenderer _colliderRenderer;
 
         public void SetPath(List<List<Point>> paths)
         {
             _collider.pathCount = paths.Count;
 
-            for (int i = 0; i < paths.Count; i++)
+            for (var i = 0; i < paths.Count; i++)
             {
-                List<Vector2> path = new List<Vector2>();
-                
-                for (int p = 0; p < paths[i].Count; p++)
+                var path = new List<Vector2>();
+
+                for (var p = 0; p < paths[i].Count; p++)
                 {
                     path.Add(paths[i][p].Position);
                 }
-                
+
                 _collider.SetPath(i, path);
             }
-            
+
             _colliderRenderer.CreateMesh();
         }
     }

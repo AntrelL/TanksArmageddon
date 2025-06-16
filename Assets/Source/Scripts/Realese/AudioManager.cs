@@ -3,30 +3,29 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    private static AudioManager _instance;
-    public static AudioManager Instance => _instance;
+    [Header("Audio Sources")] [SerializeField]
+    private AudioSource _backgroundMusicSource;
 
-    [Header("Audio Sources")]
-    [SerializeField] private AudioSource _backgroundMusicSource;
     [SerializeField] private AudioSource _sfxSource;
 
-    [Header("Audio Clips")]
-    [SerializeField] private AudioClip _mainBackgroundMusic;
+    [Header("Audio Clips")] [SerializeField]
+    private AudioClip _mainBackgroundMusic;
+
     [SerializeField] private AudioClip _levelFailedSound;
     [SerializeField] private AudioClip _levelFinishedSound;
     [SerializeField] private AudioClip _projectileShootedSound;
     [SerializeField] private AudioClip _tankHittedSound;
     [SerializeField] private AudioClip _buttonClickSound;
 
-    private bool _isMusicOn = true;
+    public static AudioManager Instance { get; private set; }
 
-    public bool IsMusicOn => _isMusicOn;
+    public bool IsMusicOn { get; private set; } = true;
 
     private void Awake()
     {
-        if (_instance == null)
+        if (Instance == null)
         {
-            _instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -93,14 +92,14 @@ public class AudioManager : MonoBehaviour
         _backgroundMusicSource.clip = _mainBackgroundMusic;
         _backgroundMusicSource.loop = true;
         _backgroundMusicSource.Play();
-        _isMusicOn = true;
+        IsMusicOn = true;
     }
 
     private void StopMainMusic()
     {
         if (_backgroundMusicSource == null) return;
         _backgroundMusicSource.Stop();
-        _isMusicOn = false;
+        IsMusicOn = false;
     }
 
     private void OnInBackgroundChange(bool inBackground)
@@ -111,7 +110,7 @@ public class AudioManager : MonoBehaviour
 
     private void PlayLevelFailed()
     {
-        if (_isMusicOn)
+        if (IsMusicOn)
         {
             if (_sfxSource == null || _levelFailedSound == null) return;
             _sfxSource.volume = 0.5f;
@@ -121,7 +120,7 @@ public class AudioManager : MonoBehaviour
 
     private void PlayLevelFinished()
     {
-        if (_isMusicOn)
+        if (IsMusicOn)
         {
             if (_sfxSource == null || _levelFinishedSound == null) return;
             _sfxSource.volume = 0.5f;
@@ -131,7 +130,7 @@ public class AudioManager : MonoBehaviour
 
     private void PlayProjectileShoot()
     {
-        if (_isMusicOn)
+        if (IsMusicOn)
         {
             if (_sfxSource == null || _projectileShootedSound == null) return;
             _sfxSource.volume = 1f;
@@ -141,7 +140,7 @@ public class AudioManager : MonoBehaviour
 
     private void PlayTankHit()
     {
-        if (_isMusicOn)
+        if (IsMusicOn)
         {
             if (_sfxSource == null || _tankHittedSound == null) return;
             _sfxSource.volume = 1f;
@@ -151,7 +150,7 @@ public class AudioManager : MonoBehaviour
 
     private void PlayButtonClick()
     {
-        if (_isMusicOn)
+        if (IsMusicOn)
         {
             if (_sfxSource == null || _buttonClickSound == null) return;
             _sfxSource.volume = 1f;

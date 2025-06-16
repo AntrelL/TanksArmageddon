@@ -11,11 +11,8 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private TypewriterEffect _typewriter;
     [SerializeField] private int _mobileOrPCTipIndex;
 
-    private int _currentIndex = 0;
+    private int _currentIndex;
     private string _currentLanguage = "ru";
-
-    public static event Action<bool> TutorialEnded;
-    public static event Action ButtonClicked;
 
     private void Start()
     {
@@ -38,15 +35,17 @@ public class TutorialManager : MonoBehaviour
         CameraController.ShowTips -= SetTipsStatus;
     }
 
+    public static event Action<bool> TutorialEnded;
+    public static event Action ButtonClicked;
+
     private void SetTipsStatus()
     {
-
         TutorialEnded?.Invoke(false);
         _tutorialBlockUICanvas.SetActive(true);
 
-        for (int i = 0; i < _tutorialTips.Length; i++)
+        for (var i = 0; i < _tutorialTips.Length; i++)
         {
-            TMP_Text currentTipText = _tutorialTips[i].GetComponentInChildren<TMP_Text>();
+            var currentTipText = _tutorialTips[i].GetComponentInChildren<TMP_Text>();
 
             if (_currentLanguage == "ru")
             {
@@ -54,12 +53,14 @@ public class TutorialManager : MonoBehaviour
                 {
                     if (YG2.envir.isMobile)
                     {
-                        currentTipText.text = "Для движения используй кнопки в левом нижнем углу.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу.";
+                        currentTipText.text =
+                            "Для движения используй кнопки в левом нижнем углу.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу.";
                     }
 
                     if (YG2.envir.isDesktop)
                     {
-                        currentTipText.text = "Для движения используй клавиши A/D.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу.";
+                        currentTipText.text =
+                            "Для движения используй клавиши A/D.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу.";
                     }
                 }
             }
@@ -70,12 +71,14 @@ public class TutorialManager : MonoBehaviour
                 {
                     if (YG2.envir.isMobile)
                     {
-                        currentTipText.text = "Use the buttons in the lower left corner to move.\r\nTo aim, use the slider on the right.\r\nTo fire, press the button in the lower right corner.";
+                        currentTipText.text =
+                            "Use the buttons in the lower left corner to move.\r\nTo aim, use the slider on the right.\r\nTo fire, press the button in the lower right corner.";
                     }
 
                     if (YG2.envir.isDesktop)
                     {
-                        currentTipText.text = "Use the A/D keys to move.\r\nTo aim, use the slider on the right.\r\nTo fire, press the button in the lower right corner.";
+                        currentTipText.text =
+                            "Use the A/D keys to move.\r\nTo aim, use the slider on the right.\r\nTo fire, press the button in the lower right corner.";
                     }
                 }
             }
@@ -86,12 +89,14 @@ public class TutorialManager : MonoBehaviour
                 {
                     if (YG2.envir.isMobile)
                     {
-                        currentTipText.text = "Hareket etmek için sol alt köşedeki düğmeleri kullanın.\r\nNişan almak için sağdaki kaydırıcıyı kullanın.\r\nAteş etmek için sağ alt köşedeki düğmeye basın.";
+                        currentTipText.text =
+                            "Hareket etmek için sol alt köşedeki düğmeleri kullanın.\r\nNişan almak için sağdaki kaydırıcıyı kullanın.\r\nAteş etmek için sağ alt köşedeki düğmeye basın.";
                     }
 
                     if (YG2.envir.isDesktop)
                     {
-                        currentTipText.text = "Taşımak için A/D tuşlarını kullanın.\r\nNişan almak için sağdaki kaydırıcıyı kullanın.\r\nAteş etmek için sağ alt köşedeki düğmeye basın.";
+                        currentTipText.text =
+                            "Taşımak için A/D tuşlarını kullanın.\r\nNişan almak için sağdaki kaydırıcıyı kullanın.\r\nAteş etmek için sağ alt köşedeki düğmeye basın.";
                     }
                 }
             }
@@ -118,7 +123,7 @@ public class TutorialManager : MonoBehaviour
         if (_currentIndex < _tutorialTips.Length)
         {
             _tutorialTips[_currentIndex].SetActive(true);
-            TMP_Text currentTipText = _tutorialTips[_currentIndex].GetComponentInChildren<TMP_Text>();
+            var currentTipText = _tutorialTips[_currentIndex].GetComponentInChildren<TMP_Text>();
             _typewriter.GetText(currentTipText);
         }
         else

@@ -14,17 +14,6 @@ public class PlayerTurretController : MonoBehaviour
         _initialGunAngle = GetLocalGunAngle();
     }
 
-    private void OnSliderValueChanged(float value)
-    {
-        float clampedAngle = Mathf.Clamp(value, _angleSlider.minValue, _angleSlider.maxValue);
-        _turret.localRotation = Quaternion.Euler(0, 0, _initialGunAngle + clampedAngle);
-    }
-
-    private float GetLocalGunAngle()
-    {
-        return _turret.localEulerAngles.z;
-    }
-
     private void OnEnable()
     {
         TurnManager.CanPlayerShoot += OnCanPlayerShoot;
@@ -36,16 +25,24 @@ public class PlayerTurretController : MonoBehaviour
         _turret.DOKill();
     }
 
+    private void OnDestroy()
+    {
+        if (_angleSlider != null) _angleSlider.onValueChanged.RemoveListener(OnSliderValueChanged);
+    }
+
+    private void OnSliderValueChanged(float value)
+    {
+        var clampedAngle = Mathf.Clamp(value, _angleSlider.minValue, _angleSlider.maxValue);
+        _turret.localRotation = Quaternion.Euler(0, 0, _initialGunAngle + clampedAngle);
+    }
+
+    private float GetLocalGunAngle()
+    {
+        return _turret.localEulerAngles.z;
+    }
+
     private void OnCanPlayerShoot(bool canShoot)
     {
         _angleSlider.interactable = canShoot;
-    }
-
-    private void OnDestroy()
-    {
-        if (_angleSlider != null)
-        {
-            _angleSlider.onValueChanged.RemoveListener(OnSliderValueChanged);
-        }
     }
 }

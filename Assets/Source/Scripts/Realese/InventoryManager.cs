@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
+using Random = UnityEngine.Random;
 
 public class InventoryManager : MonoBehaviour
 {
     [SerializeField] private List<WeaponSlot> _weaponSlots;
     [SerializeField] private List<WeaponData> _weaponsList;
 
-    private Dictionary<int, int> _weaponAmmoCount = new Dictionary<int, int>();
+    private WeaponSlot _selectedSlot;
 
-    private WeaponSlot _selectedSlot = null;
+    private readonly Dictionary<int, int> _weaponAmmoCount = new Dictionary<int, int>();
     private WeaponSlot _weaponSlotToClean;
-
-    public static event Action<int> UpdatePlayerDamage;
 
     private void Start()
     {
@@ -38,6 +37,8 @@ public class InventoryManager : MonoBehaviour
         AirdropBox.PlayerPickedUpAirdrop -= SetNewWeapon;
     }
 
+    public static event Action<int> UpdatePlayerDamage;
+
     private void SetNewWeapon(int index)
     {
         UpdateInventoryValues();
@@ -58,23 +59,23 @@ public class InventoryManager : MonoBehaviour
 
     private void UpdateInventoryValues()
     {
-        for (int i = 0; i < _weaponSlots.Count; i++)
+        for (var i = 0; i < _weaponSlots.Count; i++)
         {
-            ClearWeaponData weapon = YG2.saves.clearWeaponsData[i];
+            var weapon = YG2.saves.clearWeaponsData[i];
             _weaponSlots[i].SetWeaponData(weapon);
         }
     }
 
     private int GenerateRandomIndex()
     {
-        int randomIndex = UnityEngine.Random.Range(1, 5);
+        var randomIndex = Random.Range(1, 5);
 
         return randomIndex;
     }
 
     public void AdButtonPressed()
     {
-        string ad = "ad";
+        var ad = "ad";
 #if !UNITY_EDITOR && UNITY_WEBGL
         YG2.RewardedAdvShow(ad, () =>
         {
@@ -85,28 +86,22 @@ public class InventoryManager : MonoBehaviour
 
     public void UpdateInventoryUI()
     {
-        for (int i = 0; i < _weaponSlots.Count; i++)
+        for (var i = 0; i < _weaponSlots.Count; i++)
         {
-            ClearWeaponData weapon = YG2.saves.clearWeaponsData[i];
+            var weapon = YG2.saves.clearWeaponsData[i];
             _weaponSlots[i].SetWeaponData(weapon);
         }
 
-        for (int i = 1; i < _weaponSlots.Count; i++)
-        {
-            _weaponSlots[i].gameObject.SetActive(false);
-        }
+        for (var i = 1; i < _weaponSlots.Count; i++) _weaponSlots[i].gameObject.SetActive(false);
     }
 
     public void SelectWeapon(WeaponSlot slot)
     {
-        if (_selectedSlot != null)
-        {
-            _selectedSlot.Deselect();
-        }
+        if (_selectedSlot != null) _selectedSlot.Deselect();
 
         _selectedSlot = slot;
 
-        int currentDamage = int.Parse(slot.currentDamage.text);
+        var currentDamage = int.Parse(slot.currentDamage.text);
         UpdatePlayerDamage(currentDamage);
         _selectedSlot.Select();
 
@@ -125,7 +120,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (_weaponSlotToClean != null)
         {
-            int index = _weaponSlots.IndexOf(_weaponSlotToClean);
+            var index = _weaponSlots.IndexOf(_weaponSlotToClean);
 
             if (_weaponAmmoCount.ContainsKey(index) && _weaponAmmoCount[index] > 1)
             {

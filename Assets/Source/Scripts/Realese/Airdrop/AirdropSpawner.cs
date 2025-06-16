@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AirdropSpawner : MonoBehaviour
 {
@@ -7,18 +8,13 @@ public class AirdropSpawner : MonoBehaviour
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private PolygonCollider2D _land;
     [SerializeField] private int _spawnRate;
+    private float _maxX;
 
-    private float _minX = 0;
-    private float _maxX = 0;
-
-    public static event Action Spawned;
+    private float _minX;
 
     private void Start()
     {
-        if (_spawnPoint == null)
-        {
-            _spawnPoint = this.transform;
-        }
+        if (_spawnPoint == null) _spawnPoint = transform;
 
         CalculateWidth();
     }
@@ -33,16 +29,18 @@ public class AirdropSpawner : MonoBehaviour
         TurnManager.CompletedTurns -= CheckTurnsCount;
     }
 
+    public static event Action Spawned;
+
     private void CalculateWidth()
     {
-        Vector2[] points = _land.points;
+        var points = _land.points;
 
-        float minX = float.MaxValue;
-        float maxX = float.MinValue;
+        var minX = float.MaxValue;
+        var maxX = float.MinValue;
 
-        foreach (Vector2 point in points)
+        foreach (var point in points)
         {
-            Vector2 worldPoint = (Vector2)_land.transform.TransformPoint(point);
+            Vector2 worldPoint = _land.transform.TransformPoint(point);
 
             if (worldPoint.x < minX) minX = worldPoint.x;
             if (worldPoint.x > maxX) maxX = worldPoint.x;
@@ -54,10 +52,7 @@ public class AirdropSpawner : MonoBehaviour
 
     private void CheckTurnsCount(int count)
     {
-        if (count % _spawnRate == 0)
-        {
-            SpawnAirDrop();
-        }
+        if (count % _spawnRate == 0) SpawnAirDrop();
     }
 
     private void SpawnAirDrop()
@@ -77,8 +72,8 @@ public class AirdropSpawner : MonoBehaviour
 
     private void SetRandomSpawnPointX()
     {
-        float randomX = UnityEngine.Random.Range(_minX, _maxX);
-        Vector3 newPosition = _spawnPoint.position;
+        var randomX = Random.Range(_minX, _maxX);
+        var newPosition = _spawnPoint.position;
         newPosition.x = randomX;
         _spawnPoint.position = newPosition;
 

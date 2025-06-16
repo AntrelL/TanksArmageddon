@@ -1,16 +1,17 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TanksArmageddon;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class Point
 {
     public Vector2 Position;
     public Point NextPoint;
     public bool IsCross;
-    public Segment LandSegment;
     public Segment CircleSegment;
+    public Segment LandSegment;
 }
 
 public class Segment
@@ -20,7 +21,7 @@ public class Segment
     public List<Point> CrossPoints = new List<Point>();
 }
 
-[System.Serializable]
+[Serializable]
 public class Line
 {
     public List<Point> Points;
@@ -35,31 +36,26 @@ public class Cutter : MonoBehaviour
 
     public void DoCut()
     {
-        List<Vector2> _circlePointsPositions = _circleCollider.GetPath(0).ToList();
+        var _circlePointsPositions = _circleCollider.GetPath(0).ToList();
 
-        for (int i = 0; i < _circlePointsPositions.Count; i++)
-        {
+        for (var i = 0; i < _circlePointsPositions.Count; i++)
             _circlePointsPositions[i] = _circleCollider.transform.TransformPoint(_circlePointsPositions[i]);
-        }
 
-        Line circleLine = LineFromCollider(_circlePointsPositions);
+        var circleLine = LineFromCollider(_circlePointsPositions);
 
 
-        List<List<Point>> allSplines = new List<List<Point>>();
+        var allSplines = new List<List<Point>>();
 
-        for (int p = 0; p < _landCollider.pathCount; p++)
+        for (var p = 0; p < _landCollider.pathCount; p++)
         {
-            List<Vector2> _linePointsPositions = _landCollider.GetPath(p).ToList();
-            
-            for (int i = 0; i < _linePointsPositions.Count; i++)
-            {
-                _linePointsPositions[i] = _landCollider.transform.TransformPoint(_linePointsPositions[i]);
-            }
-            
-            Line landLine = LineFromCollider(_linePointsPositions);
+            var _linePointsPositions = _landCollider.GetPath(p).ToList();
 
-            for (int i = 0; i < landLine.Points.Count; i++)
-            {
+            for (var i = 0; i < _linePointsPositions.Count; i++)
+                _linePointsPositions[i] = _landCollider.transform.TransformPoint(_linePointsPositions[i]);
+
+            var landLine = LineFromCollider(_linePointsPositions);
+
+            for (var i = 0; i < landLine.Points.Count; i++)
                 if (_circleCollider.ClosestPoint(landLine.Points[0].Position) == landLine.Points[0].Position)
                 {
                     ReorderList(landLine.Points);
@@ -69,7 +65,6 @@ public class Cutter : MonoBehaviour
                 {
                     break;
                 }
-            }
 
             var result = Substraction(landLine, circleLine);
             allSplines.InsertRange(0, result);
@@ -80,28 +75,28 @@ public class Cutter : MonoBehaviour
 
     private List<List<Point>> Substraction(Line landLine, Line circleLine)
     {
-        for (int i = 0; i < circleLine.Points.Count; i++)
+        for (var i = 0; i < circleLine.Points.Count; i++)
         {
-            int nextIndex = GetNext(i, circleLine.Points.Count, false);
+            var nextIndex = GetNext(i, circleLine.Points.Count, false);
             circleLine.Points[i].NextPoint = circleLine.Points[nextIndex];
         }
 
-        for (int l = 0; l < landLine.Segments.Count; l++)
+        for (var l = 0; l < landLine.Segments.Count; l++)
         {
-            Segment landSegment = landLine.Segments[l];
-            Vector2 al = landSegment.A.Position;
-            Vector2 bl = landSegment.B.Position;
+            var landSegment = landLine.Segments[l];
+            var al = landSegment.A.Position;
+            var bl = landSegment.B.Position;
 
-            for (int c = 0; c < circleLine.Segments.Count; c++)
+            for (var c = 0; c < circleLine.Segments.Count; c++)
             {
-                Segment circleSegment = circleLine.Segments[c];
-                Vector2 ac = circleLine.Segments[c].A.Position;
-                Vector2 bc = circleLine.Segments[c].B.Position;
+                var circleSegment = circleLine.Segments[c];
+                var ac = circleLine.Segments[c].A.Position;
+                var bc = circleLine.Segments[c].B.Position;
 
                 if (Intersection.IsIntersecting(al, bl, ac, bc))
                 {
-                    Vector2 position = Intersection.GetIntersection(al, bl, ac, bc);
-                    Point crossPoint = new Point();
+                    var position = Intersection.GetIntersection(al, bl, ac, bc);
+                    var crossPoint = new Point();
                     crossPoint.Position = position;
                     crossPoint.LandSegment = landSegment;
                     crossPoint.CircleSegment = circleSegment;
@@ -116,13 +111,13 @@ public class Cutter : MonoBehaviour
         RecalculateLine(circleLine);
 
         {
-            List<Point> allPoints = new List<Point>(landLine.Points);
-            bool onLand = true;
-            Point startPoint = allPoints[0];
-            
+            var allPoints = new List<Point>(landLine.Points);
+            var onLand = true;
+            var startPoint = allPoints[0];
+
             while (allPoints.Count > 0)
             {
-                Point thePoint = allPoints[0];
+                var thePoint = allPoints[0];
 
                 if (_circleCollider.ClosestPoint(thePoint.Position) == thePoint.Position || thePoint.IsCross)
                 {
@@ -130,7 +125,7 @@ public class Cutter : MonoBehaviour
                     continue;
                 }
 
-                for (int i = 0; i < _testIterations; i++)
+                for (var i = 0; i < _testIterations; i++)
                 {
                     Line currentLine;
 
@@ -147,49 +142,44 @@ public class Cutter : MonoBehaviour
                         ccw = false;
                     }
 
-                    int currentIndex = currentLine.Points.IndexOf(thePoint);
-                    int nextIndex = GetNext(currentIndex, currentLine.Points.Count, ccw);
+                    var currentIndex = currentLine.Points.IndexOf(thePoint);
+                    var nextIndex = GetNext(currentIndex, currentLine.Points.Count, ccw);
                     thePoint.NextPoint = currentLine.Points[nextIndex];
                     allPoints.Remove(thePoint);
 
-                    if (thePoint.NextPoint.IsCross)
-                    {
-                        onLand = !onLand;
-                    }
+                    if (thePoint.NextPoint.IsCross) onLand = !onLand;
 
                     thePoint = thePoint.NextPoint;
 
                     if (startPoint == thePoint) break;
                 }
             }
-
         }
 
         {
-            List<List<Point>> allSplines = new List<List<Point>>();
-            List<Point> allPoints = new List<Point>(landLine.Points);
+            var allSplines = new List<List<Point>>();
+            var allPoints = new List<Point>(landLine.Points);
 
             while (allPoints.Count > 0)
             {
-                Point thePoint = allPoints[0];
+                var thePoint = allPoints[0];
 
                 if (_circleCollider.ClosestPoint(thePoint.Position) == thePoint.Position || thePoint.IsCross)
                 {
                     allPoints.RemoveAt(0);
-                    continue;
                 }
                 else
                 {
-                    List<Point> newSpline = new List<Point>();
+                    var newSpline = new List<Point>();
                     allSplines.Add(newSpline);
 
-                    Point startPoint = thePoint;
-                    Point point = thePoint;
+                    var startPoint = thePoint;
+                    var point = thePoint;
 
                     newSpline.Add(point);
                     allPoints.Remove(point);
 
-                    for (int i = 0; i < _testIterations; i++)
+                    for (var i = 0; i < _testIterations; i++)
                     {
                         point = point.NextPoint;
                         if (point == startPoint) break;
@@ -199,27 +189,27 @@ public class Cutter : MonoBehaviour
                     }
                 }
             }
+
             return allSplines;
         }
     }
 
     private void RecalculateLine(Line line)
     {
-        List<Point> newPoints = new List<Point>();
+        var newPoints = new List<Point>();
 
-        for (int s = 0; s < line.Segments.Count; s++)
+        for (var s = 0; s < line.Segments.Count; s++)
         {
-            Segment segment = line.Segments[s];
+            var segment = line.Segments[s];
             newPoints.Add(segment.A);
 
             if (segment.CrossPoints.Count > 0)
-            {
                 segment.CrossPoints.Sort((p1, p2) =>
-                Vector3.Distance(segment.A.Position, p1.Position).
-                    CompareTo(Vector3.Distance(segment.A.Position, p2.Position)));
-            }
+                    Vector3.Distance(segment.A.Position, p1.Position)
+                        .CompareTo(Vector3.Distance(segment.A.Position, p2.Position)));
             newPoints.AddRange(segment.CrossPoints);
         }
+
         line.Points = newPoints;
     }
 
@@ -227,38 +217,32 @@ public class Cutter : MonoBehaviour
     {
         var first = list[0];
 
-        for (int i = 0; i < list.Count; i++)
-        {
+        for (var i = 0; i < list.Count; i++)
             if (i == list.Count - 1)
-            {
                 list[i] = first;
-            }
             else
-            {
                 list[i] = list[i + 1];
-            }
-        }
     }
 
     private Line LineFromCollider(List<Vector2> list)
     {
-        Line line = new Line();
-        List<Point> points = new List<Point>();
-        List<Segment> segments = new List<Segment>();
+        var line = new Line();
+        var points = new List<Point>();
+        var segments = new List<Segment>();
 
-        for (int i = 0; i < list.Count; i++)
+        for (var i = 0; i < list.Count; i++)
         {
-            Point point = new Point();
+            var point = new Point();
             point.Position = list[i];
             points.Add(point);
         }
 
-        for (int i = 0; i < list.Count; i++)
+        for (var i = 0; i < list.Count; i++)
         {
-            Segment segment = new Segment();
+            var segment = new Segment();
             segment.A = points[i];
             points[i].LandSegment = segment;
-            int bIndex = i + 1;
+            var bIndex = i + 1;
             if (bIndex >= list.Count) bIndex = 0;
             segment.B = points[bIndex];
             points[bIndex].CircleSegment = segment;
@@ -273,16 +257,11 @@ public class Cutter : MonoBehaviour
 
     private int GetNext(int index, int length, bool isCCW)
     {
-        int nextIndex = index + (isCCW ? 1 : -1);
+        var nextIndex = index + (isCCW ? 1 : -1);
 
         if (nextIndex >= length)
-        {
             nextIndex = 0;
-        }
-        else if (nextIndex < 0)
-        {
-            nextIndex = length - 1;
-        }
+        else if (nextIndex < 0) nextIndex = length - 1;
 
         return nextIndex;
     }

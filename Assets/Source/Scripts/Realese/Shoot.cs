@@ -12,8 +12,6 @@ public class Shoot : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private UIController _UIcontroller;
 
-    public static event Action PlayerFired;
-
     private void OnEnable()
     {
         _UIcontroller.PlayerShootButtonPressed += StartShoot;
@@ -24,13 +22,15 @@ public class Shoot : MonoBehaviour
         _UIcontroller.PlayerShootButtonPressed -= StartShoot;
     }
 
+    public static event Action PlayerFired;
+
     private void StartShoot()
     {
         PlayerFired?.Invoke();
         _tank.Shot();
         Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
 
-        ParticleSystem flash = Instantiate(_muzzleFlash, _firePoint.position, _firePoint.rotation);
+        var flash = Instantiate(_muzzleFlash, _firePoint.position, _firePoint.rotation);
         flash.Play();
 
         Destroy(flash.gameObject, flash.main.duration);

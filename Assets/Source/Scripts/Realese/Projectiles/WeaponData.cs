@@ -6,7 +6,7 @@ public class WeaponData : ScriptableObject
     public new string name;
     public Sprite icon;
     public int baseDamage;
-    public int upgradeLevel = 0;
+    public int upgradeLevel;
     public int currentDamage;
 
     private void OnEnable()

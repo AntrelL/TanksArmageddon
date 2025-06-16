@@ -16,28 +16,24 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform _player;
     [SerializeField] private LayerMask _landLayer;
 
-    [Space]
-    [Header("New Physics")]
-    [SerializeField] private Transform _centerPoint;
+    [Space] [Header("New Physics")] [SerializeField]
+    private Transform _centerPoint;
+
     [SerializeField] private Transform _leftPoint;
     [SerializeField] private Transform _rightPoint;
 
     private float _baseDrag;
-    private float _checkRaycastLenght = 0.8f;
-
-    private Vector3 _selectedPointPosition = new Vector3();
-    private Vector3 _forceDirection = new Vector3();
+    private readonly float _checkRaycastLenght = 0.8f;
 
     private int _currentHealth;
+    private Vector3 _forceDirection;
     private bool _isAlive = true;
+    private float _moveDirection;
+
+    private float _movementTimeUsed;
     private int _playerDamage = 100;
 
-    private float _movementTimeUsed = 0f;
-    private float _moveDirection = 0f;
-
-    public event Action<int> HealthChanged;
-    public event Action Defeated;
-    public static event Action EnemyHitted;
+    private Vector3 _selectedPointPosition;
 
     private void Awake()
     {
@@ -45,25 +41,6 @@ public class Enemy : MonoBehaviour
 
         if (!_rigidbody2D)
             _rigidbody2D = GetComponent<Rigidbody2D>();
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.TryGetComponent(out EdgeOfMap edge))
-        {
-            Debug.Log("Enemy hit edge of map");
-            TakeDamage(5000);
-        }
-    }
-
-    private void OnEnable()
-    {
-        InventoryManager.UpdatePlayerDamage += OnUpdatedPlayerDamage;
-    }
-
-    private void OnDisable()
-    {
-        InventoryManager.UpdatePlayerDamage -= OnUpdatedPlayerDamage;
     }
 
     private void FixedUpdate()
@@ -85,13 +62,13 @@ public class Enemy : MonoBehaviour
 
             return;
         }
-        
+
         _rigidbody2D.centerOfMass = _centerPoint.localPosition;
 
         _rigidbody2D.drag = _baseDrag;
 
         _selectedPointPosition = _moveDirection == 1f ? _rightPoint.position : _leftPoint.position;
-        RaycastHit2D hit = Physics2D.Raycast(_selectedPointPosition, -Vector2.up, _checkRaycastLenght, _landLayer);
+        var hit = Physics2D.Raycast(_selectedPointPosition, -Vector2.up, _checkRaycastLenght, _landLayer);
 
         if (hit.collider == null)
         {
@@ -100,13 +77,13 @@ public class Enemy : MonoBehaviour
             hit = Physics2D.Raycast(_centerPoint.position, -Vector2.up, _checkRaycastLenght, _landLayer);
         }
 
-        Vector2 direction = new Vector2();
+        var direction = new Vector2();
 
         if (hit.collider != null)
         {
             _rigidbody2D.gravityScale = 1f;
             direction = Vector2.right * _moveDirection;
-            direction = direction - (Vector2.Dot(direction, hit.normal) * hit.normal);
+            direction = direction - Vector2.Dot(direction, hit.normal) * hit.normal;
         }
         else
         {
@@ -124,12 +101,35 @@ public class Enemy : MonoBehaviour
         _movementTimeUsed += Time.fixedDeltaTime;
     }
 
+    private void OnEnable()
+    {
+        InventoryManager.UpdatePlayerDamage += OnUpdatedPlayerDamage;
+    }
+
+    private void OnDisable()
+    {
+        InventoryManager.UpdatePlayerDamage -= OnUpdatedPlayerDamage;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out EdgeOfMap edge))
+        {
+            Debug.Log("Enemy hit edge of map");
+            TakeDamage(5000);
+        }
+    }
+
+    public event Action<int> HealthChanged;
+    public event Action Defeated;
+    public static event Action EnemyHitted;
+
 
     public IEnumerator DoEnemyTurn()
     {
         _movementTimeUsed = 0f;
 
-        bool shotSucceeded = _projectileShooter.ShootIfPossible();
+        var shotSucceeded = _projectileShooter.ShootIfPossible();
 
         if (shotSucceeded)
         {
@@ -141,8 +141,8 @@ public class Enemy : MonoBehaviour
 
         _moveDirection = -1f;
 
-        float elapsed = 0f;
-        float checkInterval = 0.1f;
+        var elapsed = 0f;
+        var checkInterval = 0.1f;
 
         while (elapsed < _availableTravelTime)
         {
@@ -165,7 +165,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator WaitProjectileFly()
     {
-        bool projectileEnded = false;
+        var projectileEnded = false;
         Action onProjectileDestroyed = () => { projectileEnded = true; };
         EnemyBullet.EnemyBulletDestroyed += onProjectileDestroyed;
 
@@ -190,7 +190,7 @@ public class Enemy : MonoBehaviour
             EnemyHitted?.Invoke();
             TakeDamage(_playerDamage);
             HealthChanged?.Invoke(_currentHealth);
-            ParticleSystem flash = Instantiate(_hitFX, hitPosition, Quaternion.identity);
+            var flash = Instantiate(_hitFX, hitPosition, Quaternion.identity);
             flash.Play();
             Destroy(flash.gameObject, flash.main.duration);
         }

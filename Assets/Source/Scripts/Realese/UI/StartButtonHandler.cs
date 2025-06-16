@@ -1,6 +1,6 @@
+using IJunior.TypedScenes;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using IJunior.TypedScenes;
 
 namespace TanksArmageddon
 {

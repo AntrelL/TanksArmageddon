@@ -56,7 +56,7 @@ public class EnemyHealthBar : MonoBehaviour
 
     private void MoveSlider()
     {
-        Vector3 screenPosition = Camera.main.WorldToScreenPoint(_enemy.transform.position + _offset);
+        var screenPosition = Camera.main.WorldToScreenPoint(_enemy.transform.position + _offset);
         _healthSlider.transform.position = screenPosition;
     }
 

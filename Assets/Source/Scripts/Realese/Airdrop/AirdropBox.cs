@@ -1,10 +1,12 @@
 using System;
 using TanksArmageddon;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class AirdropBox : MonoBehaviour
 {
+    public event Action<GameObject> OnAirDropCollected;
+    public static event Action<int> PlayerPickedUpAirdrop;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.TryGetComponent(out Player player))
@@ -30,15 +32,14 @@ public class AirdropBox : MonoBehaviour
         {
             Debug.Log("Hit edge of map");
             Destroy(gameObject);
+
+            return;
         }
     }
 
-    public event Action<GameObject> OnAirDropCollected;
-    public static event Action<int> PlayerPickedUpAirdrop;
-
     private int GenerateRandomWeaponIndex()
     {
-        var randomIndex = Random.Range(1, 5);
+        int randomIndex = UnityEngine.Random.Range(1, 5);
 
         return randomIndex;
     }

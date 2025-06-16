@@ -10,7 +10,7 @@ public class WeaponSlot : MonoBehaviour
 
     [SerializeField] private TMP_Text _ammoCountText;
 
-    private bool _isSelected;
+    private bool _isSelected = false;
 
 
     public void SetWeaponData(ClearWeaponData weapon)
@@ -21,7 +21,10 @@ public class WeaponSlot : MonoBehaviour
 
     public void SelectWeapon()
     {
-        if (_isSelected) UpdateHighlight();
+        if (_isSelected)
+        {
+            UpdateHighlight();
+        }
     }
 
     public void UpdateAmmoCount(int ammoCount)
@@ -53,6 +56,9 @@ public class WeaponSlot : MonoBehaviour
 
     private void UpdateHighlight()
     {
-        if (highlight != null) highlight.enabled = _isSelected;
+        if (highlight != null)
+        {
+            highlight.enabled = _isSelected;
+        }
     }
 }

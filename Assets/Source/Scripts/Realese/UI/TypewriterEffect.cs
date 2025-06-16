@@ -36,7 +36,7 @@ public class TypewriterEffect : MonoBehaviour
 
     private IEnumerator ShowText(TMP_Text TMPtext)
     {
-        foreach (var letter in _fullText)
+        foreach (char letter in _fullText)
         {
             TMPtext.text += letter;
 

@@ -1,6 +1,6 @@
+using IJunior.TypedScenes;
 using System;
 using System.Collections.Generic;
-using IJunior.TypedScenes;
 using UnityEngine;
 using YG;
 
@@ -8,8 +8,10 @@ public class MainSceneNavigationManager : MonoBehaviour
 {
     [SerializeField] private GameObject _authView;
     [SerializeField] private GameObject _levelsBlockSprite;
-
+    
     private Dictionary<string, bool> _levelsStatus;
+
+    public static event Action ButtonClicked;
 
     private void Start()
     {
@@ -17,9 +19,13 @@ public class MainSceneNavigationManager : MonoBehaviour
         _authView.SetActive(false);
 
         if (YG2.saves.trainingLevelPassed)
+        {
             _levelsBlockSprite.SetActive(false);
+        }
         else
+        {
             _levelsBlockSprite.SetActive(true);
+        }
 
 #if !UNITY_EDITOR && UNITY_WEBGL
         YG2.InterstitialAdvShow();
@@ -35,8 +41,6 @@ public class MainSceneNavigationManager : MonoBehaviour
     {
         YG2.onGetSDKData -= TryOpenLeaderboard;
     }
-
-    public static event Action ButtonClicked;
 
     public void AcceptPressed()
     {
@@ -72,7 +76,7 @@ public class MainSceneNavigationManager : MonoBehaviour
 
     private void TryOpenLeaderboard()
     {
-        if (YG2.player.auth)
+        if (YG2.player.auth == true)
         {
             _authView.SetActive(false);
             LeaderboardScene.Load();

@@ -9,9 +9,13 @@ public class MusicStatusUpdater : MonoBehaviour
     {
         _audioManager = FindObjectOfType<AudioManager>();
 
-        if (_audioManager.IsMusicOn)
+        if (_audioManager.IsMusicOn == true)
+        {
             _UIcontroller.UnmuteSound();
+        }
         else
+        {
             _UIcontroller.MuteSound();
+        }
     }
 }

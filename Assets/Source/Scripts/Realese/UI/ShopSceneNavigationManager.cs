@@ -1,5 +1,5 @@
-using System;
 using IJunior.TypedScenes;
+using System;
 using UnityEngine;
 using YG;
 

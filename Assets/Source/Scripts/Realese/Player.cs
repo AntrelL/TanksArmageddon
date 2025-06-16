@@ -22,26 +22,30 @@ namespace TanksArmageddon
         [SerializeField] private CameraController _cameraController;
         [SerializeField] private ParticleSystem _hitFX;
 
-        [Space] [Header("New Physics")] [SerializeField]
-        private Transform _centerPoint;
-
+        [Space]
+        [Header("New Physics")]
+        [SerializeField] private Transform _centerPoint;
         [SerializeField] private Transform _leftPoint;
         [SerializeField] private Transform _rightPoint;
 
         private float _baseDrag;
-        private bool _canMove;
-        private readonly float _checkRaycastLenght = 0.8f;
+        private float _checkRaycastLenght = 0.8f;
 
-        private int _currentHealth;
-        private Vector3 _forceDirection;
-        private bool _isAlive = true;
-        private bool _leftButtonPressed;
+        private Vector3 _selectedPointPosition = new Vector3();
+        private Vector3 _forceDirection = new Vector3();
 
         private int _maxHealth;
-        private bool _rightButtonPressed;
-
-        private Vector3 _selectedPointPosition;
         private float _travelTimeSpent;
+        private bool _leftButtonPressed = false;
+        private bool _rightButtonPressed = false;
+        private bool _canMove = false;
+
+        private int _currentHealth;
+        private bool _isAlive = true;
+
+        public static event Action PlayerHit;
+        public event Action<int> HealthChanged;
+        public event Action Defeated;
 
         private void Awake()
         {
@@ -59,8 +63,7 @@ namespace TanksArmageddon
             {
                 AddEventTrigger(_leftButton.gameObject, EventTriggerType.PointerDown, () => _leftButtonPressed = true);
                 AddEventTrigger(_leftButton.gameObject, EventTriggerType.PointerUp, () => _leftButtonPressed = false);
-                AddEventTrigger(_rightButton.gameObject, EventTriggerType.PointerDown,
-                    () => _rightButtonPressed = true);
+                AddEventTrigger(_rightButton.gameObject, EventTriggerType.PointerDown, () => _rightButtonPressed = true);
                 AddEventTrigger(_rightButton.gameObject, EventTriggerType.PointerUp, () => _rightButtonPressed = false);
             }
         }
@@ -84,11 +87,16 @@ namespace TanksArmageddon
                 return;
             }
 
-            var horizontalInput = Input.GetAxis("Horizontal");
+            float horizontalInput = Input.GetAxis("Horizontal");
 
             if (_leftButtonPressed)
+            {
                 horizontalInput = -1f;
-            else if (_rightButtonPressed) horizontalInput = 1f;
+            }
+            else if (_rightButtonPressed)
+            {
+                horizontalInput = 1f;
+            }
 
             if (_travelTimeSpent >= _availableTravelTime)
             {
@@ -110,14 +118,14 @@ namespace TanksArmageddon
 
             _petrolTank.value = _availableTravelTime - _travelTimeSpent;
 
-
+            
             _rigidbody2D.centerOfMass = _centerPoint.localPosition;
 
             if (horizontalInput != 0)
             {
                 _rigidbody2D.drag = _baseDrag;
                 _selectedPointPosition = horizontalInput == 1f ? _rightPoint.position : _leftPoint.position;
-                var hit = Physics2D.Raycast(_selectedPointPosition, -Vector2.up, _checkRaycastLenght, _landLayer);
+                RaycastHit2D hit = Physics2D.Raycast(_selectedPointPosition, -Vector2.up, _checkRaycastLenght, _landLayer);
 
                 if (hit.collider == null)
                 {
@@ -126,13 +134,13 @@ namespace TanksArmageddon
                     hit = Physics2D.Raycast(_centerPoint.position, -Vector2.up, _checkRaycastLenght, _landLayer);
                 }
 
-                var direction = new Vector2();
+                Vector2 direction = new Vector2();
 
                 if (hit.collider != null)
                 {
                     _rigidbody2D.gravityScale = 1f;
                     direction = Vector2.right * horizontalInput;
-                    direction = direction - Vector2.Dot(direction, hit.normal) * hit.normal;
+                    direction = direction - (Vector2.Dot(direction, hit.normal) * hit.normal);
                 }
                 else
                 {
@@ -168,10 +176,6 @@ namespace TanksArmageddon
             EnemyBullet.PlayerHit -= TakeDamage;
         }
 
-        public static event Action PlayerHit;
-        public event Action<int> HealthChanged;
-        public event Action Defeated;
-
         private void DisableMovement(bool isMovementDisable)
         {
             _canMove = isMovementDisable;
@@ -184,11 +188,11 @@ namespace TanksArmageddon
             _petrolTank.value = _availableTravelTime;
         }
 
-        private void AddEventTrigger(GameObject target, EventTriggerType eventType, Action action)
+        private void AddEventTrigger(GameObject target, EventTriggerType eventType, System.Action action)
         {
-            var trigger = target.GetComponent<EventTrigger>() ?? target.AddComponent<EventTrigger>();
-            var entry = new EventTrigger.Entry {eventID = eventType};
-            entry.callback.AddListener(data => action());
+            EventTrigger trigger = target.GetComponent<EventTrigger>() ?? target.AddComponent<EventTrigger>();
+            EventTrigger.Entry entry = new EventTrigger.Entry { eventID = eventType };
+            entry.callback.AddListener((data) => action());
             trigger.triggers.Add(entry);
         }
 
@@ -200,12 +204,16 @@ namespace TanksArmageddon
 
         public void PlayHitEffect(Vector3 hitPosition)
         {
-            if (_isAlive)
+            if (_isAlive == true)
             {
                 PlayerHit?.Invoke();
-                var flash = Instantiate(_hitFX, hitPosition, Quaternion.identity);
+                ParticleSystem flash = Instantiate(_hitFX, hitPosition, Quaternion.identity);
                 flash.Play();
                 Destroy(flash.gameObject, flash.main.duration);
+            }
+            else
+            {
+                return;
             }
         }
     }

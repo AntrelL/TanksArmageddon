@@ -21,7 +21,7 @@ public class Localization : MonoBehaviour
 
     private void ChangeLanguage()
     {
-        var languageCode = YG2.envir.language;
+        string languageCode = YG2.envir.language;
         Debug.LogError("languageCode: " + languageCode);
         Debug.Log("languageCode: " + languageCode);
 

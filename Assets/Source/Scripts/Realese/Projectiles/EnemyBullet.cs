@@ -1,16 +1,19 @@
 using System;
 using TanksArmageddon;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyBullet : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _groundCollisionFX;
 
-    private Cutter _cutter;
-
     public static Transform CurrentEnemyBullet { get; private set; }
+
+    public static event Action EnemyBulletDestroyed;
+    public static event Action GroundHit;
+    public static event Action<int> PlayerHit;
+
+    private Cutter _cutter;
 
     private void Start()
     {
@@ -20,19 +23,17 @@ public class EnemyBullet : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y < -50) Destroy(gameObject);
-    }
-
-    private void OnDestroy()
-    {
-        EnemyBulletDestroyed?.Invoke();
+        if (transform.position.y < -50)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out Player player))
         {
-            var damage = GetRandomDamage();
+            int damage = GetRandomDamage();
             PlayerHit(damage);
             player.PlayHitEffect(transform.position);
             Debug.Log("Hit player");
@@ -54,31 +55,41 @@ public class EnemyBullet : MonoBehaviour
         }
     }
 
-    public static event Action EnemyBulletDestroyed;
-    public static event Action GroundHit;
-    public static event Action<int> PlayerHit;
-
     private int GetRandomDamage()
     {
-        var randomDamage = Random.Range(0, 100);
+        int randomDamage = UnityEngine.Random.Range(0, 100);
 
         if (randomDamage < 60)
+        {
             return 100;
-        if (randomDamage < 80)
+        }
+        else if (randomDamage < 80)
+        {
             return 200;
-        if (randomDamage < 90)
+        }
+        else if (randomDamage < 90)
+        {
             return 250;
-        return 500;
+        }
+        else
+        {
+            return 500;
+        }
     }
 
     private void DoCut()
     {
         Debug.Log("DoCut beep");
-        var flash = Instantiate(_groundCollisionFX, transform.position, transform.rotation);
+        ParticleSystem flash = Instantiate(_groundCollisionFX, transform.position, transform.rotation);
         flash.Play();
         Destroy(flash.gameObject, flash.main.duration);
 
         _cutter.DoCut();
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        EnemyBulletDestroyed?.Invoke();
     }
 }

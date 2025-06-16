@@ -33,11 +33,23 @@ public class UIController : MonoBehaviour
     [SerializeField] private TMP_Text _pointsRewardText;
     [SerializeField] private float _fadeDuration = 1.0f;
     [SerializeField] private float _visibleDuration = 1.0f;
-    private string _currentScene;
-    private int _levelRewardAmount;
-    private int _pointsRewardAmount;
 
     private int _turnCount;
+    private int _levelRewardAmount;
+    private int _pointsRewardAmount;
+    private string _currentScene;
+
+    public event Action PlayerShootButtonPressed;
+    public static event Action EnemyDefeated;
+    public static event Action<int> PlayerRewardReceived;
+    public static event Action<int> PlayerPointsReceived;
+    public static event Action SoundTurnedOff;
+    public static event Action SoundTurnedOn;
+    public static event Action ButtonClicked;
+    public static event Action FinishedCanvasShown;
+    public static event Action FailedCanvasShown;
+    public static event Action SkipTurnButtonPressed;
+    public static event Action<string, bool> IsPlayerWin;
 
     private void Start()
     {
@@ -79,18 +91,6 @@ public class UIController : MonoBehaviour
         _player.Defeated -= ShowDefeatedScreen;
     }
 
-    public event Action PlayerShootButtonPressed;
-    public static event Action EnemyDefeated;
-    public static event Action<int> PlayerRewardReceived;
-    public static event Action<int> PlayerPointsReceived;
-    public static event Action SoundTurnedOff;
-    public static event Action SoundTurnedOn;
-    public static event Action ButtonClicked;
-    public static event Action FinishedCanvasShown;
-    public static event Action FailedCanvasShown;
-    public static event Action SkipTurnButtonPressed;
-    public static event Action<string, bool> IsPlayerWin;
-
     private void OnSpawned()
     {
         StartCoroutine(FadeRoutine());
@@ -107,11 +107,11 @@ public class UIController : MonoBehaviour
 
     private IEnumerator Fade(float startValue, float targetValue, float duration)
     {
-        var elapsedTime = 0f;
+        float elapsedTime = 0f;
 
         while (elapsedTime < duration)
         {
-            var alpha = Mathf.Lerp(startValue, targetValue, elapsedTime / duration);
+            float alpha = Mathf.Lerp(startValue, targetValue, elapsedTime / duration);
             SetAlpha(alpha);
             elapsedTime += Time.deltaTime;
 
@@ -183,7 +183,7 @@ public class UIController : MonoBehaviour
         Time.timeScale = 0f;
         _levelFinishedCanvas.SetActive(true);
         FinishedCanvasShown?.Invoke();
-        var sceneName = SceneManager.GetActiveScene().name;
+        string sceneName = SceneManager.GetActiveScene().name;
         IsPlayerWin?.Invoke(sceneName, true);
         UpdateGoalStatus();
         YG2.SaveProgress();

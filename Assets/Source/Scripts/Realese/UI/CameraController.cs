@@ -12,44 +12,22 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _moveSpeed = 3f;
     [SerializeField] private float _followSpeed = 5f;
     [SerializeField] private float _waitTime = 1.5f;
-    [SerializeField] private float _delayBeforeSwitch;
-    [SerializeField] private float _timeSinceSwitch;
-    private string _currentScene;
-    private Transform _currentTarget;
+    [SerializeField] private float _delayBeforeSwitch = 0f;
+    [SerializeField] private float _timeSinceSwitch = 0f;
 
-    public bool IntroFinished { get; private set; }
+    private bool _introFinished = false;
+    private Transform _currentTarget;
+    private string _currentScene;
+
+    public bool IntroFinished => _introFinished;
+
+    public event Action<bool> UnlockMovement;
+    public static event Action ShowTips;
 
     private void Awake()
     {
         _currentScene = SceneManager.GetActiveScene().name;
         _currentTarget = _player;
-    }
-
-    private void Start()
-    {
-        StartCoroutine(CameraIntroSequence());
-    }
-
-    private void LateUpdate()
-    {
-        if (IntroFinished && _currentTarget != null)
-        {
-            if (DefaultProjectile.CurrentProjectile != null) _currentTarget = DefaultProjectile.CurrentProjectile;
-
-            if (EnemyBullet.CurrentEnemyBullet != null) _currentTarget = EnemyBullet.CurrentEnemyBullet;
-
-            if (_timeSinceSwitch >= _delayBeforeSwitch)
-            {
-                var targetPosition = new Vector3(_currentTarget.position.x, _currentTarget.position.y,
-                    transform.position.z);
-                transform.position = Vector3.Lerp(transform.position, targetPosition,
-                    _followSpeed * 1000f * Time.deltaTime);
-            }
-            else
-            {
-                _timeSinceSwitch += Time.deltaTime;
-            }
-        }
     }
 
     private void OnEnable()
@@ -66,8 +44,10 @@ public class CameraController : MonoBehaviour
         EnemyBullet.EnemyBulletDestroyed -= OnProjectileDestroyed;
     }
 
-    public event Action<bool> UnlockMovement;
-    public static event Action ShowTips;
+    private void Start()
+    {
+        StartCoroutine(CameraIntroSequence());
+    }
 
     private IEnumerator CameraIntroSequence()
     {
@@ -77,19 +57,24 @@ public class CameraController : MonoBehaviour
         yield return new WaitForSeconds(_waitTime);
 
         foreach (var enemy in _enemies)
+        {
             if (enemy != null && enemy.gameObject.activeSelf)
             {
                 yield return MoveToTarget(enemy.transform.position);
                 yield return new WaitForSeconds(_waitTime);
             }
+        }
 
         yield return MoveToTarget(_player.position);
         yield return new WaitForSeconds(_waitTime);
 
-        IntroFinished = true;
+        _introFinished = true;
         UnlockMovement?.Invoke(true);
 
-        if (_currentScene == "TrainingScene") ShowTips?.Invoke();
+        if (_currentScene == "TrainingScene")
+        {
+            ShowTips?.Invoke();
+        }
 
         _blockUICanvas.SetActive(false);
     }
@@ -107,9 +92,9 @@ public class CameraController : MonoBehaviour
 
     public IEnumerator TransitionToTarget(Transform newTarget, float duration)
     {
-        var startPos = transform.position;
-        var endPos = new Vector3(newTarget.position.x, newTarget.position.y, transform.position.z);
-        var elapsed = 0f;
+        Vector3 startPos = transform.position;
+        Vector3 endPos = new Vector3(newTarget.position.x, newTarget.position.y, transform.position.z);
+        float elapsed = 0f;
 
         while (elapsed < duration)
         {
@@ -127,6 +112,32 @@ public class CameraController : MonoBehaviour
         _currentTarget = target;
     }
 
+    private void LateUpdate()
+    {
+        if (_introFinished && _currentTarget != null)
+        {
+            if (DefaultProjectile.CurrentProjectile != null)
+            {
+                _currentTarget = DefaultProjectile.CurrentProjectile;
+            }
+            
+            if (EnemyBullet.CurrentEnemyBullet != null)
+            {
+                _currentTarget = EnemyBullet.CurrentEnemyBullet;
+            }
+
+            if (_timeSinceSwitch >= _delayBeforeSwitch)
+            {
+                Vector3 targetPosition = new Vector3(_currentTarget.position.x, _currentTarget.position.y, transform.position.z);
+                transform.position = Vector3.Lerp(transform.position, targetPosition, _followSpeed * 1000f * Time.deltaTime);
+            }
+            else
+            {
+                _timeSinceSwitch += Time.deltaTime;
+            }
+        }
+    }
+
     private void OnProjectileDestroyed()
     {
         _timeSinceSwitch = 0f;
@@ -135,17 +146,19 @@ public class CameraController : MonoBehaviour
 
     private void UpdateCameraTarget()
     {
-        var nextTarget = _player.transform;
+        Transform nextTarget = _player.transform;
 
         if (TurnManager.CurrentTurnIsPlayer == false)
         {
             foreach (var enemy in _enemies)
+            {
                 if (enemy != null && enemy.gameObject.activeSelf)
                 {
                     nextTarget = enemy.transform;
 
                     break;
                 }
+            }
         }
         else
         {

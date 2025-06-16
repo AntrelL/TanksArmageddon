@@ -1,16 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using YG;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private WeaponData[] _weaponDataList = new WeaponData[5];
-
-    private int[] _weaponCardCounts = new int[5];
-    //[SerializeField] private int _playerBalance;
-    //[SerializeField] private int _playerPoints;
-    //[SerializeField] private int _playerHealth;
 
     public static GameManager Instance { get; private set; }
 
@@ -52,7 +45,6 @@ public class GameManager : MonoBehaviour
     private void SetPlayerPoints(int value)
     {
         YG2.saves.playerPoints += value;
-        Debug.Log($"Игроку было добавлено {value} поинтов. Текущий рейтинг: {YG2.saves.playerPoints}");
     }
 
     public int GetPlayerPoints()
@@ -67,26 +59,18 @@ public class GameManager : MonoBehaviour
 
     public int GetCardCount(int weaponIndex)
     {
-        //return _weaponCardCounts[weaponIndex];
         return YG2.saves.weaponCardCounts[weaponIndex];
     }
 
     public void SetCardCount(int weaponIndex, int cardCount)
     {
-        //_weaponCardCounts[weaponIndex] = cardCount;
         YG2.saves.weaponCardCounts[weaponIndex] = cardCount;
     }
 
     public ClearWeaponData GetWeaponData(int weaponIndex)
     {
-        //return _weaponDataList[weaponIndex];
         return YG2.saves.clearWeaponsData[weaponIndex];
     }
-
-    /*public void SetWeaponData(int weaponIndex, WeaponData data)
-    {
-        _weaponDataList[weaponIndex] = data;
-    }*/
 
     public int GetPlayerBalance()
     {
@@ -96,7 +80,6 @@ public class GameManager : MonoBehaviour
     public void SetPlayerBalance(int amount)
     {
         YG2.saves.playerBalance += amount;
-        Debug.Log($"Игроку было добавлено {amount} денег.");
         YG2.SaveProgress();
     }
 

@@ -1,4 +1,4 @@
-Authorization v1.0
+Authorization v1.021
 EnvirData v1.002
 InterstitialAdv v1.001
 Leaderboards v1.0

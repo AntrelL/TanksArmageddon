@@ -22,10 +22,9 @@ public class Shop : MonoBehaviour
 
     public void AdReward()
     {
-
-        string hyiPoimiShop = "hyiShop";
+        string ad = "ad";
 #if !UNITY_EDITOR && UNITY_WEBGL
-        YG2.RewardedAdvShow(hyiPoimiShop, () =>
+        YG2.RewardedAdvShow(ad, () =>
         {
             GameManager.Instance.SetPlayerBalance(1000);
             UpdatePlayerBalanceUI();
@@ -59,18 +58,15 @@ public class Shop : MonoBehaviour
                 {
                     _purchasedCardsInfo.text = $"Oyuncunun sağlığı 10 arttı. \r\nOyuncunun mevcut sağlığı: {currentPlayerHealth}";
                 }
-
-                //YG2.SaveProgress();
+                
                 UpdatePlayerBalanceUI();
                 CardClicked?.Invoke();
 
                 return;
             }
-
-            //int currentCardCount = GameManager.Instance.GetCardCount(index);
+            
             int currentCardCount = YG2.saves.weaponCardCounts[index];
-
-            //GameManager.Instance.SetCardCount(index, currentCardCount + 1);
+            
             YG2.saves.weaponCardCounts[index] = currentCardCount + 1;
             CardClicked?.Invoke();
 
@@ -88,13 +84,11 @@ public class Shop : MonoBehaviour
             {
                 _purchasedCardsInfo.text = $"{index + 1} mermisi için kart satın alındı. \r\nGeliştirilebilecek kart sayısı: {currentCardCount + 1}";
             }
-
-            //YG2.SaveProgress();
+            
             UpdatePlayerBalanceUI();
         }
         else
         {
-            //YG2.SaveProgress();
             NotEnoughCoresWarning();
         }
     }
@@ -127,14 +121,11 @@ public class Shop : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Invalid card cost in TextMeshPro for weapon index " + weaponIndex);
-
                 return 0;
             }
         }
         else
         {
-            Debug.LogError("Weapon index out of range for card costs.");
             return 0;
         }
     }

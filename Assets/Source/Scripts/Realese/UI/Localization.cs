@@ -1,4 +1,3 @@
-
 using Lean.Localization;
 using UnityEngine;
 using YG;

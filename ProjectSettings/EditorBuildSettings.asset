@@ -71,4 +71,52 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Plugins/CW/LeanLocalization/Examples/_10_Organization.unity
     guid: b3f50b2baaf503346a06be10a85ecea0
+  - enabled: 1
+    path: Assets/Plugins/CW/LeanLocalization/Examples/_03_Text.unity
+    guid: 49ea039f5f37b1b4db7233f81df6bb1b
+  - enabled: 1
+    path: Assets/Plugins/CW/LeanLocalization/Examples/_01_Localization.unity
+    guid: aba494ebc40857a4a8bc30f56de96f01
+  - enabled: 1
+    path: Assets/Plugins/CW/LeanLocalization/Examples/_11_Prefabs.unity
+    guid: 9165e915f4bbf134098f2772d805021a
+  - enabled: 1
+    path: Assets/Plugins/CW/LeanLocalization/Examples/_07_Token__Formatted_Text_.unity
+    guid: 1454d8c8ea0eee747b04e9d0561dd13c
+  - enabled: 1
+    path: Assets/Plugins/CW/LeanLocalization/Examples/_04_Change_Language.unity
+    guid: 4fa24d4051a1c334a93eb4e584723f46
+  - enabled: 1
+    path: Assets/Plugins/CW/LeanLocalization/Examples/_12_Dropdown.unity
+    guid: 08adfaa6286ffa64dba8d3aaf9f2ea01
+  - enabled: 1
+    path: Assets/PluginYourGames/Modules/InterstitialAdv/Example/Scenes/InterstitialAdv.unity
+    guid: fa3157f2450b2874a8c22b42f700dcd4
+  - enabled: 1
+    path: Assets/PluginYourGames/Modules/RewardedAdv/Example/Scenes/RewardedAdv.unity
+    guid: d88fa54c0efc91d4ab03d7d05e2e06d0
+  - enabled: 1
+    path: Assets/PluginYourGames/Modules/Storage/Example/Scenes/Storage.unity
+    guid: abb058d977e9e3241a3ae83e420d91ac
+  - enabled: 1
+    path: Assets/Plugins/CW/LeanLocalization/Examples/_08____Local_Token.unity
+    guid: 01415cc277899ff439928aa71b552ad4
+  - enabled: 1
+    path: Assets/PluginYourGames/Modules/Authorization/Example/Scenes/Authorization.unity
+    guid: de4e0a077d630a140a5e79e3d752d10b
+  - enabled: 1
+    path: Assets/Plugins/CW/LeanLocalization/Examples/_05_Image.unity
+    guid: 9323420f200217443bfddd19d7d5f626
+  - enabled: 1
+    path: Assets/Plugins/CW/LeanLocalization/Examples/_02_Phrase.unity
+    guid: 10f7f7522fbb64543a8b9f3a1e36224f
+  - enabled: 1
+    path: Assets/Plugins/CW/LeanLocalization/Examples/_06_Renderer.unity
+    guid: 35efaa2aae170a54d86db9763d9402e9
+  - enabled: 1
+    path: Assets/Plugins/CW/LeanLocalization/Examples/_09_CSV.unity
+    guid: 57f600ada3ecff24fa367eb58ed09834
+  - enabled: 1
+    path: Assets/PluginYourGames/Modules/Leaderboards/Example/Scenes/Leaderboards.unity
+    guid: 2779577180fcc424b8955a8087f136f6
   m_configObjects: {}

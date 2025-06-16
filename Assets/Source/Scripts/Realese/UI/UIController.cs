@@ -1,12 +1,11 @@
+using System;
+using System.Collections;
 using IJunior.TypedScenes;
 using TanksArmageddon;
-using System;
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
 using TMPro;
-using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using YG;
 
 public class UIController : MonoBehaviour
@@ -300,21 +299,18 @@ public class UIController : MonoBehaviour
     public void OpenHomeScene()
     {
         ButtonClicked?.Invoke();
-        Debug.Log("Load Main Scene.");
         MainScene.Load();
     }
 
     public void OpenShopScene()
     {
         ButtonClicked?.Invoke();
-        Debug.Log("Load Shop Scene.");
         ShopScene.Load();
     }
 
     public void OpenHangarScene()
     {
         ButtonClicked?.Invoke();
-        Debug.Log("Load Hangar Scene.");
         HangarScene.Load();
     }
 

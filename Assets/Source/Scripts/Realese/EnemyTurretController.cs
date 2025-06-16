@@ -15,7 +15,7 @@ public class EnemyTurretController : MonoBehaviour
     [SerializeField] private DefaultProjectile _projectilePrefab;
 
     private float _projectileSpeed;
-    private TurnManager _turnManager;  // Добавим ссылку на TurnManager
+    private TurnManager _turnManager;
 
     private void Start()
     {
@@ -25,17 +25,15 @@ public class EnemyTurretController : MonoBehaviour
             _projectileSpeed = _projectilePrefab.Speed;
         }
 
-        _turnManager = FindObjectOfType<TurnManager>();  // Получаем ссылку на TurnManager
+        _turnManager = FindObjectOfType<TurnManager>();
     }
-
-    // Новый метод для расчета случайной цели
+    
     private float GetRandomTargetX(float playerX, float difficultyFactor)
     {
         float offset = playerX * difficultyFactor;
         return Random.Range(playerX - offset, playerX + offset);
     }
-
-    // Новый метод для вычисления угла по баллистической формуле
+    
     private float CalculateBallisticAngle(Vector2 start, Vector2 target, float speed)
     {
         float g = Mathf.Abs(Physics2D.gravity.y);

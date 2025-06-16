@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TanksArmageddon;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -119,11 +118,9 @@ public class CameraController : MonoBehaviour
         {
             if (DefaultProjectile.CurrentProjectile != null)
             {
-                //убрал .transform у CurrentProjectile
                 _currentTarget = DefaultProjectile.CurrentProjectile;
             }
-
-            //добавил этот if
+            
             if (EnemyBullet.CurrentEnemyBullet != null)
             {
                 _currentTarget = EnemyBullet.CurrentEnemyBullet;

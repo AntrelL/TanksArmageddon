@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MusicStatusUpdater : MonoBehaviour
 {
-    private AudioManager _audioManager;
     [SerializeField] private UIController _UIcontroller;
+    private AudioManager _audioManager;
 
     private void Start()
     {

@@ -16,12 +16,15 @@ namespace TanksArmageddon
             for (int i = 0; i < paths.Count; i++)
             {
                 List<Vector2> path = new List<Vector2>();
+                
                 for (int p = 0; p < paths[i].Count; p++)
                 {
                     path.Add(paths[i][p].Position);
                 }
+                
                 _collider.SetPath(i, path);
             }
+            
             _colliderRenderer.CreateMesh();
         }
     }

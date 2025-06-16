@@ -1,6 +1,6 @@
-using Assets.Constructors.FuturisticTanks.Scripts;
 using System;
 using System.Collections;
+using Assets.Constructors.FuturisticTanks.Scripts;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -10,7 +10,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Tank _tank;
     [SerializeField] private float _movementForce = 15f;
     [SerializeField] private float _maxSpeed = 5f;
-    //[SerializeField] private Transform _centerOfMass;
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private float _availableTravelTime = 3f;
     [SerializeField] private ProjectileShooter2D _projectileShooter;
@@ -26,8 +25,8 @@ public class Enemy : MonoBehaviour
     private float _baseDrag;
     private float _checkRaycastLenght = 0.8f;
 
-    private Vector3 _selectedPointPosition = new();
-    private Vector3 _forceDirection = new();
+    private Vector3 _selectedPointPosition = new Vector3();
+    private Vector3 _forceDirection = new Vector3();
 
     private int _currentHealth;
     private bool _isAlive = true;
@@ -46,8 +45,6 @@ public class Enemy : MonoBehaviour
 
         if (!_rigidbody2D)
             _rigidbody2D = GetComponent<Rigidbody2D>();
-
-        //_rigidbody2D.centerOfMass = _centerOfMass.localPosition;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -69,43 +66,6 @@ public class Enemy : MonoBehaviour
         InventoryManager.UpdatePlayerDamage -= OnUpdatedPlayerDamage;
     }
 
-    /*private void FixedUpdate()
-    {
-        if (_currentHealth <= 0)
-        {
-            _tank.Destroy();
-            _isAlive = false;
-            gameObject.SetActive(false);
-            Defeated?.Invoke();
-
-            return;
-        }
-
-        if (_movementTimeUsed < _availableTravelTime && _moveDirection != 0f)
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 1f, _landLayer);
-
-            if (hit.collider != null)
-            {
-                Vector2 direction = Vector2.right * _moveDirection;
-                direction = direction - (Vector2.Dot(direction, hit.normal) * hit.normal);
-
-                _rigidbody2D.AddForce(direction * _movementForce);
-            }
-
-            if (_rigidbody2D.velocity.magnitude > _maxSpeed)
-                _rigidbody2D.velocity = _rigidbody2D.velocity.normalized * _maxSpeed;
-
-            _tank.Move();
-            _movementTimeUsed += Time.fixedDeltaTime;
-        }
-        else
-        {
-            _moveDirection = 0f;
-            _tank.Idle();
-        }
-    }*/
-
     private void FixedUpdate()
     {
         if (_currentHealth <= 0)
@@ -121,14 +81,11 @@ public class Enemy : MonoBehaviour
         if (_movementTimeUsed >= _availableTravelTime || _moveDirection == 0f)
         {
             _rigidbody2D.drag = 100f;
-            //_rigidbody2D.gravityScale = 100f;
             _tank.Idle();
 
             return;
         }
-
-
-        // New Physics
+        
         _rigidbody2D.centerOfMass = _centerPoint.localPosition;
 
         _rigidbody2D.drag = _baseDrag;
@@ -138,13 +95,12 @@ public class Enemy : MonoBehaviour
 
         if (hit.collider == null)
         {
-            // Если точка не над землей — всё равно толкаем
             _rigidbody2D.AddForceAtPosition(_moveDirection * Vector2.right * _movementForce, _selectedPointPosition);
             _rigidbody2D.gravityScale = 10f;
             hit = Physics2D.Raycast(_centerPoint.position, -Vector2.up, _checkRaycastLenght, _landLayer);
         }
 
-        Vector2 direction = new();
+        Vector2 direction = new Vector2();
 
         if (hit.collider != null)
         {

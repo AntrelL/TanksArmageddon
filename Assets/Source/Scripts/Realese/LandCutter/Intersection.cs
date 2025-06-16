@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TanksArmageddon
@@ -21,6 +19,7 @@ namespace TanksArmageddon
                     isIntersecting = true;
                 }
             }
+            
             return isIntersecting;
         }
 
@@ -30,6 +29,7 @@ namespace TanksArmageddon
             float bottom = (D.y - C.y) * (B.x - A.x) - (D.x - C.x) * (B.y - A.y);
             float t = top / bottom;
             Vector2 result = Vector2.Lerp(A, B, t);
+            
             return result;
         }
     }

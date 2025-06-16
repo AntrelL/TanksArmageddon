@@ -1,6 +1,5 @@
-
-using Assets.Constructors.FuturisticTanks.Scripts;
 using System;
+using Assets.Constructors.FuturisticTanks.Scripts;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -32,8 +31,8 @@ namespace TanksArmageddon
         private float _baseDrag;
         private float _checkRaycastLenght = 0.8f;
 
-        private Vector3 _selectedPointPosition = new();
-        private Vector3 _forceDirection = new();
+        private Vector3 _selectedPointPosition = new Vector3();
+        private Vector3 _forceDirection = new Vector3();
 
         private int _maxHealth;
         private float _travelTimeSpent;
@@ -50,7 +49,6 @@ namespace TanksArmageddon
 
         private void Awake()
         {
-            //_rigidbody2D.centerOfMass = _centerPoint.localPosition;
             _baseDrag = _rigidbody2D.drag;
             _maxHealth = GameManager.Instance.GetPlayerMaxHealth();
             _currentHealth = _maxHealth;
@@ -74,7 +72,6 @@ namespace TanksArmageddon
         {
             if (_currentHealth <= 0)
             {
-                Debug.Log("Player is defeated!");
                 _tank.Destroy();
                 _isAlive = false;
                 gameObject.SetActive(false);
@@ -121,8 +118,7 @@ namespace TanksArmageddon
 
             _petrolTank.value = _availableTravelTime - _travelTimeSpent;
 
-
-            // New Physics
+            
             _rigidbody2D.centerOfMass = _centerPoint.localPosition;
 
             if (horizontalInput != 0)
@@ -138,7 +134,7 @@ namespace TanksArmageddon
                     hit = Physics2D.Raycast(_centerPoint.position, -Vector2.up, _checkRaycastLenght, _landLayer);
                 }
 
-                Vector2 direction = new();
+                Vector2 direction = new Vector2();
 
                 if (hit.collider != null)
                 {
@@ -178,15 +174,6 @@ namespace TanksArmageddon
             EdgeOfMap.CollisionWithPlayer -= TakeDamage;
             TurnManager.CanPlayerControl -= OnMovementUnlocked;
             EnemyBullet.PlayerHit -= TakeDamage;
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawRay(_selectedPointPosition, _forceDirection * 5f);
-
-            Gizmos.color = Color.red;
-            Gizmos.DrawRay(_selectedPointPosition, -Vector2.up * _checkRaycastLenght);
         }
 
         private void DisableMovement(bool isMovementDisable)

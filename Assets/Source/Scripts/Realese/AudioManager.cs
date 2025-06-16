@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TanksArmageddon;
 using UnityEngine;
 
@@ -107,7 +105,6 @@ public class AudioManager : MonoBehaviour
 
     private void OnInBackgroundChange(bool inBackground)
     {
-        Debug.Log("!UNFOCUSED!");
         AudioListener.pause = inBackground;
         AudioListener.volume = inBackground ? 0f : 1f;
     }

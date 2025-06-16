@@ -1,18 +1,14 @@
 using IJunior.TypedScenes;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 using YG;
 
 public class MainSceneNavigationManager : MonoBehaviour
 {
     [SerializeField] private GameObject _authView;
-    [SerializeField] private AdService _adService;
     [SerializeField] private GameObject _levelsBlockSprite;
-
-
+    
     private Dictionary<string, bool> _levelsStatus;
 
     public static event Action ButtonClicked;
@@ -75,7 +71,6 @@ public class MainSceneNavigationManager : MonoBehaviour
     public void LeaderboardButtonPressed()
     {
         ButtonClicked?.Invoke();
-        Debug.Log("LeaderboardButtonPressed");
         TryOpenLeaderboard();
     }
 
@@ -83,13 +78,11 @@ public class MainSceneNavigationManager : MonoBehaviour
     {
         if (YG2.player.auth == true)
         {
-            Debug.Log("TryOpenLeaderboard, player.auth = true");
             _authView.SetActive(false);
             LeaderboardScene.Load();
         }
         else
         {
-            Debug.Log("TryOpenLeaderboard, player.auth = false");
             _authView.SetActive(true);
         }
     }

@@ -50,10 +50,12 @@ public class Cutter : MonoBehaviour
         for (int p = 0; p < _landCollider.pathCount; p++)
         {
             List<Vector2> _linePointsPositions = _landCollider.GetPath(p).ToList();
+            
             for (int i = 0; i < _linePointsPositions.Count; i++)
             {
                 _linePointsPositions[i] = _landCollider.transform.TransformPoint(_linePointsPositions[i]);
             }
+            
             Line landLine = LineFromCollider(_linePointsPositions);
 
             for (int i = 0; i < landLine.Points.Count; i++)
@@ -117,6 +119,7 @@ public class Cutter : MonoBehaviour
             List<Point> allPoints = new List<Point>(landLine.Points);
             bool onLand = true;
             Point startPoint = allPoints[0];
+            
             while (allPoints.Count > 0)
             {
                 Point thePoint = allPoints[0];

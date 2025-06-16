@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f24d146d-922a-4b59-9aac-3d62af134c54" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Demo/Scripts/ETFXButtonScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Demo/Scripts/ETFXButtonScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Demo/Scripts/ETFXEffectCycler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Demo/Scripts/ETFXEffectCycler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Demo/Scripts/ETFXFireProjectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Demo/Scripts/ETFXFireProjectile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Demo/Scripts/ETFXProjectileScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Demo/Scripts/ETFXProjectileScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Demo/Scripts/ETFXSceneManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Demo/Scripts/ETFXSceneManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Demo/Scripts/VFX Library/PEButtonScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Demo/Scripts/VFX Library/PEButtonScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Demo/Scripts/VFX Library/ParticleEffectsLibrary.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Demo/Scripts/VFX Library/ParticleEffectsLibrary.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Demo/Scripts/VFX Library/UICanvasManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Demo/Scripts/VFX Library/UICanvasManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Scripts/ETFXPitchRandomizer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Scripts/ETFXPitchRandomizer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Scripts/ETFXRotation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FX/FXToon/Epic Toon FX/Scripts/ETFXRotation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Editor/ModulesListYG2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Editor/ModulesListYG2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Editor/ServerInfoYG2.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Editor/ServerInfoYG2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Example/Scripts/Scenes/DemoSceneLoadButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Example/Scripts/Scenes/DemoSceneLoadButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Example.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Example.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Example/Scenes.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Example/Scenes.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Example/Scenes/Authorization.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Example/Scenes/Authorization.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Example/Scenes/Authorization.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Example/Scenes/Authorization.unity.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Example/Scripts.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Example/Scripts.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Example/Scripts/GetPlayerData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Example/Scripts/GetPlayerData.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Plugins.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Plugins.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Plugins/AuthYG.jslib.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Plugins/AuthYG.jslib.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Prefabs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Prefabs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Prefabs/Player Name &amp; Photo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Prefabs/Player Name &amp; Photo.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Prefabs/Player Name &amp; Photo.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Prefabs/Player Name &amp; Photo.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_info.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_info.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_info.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_info.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_interface.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_interface.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_lang.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_lang.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_lang.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_lang.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_yandexPlatform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_yandexPlatform.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_yandexPlatform.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_yandexPlatform.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_yg.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_yg.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_yg.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Auth_yg.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Editor.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Editor.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Editor/Auth_build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Editor/Auth_build.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Editor/Auth_build.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Editor/Auth_build.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Editor/CopyCode.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Editor/CopyCode.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Editor/CopyCode/Auth_js.js" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Editor/CopyCode/Auth_js.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Editor/CopyCode/Auth_js.js.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Editor/CopyCode/Auth_js.js.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Editor/Icons.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Editor/Icons.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Editor/Icons/Authorization.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/Editor/Icons/Authorization.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/GetPlayerYG.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/GetPlayerYG.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/GetPlayerYG.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Scripts/GetPlayerYG.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Version.txt.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Authorization/Version.txt.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Leaderboards/Scripts/LB_yandexPlatform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Leaderboards/Scripts/LB_yandexPlatform.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Leaderboards/Scripts/LeaderboardYG.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginYourGames/Modules/Leaderboards/Scripts/LeaderboardYG.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Enemy.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Enemy.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Player.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Player.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Test.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Test/TestObject2.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Test/TestObject2.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hangar.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hangar.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HangarSceneNavigationManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HangarSceneNavigationManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/InventoryManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/InventoryManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WeaponSlot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WeaponSlot.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WeaponUpgradeSystem.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WeaponUpgradeSystem.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/AirdropBox.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/AirdropBox.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/AirdropSpawner.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/AirdropSpawner.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/AudioManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/AudioManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/ColliderRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/ColliderRenderer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/EdgeOfMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/EdgeOfMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Enemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/EnemyTurretController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/EnemyTurretController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/InitYG.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/InitYG.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/InitializeYandexGamesMetrics.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/InitializeYandexGamesMetrics.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/LandCutter/Cutter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/LandCutter/Cutter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/LandCutter/Intersection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/LandCutter/Intersection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/LandCutter/Land.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/LandCutter/Land.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/LeaderboardUpdater.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/LeaderboardUpdater.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Projectiles/ClearWeaponData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Projectiles/ClearWeaponData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Projectiles/DefaultProjectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Projectiles/DefaultProjectile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Projectiles/WeaponData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Projectiles/WeaponData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Saves.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Saves.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/SetProjectilesToSaves.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/SetProjectilesToSaves.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Shoot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Shoot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/ShootingTest.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/ShootingTest/EnemyBullet.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/ShootingTest/EnemyBullet.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/ShootingTest/ProjectileShooter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/ShootingTest/ProjectileShooter.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Shop.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Shop.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/AdService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/AdService.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/CameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/CameraController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/EnemyHealthBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/EnemyHealthBar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/Localization.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/Localization.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/MainSceneNavigationManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/MainSceneNavigationManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/MusicStatusUpdater.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/MusicStatusUpdater.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/PlayerHealthBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/PlayerHealthBar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/PlayerTurretController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/PlayerTurretController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/ShopSceneNavigationManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/ShopSceneNavigationManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/StartButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/StartButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/StartButtonHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/StartButtonHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/TutorialManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/TutorialManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/TypewriterEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/TypewriterEffect.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/UIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/UIController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Airdrop/AirdropBox.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Airdrop/AirdropSpawner.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/LandCutter/Cutter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/LandCutter/Intersection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/LandCutter/Land.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Projectiles/DefaultProjectile.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Projectiles/EnemyBullet.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Projectiles/ProjectileShooter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Projectiles/WeaponData.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/CameraController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/EnemyHealthBar.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/Localization.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/MainSceneNavigationManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/MusicStatusUpdater.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/PlayerHealthBar.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/PlayerTurretController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/ShopSceneNavigationManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/StartButton.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/StartButtonHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/TutorialManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/TypewriterEffect.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/UI/UIController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/AudioManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/ColliderRenderer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Enemy.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/EnemyTurretController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/InventoryManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/HangarSceneNavigationManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Hangar.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/LeaderboardUpdater.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Saves.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/SetProjectilesToSaves.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Shoot.cs" />
+        <option value="$PROJECT_DIR$/Assets/Source/Scripts/Realese/Shop.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="2ybUEo16H9b6QkRRTaPvimMB0Cl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="CodeCleanupOptionsPage" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f24d146d-922a-4b59-9aac-3d62af134c54" name="Default Changelist" comment="" />
+      <created>1750102734548</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1750102734548</updated>
+      <workItem from="1750102754744" duration="2520000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="148" y="14" key="SettingsEditor" timestamp="1750104194678">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="148" y="14" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1750104194678" />
+  </component>
+</project>

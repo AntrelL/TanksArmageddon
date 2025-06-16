@@ -11,6 +11,7 @@ namespace TanksArmageddon
         
         [SerializeField] private TankMovement _tankMovement;
         [SerializeField] private TankCannon _tankCannon;
+        [SerializeField] private Shell _shell;
 
         private ITankController _controller;
         private ScaleFloat _fuelScale;
@@ -52,7 +53,7 @@ namespace TanksArmageddon
 
         private void Shoot()
         {
-            Debug.Log("пиу");
+            _tankCannon.Fire(_shell);
         }
     }
 }

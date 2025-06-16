@@ -2222,6 +2222,10 @@ PrefabInstance:
       value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 3921522498702025378, guid: a44ac04425280a44eb84a2681a4ffdf3, type: 3}
+      propertyPath: _firePoint
+      value: 
+      objectReference: {fileID: 9032197754354648782}
+    - target: {fileID: 3921522498702025378, guid: a44ac04425280a44eb84a2681a4ffdf3, type: 3}
       propertyPath: _rotationSpeed
       value: 100
       objectReference: {fileID: 0}
@@ -2265,6 +2269,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6082008006418176714, guid: a44ac04425280a44eb84a2681a4ffdf3, type: 3}
+      propertyPath: _shell
+      value: 
+      objectReference: {fileID: 1119974408066355366, guid: 79e2f58a782811645a4b39c79d6892a4, type: 3}
     - target: {fileID: 8157807553354272045, guid: a44ac04425280a44eb84a2681a4ffdf3, type: 3}
       propertyPath: m_Name
       value: PlayerTank
@@ -2281,6 +2289,11 @@ PrefabInstance:
 --- !u!4 &9032197754354648781 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3048102486976772822, guid: a44ac04425280a44eb84a2681a4ffdf3, type: 3}
+  m_PrefabInstance: {fileID: 9032197754354648780}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9032197754354648782 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4270826196770040108, guid: a44ac04425280a44eb84a2681a4ffdf3, type: 3}
   m_PrefabInstance: {fileID: 9032197754354648780}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807

@@ -5,6 +5,5 @@ namespace TanksArmageddon
     public interface IShell
     {
         void Fire();
-        void OnHit();
     }
 }

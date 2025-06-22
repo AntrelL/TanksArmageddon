@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using RainyPlace;
+using UnityEngine;
 
 namespace TanksArmageddon
 {
@@ -18,15 +19,14 @@ namespace TanksArmageddon
             
             float currentAngle = NormalizeAngle(_cannon.transform.eulerAngles.z);
             float newAngle = currentAngle + direction * _rotationSpeed * deltaTime;
-            newAngle = Mathf.Clamp(newAngle, _minAngle, _maxAngle);
-            
-            _cannon.rotation = Quaternion.Euler(0f, 0f, newAngle);
+            ScaleFloat rotationScale = new ScaleFloat(newAngle, _minAngle, _maxAngle, true);
+            _cannon.rotation = Quaternion.Euler(0f, 0f, rotationScale.Value);
         }
         
         public void Fire(Shell shell)
         {
-            Shell currentShell = Instantiate(shell, _firePoint.position, Quaternion.identity);
-            currentShell.Fire();
+            Shell launchedShell = Instantiate(shell, _firePoint.position, Quaternion.identity);
+            launchedShell.Fire();
         }
         
         private float NormalizeAngle(float angle)

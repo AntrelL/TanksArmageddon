@@ -11,7 +11,7 @@ namespace TanksArmageddon
         
         [SerializeField] private TankMovement _tankMovement;
         [SerializeField] private TankCannon _tankCannon;
-        [SerializeField] private Shell _shell;
+        [SerializeField] private StandartShell _shell;
 
         private ITankController _controller;
         private ScaleFloat _fuelScale;

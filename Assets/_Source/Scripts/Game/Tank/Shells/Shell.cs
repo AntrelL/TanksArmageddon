@@ -1,27 +1,38 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace TanksArmageddon
 {
-    public class Shell : MonoBehaviour, IShell
+    public abstract class Shell : MonoBehaviour, IShell
     {
-        [SerializeField] private int _damage;
-        [SerializeField] private float _lifeTime;
-        [SerializeField] private float _force;
-        [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] protected int _damage;
+        [SerializeField] protected float _destroyDelay;
+        [SerializeField] protected float _force;
+        [SerializeField] protected Rigidbody2D _rigidbody;
         
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            OnHit();
+            if (collision.gameObject.TryGetComponent(out IDamagable damagable))
+            {
+                damagable.TakeDamage(_damage);
+                ApplyEffect(collision);
+            }
+            
+            Destroy(gameObject);
         }
         
         public void Fire()
         {
-            _rigidbody.AddForce(transform.right * _force, ForceMode2D.Force);
+            _rigidbody.AddForce(transform.right * _force, ForceMode2D.Impulse);
+            StartCoroutine(DestroyAfterDelay(_destroyDelay));
         }
 
-        public void OnHit()
+        public abstract void ApplyEffect(Collision2D collision);
+
+        private IEnumerator DestroyAfterDelay(float delay)
         {
-            Debug.Log("Взрыв!");
+            yield return new WaitForSeconds(delay);
+            
             Destroy(gameObject);
         }
     }

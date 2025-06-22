@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3837734896055910951}
   - component: {fileID: 6299640376543377017}
   - component: {fileID: 5131994573166462108}
-  - component: {fileID: 1119974408066355366}
+  - component: {fileID: 5203919265738363458}
   m_Layer: 0
-  m_Name: Shell
+  m_Name: StandartShell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,8 +100,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 0.1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 0.7
+  m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -149,7 +149,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.49999997
---- !u!114 &1119974408066355366
+--- !u!114 &5203919265738363458
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,10 +158,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4840265814470242736}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b047fe5131f742a991c7d25c0dba73f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 138797bfb5e246198deb4db2570f3ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 0
-  _lifeTime: 2
-  _force: 75
+  _damage: 10
+  _destroyDelay: 2
+  _force: 1
   _rigidbody: {fileID: 6299640376543377017}

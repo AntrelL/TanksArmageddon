@@ -121,15 +121,9 @@ public class Hangar : MonoBehaviour
                 UpdateUpgradeIndicators();
                 UpdateCardInfoUI();
             }
-            else
-            {
-                Debug.LogError($"Not enough cards for weapon {weaponIndex + 1}. " +
-                               $"You have {currentCardCount}, but need {cardsNeeded}.");
-            }
         }
         else
         {
-            Debug.LogError($"Weapon {weaponIndex + 1} is already at max level.");
             YG2.SaveProgress();
         }
     }

@@ -26,8 +26,6 @@ public class ProjectileShooter2D : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log($"Начальный угол пушки: {_turretInitialAngle}° (rotation z = {_turret.eulerAngles.z})");
-
         if (_turret != null)
         {
             _turretInitialAngle = _turret.localEulerAngles.z;
@@ -52,7 +50,6 @@ public class ProjectileShooter2D : MonoBehaviour
 
             if (!isTargetLeft)
             {
-                Debug.Log("Цель справа, стреляем только влево.");
                 return false;
             }
 
@@ -63,8 +60,6 @@ public class ProjectileShooter2D : MonoBehaviour
 
             if (Mathf.Abs(angleOffset) > _maxAngleDeviation)
             {
-                Debug.Log($"Выстрел невозможен: угол отклонения {angleOffset}° выходит за пределы ±{_maxAngleDeviation}°");
-                
                 return false;
             }
 
@@ -74,8 +69,6 @@ public class ProjectileShooter2D : MonoBehaviour
         }
         else
         {
-            Debug.Log("Выстрел невозможен: нет баллистического решения.");
-            
             return false;
         }
     }

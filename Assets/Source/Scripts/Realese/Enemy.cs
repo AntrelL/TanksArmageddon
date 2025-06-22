@@ -51,7 +51,6 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out EdgeOfMap edge))
         {
-            Debug.Log("Enemy hit edge of map");
             TakeDamage(5000);
         }
     }
@@ -137,8 +136,6 @@ public class Enemy : MonoBehaviour
             yield break;
         }
 
-        Debug.Log($"Враг {name}: нет баллистического решения — начинаю двигаться к игроку.");
-
         _moveDirection = -1f;
 
         float elapsed = 0f;
@@ -160,7 +157,6 @@ public class Enemy : MonoBehaviour
         }
 
         _moveDirection = 0f;
-        Debug.Log($"Враг {name} завершил ход после движения и не может попасть в игрока.");
     }
 
     private IEnumerator WaitProjectileFly()

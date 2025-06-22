@@ -18,14 +18,6 @@ public class HangarSceneNavigationManager : MonoBehaviour
     public void LoadHomeScene()
     {
         YG2.SaveProgress();
-
-        foreach (var weapon in YG2.saves.clearWeaponsData)
-        {
-            Debug.Log(weapon.UpgradeLevel);
-            Debug.Log(weapon.CurrentDamage);
-            Debug.Log(weapon.BaseDamage);
-        }
-
         ButtonClicked?.Invoke();
         MainScene.Load();
     }

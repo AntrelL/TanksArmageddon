@@ -66,12 +66,7 @@ public class AirdropSpawner : MonoBehaviour
         {
             Instantiate(_airDropPrefab, _spawnPoint.position, Quaternion.identity);
             Spawned?.Invoke();
-            Debug.Log("AirDrop заспавнен!");
             SetRandomSpawnPointX();
-        }
-        else
-        {
-            Debug.LogWarning("AirDropPrefab не назначен в инспекторе!");
         }
     }
 
@@ -81,7 +76,5 @@ public class AirdropSpawner : MonoBehaviour
         Vector3 newPosition = _spawnPoint.position;
         newPosition.x = randomX;
         _spawnPoint.position = newPosition;
-
-        Debug.Log($"Новая позиция SpawnPoint: X = {randomX}");
     }
 }

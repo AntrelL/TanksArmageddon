@@ -45,14 +45,12 @@ public class MainSceneNavigationManager : MonoBehaviour
     public void AcceptPressed()
     {
         ButtonClicked?.Invoke();
-        Debug.Log("AcceptPressed");
         YG2.OpenAuthDialog();
     }
 
     public void DeclinePressed()
     {
         ButtonClicked?.Invoke();
-        Debug.Log("DeclinePressed");
         _authView.SetActive(false);
     }
 

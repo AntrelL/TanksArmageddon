@@ -591,6 +591,9 @@
                 <e p="Cutter.cs" t="Include" />
                 <e p="Intersection.cs" t="Include" />
                 <e p="Land.cs" t="Include" />
+                <e p="Line.cs" t="Include" />
+                <e p="Point.cs" t="Include" />
+                <e p="Segment.cs" t="Include" />
               </e>
               <e p="LeaderboardUpdater.cs" t="Include" />
               <e p="Player.cs" t="Include" />

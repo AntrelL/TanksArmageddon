@@ -36,13 +36,11 @@ public class EnemyBullet : MonoBehaviour
             int damage = GetRandomDamage();
             PlayerHit(damage);
             player.PlayHitEffect(transform.position);
-            Debug.Log("Hit player");
             Destroy(gameObject);
         }
 
         if (collision.gameObject.TryGetComponent(out Enemy enemy))
         {
-            Debug.Log("Enemy hit enemy");
             Destroy(gameObject);
         }
 
@@ -50,7 +48,6 @@ public class EnemyBullet : MonoBehaviour
         {
             _cutter.transform.position = transform.position;
             GroundHit?.Invoke();
-            Debug.Log("Hit land");
             Invoke(nameof(DoCut), 0.001f);
         }
     }
@@ -79,7 +76,6 @@ public class EnemyBullet : MonoBehaviour
 
     private void DoCut()
     {
-        Debug.Log("DoCut beep");
         ParticleSystem flash = Instantiate(_groundCollisionFX, transform.position, transform.rotation);
         flash.Play();
         Destroy(flash.gameObject, flash.main.duration);

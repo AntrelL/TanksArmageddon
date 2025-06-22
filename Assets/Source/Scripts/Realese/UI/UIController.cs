@@ -58,13 +58,11 @@ public class UIController : MonoBehaviour
 
         if (YG2.envir.isMobile)
         {
-            Debug.Log("Platform: mobile!");
             _playerMovementCanvas.SetActive(true);
         }
 
         if (YG2.envir.isDesktop)
         {
-            Debug.Log("Platform: PC!");
             _playerMovementCanvas.SetActive(false);
         }
     }
@@ -273,7 +271,6 @@ public class UIController : MonoBehaviour
     {
         SoundTurnedOff?.Invoke();
 
-        Debug.Log("Sound muted.");
         _mutedSoundCanvasGroup.alpha = 1;
         _mutedSoundCanvasGroup.interactable = true;
         _mutedSoundCanvasGroup.blocksRaycasts = true;
@@ -286,7 +283,6 @@ public class UIController : MonoBehaviour
     public void UnmuteSound()
     {
         SoundTurnedOn?.Invoke();
-        Debug.Log("Sound unmuted.");
         _unmutedSoundCanvasGroup.alpha = 1;
         _unmutedSoundCanvasGroup.interactable = true;
         _unmutedSoundCanvasGroup.blocksRaycasts = true;

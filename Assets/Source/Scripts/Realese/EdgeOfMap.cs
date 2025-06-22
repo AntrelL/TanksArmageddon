@@ -10,7 +10,6 @@ public class EdgeOfMap : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out Player player))
         {
-            Debug.Log("Player hit edge of map");
             CollisionWithPlayer?.Invoke(5000);
         }
     }

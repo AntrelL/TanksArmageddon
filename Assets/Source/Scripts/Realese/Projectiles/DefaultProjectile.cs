@@ -55,7 +55,6 @@ public class DefaultProjectile : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out EdgeOfMap edgeOfMap))
         {
-            Debug.Log("Hit edge of map");
             EdgeOfMapHit?.Invoke();
             Destroy(gameObject);
         }
@@ -65,7 +64,6 @@ public class DefaultProjectile : MonoBehaviour
             if (collision.gameObject.TryGetComponent(out Player player))
             {
                 player.PlayHitEffect(transform.position);
-                Debug.Log("Hit player");
                 Destroy(gameObject);
             }
         }
@@ -74,7 +72,6 @@ public class DefaultProjectile : MonoBehaviour
             if (collision.gameObject.TryGetComponent(out Enemy enemy))
             {
                 enemy.PlayHitEffect(transform.position);
-                Debug.Log("Hit enemy");
                 Destroy(gameObject);
             }
         }
@@ -82,14 +79,12 @@ public class DefaultProjectile : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out Land land))
         {
             _cutter.transform.position = transform.position;
-            Debug.Log("Hit land");
             Invoke(nameof(DoCut), 0.001f);
         }
     }
 
     private void DoCut()
     {
-        Debug.Log("DoCut beep");
         ParticleSystem flash = Instantiate(_groundCollisionFX, transform.position, transform.rotation);
         flash.Play();
         Destroy(flash.gameObject, flash.main.duration);

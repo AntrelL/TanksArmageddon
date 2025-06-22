@@ -3,30 +3,6 @@ using System.Linq;
 using TanksArmageddon;
 using UnityEngine;
 
-[System.Serializable]
-public class Point
-{
-    public Vector2 Position;
-    public Point NextPoint;
-    public bool IsCross;
-    public Segment LandSegment;
-    public Segment CircleSegment;
-}
-
-public class Segment
-{
-    public Point A;
-    public Point B;
-    public List<Point> CrossPoints = new List<Point>();
-}
-
-[System.Serializable]
-public class Line
-{
-    public List<Point> Points;
-    public List<Segment> Segments;
-}
-
 public class Cutter : MonoBehaviour
 {
     [SerializeField] private PolygonCollider2D _landCollider;

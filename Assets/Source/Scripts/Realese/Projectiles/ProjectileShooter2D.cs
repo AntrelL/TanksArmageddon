@@ -46,7 +46,7 @@ public class ProjectileShooter2D : MonoBehaviour
             float chosenAngle = lowAngleDeg;
 
             Vector2 toTarget = _player.position - _shootPoint.position;
-            bool isTargetLeft = (toTarget.x < 0f);
+            bool isTargetLeft = toTarget.x < 0f;
 
             if (!isTargetLeft)
             {
@@ -117,8 +117,9 @@ public class ProjectileShooter2D : MonoBehaviour
         Destroy(flash.gameObject, flash.main.duration);
     }
 
-    private bool TryCalculateBallisticAngle2D(Vector2 targetPos,
-        out float lowAngleDeg,
+    private bool TryCalculateBallisticAngle2D(
+        Vector2 targetPos, 
+        out float lowAngleDeg, 
         out float highAngleDeg)
     {
         lowAngleDeg = 0f;

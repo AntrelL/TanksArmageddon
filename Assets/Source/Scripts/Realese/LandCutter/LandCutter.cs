@@ -11,27 +11,27 @@ public class LandCutter : MonoBehaviour
 
     public void DoCut()
     {
-        List<Vector2> _circlePointsPositions = _circleCollider.GetPath(0).ToList();
+        List<Vector2> circlePointsPositions = _circleCollider.GetPath(0).ToList();
 
-        for (int i = 0; i < _circlePointsPositions.Count; i++)
+        for (int i = 0; i < circlePointsPositions.Count; i++)
         {
-            _circlePointsPositions[i] = _circleCollider.transform.TransformPoint(_circlePointsPositions[i]);
+            circlePointsPositions[i] = _circleCollider.transform.TransformPoint(circlePointsPositions[i]);
         }
 
-        Line circleLine = LineFromCollider(_circlePointsPositions);
+        Line circleLine = LineFromCollider(circlePointsPositions);
         
         List<List<Point>> allSplines = new List<List<Point>>();
 
         for (int p = 0; p < _landCollider.pathCount; p++)
         {
-            List<Vector2> _linePointsPositions = _landCollider.GetPath(p).ToList();
+            List<Vector2> linePointsPositions = _landCollider.GetPath(p).ToList();
             
-            for (int i = 0; i < _linePointsPositions.Count; i++)
+            for (int i = 0; i < linePointsPositions.Count; i++)
             {
-                _linePointsPositions[i] = _landCollider.transform.TransformPoint(_linePointsPositions[i]);
+                linePointsPositions[i] = _landCollider.transform.TransformPoint(linePointsPositions[i]);
             }
             
-            Line landLine = LineFromCollider(_linePointsPositions);
+            Line landLine = LineFromCollider(linePointsPositions);
 
             for (int i = 0; i < landLine.Points.Count; i++)
             {
@@ -89,7 +89,6 @@ public class LandCutter : MonoBehaviour
 
         RecalculateLine(landLine);
         RecalculateLine(circleLine);
-
         {
             List<Point> allPoints = new List<Point>(landLine.Points);
             bool onLand = true;
@@ -134,7 +133,8 @@ public class LandCutter : MonoBehaviour
 
                     thePoint = thePoint.NextPoint;
 
-                    if (startPoint == thePoint) break;
+                    if (startPoint == thePoint) 
+                        break;
                 }
             }
         }
@@ -166,7 +166,9 @@ public class LandCutter : MonoBehaviour
                     for (int i = 0; i < _testIterations; i++)
                     {
                         point = point.NextPoint;
-                        if (point == startPoint) break;
+                        if (point == startPoint) 
+                            break;
+                        
                         newSpline.Add(point);
                         if (allPoints.Contains(point))
                             allPoints.Remove(point);
@@ -236,7 +238,10 @@ public class LandCutter : MonoBehaviour
             segment.A = points[i];
             points[i].LandSegment = segment;
             int bIndex = i + 1;
-            if (bIndex >= list.Count) bIndex = 0;
+            
+            if (bIndex >= list.Count) 
+                bIndex = 0;
+            
             segment.B = points[bIndex];
             points[bIndex].CircleSegment = segment;
             segments.Add(segment);

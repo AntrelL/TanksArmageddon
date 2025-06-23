@@ -38,8 +38,7 @@ public class UIController : MonoBehaviour
     private int _levelRewardAmount;
     private int _pointsRewardAmount;
     private string _currentScene;
-
-    public event Action PlayerShootButtonPressed;
+    
     public static event Action EnemyDefeated;
     public static event Action<int> PlayerRewardReceived;
     public static event Action<int> PlayerPointsReceived;
@@ -50,7 +49,9 @@ public class UIController : MonoBehaviour
     public static event Action FailedCanvasShown;
     public static event Action SkipTurnButtonPressed;
     public static event Action<string, bool> IsPlayerWin;
-
+    
+    public event Action PlayerShootButtonPressed;
+    
     private void Start()
     {
         Time.timeScale = 1;

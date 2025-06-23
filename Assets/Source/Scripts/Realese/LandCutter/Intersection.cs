@@ -23,12 +23,12 @@ namespace TanksArmageddon
             return isIntersecting;
         }
 
-        public static Vector2 GetIntersection(Vector2 a, Vector2 b, Vector2 c, Vector2 d)
+        public static Vector2 GetIntersection(Vector2 start1, Vector2 end1, Vector2 start2, Vector2 end2)
         {
-            float top = ((d.x - c.x) * (a.y - c.y)) - ((d.y - c.y) * (a.x - c.x));
-            float bottom = ((d.y - c.y) * (b.x - a.x)) - ((d.x - c.x) * (b.y - a.y));
+            float top = ((end2.x - start2.x) * (start1.y - start2.y)) - ((end2.y - start2.y) * (start1.x - start2.x));
+            float bottom = ((end2.y - start2.y) * (end1.x - start1.x)) - ((end2.x - start2.x) * (end1.y - start1.y));
             float t = top / bottom;
-            Vector2 result = Vector2.Lerp(a, b, t);
+            Vector2 result = Vector2.Lerp(start1, end1, t);
             
             return result;
         }

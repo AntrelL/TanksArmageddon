@@ -19,12 +19,11 @@ public class EnemyTurretController : MonoBehaviour
 
     private void Start()
     {
-        DefaultProjectile projectile = _bulletPrefab.GetComponent<DefaultProjectile>();
-        if (projectile != null)
+        if (_bulletPrefab.TryGetComponent<DefaultProjectile>(out _))
         {
             _projectileSpeed = _projectilePrefab.Speed;
         }
-
+        
         _turnManager = FindObjectOfType<TurnManager>();
     }
     
@@ -42,7 +41,9 @@ public class EnemyTurretController : MonoBehaviour
 
         float v2 = speed * speed;
         float disc = (v2 * v2) - (g * ((g * d * d) + (2 * y * v2)));
-        if (disc < 0) return 0f;
+        
+        if (disc < 0) 
+            return 0f;
 
         float sqrtDisc = Mathf.Sqrt(disc);
         float angle = Mathf.Atan((v2 - sqrtDisc) / (g * d));
@@ -80,14 +81,13 @@ public class EnemyTurretController : MonoBehaviour
     {
         _tank.Shot();
         GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
-
-        DefaultProjectile projectile = bullet.GetComponent<DefaultProjectile>();
-        if (projectile != null)
+        
+        if (bullet.TryGetComponent(out DefaultProjectile projectile))
         {
             projectile.IsEnemyProjectile = true;
             projectile.SetupBallisticTrajectory(targetX, targetY);
         }
-
+        
         ParticleSystem flash = Instantiate(_muzzleFlash, _firePoint.position, _firePoint.rotation);
         flash.Play();
         Destroy(flash.gameObject, flash.main.duration);

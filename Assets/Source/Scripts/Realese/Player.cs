@@ -130,7 +130,7 @@ namespace TanksArmageddon
 
                 if (hit.collider == null)
                 {
-                    _rigidbody2D.AddForceAtPosition(horizontalInput * Vector2.right * _force, _selectedPointPosition);
+                    _rigidbody2D.AddForceAtPosition(Vector2.right * (horizontalInput * _force), _selectedPointPosition);
                     _rigidbody2D.gravityScale = 10f;
                     hit = Physics2D.Raycast(_centerPoint.position, -Vector2.up, _checkRaycastLenght, _landLayer);
                 }
@@ -191,7 +191,13 @@ namespace TanksArmageddon
 
         private void AddEventTrigger(GameObject target, EventTriggerType eventType, System.Action action)
         {
-            EventTrigger trigger = target.GetComponent<EventTrigger>() ?? target.AddComponent<EventTrigger>();
+            EventTrigger trigger = target.GetComponent<EventTrigger>();
+            
+            if (trigger == null)
+            {
+                trigger = target.AddComponent<EventTrigger>();
+            }
+            
             EventTrigger.Entry entry = new EventTrigger.Entry { eventID = eventType };
             entry.callback.AddListener((data) => action());
             trigger.triggers.Add(entry);

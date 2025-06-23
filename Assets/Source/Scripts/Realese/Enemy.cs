@@ -35,10 +35,11 @@ public class Enemy : MonoBehaviour
 
     private float _movementTimeUsed = 0f;
     private float _moveDirection = 0f;
-
+    
+    public static event Action EnemyHitted;
+    
     public event Action<int> HealthChanged;
     public event Action Defeated;
-    public static event Action EnemyHitted;
 
     private void Awake()
     {
@@ -95,7 +96,7 @@ public class Enemy : MonoBehaviour
 
         if (hit.collider == null)
         {
-            _rigidbody2D.AddForceAtPosition(_moveDirection * Vector2.right * _movementForce, _selectedPointPosition);
+            _rigidbody2D.AddForceAtPosition(Vector2.right * (_moveDirection * _movementForce), _selectedPointPosition);
             _rigidbody2D.gravityScale = 10f;
             hit = Physics2D.Raycast(_centerPoint.position, -Vector2.up, _checkRaycastLenght, _landLayer);
         }

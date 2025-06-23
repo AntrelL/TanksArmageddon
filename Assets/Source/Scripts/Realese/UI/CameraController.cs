@@ -21,8 +21,9 @@ public class CameraController : MonoBehaviour
 
     public bool IntroFinished => _introFinished;
 
-    public event Action<bool> UnlockMovement;
     public static event Action ShowTips;
+    
+    public event Action<bool> UnlockMovement;
 
     private void Awake()
     {

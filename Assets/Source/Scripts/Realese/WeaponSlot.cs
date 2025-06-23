@@ -28,7 +28,8 @@ public class WeaponSlot : MonoBehaviour
 
     public void UpdateAmmoCount(int ammoCount)
     {
-        if (_ammoCountText == null) return;
+        if (_ammoCountText == null) 
+            return;
 
         if (ammoCount > 0)
         {

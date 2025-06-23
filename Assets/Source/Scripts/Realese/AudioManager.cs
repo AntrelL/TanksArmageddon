@@ -98,7 +98,9 @@ public class AudioManager : MonoBehaviour
 
     private void StopMainMusic()
     {
-        if (_backgroundMusicSource == null) return;
+        if (_backgroundMusicSource == null) 
+            return;
+        
         _backgroundMusicSource.Stop();
         _isMusicOn = false;
     }
@@ -113,7 +115,9 @@ public class AudioManager : MonoBehaviour
     {
         if (_isMusicOn)
         {
-            if (_sfxSource == null || _levelFailedSound == null) return;
+            if (_sfxSource == null || _levelFailedSound == null) 
+                return;
+            
             _sfxSource.volume = 0.5f;
             _sfxSource.PlayOneShot(_levelFailedSound);
         }
@@ -123,7 +127,9 @@ public class AudioManager : MonoBehaviour
     {
         if (_isMusicOn)
         {
-            if (_sfxSource == null || _levelFinishedSound == null) return;
+            if (_sfxSource == null || _levelFinishedSound == null) 
+                return;
+            
             _sfxSource.volume = 0.5f;
             _sfxSource.PlayOneShot(_levelFinishedSound);
         }
@@ -133,7 +139,9 @@ public class AudioManager : MonoBehaviour
     {
         if (_isMusicOn)
         {
-            if (_sfxSource == null || _projectileShootedSound == null) return;
+            if (_sfxSource == null || _projectileShootedSound == null) 
+                return;
+            
             _sfxSource.volume = 1f;
             _sfxSource.PlayOneShot(_projectileShootedSound);
         }
@@ -143,7 +151,9 @@ public class AudioManager : MonoBehaviour
     {
         if (_isMusicOn)
         {
-            if (_sfxSource == null || _tankHittedSound == null) return;
+            if (_sfxSource == null || _tankHittedSound == null) 
+                return;
+            
             _sfxSource.volume = 1f;
             _sfxSource.PlayOneShot(_tankHittedSound);
         }
@@ -153,7 +163,9 @@ public class AudioManager : MonoBehaviour
     {
         if (_isMusicOn)
         {
-            if (_sfxSource == null || _buttonClickSound == null) return;
+            if (_sfxSource == null || _buttonClickSound == null) 
+                return;
+            
             _sfxSource.volume = 1f;
             _sfxSource.PlayOneShot(_buttonClickSound);
         }

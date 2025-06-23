@@ -20,25 +20,25 @@ public class TypewriterEffect : MonoBehaviour
         HangarSceneNavigationManager.TextShowing -= GetText;
     }
 
-    public void GetText(TMP_Text TMPtext)
+    public void GetText(TMP_Text tmpText)
     {
-        _fullText = TMPtext.text;
-        TMPtext.text = "";
-        StartCoroutine(ShowText(TMPtext));
+        _fullText = tmpText.text;
+        tmpText.text = string.Empty;
+        StartCoroutine(ShowText(tmpText));
     }
 
     private void GetText()
     {
         _fullText = _text.text;
-        _text.text = "";
+        _text.text = string.Empty;
         StartCoroutine(ShowText(_text));
     }
 
-    private IEnumerator ShowText(TMP_Text TMPtext)
+    private IEnumerator ShowText(TMP_Text tmpText)
     {
         foreach (char letter in _fullText)
         {
-            TMPtext.text += letter;
+            tmpText.text += letter;
 
             yield return new WaitForSeconds(_delay);
         }

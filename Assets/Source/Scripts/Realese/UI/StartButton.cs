@@ -1,5 +1,5 @@
-using IJunior.TypedScenes;
 using System;
+using IJunior.TypedScenes;
 using UnityEngine;
 
 public class StartButton : MonoBehaviour

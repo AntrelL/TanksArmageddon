@@ -59,7 +59,7 @@ public class Hangar : MonoBehaviour
             }
             else
             {
-                _weaponCardTexts[i].text = "";
+                _weaponCardTexts[i].text = string.Empty;
             }
         }
     }

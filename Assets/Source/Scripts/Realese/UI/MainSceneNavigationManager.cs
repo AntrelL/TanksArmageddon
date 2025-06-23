@@ -1,6 +1,6 @@
-using IJunior.TypedScenes;
 using System;
 using System.Collections.Generic;
+using IJunior.TypedScenes;
 using UnityEngine;
 using YG;
 

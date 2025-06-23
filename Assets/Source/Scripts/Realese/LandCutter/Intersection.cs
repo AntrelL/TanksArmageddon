@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace TanksArmageddon
 {
-    public class Intersection : MonoBehaviour
+    public class Intersection
     {
         public static bool IsIntersecting(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4)
         {

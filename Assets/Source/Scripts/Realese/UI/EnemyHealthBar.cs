@@ -25,12 +25,6 @@ public class EnemyHealthBar : MonoBehaviour
     private void FixedUpdate()
     {
         MoveSlider();
-
-        if (_healthSlider.value != _targetHealth)
-        {
-            _valueText.text = _targetHealth + "/" + _maxHealth;
-            _healthSlider.value = Mathf.Lerp(_healthSlider.value, _targetHealth, Time.deltaTime * _smoothSpeed);
-        }
     }
 
     private void OnEnable()
@@ -63,5 +57,11 @@ public class EnemyHealthBar : MonoBehaviour
     private void UpdateValue(int value)
     {
         _targetHealth = value;
+        
+        if (_healthSlider.value != _targetHealth)
+        {
+            _valueText.text = _targetHealth + "/" + _maxHealth;
+            _healthSlider.value = Mathf.Lerp(_healthSlider.value, _targetHealth, Time.deltaTime * _smoothSpeed);
+        }
     }
 }

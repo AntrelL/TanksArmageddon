@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _groundCollisionFX;
+    [SerializeField] private int _boundaryOfDestruction = -50;
 
     public static Transform CurrentEnemyBullet { get; private set; }
 
@@ -23,7 +24,7 @@ public class EnemyBullet : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y < -50)
+        if (transform.position.y < - _boundaryOfDestruction)
         {
             Destroy(gameObject);
         }

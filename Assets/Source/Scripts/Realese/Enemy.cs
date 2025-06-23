@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private ProjectileShooter2D _projectileShooter;
     [SerializeField] private Transform _player;
     [SerializeField] private LayerMask _landLayer;
+    [SerializeField] private int _edgeOfMapDamage = 5000;
 
     [Space]
     [Header("New Physics")]
@@ -54,7 +55,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out EdgeOfMap edge))
         {
-            TakeDamage(5000);
+            TakeDamage(_edgeOfMapDamage);
         }
     }
 

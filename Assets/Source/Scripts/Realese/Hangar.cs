@@ -114,7 +114,7 @@ public class Hangar : MonoBehaviour
                 YG2.saves.ClearWeaponsData[weaponIndex].UpgradeLevel = currentLevel + 1;
 
                 YG2.saves.ClearWeaponsData[weaponIndex].CurrentDamage = Mathf.RoundToInt(YG2.saves.ClearWeaponsData[weaponIndex].BaseDamage * _damageMultipliers[currentLevel]);
-                
+
                 YG2.SaveProgress();
                 UpdateWeaponLevelText(weaponIndex);
                 UpdateWeaponDamageText(weaponIndex);

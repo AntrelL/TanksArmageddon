@@ -154,7 +154,7 @@ namespace YG
                                 break;
                             }
                         }
-                        
+
                         if (currentPlayer >= maxQuantityPlayers)
                         {
                             List<LBPlayerData> topPlayers = new List<LBPlayerData>();

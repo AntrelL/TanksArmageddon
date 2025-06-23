@@ -143,7 +143,7 @@ namespace Lean.Localization.Editor
 			Undo.RecordObject(tgt, "Modified Translation");
 
 			EditorGUI.BeginChangeCheck();
-			
+
 			switch (tgt.Data)
 			{
 				case LeanPhrase.DataType.Text:

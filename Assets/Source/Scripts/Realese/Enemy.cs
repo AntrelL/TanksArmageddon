@@ -35,15 +35,15 @@ public class Enemy : MonoBehaviour
 
     private float _movementTimeUsed = 0f;
     private float _moveDirection = 0f;
-    
+
     public static event Action EnemyHitted;
-    
+
     public event Action<int> HealthChanged;
-    
+
     public event Action Defeated;
 
     public int MaxHealth => _maxHealth;
-    
+
     private void Awake()
     {
         _currentHealth = MaxHealth;
@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
 
             return;
         }
-        
+
         _rigidbody2D.centerOfMass = _centerPoint.localPosition;
 
         _rigidbody2D.drag = _baseDrag;
@@ -127,7 +127,7 @@ public class Enemy : MonoBehaviour
         _tank.Move();
         _movementTimeUsed += Time.fixedDeltaTime;
     }
-    
+
     public IEnumerator DoEnemyTurn()
     {
         _movementTimeUsed = 0f;

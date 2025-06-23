@@ -8,7 +8,7 @@ public class ShopSceneNavigationManager : MonoBehaviour
     [SerializeField] private Canvas _helpViewCanvas;
 
     public static event Action ButtonClicked;
-    
+
     public static event Action TextShowing;
 
     public void HelpButtonPressed()

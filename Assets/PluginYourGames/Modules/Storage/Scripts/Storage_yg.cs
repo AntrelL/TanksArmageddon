@@ -105,7 +105,7 @@ namespace YG.Insides
 #if !UNITY_EDITOR
             if (infoYG.Storage.saveCloud)
                 LoadCloud();
-            else 
+            else
                 LoadLocal();
 #else
             LoadEditor();

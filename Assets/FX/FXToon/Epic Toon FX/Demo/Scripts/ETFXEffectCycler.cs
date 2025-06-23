@@ -8,11 +8,11 @@ namespace EpicToonFX
 	{
 		public List<GameObject> listOfEffects;
 		int effectIndex = 0;
-	
+
 		[Header("Spawn Settings")]
-		
+
 		[SerializeField]
-		
+
 		[Space(10)]
 		public float loopLength = 1.0f;
 		public float startDelay = 1.0f;
@@ -32,7 +32,7 @@ namespace EpicToonFX
 			{
                 effectIndex++;
 			}
-				
+
             else
 			{
                 effectIndex = 0;

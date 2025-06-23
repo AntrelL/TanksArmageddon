@@ -503,7 +503,7 @@ namespace CW.Common
 				r.sharedMaterials = materials.ToArray(); materials.Clear();
 			}
 		}
-	
+
 		public static Texture2D CreateTempTexture2D(string name, int width, int height, TextureFormat format = TextureFormat.ARGB32, bool mips = false, bool linear = false)
 		{
 			var texture2D = new Texture2D(width, height, format, mips, linear);
@@ -709,7 +709,7 @@ namespace CW.Common
 		{
 			return Mathf.Atan2(xy.x, xy.y);
 		}
-		
+
 		public static int Mod(int a, int b)
 		{
 			var m = a % b;
@@ -916,12 +916,12 @@ namespace CW.Common
 		{
 			ReimportAsset(AssetDatabase.GetAssetPath(asset));
 		}
-	
+
 		public static void ReimportAsset(string path)
 		{
 			AssetDatabase.ImportAsset(path);
 		}
-	
+
 		public static bool IsAsset(Object o)
 		{
 			return o != null && string.IsNullOrEmpty(AssetDatabase.GetAssetPath(o)) == false;

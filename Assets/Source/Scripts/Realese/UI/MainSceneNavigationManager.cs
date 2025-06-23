@@ -8,7 +8,7 @@ public class MainSceneNavigationManager : MonoBehaviour
 {
     [SerializeField] private GameObject _authView;
     [SerializeField] private GameObject _levelsBlockSprite;
-    
+
     private readonly Dictionary<string, bool> _levelsStatus;
 
     public static event Action ButtonClicked;

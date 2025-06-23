@@ -19,7 +19,7 @@ public class UICanvasManager : MonoBehaviour {
 		if (PENameText != null)
 			PENameText.text = ParticleEffectsLibrary.GlobalAccess.GetCurrentPENameString();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 	

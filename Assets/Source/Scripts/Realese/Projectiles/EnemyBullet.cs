@@ -9,11 +9,11 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] private int _boundaryOfDestruction = -50;
 
     private LandCutter _landCutter;
-    
+
     public static event Action EnemyBulletDestroyed;
-    
+
     public static event Action GroundHit;
-    
+
     public static event Action<int> PlayerHit;
 
     public static Transform CurrentEnemyBullet { get; private set; }

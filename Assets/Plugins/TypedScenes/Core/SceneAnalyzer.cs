@@ -33,7 +33,7 @@ namespace IJunior.TypedScenes
         {
             var scene = analyzableScene.Scene;
             var componentTypes = GetAllTypes(scene);
-            
+
             if (componentTypes.Contains(typeof(TypedProcessor))) return false;
 
             var gameObject = new GameObject("TypedProcessor");

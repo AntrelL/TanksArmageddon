@@ -6,21 +6,21 @@ public class DefaultProjectile : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _groundCollisionFX;
     [SerializeField] private float _speed;
-    
+
     private readonly bool _isDead;
-    
+
     public static event Action GroundHit;
-    
+
     public static event Action EdgeOfMapHit;
-    
+
     public static event Action ProjectileDestroyed;
 
     public static Transform CurrentProjectile { get; private set; }
-    
+
     public bool IsEnemyProjectile { get; set; } = false;
-    
+
     public float Speed => _speed;
-    
+
     private Rigidbody2D _rigidbody;
     private LandCutter _landCutter;
 

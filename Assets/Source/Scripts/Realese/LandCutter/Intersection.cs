@@ -19,7 +19,7 @@ namespace TanksArmageddon
                     isIntersecting = true;
                 }
             }
-            
+
             return isIntersecting;
         }
 
@@ -29,7 +29,7 @@ namespace TanksArmageddon
             float bottom = ((end2.y - start2.y) * (end1.x - start1.x)) - ((end2.x - start2.x) * (end1.y - start1.y));
             float t = top / bottom;
             Vector2 result = Vector2.Lerp(start1, end1, t);
-            
+
             return result;
         }
     }

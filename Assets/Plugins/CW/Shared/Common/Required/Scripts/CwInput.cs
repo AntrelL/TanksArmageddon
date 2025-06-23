@@ -172,7 +172,7 @@ namespace CW.Common
 					case 4: return UnityEngine.InputSystem.Mouse.current.backButton;
 				}
 			}
-			
+
 			return null;
 		}
 
@@ -203,7 +203,7 @@ namespace CW.Common
 			return null;
 		}
 #endif
-		
+
 		public static int GetTouchCount()
 		{
 #if USE_NEW_INPUT_SYSTEM

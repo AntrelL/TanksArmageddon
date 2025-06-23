@@ -44,17 +44,17 @@ public class PlayerDataHandler : MonoBehaviour
     {
         YG2.saves.PlayerPoints += value;
     }
-    
+
     public int GetPlayerPoints()
     {
         return YG2.saves.PlayerPoints;
     }
-    
+
     public int GetPlayerMaxHealth()
     {
         return YG2.saves.PlayerHealth;
     }
-    
+
     public int GetPlayerBalance()
     {
         return YG2.saves.PlayerBalance;

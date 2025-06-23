@@ -8,7 +8,7 @@ public class HangarSceneNavigationManager : MonoBehaviour
     [SerializeField] private Canvas _helpViewCanvas;
 
     public static event Action ButtonClicked;
-    
+
     public static event Action TextShowing;
 
     private void Start()

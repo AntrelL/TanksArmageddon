@@ -17,13 +17,13 @@ public class CameraController : MonoBehaviour
     private bool _introFinished = false;
     private Transform _currentTarget;
     private string _currentScene;
-    
+
     public static event Action ShowTips;
-    
+
     public event Action<bool> UnlockMovement;
 
     public bool IntroFinished => _introFinished;
-    
+
     private void Awake()
     {
         _currentScene = SceneManager.GetActiveScene().name;
@@ -121,7 +121,7 @@ public class CameraController : MonoBehaviour
             {
                 _currentTarget = DefaultProjectile.CurrentProjectile;
             }
-            
+
             if (EnemyBullet.CurrentEnemyBullet != null)
             {
                 _currentTarget = EnemyBullet.CurrentEnemyBullet;

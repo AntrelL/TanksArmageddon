@@ -15,12 +15,12 @@ namespace TanksArmageddon
                 CreateMesh();
             }
         }
-        
+
         private void OnValidate()
         {
             CreateMesh();
         }
-        
+
         public void CreateMesh()
         {
             Mesh mesh = _collider.CreateMesh(true, true);

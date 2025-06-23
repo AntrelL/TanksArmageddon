@@ -67,7 +67,7 @@ namespace EpicToonFX
                 rotationXAxis = ClampAngle(rotationXAxis, yMinLimit, yMaxLimit);
                 Quaternion toRotation = Quaternion.Euler(rotationXAxis, rotationYAxis, 0);
                 Quaternion rotation = toRotation;
-                
+
                 if (Physics.Linecast(target.position, transform.position, out RaycastHit hit))
                 {
                    distance -= hit.distance;

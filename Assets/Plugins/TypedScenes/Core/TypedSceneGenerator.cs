@@ -64,7 +64,7 @@ namespace IJunior.TypedScenes
                 loadMethod.Parameters.Add(parameter);
                 loadingStatement = "LoadScene(_sceneName, loadSceneMode, argument)";
             }
-            
+
             if (asyncLoad)
             {
                 loadMethod.ReturnType = new CodeTypeReference(typeof(AsyncOperation));

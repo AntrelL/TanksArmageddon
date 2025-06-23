@@ -29,7 +29,7 @@ namespace TanksArmageddon
         [SerializeField] private Transform _rightPoint;
 
         private readonly float _checkRaycastLenght = 0.8f;
-        
+
         private float _baseDrag;
 
         private Vector3 _selectedPointPosition = new Vector3();
@@ -45,9 +45,9 @@ namespace TanksArmageddon
         private bool _isAlive = true;
 
         public static event Action PlayerHit;
-        
+
         public event Action<int> HealthChanged;
-        
+
         public event Action Defeated;
 
         private void Awake()
@@ -121,7 +121,6 @@ namespace TanksArmageddon
 
             _petrolTank.value = _availableTravelTime - _travelTimeSpent;
 
-            
             _rigidbody2D.centerOfMass = _centerPoint.localPosition;
 
             if (horizontalInput != 0)
@@ -194,12 +193,12 @@ namespace TanksArmageddon
         private void AddEventTrigger(GameObject target, EventTriggerType eventType, System.Action action)
         {
             EventTrigger trigger = target.GetComponent<EventTrigger>();
-            
+
             if (trigger == null)
             {
                 trigger = target.AddComponent<EventTrigger>();
             }
-            
+
             EventTrigger.Entry entry = new EventTrigger.Entry { eventID = eventType };
             entry.callback.AddListener((data) => action());
             trigger.triggers.Add(entry);

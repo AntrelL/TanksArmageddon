@@ -18,7 +18,7 @@ public class ETFXButtonScript : MonoBehaviour
 	public float buttonsSizeX;
 	public float buttonsSizeY;
 	public float buttonsDistance;
-	
+
 	void Start ()
 	{
 		effectScript = GameObject.Find("ETFXFireProjectile").GetComponent<ETFXFireProjectile>();

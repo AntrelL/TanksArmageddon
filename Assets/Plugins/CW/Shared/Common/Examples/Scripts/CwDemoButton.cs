@@ -193,7 +193,7 @@ namespace CW.Common
 			{
 				#if UNITY_EDITOR
 					var scenes = UnityEditor.EditorBuildSettings.scenes;
-					
+
 					if (scenes.Length >= index || scenes[index].path != scene.path)
 					{
 						return -1;

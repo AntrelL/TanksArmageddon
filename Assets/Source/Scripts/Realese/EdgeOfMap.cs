@@ -5,7 +5,7 @@ using UnityEngine;
 public class EdgeOfMap : MonoBehaviour
 {
     private int _damage = 5000;
-    
+
     public static event Action<int> CollisionWithPlayer;
 
     private void OnCollisionEnter2D(Collision2D collision)

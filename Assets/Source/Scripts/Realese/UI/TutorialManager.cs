@@ -15,7 +15,7 @@ public class TutorialManager : MonoBehaviour
     private string _currentLanguage = "ru";
 
     public static event Action<bool> TutorialEnded;
-    
+
     public static event Action ButtonClicked;
 
     private void Start()

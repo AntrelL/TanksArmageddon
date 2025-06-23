@@ -44,10 +44,10 @@ public class AirdropSpawner : MonoBehaviour
         {
             Vector2 worldPoint = (Vector2)_land.transform.TransformPoint(point);
 
-            if (worldPoint.x < minX) 
+            if (worldPoint.x < minX)
                 minX = worldPoint.x;
-            
-            if (worldPoint.x > maxX) 
+
+            if (worldPoint.x > maxX)
                 maxX = worldPoint.x;
         }
 

@@ -85,7 +85,7 @@ namespace Lean.Common
 		{
 			if (CwHelper.Enabled(selectable) == true)
 			{
-				if (TryReselect(selectable) == true) 
+				if (TryReselect(selectable) == true)
 				{
 					if (Selectables.Contains(selectable) == false) // NOTE: Property
 					{

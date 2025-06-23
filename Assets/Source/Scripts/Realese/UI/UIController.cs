@@ -39,23 +39,23 @@ public class UIController : MonoBehaviour
     private string _currentScene;
 
     public event Action PlayerShootButtonPressed;
-    
+
     public static event Action<int> PlayerRewardReceived;
-    
+
     public static event Action<int> PlayerPointsReceived;
-    
+
     public static event Action SoundTurnedOff;
-    
+
     public static event Action SoundTurnedOn;
-    
+
     public static event Action ButtonClicked;
-    
+
     public static event Action FinishedCanvasShown;
-    
+
     public static event Action FailedCanvasShown;
-    
+
     public static event Action SkipTurnButtonPressed;
-    
+
     private void Start()
     {
         Time.timeScale = 1;

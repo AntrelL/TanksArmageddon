@@ -22,7 +22,7 @@ public class ProjectileShooter2D : MonoBehaviour
     [SerializeField] private float _maxAngleDeviation;
 
     private float _turretInitialAngle;
-    
+
     public static event Action EnemyShooted;
 
     private void Start()
@@ -32,7 +32,7 @@ public class ProjectileShooter2D : MonoBehaviour
             _turretInitialAngle = _turret.localEulerAngles.z;
         }
     }
-    
+
     public bool ShootIfPossible()
     {
         float difficultyFactor = _turnManager.DifficultyFactor;
@@ -56,7 +56,7 @@ public class ProjectileShooter2D : MonoBehaviour
 
             float usedAngle = -chosenAngle;
             float turretTargetAngle = usedAngle;
-            
+
             float angleOffset = Mathf.DeltaAngle(0f, turretTargetAngle);
 
             if (Mathf.Abs(angleOffset) > _maxAngleDeviation)
@@ -65,7 +65,7 @@ public class ProjectileShooter2D : MonoBehaviour
             }
 
             StartCoroutine(RotateThenShoot(turretTargetAngle));
-            
+
             return true;
         }
         else
@@ -96,7 +96,7 @@ public class ProjectileShooter2D : MonoBehaviour
         _enemyTank.Shot();
         ShootBullet();
     }
-    
+
     private void ShootBullet()
     {
         if (_bulletPrefab == null)
@@ -106,7 +106,7 @@ public class ProjectileShooter2D : MonoBehaviour
         Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
 
         float turretAngleDeg = _turret.eulerAngles.z;
-        
+
         float angleRad = turretAngleDeg * Mathf.Deg2Rad;
         Vector2 direction = new Vector2(Mathf.Cos(angleRad), Mathf.Sin(angleRad)) * -1;
 
@@ -119,8 +119,8 @@ public class ProjectileShooter2D : MonoBehaviour
     }
 
     private bool TryCalculateBallisticAngle2D(
-        Vector2 targetPos, 
-        out float lowAngleDeg, 
+        Vector2 targetPos,
+        out float lowAngleDeg,
         out float highAngleDeg)
     {
         lowAngleDeg = 0f;
@@ -141,7 +141,7 @@ public class ProjectileShooter2D : MonoBehaviour
             return false;
 
         float discriminant = v4 - (g * ((g * xAbs * xAbs) + (2f * yOffset * v2)));
-        
+
         if (discriminant < 0f)
             return false;
 
@@ -164,24 +164,23 @@ public class ProjectileShooter2D : MonoBehaviour
     {
         if (_turret == null || _shootPoint == null)
             return;
-        
+
         float angleDeg = _turret.eulerAngles.z + 180f;
         float localAngle = Mathf.DeltaAngle(180f, angleDeg);
-        
+
         Gizmos.color = Mathf.Abs(localAngle) > _maxAngleDeviation ? Color.red : Color.green;
 
         float angleRad = angleDeg * Mathf.Deg2Rad;
         Vector2 direction = new Vector2(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
         Gizmos.DrawRay(_shootPoint.position, direction.normalized * 2f);
-        
+
         UnityEditor.Handles.color = Color.cyan;
         UnityEditor.Handles.DrawWireArc(
             _shootPoint.position,
             Vector3.forward,
             Quaternion.Euler(0, 0, 180f - _maxAngleDeviation) * Vector3.right,
             2f * _maxAngleDeviation,
-            2f
-        );
+            2f);
     }
 #endif
 }

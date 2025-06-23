@@ -887,7 +887,7 @@ namespace Lean.Localization.Editor
 				}
 			}
 		}
-		
+
 		private static List<string> missing = new List<string>();
 
 		private static List<string> clashes = new List<string>();
@@ -938,7 +938,7 @@ namespace Lean.Localization.Editor
 						var languagePrefabs = AssetDatabase.FindAssets("t:GameObject").
 							Select((guid) => AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(guid))).
 							Where((prefab) => prefab.GetComponent<LeanLanguage>() != null);
-						
+
 						foreach (var languagePrefab in languagePrefabs)
 						{
 							if (LeanLocalization.CurrentLanguages.ContainsKey(languagePrefab.name) == true)

@@ -11,7 +11,7 @@ namespace IJunior.TypedScenes
         public static bool DetectSceneImport(string assetPath, out string validScenePath)
         {
             validScenePath = null;
-            
+
             if (Path.GetExtension(assetPath) != TypedSceneSettings.SceneExtension)
                 return false;
 
@@ -30,7 +30,7 @@ namespace IJunior.TypedScenes
 
                 if (SceneAnalyzer.TryAddTypedProcessor(analyzableScene))
                     return false;
-            
+
                 validScenePath = analyzableScene.AssetPath;
                 return true;
             }

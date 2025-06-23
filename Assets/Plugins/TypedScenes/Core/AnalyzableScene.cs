@@ -10,12 +10,12 @@ namespace IJunior.TypedScenes
     public class AnalyzableScene : IDisposable
     {
         private bool _closeOnDispose;
-        
+
         public Scene Scene { get; private set; }
         public string Name { get; private set; }
         public string GUID { get; private set; }
         public string AssetPath { get; private set; }
-        
+
         private AnalyzableScene() {}
 
         public static AnalyzableScene Create(string scenePath)
@@ -28,7 +28,7 @@ namespace IJunior.TypedScenes
                 scene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Additive);
                 EditorSceneManager.SetActiveScene(scene);
             }
-            
+
             var guid = AssetDatabase.AssetPathToGUID(scene.path);
             var name = Path.GetFileNameWithoutExtension(scenePath);
 

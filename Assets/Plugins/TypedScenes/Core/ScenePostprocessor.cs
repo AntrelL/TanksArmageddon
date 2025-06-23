@@ -16,14 +16,14 @@ namespace IJunior.TypedScenes
                 if (TypedSceneValidator.DetectSceneImport(importedAsset, out var validScenePath))
                     HandleImportedScene(validScenePath);
             }
-            
+
             foreach (var deletedAsset in deletedAssets)
             {
                 if (Path.GetExtension(deletedAsset) == TypedSceneSettings.SceneExtension
                     && !TypedSceneValidator.DetectSceneDeletion(Path.GetFileNameWithoutExtension(deletedAsset)))
                     HandleSceneDeletion(deletedAsset);
             }
-            
+
             for (var i = 0; i < movedFromAssetPaths.Length; i++)
             {
                 if (Path.GetExtension(movedFromAssetPaths[i]) == TypedSceneSettings.SceneExtension)
@@ -37,7 +37,7 @@ namespace IJunior.TypedScenes
             {
                 var sourceCode = TypedSceneGenerator.Generate(analyzableScene);
                 TypedSceneStorage.Save(analyzableScene.Name, sourceCode);
-            
+
                 if (EditorBuildSettings.scenes.All(scene => scene.guid.ToString() != analyzableScene.GUID))
                 {
                     var buildScenes = EditorBuildSettings.scenes;

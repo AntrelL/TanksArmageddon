@@ -58,15 +58,15 @@ public class Shop : MonoBehaviour
                 {
                     _purchasedCardsInfo.text = $"Oyuncunun sağlığı 10 arttı. \r\nOyuncunun mevcut sağlığı: {currentPlayerHealth}";
                 }
-                
+
                 UpdatePlayerBalanceUI();
                 CardClicked?.Invoke();
 
                 return;
             }
-            
+
             int currentCardCount = YG2.saves.WeaponCardCounts[index];
-            
+
             YG2.saves.WeaponCardCounts[index] = currentCardCount + 1;
             CardClicked?.Invoke();
 
@@ -84,7 +84,7 @@ public class Shop : MonoBehaviour
             {
                 _purchasedCardsInfo.text = $"{index + 1} mermisi için kart satın alındı. \r\nGeliştirilebilecek kart sayısı: {currentCardCount + 1}";
             }
-            
+
             UpdatePlayerBalanceUI();
         }
         else

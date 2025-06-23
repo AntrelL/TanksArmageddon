@@ -7,13 +7,13 @@ public class WeaponSlot : MonoBehaviour
     [SerializeField] private TMP_Text _ammoCountText;
 
     private bool _isSelected = false;
-    
+
     [field: SerializeField] public Image Icon { get; set; }
-    
+
     [field: SerializeField] public TextMeshProUGUI CurrentDamage { get; set; }
-    
+
     [field: SerializeField] public Image Highlight { get; set; }
-    
+
     public void SetWeaponData(ClearWeaponData weapon)
     {
         CurrentDamage.text = weapon.CurrentDamage.ToString();
@@ -30,7 +30,7 @@ public class WeaponSlot : MonoBehaviour
 
     public void UpdateAmmoCount(int ammoCount)
     {
-        if (_ammoCountText == null) 
+        if (_ammoCountText == null)
             return;
 
         if (ammoCount > 0)

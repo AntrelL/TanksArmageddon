@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour
     public static event Action EnemyHitted;
     
     public event Action<int> HealthChanged;
+    
     public event Action Defeated;
 
     public int MaxHealth => _maxHealth;

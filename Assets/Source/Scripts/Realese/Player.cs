@@ -45,7 +45,9 @@ namespace TanksArmageddon
         private bool _isAlive = true;
 
         public static event Action PlayerHit;
+        
         public event Action<int> HealthChanged;
+        
         public event Action Defeated;
 
         private void Awake()

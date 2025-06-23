@@ -5,9 +5,9 @@ namespace TanksArmageddon
 {
     public class Land : MonoBehaviour
     {
-        [SerializeField] PolygonCollider2D _collider;
-        [SerializeField] MeshFilter _meshFilter;
-        [SerializeField] ColliderRenderer _colliderRenderer;
+        [SerializeField] private PolygonCollider2D _collider;
+        [SerializeField] private MeshFilter _meshFilter;
+        [SerializeField] private ColliderRenderer _colliderRenderer;
 
         public void SetPath(List<List<Point>> paths)
         {

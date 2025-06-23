@@ -8,13 +8,15 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] private ParticleSystem _groundCollisionFX;
     [SerializeField] private int _boundaryOfDestruction = -50;
 
-    public static Transform CurrentEnemyBullet { get; private set; }
-
+    private LandCutter _landCutter;
+    
     public static event Action EnemyBulletDestroyed;
+    
     public static event Action GroundHit;
+    
     public static event Action<int> PlayerHit;
 
-    private LandCutter _landCutter;
+    public static Transform CurrentEnemyBullet { get; private set; }
 
     private void Start()
     {

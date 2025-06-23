@@ -5,8 +5,8 @@ namespace TanksArmageddon
 {
     public class ColliderRenderer : MonoBehaviour
     {
-        [SerializeField] PolygonCollider2D _collider;
-        [SerializeField] MeshFilter _meshFilter;
+        [SerializeField] private PolygonCollider2D _collider;
+        [SerializeField] private MeshFilter _meshFilter;
 
         private void Update()
         {
@@ -15,10 +15,12 @@ namespace TanksArmageddon
                 CreateMesh();
             }
         }
+        
         private void OnValidate()
         {
             CreateMesh();
         }
+        
         public void CreateMesh()
         {
             Mesh mesh = _collider.CreateMesh(true, true);

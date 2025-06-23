@@ -9,14 +9,18 @@ public class DefaultProjectile : MonoBehaviour
     
     private readonly bool _isDead;
     
-    public static Transform CurrentProjectile { get; private set; }
     public static event Action GroundHit;
+    
     public static event Action EdgeOfMapHit;
+    
     public static event Action ProjectileDestroyed;
 
-    public float Speed => _speed;
+    public static Transform CurrentProjectile { get; private set; }
+    
     public bool IsEnemyProjectile { get; set; } = false;
-
+    
+    public float Speed => _speed;
+    
     private Rigidbody2D _rigidbody;
     private LandCutter _landCutter;
 

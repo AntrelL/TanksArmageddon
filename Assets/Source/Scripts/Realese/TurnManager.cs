@@ -17,19 +17,26 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private float _difficultyFactor = 0.1f;
 
     private int _turnCount = 0;
-    public int TurnCount => _turnCount;
-    public float DifficultyFactor => _difficultyFactor;
     private bool _allEnemiesDead = false;
-
+    
     public static event Action AllEnemiesDead;
+    
     public static event Action<bool> CanPlayerControl;
+    
     public static event Action<bool> CanPlayerShoot;
+    
     public static event Action<Transform> TurnStarted;
+    
     public static event Action PlayerTurnFinished;
+    
     public static event Action<int> CompletedTurns;
 
     public static bool CurrentTurnIsPlayer { get; private set; }
 
+    public int TurnCount => _turnCount;
+    
+    public float DifficultyFactor => _difficultyFactor;
+    
     private void Start()
     {
         if (_cameraController.IntroFinished)

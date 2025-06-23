@@ -9,7 +9,9 @@ public class WeaponSlot : MonoBehaviour
     private bool _isSelected = false;
     
     [field: SerializeField] public Image Icon { get; set; }
+    
     [field: SerializeField] public TextMeshProUGUI CurrentDamage { get; set; }
+    
     [field: SerializeField] public Image Highlight { get; set; }
     
     public void SetWeaponData(ClearWeaponData weapon)

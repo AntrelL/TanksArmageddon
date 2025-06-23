@@ -22,6 +22,7 @@ public class ProjectileShooter2D : MonoBehaviour
     [SerializeField] private float _maxAngleDeviation;
 
     private float _turretInitialAngle;
+    
     public static event Action EnemyShooted;
 
     private void Start()

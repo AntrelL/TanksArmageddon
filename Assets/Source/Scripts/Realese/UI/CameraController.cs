@@ -11,7 +11,6 @@ public class CameraController : MonoBehaviour
     [SerializeField] private List<Enemy> _enemies;
     [SerializeField] private float _moveSpeed = 3f;
     [SerializeField] private float _followSpeed = 5f;
-    [SerializeField] private float _waitTime = 1.5f;
     [SerializeField] private float _delayBeforeSwitch = 0f;
     [SerializeField] private float _timeSinceSwitch = 0f;
 
@@ -52,22 +51,23 @@ public class CameraController : MonoBehaviour
 
     private IEnumerator CameraIntroSequence()
     {
+        float waitTime = 1.5f;
         _blockUICanvas.SetActive(true);
 
         yield return MoveToTarget(_player.position);
-        yield return new WaitForSeconds(_waitTime);
+        yield return new WaitForSeconds(waitTime);
 
         foreach (var enemy in _enemies)
         {
             if (enemy != null && enemy.gameObject.activeSelf)
             {
                 yield return MoveToTarget(enemy.transform.position);
-                yield return new WaitForSeconds(_waitTime);
+                yield return new WaitForSeconds(waitTime);
             }
         }
 
         yield return MoveToTarget(_player.position);
-        yield return new WaitForSeconds(_waitTime);
+        yield return new WaitForSeconds(waitTime);
 
         _introFinished = true;
         UnlockMovement?.Invoke(true);

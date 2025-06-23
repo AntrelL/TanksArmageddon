@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int MaxHealth;
-    
     [SerializeField] private ParticleSystem _hitFX;
+    [SerializeField] private int _maxHealth;
     [SerializeField] private Tank _tank;
     [SerializeField] private float _movementForce = 15f;
     [SerializeField] private float _maxSpeed = 5f;
@@ -41,6 +40,8 @@ public class Enemy : MonoBehaviour
     public event Action<int> HealthChanged;
     public event Action Defeated;
 
+    public int MaxHealth => _maxHealth;
+    
     private void Awake()
     {
         _currentHealth = MaxHealth;

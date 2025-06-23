@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class Line
 {
-    public List<Point> Points;
-    public List<Segment> Segments;
+    [field: SerializeField] public List<Point> Points { get; set; }
+    [field: SerializeField] public List<Segment> Segments { get; set; }
 }

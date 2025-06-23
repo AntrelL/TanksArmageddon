@@ -4,13 +4,13 @@ using UnityEngine.UI;
 
 public class WeaponSlot : MonoBehaviour
 {
-    public Image Icon;
-    public TextMeshProUGUI CurrentDamage;
-    public Image Highlight;
-
     [SerializeField] private TMP_Text _ammoCountText;
 
     private bool _isSelected = false;
+    
+    [field: SerializeField] public Image Icon { get; set; }
+    [field: SerializeField] public TextMeshProUGUI CurrentDamage { get; set; }
+    [field: SerializeField] public Image Highlight { get; set; }
     
     public void SetWeaponData(ClearWeaponData weapon)
     {

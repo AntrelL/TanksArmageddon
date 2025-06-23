@@ -138,7 +138,7 @@ public class ProjectileShooter2D : MonoBehaviour
         if (xAbs < 0.01f)
             return false;
 
-        float discriminant = v4 - g * (g * xAbs * xAbs + 2f * yOffset * v2);
+        float discriminant = v4 - (g * ((g * xAbs * xAbs) + (2f * yOffset * v2)));
         
         if (discriminant < 0f)
             return false;

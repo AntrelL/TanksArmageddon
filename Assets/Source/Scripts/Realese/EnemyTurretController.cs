@@ -41,7 +41,7 @@ public class EnemyTurretController : MonoBehaviour
         float y = target.y - start.y;
 
         float v2 = speed * speed;
-        float disc = v2 * v2 - g * (g * d * d + 2 * y * v2);
+        float disc = (v2 * v2) - (g * ((g * d * d) + (2 * y * v2)));
         if (disc < 0) return 0f;
 
         float sqrtDisc = Mathf.Sqrt(disc);

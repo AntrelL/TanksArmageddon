@@ -5,9 +5,9 @@ public class ClearWeaponData
 {
     public ClearWeaponData(WeaponData weaponData)
     {
-        BaseDamage = weaponData.baseDamage;
-        UpgradeLevel = weaponData.upgradeLevel;
-        CurrentDamage = weaponData.currentDamage;
+        BaseDamage = weaponData.BaseDamage;
+        UpgradeLevel = weaponData.UpgradeLevel;
+        CurrentDamage = weaponData.CurrentDamage;
     }
 
     public int BaseDamage;

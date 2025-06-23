@@ -159,6 +159,7 @@ public class TurnManager : MonoBehaviour
                 return _enemies[i];
             }
         }
+        
         return null;
     }
 

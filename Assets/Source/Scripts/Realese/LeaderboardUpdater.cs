@@ -7,6 +7,6 @@ public class LeaderboardUpdater : MonoBehaviour
 
     private void Start()
     {
-        YG2.SetLeaderboard(_leaderboardName, YG2.saves.playerPoints);
+        YG2.SetLeaderboard(_leaderboardName, YG2.saves.PlayerPoints);
     }
 }

@@ -28,8 +28,9 @@ namespace TanksArmageddon
         [SerializeField] private Transform _leftPoint;
         [SerializeField] private Transform _rightPoint;
 
+        private readonly float _checkRaycastLenght = 0.8f;
+        
         private float _baseDrag;
-        private float _checkRaycastLenght = 0.8f;
 
         private Vector3 _selectedPointPosition = new Vector3();
         private Vector3 _forceDirection = new Vector3();

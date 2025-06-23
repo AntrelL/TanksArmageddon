@@ -9,7 +9,7 @@ public class MainSceneNavigationManager : MonoBehaviour
     [SerializeField] private GameObject _authView;
     [SerializeField] private GameObject _levelsBlockSprite;
     
-    private Dictionary<string, bool> _levelsStatus;
+    private readonly Dictionary<string, bool> _levelsStatus;
 
     public static event Action ButtonClicked;
 
@@ -18,7 +18,7 @@ public class MainSceneNavigationManager : MonoBehaviour
         Time.timeScale = 1f;
         _authView.SetActive(false);
 
-        if (YG2.saves.trainingLevelPassed)
+        if (YG2.saves.TrainingLevelPassed)
         {
             _levelsBlockSprite.SetActive(false);
         }

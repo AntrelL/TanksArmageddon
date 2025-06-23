@@ -65,9 +65,9 @@ public class Shop : MonoBehaviour
                 return;
             }
             
-            int currentCardCount = YG2.saves.weaponCardCounts[index];
+            int currentCardCount = YG2.saves.WeaponCardCounts[index];
             
-            YG2.saves.weaponCardCounts[index] = currentCardCount + 1;
+            YG2.saves.WeaponCardCounts[index] = currentCardCount + 1;
             CardClicked?.Invoke();
 
             if (_currentLanguage == "ru")

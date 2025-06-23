@@ -34,60 +34,60 @@ public class GameManager : MonoBehaviour
 
     public void IncreasePlayerHealth()
     {
-        YG2.saves.playerHealth += 10;
+        YG2.saves.PlayerHealth += 10;
     }
 
     public int GetPlayerHealth()
     {
-        return YG2.saves.playerHealth;
+        return YG2.saves.PlayerHealth;
     }
 
     private void SetPlayerPoints(int value)
     {
-        YG2.saves.playerPoints += value;
+        YG2.saves.PlayerPoints += value;
     }
 
     public int GetPlayerPoints()
     {
-        return YG2.saves.playerPoints;
+        return YG2.saves.PlayerPoints;
     }
 
     public int GetPlayerMaxHealth()
     {
-        return YG2.saves.playerHealth;
+        return YG2.saves.PlayerHealth;
     }
 
     public int GetCardCount(int weaponIndex)
     {
-        return YG2.saves.weaponCardCounts[weaponIndex];
+        return YG2.saves.WeaponCardCounts[weaponIndex];
     }
 
     public void SetCardCount(int weaponIndex, int cardCount)
     {
-        YG2.saves.weaponCardCounts[weaponIndex] = cardCount;
+        YG2.saves.WeaponCardCounts[weaponIndex] = cardCount;
     }
 
     public ClearWeaponData GetWeaponData(int weaponIndex)
     {
-        return YG2.saves.clearWeaponsData[weaponIndex];
+        return YG2.saves.ClearWeaponsData[weaponIndex];
     }
 
     public int GetPlayerBalance()
     {
-        return YG2.saves.playerBalance;
+        return YG2.saves.PlayerBalance;
     }
 
     public void SetPlayerBalance(int amount)
     {
-        YG2.saves.playerBalance += amount;
+        YG2.saves.PlayerBalance += amount;
         YG2.SaveProgress();
     }
 
     public bool TrySpendMoney(int amount)
     {
-        if (YG2.saves.playerBalance >= amount)
+        if (YG2.saves.PlayerBalance >= amount)
         {
-            YG2.saves.playerBalance -= amount;
+            YG2.saves.PlayerBalance -= amount;
 
             return true;
         }

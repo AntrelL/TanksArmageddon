@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public int MaxHealth;
+    
     [SerializeField] private ParticleSystem _hitFX;
-    [SerializeField] public int _maxHealth;
     [SerializeField] private Tank _tank;
     [SerializeField] private float _movementForce = 15f;
     [SerializeField] private float _maxSpeed = 5f;
@@ -22,8 +23,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform _leftPoint;
     [SerializeField] private Transform _rightPoint;
 
-    private float _baseDrag;
-    private float _checkRaycastLenght = 0.8f;
+    private readonly float _baseDrag;
+    private readonly float _checkRaycastLenght = 0.8f;
 
     private Vector3 _selectedPointPosition = new Vector3();
     private Vector3 _forceDirection = new Vector3();
@@ -41,7 +42,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        _currentHealth = _maxHealth;
+        _currentHealth = MaxHealth;
 
         if (!_rigidbody2D)
             _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -122,8 +123,7 @@ public class Enemy : MonoBehaviour
         _tank.Move();
         _movementTimeUsed += Time.fixedDeltaTime;
     }
-
-
+    
     public IEnumerator DoEnemyTurn()
     {
         _movementTimeUsed = 0f;

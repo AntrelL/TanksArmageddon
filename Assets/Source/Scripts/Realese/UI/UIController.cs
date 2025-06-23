@@ -176,7 +176,7 @@ public class UIController : MonoBehaviour
 
     private void ShowWinnerScreen()
     {
-        YG2.saves.trainingLevelPassed = true;
+        YG2.saves.TrainingLevelPassed = true;
         EnemyDefeated?.Invoke();
         Time.timeScale = 0f;
         _levelFinishedCanvas.SetActive(true);

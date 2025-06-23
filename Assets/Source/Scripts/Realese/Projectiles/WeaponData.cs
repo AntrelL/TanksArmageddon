@@ -3,14 +3,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WeaponData", menuName = "ScriptableObjects/WeaponData")]
 public class WeaponData : ScriptableObject
 {
-    public new string name;
-    public Sprite icon;
-    public int baseDamage;
-    public int upgradeLevel = 0;
-    public int currentDamage;
+    public new string Name;
+    public Sprite Icon;
+    public int BaseDamage;
+    public int UpgradeLevel = 0;
+    public int CurrentDamage;
 
     private void OnEnable()
     {
-        currentDamage = baseDamage;
+        CurrentDamage = BaseDamage;
     }
 }

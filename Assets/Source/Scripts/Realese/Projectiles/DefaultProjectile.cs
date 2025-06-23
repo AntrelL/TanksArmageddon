@@ -7,6 +7,8 @@ public class DefaultProjectile : MonoBehaviour
     [SerializeField] private ParticleSystem _groundCollisionFX;
     [SerializeField] private float _speed;
     
+    private readonly bool _isDead;
+    
     public static Transform CurrentProjectile { get; private set; }
     public static event Action GroundHit;
     public static event Action EdgeOfMapHit;
@@ -17,7 +19,6 @@ public class DefaultProjectile : MonoBehaviour
 
     private Rigidbody2D _rigidbody;
     private Cutter _cutter;
-    private bool _isDead;
 
     private float _targetX;
     private float _targetY;

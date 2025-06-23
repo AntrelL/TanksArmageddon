@@ -19,8 +19,7 @@ public class Cutter : MonoBehaviour
         }
 
         Line circleLine = LineFromCollider(_circlePointsPositions);
-
-
+        
         List<List<Point>> allSplines = new List<List<Point>>();
 
         for (int p = 0; p < _landCollider.pathCount; p++)
@@ -138,7 +137,6 @@ public class Cutter : MonoBehaviour
                     if (startPoint == thePoint) break;
                 }
             }
-
         }
 
         {
@@ -175,6 +173,7 @@ public class Cutter : MonoBehaviour
                     }
                 }
             }
+            
             return allSplines;
         }
     }
@@ -194,8 +193,10 @@ public class Cutter : MonoBehaviour
                 Vector3.Distance(segment.A.Position, p1.Position).
                     CompareTo(Vector3.Distance(segment.A.Position, p2.Position)));
             }
+            
             newPoints.AddRange(segment.CrossPoints);
         }
+        
         line.Points = newPoints;
     }
 

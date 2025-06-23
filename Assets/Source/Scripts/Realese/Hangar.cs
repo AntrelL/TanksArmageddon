@@ -10,8 +10,8 @@ public class Hangar : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] _weaponCardTexts;
     [SerializeField] private TextMeshProUGUI[] _weaponDamageTexts;
 
-    private float[] _damageMultipliers = { 1.1f, 1.2f, 1.3f, 1.5f, 2.0f };
-    private int[] _requiredCardsForNextLevel = { 10, 20, 30, 50, 100 };
+    private readonly float[] _damageMultipliers = { 1.1f, 1.2f, 1.3f, 1.5f, 2.0f };
+    private readonly int[] _requiredCardsForNextLevel = { 10, 20, 30, 50, 100 };
 
     public static event Action ButtonClicked;
 
@@ -28,8 +28,8 @@ public class Hangar : MonoBehaviour
     {
         for (int i = 0; i < _upgradeIndicators.Length; i++)
         {
-            ClearWeaponData weaponData = YG2.saves.clearWeaponsData[i];
-            int currentCardCount = YG2.saves.weaponCardCounts[i];
+            ClearWeaponData weaponData = YG2.saves.ClearWeaponsData[i];
+            int currentCardCount = YG2.saves.WeaponCardCounts[i];
 
             int currentLevel = weaponData.UpgradeLevel;
 
@@ -49,8 +49,8 @@ public class Hangar : MonoBehaviour
     {
         for (int i = 0; i < _weaponCardTexts.Length; i++)
         {
-            int currentCardCount = YG2.saves.weaponCardCounts[i];
-            int currentLevel = YG2.saves.clearWeaponsData[i].UpgradeLevel;
+            int currentCardCount = YG2.saves.WeaponCardCounts[i];
+            int currentLevel = YG2.saves.ClearWeaponsData[i].UpgradeLevel;
 
             if (currentLevel < _requiredCardsForNextLevel.Length)
             {
@@ -68,7 +68,7 @@ public class Hangar : MonoBehaviour
     {
         if (weaponIndex >= 0 && weaponIndex < _weaponDamageTexts.Length)
         {
-            _weaponDamageTexts[weaponIndex].text = $"{YG2.saves.clearWeaponsData[weaponIndex].CurrentDamage}";
+            _weaponDamageTexts[weaponIndex].text = $"{YG2.saves.ClearWeaponsData[weaponIndex].CurrentDamage}";
         }
     }
 
@@ -84,7 +84,7 @@ public class Hangar : MonoBehaviour
     {
         if (weaponIndex >= 0 && weaponIndex < _weaponLevelTexts.Length)
         {
-            int level = YG2.saves.clearWeaponsData[weaponIndex].UpgradeLevel;
+            int level = YG2.saves.ClearWeaponsData[weaponIndex].UpgradeLevel;
             _weaponLevelTexts[weaponIndex].text = $"{level}";
         }
     }
@@ -101,19 +101,19 @@ public class Hangar : MonoBehaviour
     {
         ButtonClicked?.Invoke();
 
-        int currentCardCount = YG2.saves.weaponCardCounts[weaponIndex];
-        int currentLevel = YG2.saves.clearWeaponsData[weaponIndex].UpgradeLevel;
+        int currentCardCount = YG2.saves.WeaponCardCounts[weaponIndex];
+        int currentLevel = YG2.saves.ClearWeaponsData[weaponIndex].UpgradeLevel;
 
-        if (YG2.saves.clearWeaponsData[weaponIndex].UpgradeLevel < _requiredCardsForNextLevel.Length)
+        if (YG2.saves.ClearWeaponsData[weaponIndex].UpgradeLevel < _requiredCardsForNextLevel.Length)
         {
-            int cardsNeeded = _requiredCardsForNextLevel[YG2.saves.clearWeaponsData[weaponIndex].UpgradeLevel];
+            int cardsNeeded = _requiredCardsForNextLevel[YG2.saves.ClearWeaponsData[weaponIndex].UpgradeLevel];
 
             if (currentCardCount >= cardsNeeded)
             {
-                YG2.saves.weaponCardCounts[weaponIndex] = currentCardCount - cardsNeeded;
-                YG2.saves.clearWeaponsData[weaponIndex].UpgradeLevel = currentLevel + 1;
+                YG2.saves.WeaponCardCounts[weaponIndex] = currentCardCount - cardsNeeded;
+                YG2.saves.ClearWeaponsData[weaponIndex].UpgradeLevel = currentLevel + 1;
 
-                YG2.saves.clearWeaponsData[weaponIndex].CurrentDamage = Mathf.RoundToInt(YG2.saves.clearWeaponsData[weaponIndex].BaseDamage * _damageMultipliers[currentLevel]);
+                YG2.saves.ClearWeaponsData[weaponIndex].CurrentDamage = Mathf.RoundToInt(YG2.saves.ClearWeaponsData[weaponIndex].BaseDamage * _damageMultipliers[currentLevel]);
                 
                 YG2.SaveProgress();
                 UpdateWeaponLevelText(weaponIndex);

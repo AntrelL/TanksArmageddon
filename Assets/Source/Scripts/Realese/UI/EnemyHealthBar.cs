@@ -15,8 +15,8 @@ public class EnemyHealthBar : MonoBehaviour
 
     private void Awake()
     {
-        _maxHealth = _enemy._maxHealth;
-        _targetHealth = _enemy._maxHealth;
+        _maxHealth = _enemy.MaxHealth;
+        _targetHealth = _enemy.MaxHealth;
         _valueText.text = _targetHealth + "/" + _maxHealth;
         _healthSlider.maxValue = _maxHealth;
         _healthSlider.value = _maxHealth;

@@ -9,7 +9,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private List<WeaponSlot> _weaponSlots;
     [SerializeField] private List<WeaponData> _weaponsList;
 
-    private Dictionary<int, int> _weaponAmmoCount = new Dictionary<int, int>();
+    private readonly Dictionary<int, int> _weaponAmmoCount = new Dictionary<int, int>();
 
     private WeaponSlot _selectedSlot = null;
     private WeaponSlot _weaponSlotToClean;
@@ -52,7 +52,7 @@ public class InventoryManager : MonoBehaviour
             _weaponSlots[index].gameObject.SetActive(true);
         }
 
-        _weaponSlots[index].GetComponent<Image>().sprite = _weaponsList[index].icon;
+        _weaponSlots[index].GetComponent<Image>().sprite = _weaponsList[index].Icon;
         _weaponSlots[index].UpdateAmmoCount(_weaponAmmoCount[index]);
     }
 
@@ -60,7 +60,7 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < _weaponSlots.Count; i++)
         {
-            ClearWeaponData weapon = YG2.saves.clearWeaponsData[i];
+            ClearWeaponData weapon = YG2.saves.ClearWeaponsData[i];
             _weaponSlots[i].SetWeaponData(weapon);
         }
     }
@@ -87,7 +87,7 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < _weaponSlots.Count; i++)
         {
-            ClearWeaponData weapon = YG2.saves.clearWeaponsData[i];
+            ClearWeaponData weapon = YG2.saves.ClearWeaponsData[i];
             _weaponSlots[i].SetWeaponData(weapon);
         }
 
@@ -106,7 +106,7 @@ public class InventoryManager : MonoBehaviour
 
         _selectedSlot = slot;
 
-        int currentDamage = int.Parse(slot.currentDamage.text);
+        int currentDamage = int.Parse(slot.CurrentDamage.text);
         UpdatePlayerDamage(currentDamage);
         _selectedSlot.Select();
 

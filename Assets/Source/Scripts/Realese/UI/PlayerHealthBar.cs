@@ -3,48 +3,28 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealthBar : MonoBehaviour
+public class PlayerHealthBar : HealthBar
 {
     [SerializeField] private Player _player;
-    [SerializeField] private Slider _healthSlider;
-    [SerializeField] private float _smoothSpeed = 5f;
-    [SerializeField] private TextMeshProUGUI _valueText;
 
-    private int _maxHealth;
-    private float _targetHealth;
-
-    private void Awake()
+    protected override void OnEnable()
     {
-        _maxHealth = PlayerDataHandler.Instance.GetPlayerMaxHealth();
-        _targetHealth = _maxHealth;
-        _valueText.text = _targetHealth + "/" + _maxHealth;
-        _healthSlider.maxValue = _maxHealth;
-        _healthSlider.value = _maxHealth;
-    }
-
-    private void Update()
-    {
-        if (_healthSlider.value != _targetHealth)
+        if (_player != null)
         {
-            _valueText.text = _targetHealth + "/" + _maxHealth;
-            _healthSlider.value = Mathf.Lerp(_healthSlider.value, _targetHealth, Time.deltaTime * _smoothSpeed);
+            _player.HealthChanged += UpdateValue;
         }
     }
 
-    private void OnEnable()
+    protected override void OnDisable()
     {
         if (_player != null)
-            _player.HealthChanged += UpdateValue;
-    }
-
-    private void OnDisable()
-    {
-        if (_player != null)
+        {
             _player.HealthChanged -= UpdateValue;
+        }
     }
 
-    private void UpdateValue(int value)
+    protected override int GetMaxHealth()
     {
-        _targetHealth = value;
+        return PlayerDataHandler.Instance.GetPlayerMaxHealth();
     }
 }

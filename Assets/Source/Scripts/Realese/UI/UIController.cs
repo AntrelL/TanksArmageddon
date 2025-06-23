@@ -22,7 +22,6 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject _playerMovementCanvas;
     [SerializeField] private Button _playerShootButton;
     [SerializeField] private Button _playerSkipTurnButton;
-    [SerializeField] private Enemy _enemy;
     [SerializeField] private Player _player;
     [SerializeField] private GameObject _textGoal1;
     [SerializeField] private GameObject _textGoal2;
@@ -38,8 +37,8 @@ public class UIController : MonoBehaviour
     private int _levelRewardAmount;
     private int _pointsRewardAmount;
     private string _currentScene;
-    
-    public static event Action EnemyDefeated;
+
+    public event Action PlayerShootButtonPressed;
     public static event Action<int> PlayerRewardReceived;
     public static event Action<int> PlayerPointsReceived;
     public static event Action SoundTurnedOff;
@@ -48,9 +47,6 @@ public class UIController : MonoBehaviour
     public static event Action FinishedCanvasShown;
     public static event Action FailedCanvasShown;
     public static event Action SkipTurnButtonPressed;
-    public static event Action<string, bool> IsPlayerWin;
-    
-    public event Action PlayerShootButtonPressed;
     
     private void Start()
     {
@@ -178,12 +174,9 @@ public class UIController : MonoBehaviour
     private void ShowWinnerScreen()
     {
         YG2.saves.TrainingLevelPassed = true;
-        EnemyDefeated?.Invoke();
         Time.timeScale = 0f;
         _levelFinishedCanvas.SetActive(true);
         FinishedCanvasShown?.Invoke();
-        string sceneName = SceneManager.GetActiveScene().name;
-        IsPlayerWin?.Invoke(sceneName, true);
         UpdateGoalStatus();
         YG2.SaveProgress();
     }

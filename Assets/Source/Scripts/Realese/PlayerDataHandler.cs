@@ -1,11 +1,9 @@
 using UnityEngine;
 using YG;
 
-public class GameManager : MonoBehaviour
+public class PlayerDataHandler : MonoBehaviour
 {
-    [SerializeField] private WeaponData[] _weaponDataList = new WeaponData[5];
-
-    public static GameManager Instance { get; private set; }
+    public static PlayerDataHandler Instance { get; private set; }
 
     private void Awake()
     {
@@ -46,32 +44,17 @@ public class GameManager : MonoBehaviour
     {
         YG2.saves.PlayerPoints += value;
     }
-
+    
     public int GetPlayerPoints()
     {
         return YG2.saves.PlayerPoints;
     }
-
+    
     public int GetPlayerMaxHealth()
     {
         return YG2.saves.PlayerHealth;
     }
-
-    public int GetCardCount(int weaponIndex)
-    {
-        return YG2.saves.WeaponCardCounts[weaponIndex];
-    }
-
-    public void SetCardCount(int weaponIndex, int cardCount)
-    {
-        YG2.saves.WeaponCardCounts[weaponIndex] = cardCount;
-    }
-
-    public ClearWeaponData GetWeaponData(int weaponIndex)
-    {
-        return YG2.saves.ClearWeaponsData[weaponIndex];
-    }
-
+    
     public int GetPlayerBalance()
     {
         return YG2.saves.PlayerBalance;

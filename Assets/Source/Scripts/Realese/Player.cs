@@ -51,7 +51,7 @@ namespace TanksArmageddon
         private void Awake()
         {
             _baseDrag = _rigidbody2D.drag;
-            _maxHealth = GameManager.Instance.GetPlayerMaxHealth();
+            _maxHealth = PlayerDataHandler.Instance.GetPlayerMaxHealth();
             _currentHealth = _maxHealth;
         }
 

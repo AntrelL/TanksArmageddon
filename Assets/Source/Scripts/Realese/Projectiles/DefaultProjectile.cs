@@ -18,7 +18,7 @@ public class DefaultProjectile : MonoBehaviour
     public bool IsEnemyProjectile { get; set; } = false;
 
     private Rigidbody2D _rigidbody;
-    private Cutter _cutter;
+    private LandCutter _landCutter;
 
     private float _targetX;
     private float _targetY;
@@ -28,7 +28,7 @@ public class DefaultProjectile : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         _rigidbody.velocity = transform.right * _speed;
-        _cutter = FindObjectOfType<Cutter>();
+        _landCutter = FindObjectOfType<LandCutter>();
         CurrentProjectile = transform;
     }
 
@@ -79,7 +79,7 @@ public class DefaultProjectile : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent(out Land land))
         {
-            _cutter.transform.position = transform.position;
+            _landCutter.transform.position = transform.position;
             Invoke(nameof(DoCut), 0.001f);
         }
     }
@@ -90,7 +90,7 @@ public class DefaultProjectile : MonoBehaviour
         flash.Play();
         Destroy(flash.gameObject, flash.main.duration);
 
-        _cutter.DoCut();
+        _landCutter.DoCut();
         GroundHit?.Invoke();
         Destroy(gameObject);
     }

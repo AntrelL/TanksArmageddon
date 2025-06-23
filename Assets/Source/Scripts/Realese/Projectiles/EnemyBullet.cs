@@ -13,11 +13,11 @@ public class EnemyBullet : MonoBehaviour
     public static event Action GroundHit;
     public static event Action<int> PlayerHit;
 
-    private Cutter _cutter;
+    private LandCutter _landCutter;
 
     private void Start()
     {
-        _cutter = FindObjectOfType<Cutter>();
+        _landCutter = FindObjectOfType<LandCutter>();
         CurrentEnemyBullet = transform;
     }
 
@@ -46,7 +46,7 @@ public class EnemyBullet : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent(out Land land))
         {
-            _cutter.transform.position = transform.position;
+            _landCutter.transform.position = transform.position;
             GroundHit?.Invoke();
             Invoke(nameof(DoCut), 0.001f);
         }
@@ -80,7 +80,7 @@ public class EnemyBullet : MonoBehaviour
         flash.Play();
         Destroy(flash.gameObject, flash.main.duration);
 
-        _cutter.DoCut();
+        _landCutter.DoCut();
         Destroy(gameObject);
     }
 

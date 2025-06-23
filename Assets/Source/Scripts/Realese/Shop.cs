@@ -36,13 +36,13 @@ public class Shop : MonoBehaviour
     {
         int cardCost = GetCardCost(index);
 
-        if (GameManager.Instance.TrySpendMoney(cardCost))
+        if (PlayerDataHandler.Instance.TrySpendMoney(cardCost))
         {
             if (index == 5)
             {
-                GameManager.Instance.IncreasePlayerHealth();
+                PlayerDataHandler.Instance.IncreasePlayerHealth();
 
-                int currentPlayerHealth = GameManager.Instance.GetPlayerHealth();
+                int currentPlayerHealth = PlayerDataHandler.Instance.GetPlayerHealth();
 
                 if (_currentLanguage == "ru")
                 {
@@ -132,6 +132,6 @@ public class Shop : MonoBehaviour
 
     private void UpdatePlayerBalanceUI()
     {
-        _playerBalanceText.text = $"{GameManager.Instance.GetPlayerBalance()}";
+        _playerBalanceText.text = $"{PlayerDataHandler.Instance.GetPlayerBalance()}";
     }
 }

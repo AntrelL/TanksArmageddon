@@ -3,7 +3,7 @@ using System.Linq;
 using TanksArmageddon;
 using UnityEngine;
 
-public class Cutter : MonoBehaviour
+public class LandCutter : MonoBehaviour
 {
     [SerializeField] private PolygonCollider2D _landCollider;
     [SerializeField] private PolygonCollider2D _circleCollider;

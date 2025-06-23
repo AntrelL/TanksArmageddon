@@ -15,7 +15,7 @@ public class PlayerHealthBar : MonoBehaviour
 
     private void Awake()
     {
-        _maxHealth = GameManager.Instance.GetPlayerMaxHealth();
+        _maxHealth = PlayerDataHandler.Instance.GetPlayerMaxHealth();
         _targetHealth = _maxHealth;
         _valueText.text = _targetHealth + "/" + _maxHealth;
         _healthSlider.maxValue = _maxHealth;

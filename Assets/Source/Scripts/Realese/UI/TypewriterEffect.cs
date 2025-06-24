@@ -6,6 +6,7 @@ public class TypewriterEffect : MonoBehaviour
 {
     [SerializeField] private float _delay = 0.05f;
     [SerializeField] private TMP_Text _text;
+
     private string _fullText;
 
     private void OnEnable()

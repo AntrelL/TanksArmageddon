@@ -9,6 +9,8 @@ namespace TanksArmageddon
 {
     public class Player : MonoBehaviour
     {
+        private readonly float _checkRaycastLenght = 0.8f;
+
         [SerializeField] private Transform _centerOfMass;
         [SerializeField] private Rigidbody2D _rigidbody2D;
         [SerializeField] private Tank _tank;
@@ -27,8 +29,6 @@ namespace TanksArmageddon
         [SerializeField] private Transform _centerPoint;
         [SerializeField] private Transform _leftPoint;
         [SerializeField] private Transform _rightPoint;
-
-        private readonly float _checkRaycastLenght = 0.8f;
 
         private float _baseDrag;
 
@@ -178,6 +178,21 @@ namespace TanksArmageddon
             EnemyBullet.PlayerHit -= TakeDamage;
         }
 
+        public void PlayHitEffect(Vector3 hitPosition)
+        {
+            if (_isAlive == true)
+            {
+                PlayerHit?.Invoke();
+                ParticleSystem flash = Instantiate(_hitFX, hitPosition, Quaternion.identity);
+                flash.Play();
+                Destroy(flash.gameObject, flash.main.duration);
+            }
+            else
+            {
+                return;
+            }
+        }
+
         private void DisableMovement(bool isMovementDisable)
         {
             _canMove = isMovementDisable;
@@ -208,21 +223,6 @@ namespace TanksArmageddon
         {
             _currentHealth -= damage;
             HealthChanged?.Invoke(_currentHealth);
-        }
-
-        public void PlayHitEffect(Vector3 hitPosition)
-        {
-            if (_isAlive == true)
-            {
-                PlayerHit?.Invoke();
-                ParticleSystem flash = Instantiate(_hitFX, hitPosition, Quaternion.identity);
-                flash.Play();
-                Destroy(flash.gameObject, flash.main.duration);
-            }
-            else
-            {
-                return;
-            }
         }
     }
 }

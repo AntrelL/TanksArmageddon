@@ -6,10 +6,10 @@ using YG;
 
 public class InventoryManager : MonoBehaviour
 {
+    private readonly Dictionary<int, int> _weaponAmmoCount = new Dictionary<int, int>();
+
     [SerializeField] private List<WeaponSlot> _weaponSlots;
     [SerializeField] private List<WeaponData> _weaponsList;
-
-    private readonly Dictionary<int, int> _weaponAmmoCount = new Dictionary<int, int>();
 
     private WeaponSlot _selectedSlot = null;
     private WeaponSlot _weaponSlotToClean;
@@ -36,40 +36,6 @@ public class InventoryManager : MonoBehaviour
     private void OnDisable()
     {
         AirdropBox.PlayerPickedUpAirdrop -= SetNewWeapon;
-    }
-
-    private void SetNewWeapon(int index)
-    {
-        UpdateInventoryValues();
-
-        if (_weaponAmmoCount.ContainsKey(index))
-        {
-            _weaponAmmoCount[index]++;
-        }
-        else
-        {
-            _weaponAmmoCount[index] = 1;
-            _weaponSlots[index].gameObject.SetActive(true);
-        }
-
-        _weaponSlots[index].GetComponent<Image>().sprite = _weaponsList[index].Icon;
-        _weaponSlots[index].UpdateAmmoCount(_weaponAmmoCount[index]);
-    }
-
-    private void UpdateInventoryValues()
-    {
-        for (int i = 0; i < _weaponSlots.Count; i++)
-        {
-            ClearWeaponData weapon = YG2.saves.ClearWeaponsData[i];
-            _weaponSlots[i].SetWeaponData(weapon);
-        }
-    }
-
-    private int GenerateRandomIndex()
-    {
-        int randomIndex = UnityEngine.Random.Range(1, 5);
-
-        return randomIndex;
     }
 
     public void AdButtonPressed()
@@ -142,5 +108,39 @@ public class InventoryManager : MonoBehaviour
         }
 
         DefaultProjectile.ProjectileDestroyed -= SetSelectedSlotInvisible;
+    }
+
+    private void SetNewWeapon(int index)
+    {
+        UpdateInventoryValues();
+
+        if (_weaponAmmoCount.ContainsKey(index))
+        {
+            _weaponAmmoCount[index]++;
+        }
+        else
+        {
+            _weaponAmmoCount[index] = 1;
+            _weaponSlots[index].gameObject.SetActive(true);
+        }
+
+        _weaponSlots[index].GetComponent<Image>().sprite = _weaponsList[index].Icon;
+        _weaponSlots[index].UpdateAmmoCount(_weaponAmmoCount[index]);
+    }
+
+    private void UpdateInventoryValues()
+    {
+        for (int i = 0; i < _weaponSlots.Count; i++)
+        {
+            ClearWeaponData weapon = YG2.saves.ClearWeaponsData[i];
+            _weaponSlots[i].SetWeaponData(weapon);
+        }
+    }
+
+    private int GenerateRandomIndex()
+    {
+        int randomIndex = UnityEngine.Random.Range(1, 5);
+
+        return randomIndex;
     }
 }

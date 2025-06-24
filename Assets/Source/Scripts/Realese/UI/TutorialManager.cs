@@ -39,9 +39,28 @@ public class TutorialManager : MonoBehaviour
         CameraController.ShowTips -= SetTipsStatus;
     }
 
+    public void OnOkayButtonClicked()
+    {
+        ButtonClicked?.Invoke();
+        TutorialEnded?.Invoke(false);
+        _tutorialTips[_currentIndex].SetActive(false);
+        _currentIndex++;
+
+        if (_currentIndex < _tutorialTips.Length)
+        {
+            _tutorialTips[_currentIndex].SetActive(true);
+            TMP_Text currentTipText = _tutorialTips[_currentIndex].GetComponentInChildren<TMP_Text>();
+            _typewriter.GetText(currentTipText);
+        }
+        else
+        {
+            _tutorialBlockUICanvas.SetActive(false);
+            TutorialEnded?.Invoke(true);
+        }
+    }
+
     private void SetTipsStatus()
     {
-
         TutorialEnded?.Invoke(false);
         _tutorialBlockUICanvas.SetActive(true);
 
@@ -106,26 +125,6 @@ public class TutorialManager : MonoBehaviour
             {
                 _tutorialTips[i].SetActive(false);
             }
-        }
-    }
-
-    public void OnOkayButtonClicked()
-    {
-        ButtonClicked?.Invoke();
-        TutorialEnded?.Invoke(false);
-        _tutorialTips[_currentIndex].SetActive(false);
-        _currentIndex++;
-
-        if (_currentIndex < _tutorialTips.Length)
-        {
-            _tutorialTips[_currentIndex].SetActive(true);
-            TMP_Text currentTipText = _tutorialTips[_currentIndex].GetComponentInChildren<TMP_Text>();
-            _typewriter.GetText(currentTipText);
-        }
-        else
-        {
-            _tutorialBlockUICanvas.SetActive(false);
-            TutorialEnded?.Invoke(true);
         }
     }
 }

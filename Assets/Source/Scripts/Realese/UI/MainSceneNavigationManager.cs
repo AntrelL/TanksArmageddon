@@ -6,10 +6,10 @@ using YG;
 
 public class MainSceneNavigationManager : MonoBehaviour
 {
+    private readonly Dictionary<string, bool> _levelsStatus;
+
     [SerializeField] private GameObject _authView;
     [SerializeField] private GameObject _levelsBlockSprite;
-
-    private readonly Dictionary<string, bool> _levelsStatus;
 
     public static event Action ButtonClicked;
 
@@ -70,19 +70,6 @@ public class MainSceneNavigationManager : MonoBehaviour
     {
         ButtonClicked?.Invoke();
         TryOpenLeaderboard();
-    }
-
-    private void TryOpenLeaderboard()
-    {
-        if (YG2.player.auth == true)
-        {
-            _authView.SetActive(false);
-            LeaderboardScene.Load();
-        }
-        else
-        {
-            _authView.SetActive(true);
-        }
     }
 
     public void LoadTrainingLevel()
@@ -149,5 +136,18 @@ public class MainSceneNavigationManager : MonoBehaviour
     {
         ButtonClicked?.Invoke();
         Level10.Load();
+    }
+
+    private void TryOpenLeaderboard()
+    {
+        if (YG2.player.auth == true)
+        {
+            _authView.SetActive(false);
+            LeaderboardScene.Load();
+        }
+        else
+        {
+            _authView.SetActive(true);
+        }
     }
 }

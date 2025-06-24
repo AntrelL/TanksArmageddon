@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class DefaultProjectile : MonoBehaviour
 {
+    private readonly bool _isDead;
+
     [SerializeField] private ParticleSystem _groundCollisionFX;
     [SerializeField] private float _speed;
 
-    private readonly bool _isDead;
+    private Rigidbody2D _rigidbody;
+    private LandCutter _landCutter;
+
+    private float _targetX;
+    private float _targetY;
 
     public static event Action GroundHit;
 
@@ -20,12 +26,6 @@ public class DefaultProjectile : MonoBehaviour
     public bool IsEnemyProjectile { get; set; } = false;
 
     public float Speed => _speed;
-
-    private Rigidbody2D _rigidbody;
-    private LandCutter _landCutter;
-
-    private float _targetX;
-    private float _targetY;
 
     private void Start()
     {

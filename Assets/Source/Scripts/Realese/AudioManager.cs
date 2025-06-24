@@ -5,8 +5,6 @@ public class AudioManager : MonoBehaviour
 {
     private static AudioManager _instance;
 
-    public static AudioManager Instance => _instance;
-
     [Header("Audio Sources")]
     [SerializeField] private AudioSource _backgroundMusicSource;
     [SerializeField] private AudioSource _sfxSource;
@@ -20,6 +18,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip _buttonClickSound;
 
     private bool _isMusicOn = true;
+
+    public static AudioManager Instance => _instance;
 
     public bool IsMusicOn => _isMusicOn;
 

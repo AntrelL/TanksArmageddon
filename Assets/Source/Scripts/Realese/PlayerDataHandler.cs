@@ -40,11 +40,6 @@ public class PlayerDataHandler : MonoBehaviour
         return YG2.saves.PlayerHealth;
     }
 
-    private void SetPlayerPoints(int value)
-    {
-        YG2.saves.PlayerPoints += value;
-    }
-
     public int GetPlayerPoints()
     {
         return YG2.saves.PlayerPoints;
@@ -78,5 +73,10 @@ public class PlayerDataHandler : MonoBehaviour
         {
             return false;
         }
+    }
+
+    private void SetPlayerPoints(int value)
+    {
+        YG2.saves.PlayerPoints += value;
     }
 }

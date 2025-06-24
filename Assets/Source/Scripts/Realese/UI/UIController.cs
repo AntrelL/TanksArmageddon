@@ -94,116 +94,9 @@ public class UIController : MonoBehaviour
         _player.Defeated -= ShowDefeatedScreen;
     }
 
-    private void OnSpawned()
-    {
-        StartCoroutine(FadeRoutine());
-    }
-
-    private IEnumerator FadeRoutine()
-    {
-        yield return Fade(0f, 1f, _fadeDuration);
-
-        yield return new WaitForSeconds(_visibleDuration);
-
-        yield return Fade(1f, 0f, _fadeDuration);
-    }
-
-    private IEnumerator Fade(float startValue, float targetValue, float duration)
-    {
-        float elapsedTime = 0f;
-
-        while (elapsedTime < duration)
-        {
-            float alpha = Mathf.Lerp(startValue, targetValue, elapsedTime / duration);
-            SetAlpha(alpha);
-            elapsedTime += Time.deltaTime;
-
-            yield return null;
-        }
-
-        SetAlpha(targetValue);
-    }
-
-    private void SetAlpha(float alpha)
-    {
-        _airdropNotifierCanvasGroup.alpha = alpha;
-    }
-
-    private void IsInventoryInteractabe(bool value)
-    {
-        _inventoryCanvasGroup.interactable = value;
-    }
-
-    private void UpdateTurnCounterText(int turnCount)
-    {
-        _counterText.text = turnCount.ToString();
-    }
-
-    private void UpdateGoalStatus()
-    {
-        _turnCount = _turnManager.TurnCount;
-
-        if (_turnCount <= 10)
-        {
-            _textGoal1.SetActive(true);
-            _textGoal2.SetActive(true);
-            _textGoal3.SetActive(true);
-            _levelRewardAmount = 2000;
-            _pointsRewardAmount = 100;
-        }
-
-        if (_turnCount <= 20 && _turnCount > 10)
-        {
-            _textGoal1.SetActive(true);
-            _textGoal2.SetActive(true);
-            _levelRewardAmount = 1000;
-            _pointsRewardAmount = 50;
-        }
-
-        if (_turnCount <= 40 && _turnCount > 20)
-        {
-            _textGoal1.SetActive(true);
-            _levelRewardAmount = 500;
-            _pointsRewardAmount = 10;
-        }
-
-        _moneyRewardText.text = $"{_levelRewardAmount}";
-        _pointsRewardText.text = $"{_pointsRewardAmount}";
-        PlayerRewardReceived?.Invoke(_levelRewardAmount);
-        PlayerPointsReceived?.Invoke(_pointsRewardAmount);
-        YG2.SaveProgress();
-    }
-
     public void Win()
     {
         ShowWinnerScreen();
-    }
-
-    private void ShowWinnerScreen()
-    {
-        YG2.saves.TrainingLevelPassed = true;
-        Time.timeScale = 0f;
-        _levelFinishedCanvas.SetActive(true);
-        FinishedCanvasShown?.Invoke();
-        UpdateGoalStatus();
-        YG2.SaveProgress();
-    }
-
-    private void ShowDefeatedScreen()
-    {
-        Time.timeScale = 0f;
-        _levelFailedCanvas.SetActive(true);
-        FailedCanvasShown?.Invoke();
-    }
-
-    private void IsShootButtonInteractable(bool isInteractable)
-    {
-        _playerShootButton.interactable = isInteractable;
-    }
-
-    private void IsSkipTurnButtonInteractable(bool isInteractable)
-    {
-        _playerSkipTurnButton.interactable = isInteractable;
     }
 
     public void ShootButtonPressed()
@@ -316,5 +209,112 @@ public class UIController : MonoBehaviour
     {
         ButtonClicked?.Invoke();
         _levelFinishedCanvas.SetActive(true);
+    }
+
+    private void ShowWinnerScreen()
+    {
+        YG2.saves.TrainingLevelPassed = true;
+        Time.timeScale = 0f;
+        _levelFinishedCanvas.SetActive(true);
+        FinishedCanvasShown?.Invoke();
+        UpdateGoalStatus();
+        YG2.SaveProgress();
+    }
+
+    private void ShowDefeatedScreen()
+    {
+        Time.timeScale = 0f;
+        _levelFailedCanvas.SetActive(true);
+        FailedCanvasShown?.Invoke();
+    }
+
+    private void IsShootButtonInteractable(bool isInteractable)
+    {
+        _playerShootButton.interactable = isInteractable;
+    }
+
+    private void IsSkipTurnButtonInteractable(bool isInteractable)
+    {
+        _playerSkipTurnButton.interactable = isInteractable;
+    }
+
+    private IEnumerator FadeRoutine()
+    {
+        yield return Fade(0f, 1f, _fadeDuration);
+
+        yield return new WaitForSeconds(_visibleDuration);
+
+        yield return Fade(1f, 0f, _fadeDuration);
+    }
+
+    private IEnumerator Fade(float startValue, float targetValue, float duration)
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            float alpha = Mathf.Lerp(startValue, targetValue, elapsedTime / duration);
+            SetAlpha(alpha);
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        SetAlpha(targetValue);
+    }
+
+    private void SetAlpha(float alpha)
+    {
+        _airdropNotifierCanvasGroup.alpha = alpha;
+    }
+
+    private void IsInventoryInteractabe(bool value)
+    {
+        _inventoryCanvasGroup.interactable = value;
+    }
+
+    private void UpdateTurnCounterText(int turnCount)
+    {
+        _counterText.text = turnCount.ToString();
+    }
+
+    private void UpdateGoalStatus()
+    {
+        _turnCount = _turnManager.TurnCount;
+
+        if (_turnCount <= 10)
+        {
+            _textGoal1.SetActive(true);
+            _textGoal2.SetActive(true);
+            _textGoal3.SetActive(true);
+            _levelRewardAmount = 2000;
+            _pointsRewardAmount = 100;
+        }
+
+        if (_turnCount <= 20 && _turnCount > 10)
+        {
+            _textGoal1.SetActive(true);
+            _textGoal2.SetActive(true);
+            _levelRewardAmount = 1000;
+            _pointsRewardAmount = 50;
+        }
+
+        if (_turnCount <= 40 && _turnCount > 20)
+        {
+            _textGoal1.SetActive(true);
+            _levelRewardAmount = 500;
+            _pointsRewardAmount = 10;
+        }
+
+        _moneyRewardText.text = $"{_levelRewardAmount}";
+        _pointsRewardText.text = $"{_pointsRewardAmount}";
+        PlayerRewardReceived?.Invoke(_levelRewardAmount);
+        PlayerPointsReceived?.Invoke(_pointsRewardAmount);
+        YG2.SaveProgress();
+    }
+
+    private void OnSpawned()
+    {
+        StartCoroutine(FadeRoutine());
     }
 }

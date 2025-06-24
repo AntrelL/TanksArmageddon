@@ -27,29 +27,6 @@ public class EnemyTurretController : MonoBehaviour
         _turnManager = FindObjectOfType<TurnManager>();
     }
 
-    private float GetRandomTargetX(float playerX, float difficultyFactor)
-    {
-        float offset = playerX * difficultyFactor;
-        return Random.Range(playerX - offset, playerX + offset);
-    }
-
-    private float CalculateBallisticAngle(Vector2 start, Vector2 target, float speed)
-    {
-        float g = Mathf.Abs(Physics2D.gravity.y);
-        float d = Mathf.Abs(target.x - start.x);
-        float y = target.y - start.y;
-
-        float v2 = speed * speed;
-        float disc = (v2 * v2) - (g * ((g * d * d) + (2 * y * v2)));
-
-        if (disc < 0)
-            return 0f;
-
-        float sqrtDisc = Mathf.Sqrt(disc);
-        float angle = Mathf.Atan((v2 - sqrtDisc) / (g * d));
-        return angle * Mathf.Rad2Deg;
-    }
-
     public bool CanShoot(Transform target)
     {
         float difficultyFactor = _turnManager.DifficultyFactor;
@@ -75,6 +52,29 @@ public class EnemyTurretController : MonoBehaviour
 
         _turret.DORotate(new Vector3(0, 0, angle), _aimDuration)
                .OnComplete(() => Fire(target, targetX, target.position.y));
+    }
+
+    private float GetRandomTargetX(float playerX, float difficultyFactor)
+    {
+        float offset = playerX * difficultyFactor;
+        return Random.Range(playerX - offset, playerX + offset);
+    }
+
+    private float CalculateBallisticAngle(Vector2 start, Vector2 target, float speed)
+    {
+        float g = Mathf.Abs(Physics2D.gravity.y);
+        float d = Mathf.Abs(target.x - start.x);
+        float y = target.y - start.y;
+
+        float v2 = speed * speed;
+        float disc = (v2 * v2) - (g * ((g * d * d) + (2 * y * v2)));
+
+        if (disc < 0)
+            return 0f;
+
+        float sqrtDisc = Mathf.Sqrt(disc);
+        float angle = Mathf.Atan((v2 - sqrtDisc) / (g * d));
+        return angle * Mathf.Rad2Deg;
     }
 
     private void Fire(Transform target, float targetX, float targetY)

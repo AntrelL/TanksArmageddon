@@ -49,6 +49,23 @@ public class CameraController : MonoBehaviour
         StartCoroutine(CameraIntroSequence());
     }
 
+    public IEnumerator TransitionToTarget(Transform newTarget, float duration)
+    {
+        Vector3 startPos = transform.position;
+        Vector3 endPos = new Vector3(newTarget.position.x, newTarget.position.y, transform.position.z);
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            transform.position = Vector3.Lerp(startPos, endPos, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = endPos;
+        _currentTarget = newTarget;
+    }
+
     private IEnumerator CameraIntroSequence()
     {
         float waitTime = 1.5f;
@@ -89,23 +106,6 @@ public class CameraController : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, targetPosition, _moveSpeed * Time.deltaTime);
             yield return null;
         }
-    }
-
-    public IEnumerator TransitionToTarget(Transform newTarget, float duration)
-    {
-        Vector3 startPos = transform.position;
-        Vector3 endPos = new Vector3(newTarget.position.x, newTarget.position.y, transform.position.z);
-        float elapsed = 0f;
-
-        while (elapsed < duration)
-        {
-            transform.position = Vector3.Lerp(startPos, endPos, elapsed / duration);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.position = endPos;
-        _currentTarget = newTarget;
     }
 
     private void OnTurnStarted(Transform target)

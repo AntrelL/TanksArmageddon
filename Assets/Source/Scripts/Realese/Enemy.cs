@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private readonly float _baseDrag;
+    private readonly float _checkRaycastLenght = 0.8f;
+
     [SerializeField] private ParticleSystem _hitFX;
     [SerializeField] private int _maxHealth;
     [SerializeField] private Tank _tank;
@@ -22,9 +25,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform _centerPoint;
     [SerializeField] private Transform _leftPoint;
     [SerializeField] private Transform _rightPoint;
-
-    private readonly float _baseDrag;
-    private readonly float _checkRaycastLenght = 0.8f;
 
     private Vector3 _selectedPointPosition = new Vector3();
     private Vector3 _forceDirection = new Vector3();
@@ -163,26 +163,6 @@ public class Enemy : MonoBehaviour
         _moveDirection = 0f;
     }
 
-    private IEnumerator WaitProjectileFly()
-    {
-        bool projectileEnded = false;
-        Action onProjectileDestroyed = () => { projectileEnded = true; };
-        EnemyBullet.EnemyBulletDestroyed += onProjectileDestroyed;
-
-        yield return new WaitUntil(() => projectileEnded);
-        EnemyBullet.EnemyBulletDestroyed -= onProjectileDestroyed;
-    }
-
-    private void OnUpdatedPlayerDamage(int value)
-    {
-        _playerDamage = value;
-    }
-
-    private void TakeDamage(int value)
-    {
-        _currentHealth -= value;
-    }
-
     public void PlayHitEffect(Vector3 hitPosition)
     {
         if (_isAlive)
@@ -194,5 +174,25 @@ public class Enemy : MonoBehaviour
             flash.Play();
             Destroy(flash.gameObject, flash.main.duration);
         }
+    }
+
+    private IEnumerator WaitProjectileFly()
+    {
+        bool projectileEnded = false;
+        Action onProjectileDestroyed = () => { projectileEnded = true; };
+        EnemyBullet.EnemyBulletDestroyed += onProjectileDestroyed;
+
+        yield return new WaitUntil(() => projectileEnded);
+        EnemyBullet.EnemyBulletDestroyed -= onProjectileDestroyed;
+    }
+
+    private void TakeDamage(int value)
+    {
+        _currentHealth -= value;
+    }
+
+    private void OnUpdatedPlayerDamage(int value)
+    {
+        _playerDamage = value;
     }
 }

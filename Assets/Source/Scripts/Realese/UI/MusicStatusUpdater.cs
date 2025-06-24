@@ -3,6 +3,7 @@ using UnityEngine;
 public class MusicStatusUpdater : MonoBehaviour
 {
     [SerializeField] private UIController _UIcontroller;
+
     private AudioManager _audioManager;
 
     private void Start()

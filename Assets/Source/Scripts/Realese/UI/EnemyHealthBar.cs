@@ -1,11 +1,9 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class EnemyHealthBar : HealthBar
 {
     [SerializeField] private Enemy _enemy;
-    [SerializeField] private Vector3 _offset = new Vector3(0, 2, 0);
+    [SerializeField] private Vector3 _offset = new Vector3(0, 4, 0);
 
     protected override void OnEnable()
     {
@@ -37,12 +35,12 @@ public class EnemyHealthBar : HealthBar
 
     private void DisableSlider()
     {
-        HealthSlider.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     private void MoveSlider()
     {
         Vector3 screenPosition = Camera.main.WorldToScreenPoint(_enemy.transform.position + _offset);
-        HealthSlider.transform.position = screenPosition;
+        transform.position = screenPosition;
     }
 }

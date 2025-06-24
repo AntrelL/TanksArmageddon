@@ -4,28 +4,28 @@ using UnityEngine.UI;
 
 public abstract class HealthBar : MonoBehaviour
 {
-    [SerializeField] protected Slider HealthSlider;
-    [SerializeField] protected float SmoothSpeed = 5f;
-    [SerializeField] protected TextMeshProUGUI ValueText;
+    [SerializeField] private Slider _healthSlider;
+    [SerializeField] private float _smoothSpeed = 5f;
+    [SerializeField] private TextMeshProUGUI _valueText;
 
-    protected int MaxHealth;
-    protected float TargetHealth;
+    private int _maxHealth;
+    private float _targetHealth;
 
     protected virtual void Awake()
     {
-        MaxHealth = GetMaxHealth();
-        TargetHealth = MaxHealth;
-        ValueText.text = TargetHealth + "/" + MaxHealth;
-        HealthSlider.maxValue = MaxHealth;
-        HealthSlider.value = MaxHealth;
+        _maxHealth = GetMaxHealth();
+        _targetHealth = _maxHealth;
+        _valueText.text = _targetHealth + "/" + _maxHealth;
+        _healthSlider.maxValue = _maxHealth;
+        _healthSlider.value = _maxHealth;
     }
 
     protected virtual void Update()
     {
-        if (HealthSlider.value != TargetHealth)
+        if (_healthSlider.value != _targetHealth)
         {
-            ValueText.text = TargetHealth + "/" + MaxHealth;
-            HealthSlider.value = Mathf.Lerp(HealthSlider.value, TargetHealth, Time.deltaTime * SmoothSpeed);
+            _valueText.text = _targetHealth + "/" + _maxHealth;
+            _healthSlider.value = Mathf.Lerp(_healthSlider.value, _targetHealth, Time.deltaTime * _smoothSpeed);
         }
     }
 
@@ -41,6 +41,6 @@ public abstract class HealthBar : MonoBehaviour
 
     protected virtual void UpdateValue(int value)
     {
-        TargetHealth = value;
+        _targetHealth = value;
     }
 }

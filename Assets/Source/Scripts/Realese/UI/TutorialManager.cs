@@ -15,7 +15,6 @@ public class TutorialManager : MonoBehaviour
     private string _currentLanguage = "ru";
 
     public static event Action<bool> TutorialEnded;
-
     public static event Action ButtonClicked;
 
     private void Start()
@@ -68,52 +67,9 @@ public class TutorialManager : MonoBehaviour
         {
             TMP_Text currentTipText = _tutorialTips[i].GetComponentInChildren<TMP_Text>();
 
-            if (_currentLanguage == "ru")
+            if (i == _mobileOrPCTipIndex)
             {
-                if (i == _mobileOrPCTipIndex)
-                {
-                    if (YG2.envir.isMobile)
-                    {
-                        currentTipText.text = "Для движения используй кнопки в левом нижнем углу.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу.";
-                    }
-
-                    if (YG2.envir.isDesktop)
-                    {
-                        currentTipText.text = "Для движения используй клавиши A/D.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу.";
-                    }
-                }
-            }
-
-            if (_currentLanguage == "en")
-            {
-                if (i == _mobileOrPCTipIndex)
-                {
-                    if (YG2.envir.isMobile)
-                    {
-                        currentTipText.text = "Use the buttons in the lower left corner to move.\r\nTo aim, use the slider on the right.\r\nTo fire, press the button in the lower right corner.";
-                    }
-
-                    if (YG2.envir.isDesktop)
-                    {
-                        currentTipText.text = "Use the A/D keys to move.\r\nTo aim, use the slider on the right.\r\nTo fire, press the button in the lower right corner.";
-                    }
-                }
-            }
-
-            if (_currentLanguage == "tr")
-            {
-                if (i == _mobileOrPCTipIndex)
-                {
-                    if (YG2.envir.isMobile)
-                    {
-                        currentTipText.text = "Hareket etmek için sol alt köşedeki düğmeleri kullanın.\r\nNişan almak için sağdaki kaydırıcıyı kullanın.\r\nAteş etmek için sağ alt köşedeki düğmeye basın.";
-                    }
-
-                    if (YG2.envir.isDesktop)
-                    {
-                        currentTipText.text = "Taşımak için A/D tuşlarını kullanın.\r\nNişan almak için sağdaki kaydırıcıyı kullanın.\r\nAteş etmek için sağ alt köşedeki düğmeye basın.";
-                    }
-                }
+                currentTipText.text = GetPlatformSpecificText(_currentLanguage, YG2.envir.isMobile);
             }
 
             if (i == 0)
@@ -125,6 +81,32 @@ public class TutorialManager : MonoBehaviour
             {
                 _tutorialTips[i].SetActive(false);
             }
+        }
+    }
+
+    private string GetPlatformSpecificText(string language, bool isMobile)
+    {
+        switch (language)
+        {
+            case "ru":
+                return isMobile
+                    ? "Для движения используй кнопки в левом нижнем углу.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу."
+                    : "Для движения используй клавиши A/D.\r\nДля прицеливания - слайдер справа.\r\nДля стрельбы - кнопку в правом нижнем углу.";
+
+            case "en":
+                return isMobile
+                    ? "Use the buttons in the lower left corner to move.\r\nTo aim, use the slider on the right.\r\nTo fire, press the button in the lower right corner."
+                    : "Use the A/D keys to move.\r\nTo aim, use the slider on the right.\r\nTo fire, press the button in the lower right corner.";
+
+            case "tr":
+                return isMobile
+                    ? "Hareket etmek için sol alt köşedeki düğmeleri kullanın.\r\nNişan almak için sağdaki kaydırıcıyı kullanın.\r\nAteş etmek için sağ alt köşedeki düğmeye basın."
+                    : "Taşımak için A/D tuşlarını kullanın.\r\nNişan almak için sağdaki kaydırıcıyı kullanın.\r\nAteş etmek için sağ alt köşedeki düğmeye basın.";
+
+            default:
+                return isMobile
+                    ? "Use the buttons in the lower left corner to move.\r\nTo aim, use the slider on the right.\r\nTo fire, press the button in the lower right corner."
+                    : "Use the A/D keys to move.\r\nTo aim, use the slider on the right.\r\nTo fire, press the button in the lower right corner.";
         }
     }
 }

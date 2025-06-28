@@ -80,7 +80,21 @@ public class FindUnassignedFields : EditorWindow
 
     private bool IsCustomScript(System.Type type)
     {
-        string namespaceName = type.Namespace;
-        return namespaceName != null && namespaceName.StartsWith("MyNamespace");
+        if (!typeof(UnityEngine.Object).IsAssignableFrom(type))
+            return false;
+        
+        string[] scriptPaths = AssetDatabase.FindAssets($"t:Script {type.Name}");
+        
+        foreach (string guid in scriptPaths)
+        {
+            string scriptPath = AssetDatabase.GUIDToAssetPath(guid);
+            
+            if (scriptPath.Contains("/Realese/"))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

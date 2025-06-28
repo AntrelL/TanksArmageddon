@@ -7,6 +7,7 @@ public class AirdropSpawner : MonoBehaviour
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private PolygonCollider2D _land;
     [SerializeField] private int _spawnRate;
+    [SerializeField] private TurnManager _turnManager;
 
     private float _minX = 0;
     private float _maxX = 0;
@@ -25,12 +26,12 @@ public class AirdropSpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        TurnManager.CompletedTurns += CheckTurnsCount;
+        _turnManager.CompletedTurns += CheckTurnsCount;
     }
 
     private void OnDisable()
     {
-        TurnManager.CompletedTurns -= CheckTurnsCount;
+        _turnManager.CompletedTurns -= CheckTurnsCount;
     }
 
     private void CalculateWidth()

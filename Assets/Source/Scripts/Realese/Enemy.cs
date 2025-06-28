@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform _player;
     [SerializeField] private LayerMask _landLayer;
     [SerializeField] private int _edgeOfMapDamage = 5000;
+    [SerializeField] private InventoryManager _inventoryManager;
 
     [Space]
     [Header("New Physics")]
@@ -62,12 +63,12 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
-        InventoryManager.UpdatePlayerDamage += OnUpdatedPlayerDamage;
+        _inventoryManager.UpdatePlayerDamage += OnUpdatePlayerDamage;
     }
 
     private void OnDisable()
     {
-        InventoryManager.UpdatePlayerDamage -= OnUpdatedPlayerDamage;
+        _inventoryManager.UpdatePlayerDamage -= OnUpdatePlayerDamage;
     }
 
     private void FixedUpdate()
@@ -191,7 +192,7 @@ public class Enemy : MonoBehaviour
         _currentHealth -= value;
     }
 
-    private void OnUpdatedPlayerDamage(int value)
+    private void OnUpdatePlayerDamage(int value)
     {
         _playerDamage = value;
     }

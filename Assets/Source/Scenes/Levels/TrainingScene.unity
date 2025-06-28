@@ -961,6 +961,10 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 600958438}
+    - target: {fileID: 6701143332466249443, guid: b879d008ac48dc7458c0e820fd064eee, type: 3}
+      propertyPath: _inventoryManager
+      value: 
+      objectReference: {fileID: 5515436785316412590}
     - target: {fileID: 8841997395530360643, guid: b879d008ac48dc7458c0e820fd064eee, type: 3}
       propertyPath: _player
       value: 
@@ -2927,7 +2931,6 @@ MonoBehaviour:
   _playerMovementCanvas: {fileID: 630247929}
   _playerShootButton: {fileID: 5769065162723444670}
   _playerSkipTurnButton: {fileID: 1812816205}
-  _enemy: {fileID: 181134067}
   _player: {fileID: 600958437}
   _textGoal1: {fileID: 1856352405756517842}
   _textGoal2: {fileID: 1152352377396067984}
@@ -2951,6 +2954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delay: 0.05
+  _text: {fileID: 0}
 --- !u!114 &600745202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2975,6 +2979,7 @@ MonoBehaviour:
   _tutorialBlockUICanvas: {fileID: 1739753502}
   _typewriter: {fileID: 600745201}
   _mobileOrPCTipIndex: 3
+  _cameraController: {fileID: 0}
 --- !u!1001 &600958436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2983,6 +2988,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1497755573858676263, guid: 18eb7ebfaa6070d49a962e332e3b8edf, type: 3}
+      propertyPath: _edgeOfMap
+      value: 
+      objectReference: {fileID: 153662499}
     - target: {fileID: 1497755573858676263, guid: 18eb7ebfaa6070d49a962e332e3b8edf, type: 3}
       propertyPath: _leftButton
       value: 
@@ -2995,6 +3004,10 @@ PrefabInstance:
       propertyPath: _rightButton
       value: 
       objectReference: {fileID: 2658534051386627851}
+    - target: {fileID: 1497755573858676263, guid: 18eb7ebfaa6070d49a962e332e3b8edf, type: 3}
+      propertyPath: _turnManager
+      value: 
+      objectReference: {fileID: 1325542175}
     - target: {fileID: 1497755573858676263, guid: 18eb7ebfaa6070d49a962e332e3b8edf, type: 3}
       propertyPath: _cameraController
       value: 
@@ -3055,6 +3068,10 @@ PrefabInstance:
       propertyPath: _angleSlider
       value: 
       objectReference: {fileID: 6050058308120203594}
+    - target: {fileID: 9017984590000305177, guid: 18eb7ebfaa6070d49a962e332e3b8edf, type: 3}
+      propertyPath: _turnManager
+      value: 
+      objectReference: {fileID: 1325542175}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3311,10 +3328,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b54ad1774c62340957a9e410154442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 739710302}
-  currentDamage: {fileID: 961777233}
-  highlight: {fileID: 127958324}
   _ammoCountText: {fileID: 1046726908}
+  <Icon>k__BackingField: {fileID: 0}
+  <CurrentDamage>k__BackingField: {fileID: 0}
+  <Highlight>k__BackingField: {fileID: 0}
 --- !u!114 &739710301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5720,6 +5737,7 @@ MonoBehaviour:
   - {fileID: 181134067}
   _cameraController: {fileID: 1493516531}
   _uiController: {fileID: 600745200}
+  _tutorialManager: {fileID: 600745202}
   _projectileTransitionDuration: 1
   _difficultyFactor: 4
 --- !u!4 &1325542176
@@ -5766,6 +5784,7 @@ MonoBehaviour:
   _spawnPoint: {fileID: 1335078995}
   _land: {fileID: 422059129}
   _spawnRate: 3
+  _turnManager: {fileID: 1325542175}
 --- !u!1 &1335078994
 GameObject:
   m_ObjectHideFlags: 0
@@ -6627,9 +6646,9 @@ MonoBehaviour:
   - {fileID: 181134067}
   _moveSpeed: 3
   _followSpeed: 5
-  _waitTime: 1.5
   _delayBeforeSwitch: 1
   _timeSinceSwitch: 0
+  _turnManager: {fileID: 1325542175}
 --- !u!1 &1513628284
 GameObject:
   m_ObjectHideFlags: 0
@@ -7674,10 +7693,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc9e6f7a6f7e4ee4eb2a674e0b1ab815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 600958437}
-  _healthSlider: {fileID: 465154833}
+  _healthSlider: {fileID: 0}
   _smoothSpeed: 5
-  _valueText: {fileID: 807318538}
+  _valueText: {fileID: 0}
+  _player: {fileID: 600958437}
 --- !u!1 &1812816203
 GameObject:
   m_ObjectHideFlags: 0
@@ -9269,10 +9288,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b54ad1774c62340957a9e410154442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 6873650601569840189}
-  currentDamage: {fileID: 6369774710576377160}
-  highlight: {fileID: 5853054809338833212}
   _ammoCountText: {fileID: 1173465446}
+  <Icon>k__BackingField: {fileID: 0}
+  <CurrentDamage>k__BackingField: {fileID: 0}
+  <Highlight>k__BackingField: {fileID: 0}
 --- !u!4 &547015905453375194
 Transform:
   m_ObjectHideFlags: 0
@@ -14858,10 +14877,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b54ad1774c62340957a9e410154442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 6182254303656084580}
-  currentDamage: {fileID: 6245225658261042176}
-  highlight: {fileID: 2035246852974449928}
   _ammoCountText: {fileID: 0}
+  <Icon>k__BackingField: {fileID: 0}
+  <CurrentDamage>k__BackingField: {fileID: 0}
+  <Highlight>k__BackingField: {fileID: 0}
 --- !u!114 &4614007035282501496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15525,10 +15544,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b54ad1774c62340957a9e410154442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 6437226563556560785}
-  currentDamage: {fileID: 2694700086542594912}
-  highlight: {fileID: 7940193434753646487}
   _ammoCountText: {fileID: 1975352232}
+  <Icon>k__BackingField: {fileID: 0}
+  <CurrentDamage>k__BackingField: {fileID: 0}
+  <Highlight>k__BackingField: {fileID: 0}
 --- !u!224 &4930871951106519791
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16395,7 +16414,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a38261a790db1478c31e95766435f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventoryPanel: {fileID: 389082602940697654}
   _weaponSlots:
   - {fileID: 4604747116520352882}
   - {fileID: 525266904715279090}
@@ -16420,10 +16438,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b54ad1774c62340957a9e410154442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 7662275356396551228}
-  currentDamage: {fileID: 8158166245916095225}
-  highlight: {fileID: 5683170766514253596}
   _ammoCountText: {fileID: 1611734820}
+  <Icon>k__BackingField: {fileID: 0}
+  <CurrentDamage>k__BackingField: {fileID: 0}
+  <Highlight>k__BackingField: {fileID: 0}
 --- !u!114 &5534127880266733094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22218,10 +22236,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa52bfa40bf3598479c65dc95d739597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 181134067}
-  _healthSlider: {fileID: 5258869611693459355}
+  _healthSlider: {fileID: 0}
   _smoothSpeed: 5
-  _valueText: {fileID: 996638380847818350}
+  _valueText: {fileID: 0}
+  _enemy: {fileID: 181134067}
   _offset: {x: 0, y: 5, z: 0}
 --- !u!1 &9042819563987253369
 GameObject:

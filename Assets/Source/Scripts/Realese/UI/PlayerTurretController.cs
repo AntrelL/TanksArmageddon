@@ -6,6 +6,7 @@ public class PlayerTurretController : MonoBehaviour
 {
     [SerializeField] private Transform _turret;
     [SerializeField] private Slider _angleSlider;
+    [SerializeField] private TurnManager _turnManager;
 
     private float _initialGunAngle;
 
@@ -28,12 +29,12 @@ public class PlayerTurretController : MonoBehaviour
 
     private void OnEnable()
     {
-        TurnManager.CanPlayerShoot += OnCanPlayerShoot;
+        _turnManager.CanPlayerShoot += OnCanPlayerShoot;
     }
 
     private void OnDisable()
     {
-        TurnManager.CanPlayerShoot -= OnCanPlayerShoot;
+        _turnManager.CanPlayerShoot -= OnCanPlayerShoot;
         _turret.DOKill();
     }
 

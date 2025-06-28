@@ -6,19 +6,21 @@ public class TypewriterEffect : MonoBehaviour
 {
     [SerializeField] private float _delay = 0.05f;
     [SerializeField] private TMP_Text _text;
+    [SerializeField] private ShopSceneNavigationManager _shopSceneNavigationManager;
+    [SerializeField] private HangarSceneNavigationManager _hangarSceneNavigationManager;
 
     private string _fullText;
 
     private void OnEnable()
     {
-        ShopSceneNavigationManager.TextShowing += GetText;
-        HangarSceneNavigationManager.TextShowing += GetText;
+        _shopSceneNavigationManager.TextShowing += GetText;
+        _hangarSceneNavigationManager.TextShowing += GetText;
     }
 
     private void OnDisable()
     {
-        ShopSceneNavigationManager.TextShowing -= GetText;
-        HangarSceneNavigationManager.TextShowing -= GetText;
+        _shopSceneNavigationManager.TextShowing -= GetText;
+        _hangarSceneNavigationManager.TextShowing -= GetText;
     }
 
     public void GetText(TMP_Text tmpText)

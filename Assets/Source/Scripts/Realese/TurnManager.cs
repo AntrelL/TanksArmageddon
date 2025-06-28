@@ -11,6 +11,7 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private List<Enemy> _enemies;
     [SerializeField] private CameraController _cameraController;
     [SerializeField] private UIController _uiController;
+    [SerializeField] private TutorialManager _tutorialManager;
 
     [Header("Параметры ходов")]
     [SerializeField] private float _projectileTransitionDuration = 1f;
@@ -19,17 +20,15 @@ public class TurnManager : MonoBehaviour
     private int _turnCount = 0;
     private bool _allEnemiesDead = false;
 
-    public static event Action AllEnemiesDead;
+    public event Action AllEnemiesDead;
 
-    public static event Action<bool> CanPlayerControl;
+    public event Action<bool> CanPlayerControl;
 
-    public static event Action<bool> CanPlayerShoot;
+    public event Action<bool> CanPlayerShoot;
 
-    public static event Action<Transform> TurnStarted;
-
-    public static event Action PlayerTurnFinished;
-
-    public static event Action<int> CompletedTurns;
+    public event Action<Transform> TurnStarted;
+    
+    public event Action<int> CompletedTurns;
 
     public static bool CurrentTurnIsPlayer { get; private set; }
 
@@ -51,12 +50,12 @@ public class TurnManager : MonoBehaviour
 
     private void OnEnable()
     {
-        TutorialManager.TutorialEnded += UnblockPlayerControls;
+        _tutorialManager.TutorialEnded += UnblockPlayerControls;
     }
 
     private void OnDisable()
     {
-        TutorialManager.TutorialEnded += UnblockPlayerControls;
+        _tutorialManager.TutorialEnded += UnblockPlayerControls;
     }
 
     private IEnumerator TurnCycle()
@@ -135,8 +134,7 @@ public class TurnManager : MonoBehaviour
                 yield return StartCoroutine(_cameraController.TransitionToTarget(nextTarget, _projectileTransitionDuration));
             }
         }
-
-        PlayerTurnFinished?.Invoke();
+        
         CompletedTurns?.Invoke(_turnCount);
         CurrentTurnIsPlayer = false;
     }

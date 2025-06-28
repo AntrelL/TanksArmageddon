@@ -75,22 +75,22 @@ public class UIController : MonoBehaviour
     private void OnEnable()
     {
         AirdropSpawner.Spawned += OnSpawned;
-        TurnManager.AllEnemiesDead += ShowWinnerScreen;
-        TurnManager.CanPlayerShoot += IsShootButtonInteractable;
-        TurnManager.CanPlayerShoot += IsSkipTurnButtonInteractable;
-        TurnManager.CanPlayerShoot += IsInventoryInteractabe;
-        TurnManager.CompletedTurns += UpdateTurnCounterText;
+        _turnManager.AllEnemiesDead += ShowWinnerScreen;
+        _turnManager.CanPlayerShoot += IsShootButtonInteractable;
+        _turnManager.CanPlayerShoot += IsSkipTurnButtonInteractable;
+        _turnManager.CanPlayerShoot += IsInventoryInteractabe;
+        _turnManager.CompletedTurns += UpdateTurnCounterText;
         _player.Defeated += ShowDefeatedScreen;
     }
 
     private void OnDisable()
     {
         AirdropSpawner.Spawned -= OnSpawned;
-        TurnManager.AllEnemiesDead -= ShowWinnerScreen;
-        TurnManager.CanPlayerShoot -= IsShootButtonInteractable;
-        TurnManager.CanPlayerShoot -= IsSkipTurnButtonInteractable;
-        TurnManager.CanPlayerShoot -= IsInventoryInteractabe;
-        TurnManager.CompletedTurns -= UpdateTurnCounterText;
+        _turnManager.AllEnemiesDead -= ShowWinnerScreen;
+        _turnManager.CanPlayerShoot -= IsShootButtonInteractable;
+        _turnManager.CanPlayerShoot -= IsSkipTurnButtonInteractable;
+        _turnManager.CanPlayerShoot -= IsInventoryInteractabe;
+        _turnManager.CompletedTurns -= UpdateTurnCounterText;
         _player.Defeated -= ShowDefeatedScreen;
     }
 

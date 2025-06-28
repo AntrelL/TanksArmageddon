@@ -14,7 +14,7 @@ public class InventoryManager : MonoBehaviour
     private WeaponSlot _selectedSlot = null;
     private WeaponSlot _weaponSlotToClean;
 
-    public static event Action<int> UpdatePlayerDamage;
+    public event Action<int> UpdatePlayerDamage;
 
     private void Start()
     {

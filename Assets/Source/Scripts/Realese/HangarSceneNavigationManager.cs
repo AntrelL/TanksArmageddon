@@ -9,7 +9,7 @@ public class HangarSceneNavigationManager : MonoBehaviour
 
     public static event Action ButtonClicked;
 
-    public static event Action TextShowing;
+    public event Action TextShowing;
 
     private void Start()
     {

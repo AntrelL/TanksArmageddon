@@ -10,11 +10,12 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject _tutorialBlockUICanvas;
     [SerializeField] private TypewriterEffect _typewriter;
     [SerializeField] private int _mobileOrPCTipIndex;
+    [SerializeField] private CameraController _cameraController;
 
     private int _currentIndex = 0;
     private string _currentLanguage = "ru";
 
-    public static event Action<bool> TutorialEnded;
+    public event Action<bool> TutorialEnded;
     public static event Action ButtonClicked;
 
     private void Start()
@@ -30,12 +31,12 @@ public class TutorialManager : MonoBehaviour
 
     private void OnEnable()
     {
-        CameraController.ShowTips += SetTipsStatus;
+        _cameraController.ShowTips += SetTipsStatus;
     }
 
     private void OnDisable()
     {
-        CameraController.ShowTips -= SetTipsStatus;
+        _cameraController.ShowTips -= SetTipsStatus;
     }
 
     public void OnOkayButtonClicked()

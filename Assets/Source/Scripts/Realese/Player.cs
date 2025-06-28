@@ -23,6 +23,8 @@ namespace TanksArmageddon
         [SerializeField] private Button _rightButton;
         [SerializeField] private CameraController _cameraController;
         [SerializeField] private ParticleSystem _hitFX;
+        [SerializeField] private TurnManager _turnManager;
+        [SerializeField] private EdgeOfMap _edgeOfMap;
 
         [Space]
         [Header("New Physics")]
@@ -165,16 +167,16 @@ namespace TanksArmageddon
         private void OnEnable()
         {
             _cameraController.UnlockMovement += OnMovementUnlocked;
-            TurnManager.CanPlayerControl += OnMovementUnlocked;
-            EdgeOfMap.CollisionWithPlayer += TakeDamage;
+            _turnManager.CanPlayerControl += OnMovementUnlocked;
+            _edgeOfMap.CollisionWithPlayer += TakeDamage;
             EnemyBullet.PlayerHit += TakeDamage;
         }
 
         private void OnDisable()
         {
             _cameraController.UnlockMovement -= OnMovementUnlocked;
-            EdgeOfMap.CollisionWithPlayer -= TakeDamage;
-            TurnManager.CanPlayerControl -= OnMovementUnlocked;
+            _edgeOfMap.CollisionWithPlayer -= TakeDamage;
+            _turnManager.CanPlayerControl -= OnMovementUnlocked;
             EnemyBullet.PlayerHit -= TakeDamage;
         }
 

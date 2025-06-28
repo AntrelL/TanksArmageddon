@@ -9,7 +9,7 @@ public class ShopSceneNavigationManager : MonoBehaviour
 
     public static event Action ButtonClicked;
 
-    public static event Action TextShowing;
+    public  event Action TextShowing;
 
     public void HelpButtonPressed()
     {

@@ -13,12 +13,13 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _followSpeed = 5f;
     [SerializeField] private float _delayBeforeSwitch = 0f;
     [SerializeField] private float _timeSinceSwitch = 0f;
+    [SerializeField] private TurnManager _turnManager;
 
     private bool _introFinished = false;
     private Transform _currentTarget;
     private string _currentScene;
 
-    public static event Action ShowTips;
+    public event Action ShowTips;
 
     public event Action<bool> UnlockMovement;
 
@@ -32,14 +33,14 @@ public class CameraController : MonoBehaviour
 
     private void OnEnable()
     {
-        TurnManager.TurnStarted += OnTurnStarted;
+        _turnManager.TurnStarted += OnTurnStarted;
         DefaultProjectile.ProjectileDestroyed += OnProjectileDestroyed;
         EnemyBullet.EnemyBulletDestroyed += OnProjectileDestroyed;
     }
 
     private void OnDisable()
     {
-        TurnManager.TurnStarted -= OnTurnStarted;
+        _turnManager.TurnStarted -= OnTurnStarted;
         DefaultProjectile.ProjectileDestroyed -= OnProjectileDestroyed;
         EnemyBullet.EnemyBulletDestroyed -= OnProjectileDestroyed;
     }

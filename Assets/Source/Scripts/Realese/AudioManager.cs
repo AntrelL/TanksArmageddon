@@ -43,6 +43,7 @@ public class AudioManager : MonoBehaviour
 
     private void OnEnable()
     {
+        SceneLoader.ButtonClicked += PlayButtonClick;
         Shoot.PlayerFired += PlayProjectileShoot;
         UIController.SoundTurnedOff += StopMainMusic;
         UIController.SoundTurnedOn += PlayMainMusic;
@@ -66,6 +67,7 @@ public class AudioManager : MonoBehaviour
 
     private void OnDisable()
     {
+        SceneLoader.ButtonClicked -= PlayButtonClick;
         Shoot.PlayerFired -= PlayProjectileShoot;
         UIController.SoundTurnedOff -= StopMainMusic;
         UIController.SoundTurnedOn -= PlayMainMusic;

@@ -12,7 +12,7 @@ public class AirdropSpawner : MonoBehaviour
     private float _minX = 0;
     private float _maxX = 0;
 
-    public static event Action Spawned;
+    public event Action Spawned;
 
     private void Start()
     {

@@ -32,6 +32,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private TMP_Text _pointsRewardText;
     [SerializeField] private float _fadeDuration = 1.0f;
     [SerializeField] private float _visibleDuration = 1.0f;
+    [SerializeField] private AirdropSpawner _airdropSpawner;
 
     private int _turnCount;
     private int _levelRewardAmount;
@@ -74,7 +75,7 @@ public class UIController : MonoBehaviour
 
     private void OnEnable()
     {
-        AirdropSpawner.Spawned += OnSpawned;
+        _airdropSpawner.Spawned += OnSpawned;
         _turnManager.AllEnemiesDead += ShowWinnerScreen;
         _turnManager.CanPlayerShoot += IsShootButtonInteractable;
         _turnManager.CanPlayerShoot += IsSkipTurnButtonInteractable;
@@ -85,7 +86,7 @@ public class UIController : MonoBehaviour
 
     private void OnDisable()
     {
-        AirdropSpawner.Spawned -= OnSpawned;
+        _airdropSpawner.Spawned -= OnSpawned;
         _turnManager.AllEnemiesDead -= ShowWinnerScreen;
         _turnManager.CanPlayerShoot -= IsShootButtonInteractable;
         _turnManager.CanPlayerShoot -= IsSkipTurnButtonInteractable;

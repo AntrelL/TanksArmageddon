@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AirdropBox : MonoBehaviour
 {
-    public static event Action<int> PlayerPickedUpAirdrop;
+    public event Action<int> PlayerPickedUpAirdrop;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

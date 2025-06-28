@@ -1,13 +1,12 @@
 using System;
-using System.Collections.Generic;
 using IJunior.TypedScenes;
+using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using YG;
 
 public class MainSceneNavigationManager : MonoBehaviour
 {
-    private readonly Dictionary<string, bool> _levelsStatus;
-
     [SerializeField] private GameObject _authView;
     [SerializeField] private GameObject _levelsBlockSprite;
 
@@ -54,93 +53,15 @@ public class MainSceneNavigationManager : MonoBehaviour
         _authView.SetActive(false);
     }
 
-    public void LoadShopScene()
-    {
-        ButtonClicked?.Invoke();
-        ShopScene.Load();
-    }
-
-    public void LoadHangarScene()
-    {
-        ButtonClicked?.Invoke();
-        HangarScene.Load();
-    }
-
     public void LeaderboardButtonPressed()
     {
         ButtonClicked?.Invoke();
         TryOpenLeaderboard();
     }
 
-    public void LoadTrainingLevel()
-    {
-        ButtonClicked?.Invoke();
-        TrainingScene.Load();
-    }
-
-    public void LoadLevel1()
-    {
-        ButtonClicked?.Invoke();
-        Level1.Load();
-    }
-
-    public void LoadLevel2()
-    {
-        ButtonClicked?.Invoke();
-        Level2.Load();
-    }
-
-    public void LoadLevel3()
-    {
-        ButtonClicked?.Invoke();
-        Level3.Load();
-    }
-
-    public void LoadLevel4()
-    {
-        ButtonClicked?.Invoke();
-        Level4.Load();
-    }
-
-    public void LoadLevel5()
-    {
-        ButtonClicked?.Invoke();
-        Level5.Load();
-    }
-
-    public void LoadLevel6()
-    {
-        ButtonClicked?.Invoke();
-        Level6.Load();
-    }
-
-    public void LoadLevel7()
-    {
-        ButtonClicked?.Invoke();
-        Level7.Load();
-    }
-
-    public void LoadLevel8()
-    {
-        ButtonClicked?.Invoke();
-        Level8.Load();
-    }
-
-    public void LoadLevel9()
-    {
-        ButtonClicked?.Invoke();
-        Level9.Load();
-    }
-
-    public void LoadLevel10()
-    {
-        ButtonClicked?.Invoke();
-        Level10.Load();
-    }
-
     private void TryOpenLeaderboard()
     {
-        if (YG2.player.auth == true)
+        if (YG2.player.auth)
         {
             _authView.SetActive(false);
             LeaderboardScene.Load();

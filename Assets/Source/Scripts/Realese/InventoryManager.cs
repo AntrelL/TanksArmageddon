@@ -10,6 +10,7 @@ public class InventoryManager : MonoBehaviour
 
     [SerializeField] private List<WeaponSlot> _weaponSlots;
     [SerializeField] private List<WeaponData> _weaponsList;
+    [SerializeField] private AirdropBox _airdropBox;
 
     private WeaponSlot _selectedSlot = null;
     private WeaponSlot _weaponSlotToClean;
@@ -30,12 +31,12 @@ public class InventoryManager : MonoBehaviour
 
     private void OnEnable()
     {
-        AirdropBox.PlayerPickedUpAirdrop += SetNewWeapon;
+        _airdropBox.PlayerPickedUpAirdrop += SetNewWeapon;
     }
 
     private void OnDisable()
     {
-        AirdropBox.PlayerPickedUpAirdrop -= SetNewWeapon;
+        _airdropBox.PlayerPickedUpAirdrop -= SetNewWeapon;
     }
 
     public void AdButtonPressed()

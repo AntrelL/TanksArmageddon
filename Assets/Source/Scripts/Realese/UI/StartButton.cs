@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class StartButton : MonoBehaviour
 {
-    public static event Action MainSceneOpened;
+    private AudioManager _manager;
+
+    private void Awake()
+    {
+        _manager = FindObjectOfType<AudioManager>();
+    }
 
     public void OpenMainScene()
     {
-        MainSceneOpened?.Invoke();
+        _manager.PlayButtonClick();
         MainScene.Load();
     }
 }

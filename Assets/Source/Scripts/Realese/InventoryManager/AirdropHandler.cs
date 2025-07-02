@@ -3,6 +3,7 @@
 public class AirdropHandler : MonoBehaviour
 {
     [SerializeField] private AirdropSpawner _spawner;
+    
     private AirdropBox _box;
 
     public void Initialize(System.Action<int> onPickedUp)

@@ -8,11 +8,14 @@ public class Shoot : MonoBehaviour
     [SerializeField] private Tank _tank;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private ParticleSystem _muzzleFlash;
-    [SerializeField] private Camera _mainCamera;
-    [SerializeField] private Animator _animator;
     [SerializeField] private UIController _UIcontroller;
+    
+    private AudioManager _manager;
 
-    public static event Action PlayerFired;
+    private void Awake()
+    {
+        _manager = FindObjectOfType<AudioManager>();
+    }
 
     private void OnEnable()
     {
@@ -26,7 +29,7 @@ public class Shoot : MonoBehaviour
 
     private void StartShoot()
     {
-        PlayerFired?.Invoke();
+        _manager.PlayProjectileShoot();
         _tank.Shot();
         Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
 

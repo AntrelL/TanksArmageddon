@@ -20318,7 +20318,7 @@ MonoBehaviour:
   _player: {fileID: 0}
   _muzzleFlash: {fileID: 7871974773265107418}
   _enemyTank: {fileID: 736949506192995771}
-  _turnManager: {fileID: 0}
+  _turnState: {fileID: 0}
   _turret: {fileID: 5800532946604525462}
   _rotateDuration: 0.6
   _maxAngleDeviation: 30
@@ -20361,6 +20361,7 @@ MonoBehaviour:
   _tank: {fileID: 736949506192995771}
   _hitFX: {fileID: 5156201333536720012, guid: b213c11fd875b52419a7ef909992a9bb, type: 3}
   _edgeOfMapDamage: 5000
+  _combat: {fileID: 5703738389953570646}
 --- !u!114 &6920573785277926218
 MonoBehaviour:
   m_ObjectHideFlags: 0

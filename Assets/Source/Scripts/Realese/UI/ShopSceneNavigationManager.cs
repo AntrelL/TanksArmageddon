@@ -6,28 +6,33 @@ using YG;
 public class ShopSceneNavigationManager : MonoBehaviour
 {
     [SerializeField] private Canvas _helpViewCanvas;
-
-    public static event Action ButtonClicked;
+    
+    private AudioManager _manager;
 
     public  event Action TextShowing;
 
+    private void Awake()
+    {
+        _manager = FindObjectOfType<AudioManager>();
+    }
+    
     public void HelpButtonPressed()
     {
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
         _helpViewCanvas.gameObject.SetActive(true);
         TextShowing?.Invoke();
     }
 
     public void OkayButtonPressed()
     {
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
         _helpViewCanvas.gameObject.SetActive(false);
     }
 
     public void LoadMainScene()
     {
         YG2.SaveProgress();
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
         MainScene.Load();
     }
 }

@@ -6,11 +6,16 @@ using YG;
 public class HangarSceneNavigationManager : MonoBehaviour
 {
     [SerializeField] private Canvas _helpViewCanvas;
-
-    public static event Action ButtonClicked;
-
+    
+    private AudioManager _manager;
+    
     public event Action TextShowing;
 
+    private void Awake()
+    {
+        _manager = FindObjectOfType<AudioManager>();
+    }
+    
     private void Start()
     {
         Time.timeScale = 1f;
@@ -19,20 +24,20 @@ public class HangarSceneNavigationManager : MonoBehaviour
     public void LoadHomeScene()
     {
         YG2.SaveProgress();
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
         MainScene.Load();
     }
 
     public void HelpButtonPressed()
     {
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
         _helpViewCanvas.gameObject.SetActive(true);
         TextShowing?.Invoke();
     }
 
     public void OkayButtonPressed()
     {
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
         _helpViewCanvas.gameObject.SetActive(false);
     }
 }

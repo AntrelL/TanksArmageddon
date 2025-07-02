@@ -7,12 +7,17 @@ public class SceneLoader : MonoBehaviour
     {
         [Scene]
         [SerializeField] private string _sceneName;
-        
-        public static event Action ButtonClicked;
-        
+
+        private AudioManager _manager;
+
+        private void Awake()
+        {
+            _manager = FindObjectOfType<AudioManager>();
+        }
+
         public void LoadScene()
         {
-            ButtonClicked?.Invoke();
+            _manager.PlayButtonClick();
             SceneManager.LoadScene(_sceneName);
         }
     }

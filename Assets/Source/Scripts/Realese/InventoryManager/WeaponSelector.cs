@@ -18,7 +18,7 @@ public class WeaponSelector : MonoBehaviour
         }
     }
 
-    private void Select(WeaponSlot slot, Action onProjectileDestroyed)
+    public void Select(WeaponSlot slot, Action onProjectileDestroyed)
     {
         _selectedSlot?.Deselect();
         _selectedSlot = slot;

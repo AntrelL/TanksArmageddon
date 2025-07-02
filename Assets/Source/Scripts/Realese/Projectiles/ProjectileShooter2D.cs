@@ -22,9 +22,13 @@ public class ProjectileShooter2D : MonoBehaviour
     [SerializeField] private float _maxAngleDeviation;
 
     private float _turretInitialAngle;
+    private AudioManager _manager;
 
-    public static event Action EnemyShooted;
-
+    private void Awake()
+    {
+        _manager = FindObjectOfType<AudioManager>();
+    }
+    
     private void Start()
     {
         if (_turret != null)
@@ -91,8 +95,8 @@ public class ProjectileShooter2D : MonoBehaviour
         }
 
         _turret.eulerAngles = new Vector3(0f, 0f, targetAngle);
-
-        EnemyShooted?.Invoke();
+        
+        _manager.PlayProjectileShoot();
         _enemyTank.Shot();
         ShootBullet();
     }

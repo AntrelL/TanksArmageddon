@@ -8,15 +8,19 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] private ParticleSystem _groundCollisionFX;
     [SerializeField] private int _boundaryOfDestruction = -50;
 
+    private AudioManager _manager;
     private LandCutter _landCutter;
 
     public static event Action EnemyBulletDestroyed;
 
-    public static event Action GroundHit;
-
     public static event Action<int> PlayerHit;
 
     public static Transform CurrentEnemyBullet { get; private set; }
+
+    private void Awake()
+    {
+        _manager = FindObjectOfType<AudioManager>();
+    }
 
     private void Start()
     {
@@ -50,7 +54,7 @@ public class EnemyBullet : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out Land land))
         {
             _landCutter.transform.position = transform.position;
-            GroundHit?.Invoke();
+            _manager.PlayTankHit();
             Invoke(nameof(DoCut), 0.001f);
         }
     }

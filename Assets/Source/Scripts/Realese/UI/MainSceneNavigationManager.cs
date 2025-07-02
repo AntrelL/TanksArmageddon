@@ -10,8 +10,13 @@ public class MainSceneNavigationManager : MonoBehaviour
     [SerializeField] private GameObject _authView;
     [SerializeField] private GameObject _levelsBlockSprite;
 
-    public static event Action ButtonClicked;
+    private AudioManager _manager;
 
+    private void Awake()
+    {
+        _manager = FindObjectOfType<AudioManager>();
+    }
+    
     private void Start()
     {
         Time.timeScale = 1f;
@@ -43,19 +48,19 @@ public class MainSceneNavigationManager : MonoBehaviour
 
     public void AcceptPressed()
     {
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
         YG2.OpenAuthDialog();
     }
 
     public void DeclinePressed()
     {
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
         _authView.SetActive(false);
     }
 
     public void LeaderboardButtonPressed()
     {
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
         TryOpenLeaderboard();
     }
 

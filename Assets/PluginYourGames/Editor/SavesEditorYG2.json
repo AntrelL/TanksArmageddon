@@ -7,9 +7,9 @@
         false,
         false
     ],
-    "idSave": 396,
-    "PlayerPoints": 50,
-    "PlayerBalance": 6000,
+    "idSave": 4,
+    "PlayerPoints": 100,
+    "PlayerBalance": 7000,
     "PlayerHealth": 1000,
     "TrainingLevelPassed": true,
     "WeaponCardCounts": [
@@ -21,29 +21,29 @@
     ],
     "ClearWeaponsData": [
         {
-            "BaseDamage": 0,
+            "BaseDamage": 100,
             "UpgradeLevel": 0,
-            "CurrentDamage": 0
+            "CurrentDamage": 100
         },
         {
-            "BaseDamage": 0,
+            "BaseDamage": 200,
             "UpgradeLevel": 0,
-            "CurrentDamage": 0
+            "CurrentDamage": 200
         },
         {
-            "BaseDamage": 0,
+            "BaseDamage": 250,
             "UpgradeLevel": 0,
-            "CurrentDamage": 0
+            "CurrentDamage": 250
         },
         {
-            "BaseDamage": 0,
+            "BaseDamage": 500,
             "UpgradeLevel": 0,
-            "CurrentDamage": 0
+            "CurrentDamage": 500
         },
         {
-            "BaseDamage": 0,
+            "BaseDamage": 300,
             "UpgradeLevel": 0,
-            "CurrentDamage": 0
+            "CurrentDamage": 300
         }
     ]
 }

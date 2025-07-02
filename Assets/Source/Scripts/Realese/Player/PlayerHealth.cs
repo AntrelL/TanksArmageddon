@@ -10,13 +10,14 @@ public class PlayerHealth : MonoBehaviour
     private int _maxHealth;
     private int _currentHealth;
     private bool _isAlive = true;
-
-    public static event Action PlayerHit;
+    private AudioManager _manager;
+    
     public event Action<int> HealthChanged;
     public event Action Defeated;
 
     private void Awake()
     {
+        _manager = FindObjectOfType<AudioManager>();
         _maxHealth = PlayerDataHandler.Instance.GetPlayerMaxHealth();
         _currentHealth = _maxHealth;
     }
@@ -40,8 +41,8 @@ public class PlayerHealth : MonoBehaviour
     public void PlayHitEffect(Vector3 position)
     {
         if (!_isAlive) return;
-
-        PlayerHit?.Invoke();
+        
+        _manager.PlayTankHit();
         var fx = Instantiate(_hitFX, position, Quaternion.identity);
         fx.Play();
         Destroy(fx.gameObject, fx.main.duration);

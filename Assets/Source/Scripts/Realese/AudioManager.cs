@@ -41,55 +41,7 @@ public class AudioManager : MonoBehaviour
         PlayMainMusic();
     }
 
-    private void OnEnable()
-    {
-        SceneLoader.ButtonClicked += PlayButtonClick;
-        Shoot.PlayerFired += PlayProjectileShoot;
-        UIController.SoundTurnedOff += StopMainMusic;
-        UIController.SoundTurnedOn += PlayMainMusic;
-        StartButton.MainSceneOpened += PlayButtonClick;
-        Shop.CardClicked += PlayButtonClick;
-        MainSceneNavigationManager.ButtonClicked += PlayButtonClick;
-        ShopSceneNavigationManager.ButtonClicked += PlayButtonClick;
-        UIController.ButtonClicked += PlayButtonClick;
-        UIController.FinishedCanvasShown += PlayLevelFinished;
-        UIController.FailedCanvasShown += PlayLevelFailed;
-        PlayerHealth.PlayerHit += PlayTankHit;
-        EnemyHealth.EnemyHitted += PlayTankHit;
-        DefaultProjectile.GroundHit += PlayTankHit;
-        DefaultProjectile.EdgeOfMapHit += PlayButtonClick;
-        EnemyBullet.GroundHit += PlayTankHit;
-        ProjectileShooter2D.EnemyShooted += PlayProjectileShoot;
-        HangarSceneNavigationManager.ButtonClicked += PlayButtonClick;
-        Hangar.ButtonClicked += PlayButtonClick;
-        TutorialManager.ButtonClicked += PlayButtonClick;
-    }
-
-    private void OnDisable()
-    {
-        SceneLoader.ButtonClicked -= PlayButtonClick;
-        Shoot.PlayerFired -= PlayProjectileShoot;
-        UIController.SoundTurnedOff -= StopMainMusic;
-        UIController.SoundTurnedOn -= PlayMainMusic;
-        StartButton.MainSceneOpened -= PlayButtonClick;
-        Shop.CardClicked -= PlayButtonClick;
-        MainSceneNavigationManager.ButtonClicked -= PlayButtonClick;
-        ShopSceneNavigationManager.ButtonClicked -= PlayButtonClick;
-        UIController.ButtonClicked -= PlayButtonClick;
-        UIController.FinishedCanvasShown -= PlayLevelFinished;
-        UIController.FailedCanvasShown -= PlayLevelFailed;
-        PlayerHealth.PlayerHit -= PlayTankHit;
-        EnemyHealth.EnemyHitted -= PlayTankHit;
-        DefaultProjectile.GroundHit -= PlayTankHit;
-        DefaultProjectile.EdgeOfMapHit -= PlayButtonClick;
-        EnemyBullet.GroundHit -= PlayTankHit;
-        ProjectileShooter2D.EnemyShooted -= PlayProjectileShoot;
-        HangarSceneNavigationManager.ButtonClicked -= PlayButtonClick;
-        Hangar.ButtonClicked -= PlayButtonClick;
-        TutorialManager.ButtonClicked -= PlayButtonClick;
-    }
-
-    private void PlayMainMusic()
+    public void PlayMainMusic()
     {
         if (_backgroundMusicSource == null || _mainBackgroundMusic == null)
             return;
@@ -99,7 +51,7 @@ public class AudioManager : MonoBehaviour
         _isMusicOn = true;
     }
 
-    private void StopMainMusic()
+    public void StopMainMusic()
     {
         if (_backgroundMusicSource == null)
             return;
@@ -114,7 +66,7 @@ public class AudioManager : MonoBehaviour
         AudioListener.volume = inBackground ? 0f : 1f;
     }
 
-    private void PlayLevelFailed()
+    public void PlayLevelFailed()
     {
         if (_isMusicOn)
         {
@@ -126,7 +78,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void PlayLevelFinished()
+    public void PlayLevelFinished()
     {
         if (_isMusicOn)
         {
@@ -138,7 +90,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void PlayProjectileShoot()
+    public void PlayProjectileShoot()
     {
         if (_isMusicOn)
         {
@@ -150,7 +102,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void PlayTankHit()
+    public void PlayTankHit()
     {
         if (_isMusicOn)
         {
@@ -162,7 +114,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void PlayButtonClick()
+    public void PlayButtonClick()
     {
         if (_isMusicOn)
         {

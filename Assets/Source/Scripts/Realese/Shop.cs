@@ -10,10 +10,13 @@ public class Shop : MonoBehaviour
     [SerializeField] private TMP_Text _purchasedCardsInfo;
 
     private string _currentLanguage = "ru";
+    private AudioManager _manager;
 
-    public static event Action CardClicked;
+    private void Awake()
+    {
+        _manager = FindObjectOfType<AudioManager>();
+    }
     
-
     private void Start()
     {
         Time.timeScale = 1f;
@@ -47,14 +50,14 @@ public class Shop : MonoBehaviour
                 UpdateHealthUpgrade(currentPlayerHealth);
 
                 UpdatePlayerBalanceUI();
-                CardClicked?.Invoke();
+                _manager.PlayButtonClick();
 
                 return;
             }
 
             int currentCardCount = YG2.saves.WeaponCardCounts[index];
             YG2.saves.WeaponCardCounts[index] = currentCardCount + 1;
-            CardClicked?.Invoke();
+            _manager.PlayButtonClick();
 
             UpdateWeaponUpgrade(index, currentCardCount + 1);
 

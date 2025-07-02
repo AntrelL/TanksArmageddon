@@ -8,11 +8,12 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private Tank _tank;
     [SerializeField] private ParticleSystem _hitFX;
     [SerializeField] private int _edgeOfMapDamage = 5000;
+    [SerializeField] private EnemyCombat _combat;
 
     private int _currentHealth;
     private bool _isAlive = true;
-
-    public static event Action EnemyHitted;
+    private AudioManager _manager;
+    
     public event Action<int> HealthChanged;
     public event Action Defeated;
 
@@ -52,7 +53,8 @@ public class EnemyHealth : MonoBehaviour
     {
         if (!_isAlive) return;
 
-        EnemyHitted?.Invoke();
+        TakeDamage(_combat.GetPlayerDamage());
+        _manager.PlayTankHit();
         ParticleSystem flash = Instantiate(_hitFX, pos, Quaternion.identity);
         flash.Play();
         Destroy(flash.gameObject, flash.main.duration);

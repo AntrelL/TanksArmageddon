@@ -11,13 +11,14 @@ public class DefaultProjectile : MonoBehaviour
 
     private Rigidbody2D _rigidbody;
     private LandCutter _landCutter;
+    private AudioManager _manager;
 
     private float _targetX;
     private float _targetY;
 
-    public static event Action GroundHit;
+    //public static event Action GroundHit;
 
-    public static event Action EdgeOfMapHit;
+    //public static event Action EdgeOfMapHit;
 
     public static event Action ProjectileDestroyed;
 
@@ -27,6 +28,11 @@ public class DefaultProjectile : MonoBehaviour
 
     public float Speed => _speed;
 
+    private void Awake()
+    {
+        _manager = FindObjectOfType<AudioManager>();
+    }
+    
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -60,7 +66,7 @@ public class DefaultProjectile : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out EdgeOfMap edgeOfMap))
         {
-            EdgeOfMapHit?.Invoke();
+            _manager.PlayButtonClick();
             Destroy(gameObject);
         }
 
@@ -95,7 +101,7 @@ public class DefaultProjectile : MonoBehaviour
         Destroy(flash.gameObject, flash.main.duration);
 
         _landCutter.DoCut();
-        GroundHit?.Invoke();
+        _manager.PlayTankHit();
         Destroy(gameObject);
     }
 

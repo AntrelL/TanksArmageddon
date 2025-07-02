@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHealthBar : HealthBar
 {
     [SerializeField] private EnemyHealth _enemyHealth;
+    [SerializeField] private GameObject _enemy;
     [SerializeField] private Vector3 _offset = new Vector3(0, 4, 0);
+    [SerializeField] private Slider _healthBar;
 
     protected override void OnEnable()
     {
@@ -40,7 +43,7 @@ public class EnemyHealthBar : HealthBar
 
     private void MoveSlider()
     {
-        Vector3 screenPosition = Camera.main.WorldToScreenPoint(_enemyHealth.transform.position + _offset);
-        transform.position = screenPosition;
+        Vector3 screenPosition = Camera.main.WorldToScreenPoint(_enemy.transform.position + _offset);
+        _healthBar.transform.position = screenPosition;
     }
 }

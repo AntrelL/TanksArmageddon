@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using YG;
 using Random = UnityEngine.Random;
 
 public class InventoryManager : MonoBehaviour
@@ -38,10 +40,20 @@ public class InventoryManager : MonoBehaviour
     private void SetNewWeapon(int index)
     {
         _ammo.AddAmmo(index);
+
         var slot = _ui.GetSlot(index);
         slot.gameObject.SetActive(true);
-        slot.GetComponent<UnityEngine.UI.Image>().sprite = _weaponDataList[index].Icon;
+
+        var weaponData = _weaponDataList[index];
+        slot.Icon.sprite = weaponData.Icon;
+        
+        var weapon = new ClearWeaponData(weaponData);
+        slot.SetWeaponData(weapon);
+        
         slot.UpdateAmmoCount(_ammo.GetAmmo(index));
+        
+        _selector.DeselectCurrent();
+        _selector.Select(slot, OnProjectileDestroyed);
     }
 
     private void OnProjectileDestroyed()

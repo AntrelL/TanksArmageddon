@@ -12,9 +12,14 @@ public class Hangar : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] _weaponLevelTexts;
     [SerializeField] private TextMeshProUGUI[] _weaponCardTexts;
     [SerializeField] private TextMeshProUGUI[] _weaponDamageTexts;
+    
+    private AudioManager _manager;
 
-    public static event Action ButtonClicked;
-
+    private void Awake()
+    {
+        _manager = FindObjectOfType<AudioManager>();
+    }
+    
     private void Start()
     {
         Time.timeScale = 1.0f;
@@ -26,7 +31,7 @@ public class Hangar : MonoBehaviour
 
     public void SelectAndUpgradeWeapon(int weaponIndex)
     {
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
 
         int currentCardCount = YG2.saves.WeaponCardCounts[weaponIndex];
         int currentLevel = YG2.saves.ClearWeaponsData[weaponIndex].UpgradeLevel;

@@ -38,6 +38,7 @@ public class UIController : MonoBehaviour
     private int _levelRewardAmount;
     private int _pointsRewardAmount;
     private string _currentScene;
+    private AudioManager _manager; 
 
     public event Action PlayerShootButtonPressed;
 
@@ -45,17 +46,16 @@ public class UIController : MonoBehaviour
 
     public static event Action<int> PlayerPointsReceived;
 
-    public static event Action SoundTurnedOff;
+    //public static event Action FinishedCanvasShown;
 
-    public static event Action SoundTurnedOn;
-
-    public static event Action ButtonClicked;
-
-    public static event Action FinishedCanvasShown;
-
-    public static event Action FailedCanvasShown;
+    //public static event Action FailedCanvasShown;
 
     public static event Action SkipTurnButtonPressed;
+    
+    private void Awake()
+    {
+        _manager = FindObjectOfType<AudioManager>();
+    } 
 
     private void Start()
     {
@@ -106,7 +106,7 @@ public class UIController : MonoBehaviour
             return;
 
         _playerShootButton.interactable = false;
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
         PlayerShootButtonPressed?.Invoke();
     }
 
@@ -116,13 +116,13 @@ public class UIController : MonoBehaviour
             return;
 
         _playerSkipTurnButton.interactable = false;
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
         SkipTurnButtonPressed?.Invoke();
     }
 
     public void OpenMainMenu()
     {
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
         Time.timeScale = 0f;
 
         _mainMenuCanvasGroup.alpha = 1;
@@ -140,7 +140,7 @@ public class UIController : MonoBehaviour
 
     public void CloseMainMenu()
     {
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
         Time.timeScale = 1f;
 
         _pauseCanvasGroup.alpha = 1;
@@ -158,14 +158,14 @@ public class UIController : MonoBehaviour
 
     public void Restart()
     {
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
         Time.timeScale = 0f;
         SceneManager.LoadScene(_currentScene);
     }
 
     public void MuteSound()
     {
-        SoundTurnedOff?.Invoke();
+        _manager.StopMainMusic();
 
         _mutedSoundCanvasGroup.alpha = 1;
         _mutedSoundCanvasGroup.interactable = true;
@@ -178,7 +178,7 @@ public class UIController : MonoBehaviour
 
     public void UnmuteSound()
     {
-        SoundTurnedOn?.Invoke();
+        _manager.PlayMainMusic();
         _unmutedSoundCanvasGroup.alpha = 1;
         _unmutedSoundCanvasGroup.interactable = true;
         _unmutedSoundCanvasGroup.blocksRaycasts = true;
@@ -190,25 +190,25 @@ public class UIController : MonoBehaviour
 
     public void OpenHomeScene()
     {
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
         MainScene.Load();
     }
 
     public void OpenShopScene()
     {
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
         ShopScene.Load();
     }
 
     public void OpenHangarScene()
     {
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
         HangarScene.Load();
     }
 
     public void ShowVictoryScreen()
     {
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
         _levelFinishedCanvas.SetActive(true);
     }
 
@@ -217,7 +217,7 @@ public class UIController : MonoBehaviour
         YG2.saves.TrainingLevelPassed = true;
         Time.timeScale = 0f;
         _levelFinishedCanvas.SetActive(true);
-        FinishedCanvasShown?.Invoke();
+        _manager.PlayLevelFinished();
         UpdateGoalStatus();
         YG2.SaveProgress();
     }
@@ -226,7 +226,7 @@ public class UIController : MonoBehaviour
     {
         Time.timeScale = 0f;
         _levelFailedCanvas.SetActive(true);
-        FailedCanvasShown?.Invoke();
+        _manager.PlayLevelFailed();
     }
 
     private void IsShootButtonInteractable(bool isInteractable)

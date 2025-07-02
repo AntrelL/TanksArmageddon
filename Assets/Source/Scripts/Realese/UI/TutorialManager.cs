@@ -14,9 +14,14 @@ public class TutorialManager : MonoBehaviour
 
     private int _currentIndex = 0;
     private string _currentLanguage = "ru";
+    private AudioManager _manager;
 
     public event Action<bool> TutorialEnded;
-    public static event Action ButtonClicked;
+    
+    private void Awake()
+    {
+        _manager = FindObjectOfType<AudioManager>();
+    }
 
     private void Start()
     {
@@ -41,7 +46,7 @@ public class TutorialManager : MonoBehaviour
 
     public void OnOkayButtonClicked()
     {
-        ButtonClicked?.Invoke();
+        _manager.PlayButtonClick();
         TutorialEnded?.Invoke(false);
         _tutorialTips[_currentIndex].SetActive(false);
         _currentIndex++;

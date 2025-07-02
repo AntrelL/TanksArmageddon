@@ -34,15 +34,15 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out Player player))
+        if (collision.gameObject.TryGetComponent(out PlayerHealth player))
         {
             int damage = GetRandomDamage();
-            PlayerHit(damage);
+            PlayerHit?.Invoke(damage);
             player.PlayHitEffect(transform.position);
             Destroy(gameObject);
         }
 
-        if (collision.gameObject.TryGetComponent(out Enemy enemy))
+        if (collision.gameObject.TryGetComponent(out EnemyFacade enemy))
         {
             Destroy(gameObject);
         }

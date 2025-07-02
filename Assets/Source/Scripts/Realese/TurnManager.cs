@@ -7,8 +7,8 @@ using UnityEngine;
 public class TurnManager : MonoBehaviour
 {
     [Header("Ссылки на объекты")]
-    [SerializeField] private Player _player;
-    [SerializeField] private List<Enemy> _enemies;
+    [SerializeField] private PlayerHealth _player;
+    [SerializeField] private List<EnemyAIController> _enemies;
     [SerializeField] private CameraController _cameraController;
     [SerializeField] private UIController _uiController;
     [SerializeField] private TutorialManager _tutorialManager;
@@ -72,7 +72,7 @@ public class TurnManager : MonoBehaviour
 
             for (int i = 0; i < _enemies.Count; i++)
             {
-                Enemy enemy = _enemies[i];
+                EnemyAIController enemy = _enemies[i];
 
                 if (enemy != null && enemy.gameObject.activeSelf)
                 {
@@ -139,7 +139,7 @@ public class TurnManager : MonoBehaviour
         CurrentTurnIsPlayer = false;
     }
 
-    private IEnumerator EnemyTurn(Enemy enemy)
+    private IEnumerator EnemyTurn(EnemyAIController enemy)
     {
         _turnCount++;
 
@@ -155,7 +155,7 @@ public class TurnManager : MonoBehaviour
         CompletedTurns?.Invoke(_turnCount);
     }
 
-    private Enemy GetLastActiveEnemy()
+    private EnemyAIController GetLastActiveEnemy()
     {
         for (int i = _enemies.Count - 1; i >= 0; i--)
         {
@@ -170,7 +170,7 @@ public class TurnManager : MonoBehaviour
 
     private bool CheckAllEnemiesDead()
     {
-        foreach (Enemy enemy in _enemies)
+        foreach (EnemyAIController enemy in _enemies)
         {
             if (enemy != null && enemy.gameObject.activeSelf)
                 return false;
@@ -183,7 +183,7 @@ public class TurnManager : MonoBehaviour
 
     private Transform GetNextTargetForCamera()
     {
-        foreach (Enemy enemy in _enemies)
+        foreach (EnemyAIController enemy in _enemies)
         {
             if (enemy != null && enemy.gameObject.activeSelf)
             {

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7081ad982dc43f42b4f96830d44d7d8, type: 3}
   m_Name: 01.DefaultWeapon
   m_EditorClassIdentifier: 
-  name: Default
-  icon: {fileID: 21300000, guid: f363a8a581eaf4e4abd6a9aeeadd4d3c, type: 3}
-  baseDamage: 100
-  upgradeLevel: 0
-  currentDamage: 100
+  <Name>k__BackingField: DefaultWeapon
+  <Icon>k__BackingField: {fileID: 21300000, guid: f363a8a581eaf4e4abd6a9aeeadd4d3c, type: 3}
+  <BaseDamage>k__BackingField: 100
+  <UpgradeLevel>k__BackingField: 0
+  <CurrentDamage>k__BackingField: 100

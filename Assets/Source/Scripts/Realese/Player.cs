@@ -7,6 +7,7 @@ using YG;
 
 namespace TanksArmageddon
 {
+    
     public class Player : MonoBehaviour
     {
         private readonly float _checkRaycastLenght = 0.8f;
@@ -23,7 +24,7 @@ namespace TanksArmageddon
         [SerializeField] private Button _rightButton;
         [SerializeField] private CameraController _cameraController;
         [SerializeField] private ParticleSystem _hitFX;
-        [SerializeField] private TurnManager _turnManager;
+        [SerializeField] private TurnState _turnState;
         [SerializeField] private EdgeOfMap _edgeOfMap;
 
         [Space]
@@ -167,7 +168,7 @@ namespace TanksArmageddon
         private void OnEnable()
         {
             _cameraController.UnlockMovement += OnMovementUnlocked;
-            _turnManager.CanPlayerControl += OnMovementUnlocked;
+            _turnState.CanPlayerControl += OnMovementUnlocked;
             _edgeOfMap.CollisionWithPlayer += TakeDamage;
             EnemyBullet.PlayerHit += TakeDamage;
         }
@@ -176,7 +177,7 @@ namespace TanksArmageddon
         {
             _cameraController.UnlockMovement -= OnMovementUnlocked;
             _edgeOfMap.CollisionWithPlayer -= TakeDamage;
-            _turnManager.CanPlayerControl -= OnMovementUnlocked;
+            _turnState.CanPlayerControl -= OnMovementUnlocked;
             EnemyBullet.PlayerHit -= TakeDamage;
         }
 
@@ -227,4 +228,5 @@ namespace TanksArmageddon
             HealthChanged?.Invoke(_currentHealth);
         }
     }
+    
 }

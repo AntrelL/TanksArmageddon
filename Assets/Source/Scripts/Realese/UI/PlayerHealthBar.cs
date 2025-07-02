@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerHealthBar : HealthBar
 {
-    [SerializeField] private Player _player;
+    [SerializeField] private PlayerHealth _player;
 
     protected override void OnEnable()
     {

@@ -5,10 +5,11 @@ using UnityEngine;
 public class AirdropBox : MonoBehaviour
 {
     public event Action<int> PlayerPickedUpAirdrop;
+    public event Action PickedUp;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out Player player))
+        if (collision.gameObject.TryGetComponent(out PlayerRoot player))
         {
             PlayerPickedUpAirdrop?.Invoke(GenerateRandomWeaponIndex());
             Destroy(gameObject);
@@ -16,7 +17,7 @@ public class AirdropBox : MonoBehaviour
             return;
         }
 
-        if (collision.gameObject.TryGetComponent(out Enemy enemy))
+        if (collision.gameObject.TryGetComponent(out EnemyFacade enemy))
         {
             Destroy(gameObject);
 
@@ -29,6 +30,10 @@ public class AirdropBox : MonoBehaviour
 
             return;
         }
+    }
+
+    public void OnDestroy()
+    {
     }
 
     private int GenerateRandomWeaponIndex()

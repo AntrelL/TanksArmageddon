@@ -8,12 +8,12 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private GameObject _blockUICanvas;
     [SerializeField] private Transform _player;
-    [SerializeField] private List<Enemy> _enemies;
+    [SerializeField] private List<EnemyAIController> _enemies;
     [SerializeField] private float _moveSpeed = 3f;
     [SerializeField] private float _followSpeed = 5f;
     [SerializeField] private float _delayBeforeSwitch = 0f;
     [SerializeField] private float _timeSinceSwitch = 0f;
-    [SerializeField] private TurnManager _turnManager;
+    [SerializeField] private TurnState _turnState;
 
     private bool _introFinished = false;
     private Transform _currentTarget;
@@ -33,14 +33,14 @@ public class CameraController : MonoBehaviour
 
     private void OnEnable()
     {
-        _turnManager.TurnStarted += OnTurnStarted;
+        _turnState.TurnStarted += OnTurnStarted;
         DefaultProjectile.ProjectileDestroyed += OnProjectileDestroyed;
         EnemyBullet.EnemyBulletDestroyed += OnProjectileDestroyed;
     }
 
     private void OnDisable()
     {
-        _turnManager.TurnStarted -= OnTurnStarted;
+        _turnState.TurnStarted -= OnTurnStarted;
         DefaultProjectile.ProjectileDestroyed -= OnProjectileDestroyed;
         EnemyBullet.EnemyBulletDestroyed -= OnProjectileDestroyed;
     }
@@ -150,7 +150,7 @@ public class CameraController : MonoBehaviour
     {
         Transform nextTarget = _player.transform;
 
-        if (TurnManager.CurrentTurnIsPlayer == false)
+        if (_turnState.CurrentTurnIsPlayer == false)
         {
             foreach (var enemy in _enemies)
             {

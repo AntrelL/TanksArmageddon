@@ -66,7 +66,7 @@ public class DefaultProjectile : MonoBehaviour
 
         if (IsEnemyProjectile)
         {
-            if (collision.gameObject.TryGetComponent(out Player player))
+            if (collision.gameObject.TryGetComponent(out PlayerHealth player))
             {
                 player.PlayHitEffect(transform.position);
                 Destroy(gameObject);
@@ -74,7 +74,7 @@ public class DefaultProjectile : MonoBehaviour
         }
         else
         {
-            if (collision.gameObject.TryGetComponent(out Enemy enemy))
+            if (collision.gameObject.TryGetComponent(out EnemyFacade enemy))
             {
                 enemy.PlayHitEffect(transform.position);
                 Destroy(gameObject);

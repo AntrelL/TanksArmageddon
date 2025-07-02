@@ -6,7 +6,7 @@ public class PlayerTurretController : MonoBehaviour
 {
     [SerializeField] private Transform _turret;
     [SerializeField] private Slider _angleSlider;
-    [SerializeField] private TurnManager _turnManager;
+    [SerializeField] private TurnState _turnManager;
 
     private float _initialGunAngle;
 

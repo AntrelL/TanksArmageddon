@@ -20167,8 +20167,12 @@ GameObject:
   - component: {fileID: 9007557187856951864}
   - component: {fileID: 1824936881290727567}
   - component: {fileID: 5011915199641141234}
-  - component: {fileID: 6701143332466249443}
   - component: {fileID: 8841997395530360643}
+  - component: {fileID: 5285828087035447929}
+  - component: {fileID: 604826260115673507}
+  - component: {fileID: 6920573785277926218}
+  - component: {fileID: 5703738389953570646}
+  - component: {fileID: 2757653407091748336}
   m_Layer: 12
   m_Name: Enemy
   m_TagString: Enemy
@@ -20295,33 +20299,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6701143332466249443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5589818049052933711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a91d558026d6ca46ba2661265324b54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hitFX: {fileID: 5156201333536720012, guid: b213c11fd875b52419a7ef909992a9bb, type: 3}
-  _maxHealth: 500
-  _tank: {fileID: 736949506192995771}
-  _movementForce: 70
-  _maxSpeed: 2
-  _rigidbody2D: {fileID: 5011915199641141234}
-  _availableTravelTime: 10
-  _projectileShooter: {fileID: 8841997395530360643}
-  _player: {fileID: 0}
-  _landLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  _centerPoint: {fileID: 6315825859657270495}
-  _leftPoint: {fileID: 4299075910645440571}
-  _rightPoint: {fileID: 5233924536248395925}
 --- !u!114 &8841997395530360643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20345,6 +20322,89 @@ MonoBehaviour:
   _turret: {fileID: 5800532946604525462}
   _rotateDuration: 0.6
   _maxAngleDeviation: 30
+--- !u!114 &5285828087035447929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5589818049052933711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3041cef323df471aaa21b0c8ebebf637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody2D: {fileID: 5011915199641141234}
+  _movementForce: 15
+  _maxSpeed: 5
+  _availableTravelTime: 3
+  _landLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _tank: {fileID: 736949506192995771}
+  _centerPoint: {fileID: 6315825859657270495}
+  _leftPoint: {fileID: 4299075910645440571}
+  _rightPoint: {fileID: 5233924536248395925}
+--- !u!114 &604826260115673507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5589818049052933711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c40faa01304e49978982eb0213af6165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 500
+  _tank: {fileID: 736949506192995771}
+  _hitFX: {fileID: 5156201333536720012, guid: b213c11fd875b52419a7ef909992a9bb, type: 3}
+  _edgeOfMapDamage: 5000
+--- !u!114 &6920573785277926218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5589818049052933711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94b79f9c9fae4ca69fd7f978fe8167c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 604826260115673507}
+  _movement: {fileID: 5285828087035447929}
+  _ai: {fileID: 2757653407091748336}
+  _combat: {fileID: 5703738389953570646}
+--- !u!114 &5703738389953570646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5589818049052933711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed2f9f968eca4e1d8ea2d36733e37172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectileShooter: {fileID: 8841997395530360643}
+  _inventoryManager: {fileID: 0}
+--- !u!114 &2757653407091748336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5589818049052933711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdff27507d4f4a34a63b7c0029330269, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movement: {fileID: 5285828087035447929}
+  _combat: {fileID: 5703738389953570646}
 --- !u!1 &5827351575982511606
 GameObject:
   m_ObjectHideFlags: 0

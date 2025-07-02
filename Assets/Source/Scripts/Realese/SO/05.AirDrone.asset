@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7081ad982dc43f42b4f96830d44d7d8, type: 3}
   m_Name: 05.AirDrone
   m_EditorClassIdentifier: 
-  name: AirDrone
-  icon: {fileID: 21300000, guid: 8aef3293018879241b88b9fc27fc9849, type: 3}
-  baseDamage: 200
-  upgradeLevel: 0
-  currentDamage: 200
+  <Name>k__BackingField: AirDrone
+  <Icon>k__BackingField: {fileID: 21300000, guid: 8aef3293018879241b88b9fc27fc9849, type: 3}
+  <BaseDamage>k__BackingField: 300
+  <UpgradeLevel>k__BackingField: 0
+  <CurrentDamage>k__BackingField: 300

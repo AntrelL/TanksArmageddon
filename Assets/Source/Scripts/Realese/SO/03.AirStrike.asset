@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7081ad982dc43f42b4f96830d44d7d8, type: 3}
   m_Name: 03.AirStrike
   m_EditorClassIdentifier: 
-  name: AirStrike
-  icon: {fileID: 21300000, guid: c0e4a551b7dcc354a83da4fe390d86a1, type: 3}
-  baseDamage: 300
-  upgradeLevel: 0
-  currentDamage: 300
+  <Name>k__BackingField: AirStrike
+  <Icon>k__BackingField: {fileID: 21300000, guid: c0e4a551b7dcc354a83da4fe390d86a1, type: 3}
+  <BaseDamage>k__BackingField: 250
+  <UpgradeLevel>k__BackingField: 0
+  <CurrentDamage>k__BackingField: 250

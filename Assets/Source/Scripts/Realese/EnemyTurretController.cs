@@ -15,7 +15,7 @@ public class EnemyTurretController : MonoBehaviour
     [SerializeField] private DefaultProjectile _projectilePrefab;
 
     private float _projectileSpeed;
-    private TurnManager _turnManager;
+    private TurnState _turnState;
 
     private void Start()
     {
@@ -24,12 +24,12 @@ public class EnemyTurretController : MonoBehaviour
             _projectileSpeed = _projectilePrefab.Speed;
         }
 
-        _turnManager = FindObjectOfType<TurnManager>();
+        _turnState = FindObjectOfType<TurnState>();
     }
 
     public bool CanShoot(Transform target)
     {
-        float difficultyFactor = _turnManager.DifficultyFactor;
+        float difficultyFactor = _turnState.DifficultyFactor;
         Vector2 firePosition = _firePoint.position;
 
         float targetX = GetRandomTargetX(target.position.x, difficultyFactor);
@@ -41,7 +41,7 @@ public class EnemyTurretController : MonoBehaviour
 
     public void Shoot(Transform target)
     {
-        float difficultyFactor = _turnManager.DifficultyFactor;
+        float difficultyFactor = _turnState.DifficultyFactor;
         Vector2 firePosition = _firePoint.position;
 
         float targetX = GetRandomTargetX(target.position.x, difficultyFactor);

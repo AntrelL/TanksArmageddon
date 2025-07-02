@@ -22,11 +22,11 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject _playerMovementCanvas;
     [SerializeField] private Button _playerShootButton;
     [SerializeField] private Button _playerSkipTurnButton;
-    [SerializeField] private Player _player;
+    [SerializeField] private PlayerHealth _player;
     [SerializeField] private GameObject _textGoal1;
     [SerializeField] private GameObject _textGoal2;
     [SerializeField] private GameObject _textGoal3;
-    [SerializeField] private TurnManager _turnManager;
+    [SerializeField] private TurnState _turnState;
     [SerializeField] private TMP_Text _counterText;
     [SerializeField] private TMP_Text _moneyRewardText;
     [SerializeField] private TMP_Text _pointsRewardText;
@@ -76,22 +76,22 @@ public class UIController : MonoBehaviour
     private void OnEnable()
     {
         _airdropSpawner.Spawned += OnSpawned;
-        _turnManager.AllEnemiesDead += ShowWinnerScreen;
-        _turnManager.CanPlayerShoot += IsShootButtonInteractable;
-        _turnManager.CanPlayerShoot += IsSkipTurnButtonInteractable;
-        _turnManager.CanPlayerShoot += IsInventoryInteractabe;
-        _turnManager.CompletedTurns += UpdateTurnCounterText;
+        _turnState.AllEnemiesDead += ShowWinnerScreen;
+        _turnState.CanPlayerShoot += IsShootButtonInteractable;
+        _turnState.CanPlayerShoot += IsSkipTurnButtonInteractable;
+        _turnState.CanPlayerShoot += IsInventoryInteractabe;
+        _turnState.CompletedTurns += UpdateTurnCounterText;
         _player.Defeated += ShowDefeatedScreen;
     }
 
     private void OnDisable()
     {
         _airdropSpawner.Spawned -= OnSpawned;
-        _turnManager.AllEnemiesDead -= ShowWinnerScreen;
-        _turnManager.CanPlayerShoot -= IsShootButtonInteractable;
-        _turnManager.CanPlayerShoot -= IsSkipTurnButtonInteractable;
-        _turnManager.CanPlayerShoot -= IsInventoryInteractabe;
-        _turnManager.CompletedTurns -= UpdateTurnCounterText;
+        _turnState.AllEnemiesDead -= ShowWinnerScreen;
+        _turnState.CanPlayerShoot -= IsShootButtonInteractable;
+        _turnState.CanPlayerShoot -= IsSkipTurnButtonInteractable;
+        _turnState.CanPlayerShoot -= IsInventoryInteractabe;
+        _turnState.CompletedTurns -= UpdateTurnCounterText;
         _player.Defeated -= ShowDefeatedScreen;
     }
 
@@ -281,7 +281,7 @@ public class UIController : MonoBehaviour
 
     private void UpdateGoalStatus()
     {
-        _turnCount = _turnManager.TurnCount;
+        _turnCount = _turnState.TurnCount;
 
         if (_turnCount <= 10)
         {

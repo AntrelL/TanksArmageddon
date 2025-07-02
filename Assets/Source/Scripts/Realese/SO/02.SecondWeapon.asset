@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7081ad982dc43f42b4f96830d44d7d8, type: 3}
   m_Name: 02.SecondWeapon
   m_EditorClassIdentifier: 
-  name: Second
-  icon: {fileID: 21300000, guid: b137bb65462371e4891c18e93be1793a, type: 3}
-  baseDamage: 200
-  upgradeLevel: 0
-  currentDamage: 200
+  <Name>k__BackingField: SecondWeapon
+  <Icon>k__BackingField: {fileID: 21300000, guid: b137bb65462371e4891c18e93be1793a, type: 3}
+  <BaseDamage>k__BackingField: 200
+  <UpgradeLevel>k__BackingField: 0
+  <CurrentDamage>k__BackingField: 200

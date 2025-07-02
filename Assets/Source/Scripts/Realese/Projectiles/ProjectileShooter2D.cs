@@ -12,7 +12,7 @@ public class ProjectileShooter2D : MonoBehaviour
     [SerializeField] private Transform _player;
     [SerializeField] private ParticleSystem _muzzleFlash;
     [SerializeField] private Tank _enemyTank;
-    [SerializeField] private TurnManager _turnManager;
+    [SerializeField] private TurnState _turnState;
 
     [Header("Поворот пушки")]
     [SerializeField] private Transform _turret;
@@ -35,7 +35,7 @@ public class ProjectileShooter2D : MonoBehaviour
 
     public bool ShootIfPossible()
     {
-        float difficultyFactor = _turnManager.DifficultyFactor;
+        float difficultyFactor = _turnState.DifficultyFactor;
 
         Vector2 playerPos = _player.position;
         float deviation = Mathf.Abs(playerPos.x) * difficultyFactor;

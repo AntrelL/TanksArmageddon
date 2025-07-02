@@ -13,14 +13,20 @@ public class TypewriterEffect : MonoBehaviour
 
     private void OnEnable()
     {
-        _shopSceneNavigationManager.TextShowing += GetText;
-        _hangarSceneNavigationManager.TextShowing += GetText;
+        if (_shopSceneNavigationManager != null && _hangarSceneNavigationManager != null)
+        {
+            _shopSceneNavigationManager.TextShowing += GetText;
+            _hangarSceneNavigationManager.TextShowing += GetText;
+        }
     }
 
     private void OnDisable()
     {
-        _shopSceneNavigationManager.TextShowing -= GetText;
-        _hangarSceneNavigationManager.TextShowing -= GetText;
+        if (_shopSceneNavigationManager != null && _hangarSceneNavigationManager != null)
+        {
+            _shopSceneNavigationManager.TextShowing -= GetText;
+            _hangarSceneNavigationManager.TextShowing -= GetText;
+        }
     }
 
     public void GetText(TMP_Text tmpText)

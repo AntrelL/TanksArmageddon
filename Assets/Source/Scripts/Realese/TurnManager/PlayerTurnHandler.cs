@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections;
+using UnityEngine;
+
+public class PlayerTurnHandler : MonoBehaviour
+{
+    [SerializeField] private TurnState _state;
+
+    public IEnumerator ExecuteTurn()
+    {
+        _state.IncrementTurn();
+        _state.SetPlayerTurn(true);
+        _state.NotifyTurnStarted(_state.Player.transform);
+        _state.SetPlayerControl(true);
+
+        bool shot = false, skip = false;
+
+        Action onShot = () => shot = true;
+        Action onSkip = () => skip = true;
+
+        _state.UI.PlayerShootButtonPressed += onShot;
+        UIController.SkipTurnButtonPressed += onSkip;
+
+        yield return new WaitUntil(() => shot || skip);
+
+        _state.SetPlayerControl(false);
+        _state.UI.PlayerShootButtonPressed -= onShot;
+        UIController.SkipTurnButtonPressed -= onSkip;
+
+        if (!skip)
+        {
+            bool projectileEnded = false;
+            DefaultProjectile.ProjectileDestroyed += () => projectileEnded = true;
+
+            yield return new WaitUntil(() => projectileEnded);
+            DefaultProjectile.ProjectileDestroyed -= () => projectileEnded = true;
+        }
+
+        var next = _state.GetNextTarget();
+        if (next != null)
+            yield return _state.CameraController.TransitionToTarget(next, 1f);
+
+        _state.NotifyTurnCompleted();
+        _state.SetPlayerTurn(false);
+    }
+}

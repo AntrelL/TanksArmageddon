@@ -15115,8 +15115,12 @@ GameObject:
   - component: {fileID: 5900957731679627109}
   - component: {fileID: 4035839000964231404}
   - component: {fileID: 3889821429978612462}
-  - component: {fileID: 1497755573858676263}
   - component: {fileID: 2485759296639865594}
+  - component: {fileID: 7429685564442755566}
+  - component: {fileID: 3951164938397729953}
+  - component: {fileID: 8513202675510244802}
+  - component: {fileID: 4807719998842235368}
+  - component: {fileID: 3682265181064318260}
   m_Layer: 12
   m_Name: Player
   m_TagString: Untagged
@@ -15244,35 +15248,6 @@ PolygonCollider2D:
       - {x: 0.7633988, y: 1.9491713}
       - {x: 0.58787054, y: 2.9858205}
   m_UseDelaunayMesh: 0
---- !u!114 &1497755573858676263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3051397497410051931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5d2767f22839bb489778cb8d0e04e85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _centerOfMass: {fileID: 8808942755010773930}
-  _rigidbody2D: {fileID: 4035839000964231404}
-  _tank: {fileID: 2855740388671848107}
-  _force: 70
-  _maxSpeed: 2
-  _availableTravelTime: 10
-  _landLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  _petrolTank: {fileID: 0}
-  _leftButton: {fileID: 0}
-  _rightButton: {fileID: 0}
-  _cameraController: {fileID: 0}
-  _hitFX: {fileID: 5156201333536720012, guid: b213c11fd875b52419a7ef909992a9bb, type: 3}
-  _centerPoint: {fileID: 132914358618558746}
-  _leftPoint: {fileID: 1712584463388040451}
-  _rightPoint: {fileID: 3457702083141924765}
 --- !u!114 &2485759296639865594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15289,9 +15264,91 @@ MonoBehaviour:
   _tank: {fileID: 2855740388671848107}
   _firePoint: {fileID: 4695434024300979870}
   _muzzleFlash: {fileID: 5848505575945173885}
-  _mainCamera: {fileID: 0}
-  _animator: {fileID: 6214191723152368184}
   _UIcontroller: {fileID: 0}
+--- !u!114 &7429685564442755566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3051397497410051931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61191850b7384084a273cdcb3eece995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _leftButton: {fileID: 0}
+  _rightButton: {fileID: 0}
+--- !u!114 &3951164938397729953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3051397497410051931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d73468f2c946588aabb5340a31dbfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 8513202675510244802}
+  _turnState: {fileID: 0}
+  _cameraController: {fileID: 0}
+  _edgeOfMap: {fileID: 0}
+  _movement: {fileID: 4807719998842235368}
+--- !u!114 &8513202675510244802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3051397497410051931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b74db2ed4a41fca6f6b449adb70a7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitFX: {fileID: 0}
+  _tank: {fileID: 2855740388671848107}
+--- !u!114 &4807719998842235368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3051397497410051931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 549563dc6d4847b5b2648c3a8b8c5056, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody2D: {fileID: 4035839000964231404}
+  _centerPoint: {fileID: 132914358618558746}
+  _leftPoint: {fileID: 1712584463388040451}
+  _rightPoint: {fileID: 3457702083141924765}
+  _checkRaycastLength: 0.8
+  _landLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _force: 0
+  _maxSpeed: 0
+  _tank: {fileID: 2855740388671848107}
+  _petrolTank: {fileID: 0}
+--- !u!114 &3682265181064318260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3051397497410051931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93740064bccd4d34b6f6bb97e1f6ec14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 8513202675510244802}
+  _movement: {fileID: 4807719998842235368}
+  _travelTime: 10
 --- !u!1 &3115883496048268611
 GameObject:
   m_ObjectHideFlags: 0
@@ -20691,6 +20748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _turret: {fileID: 4774312338047282482}
   _angleSlider: {fileID: 0}
+  _turnManager: {fileID: 0}
 --- !u!1 &6265941395154919224
 GameObject:
   m_ObjectHideFlags: 0

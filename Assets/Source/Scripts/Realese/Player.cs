@@ -170,7 +170,7 @@ namespace TanksArmageddon
             _cameraController.UnlockMovement += OnMovementUnlocked;
             _turnState.CanPlayerControl += OnMovementUnlocked;
             _edgeOfMap.CollisionWithPlayer += TakeDamage;
-            EnemyBullet.PlayerHit += TakeDamage;
+            //EnemyBullet.PlayerHit += TakeDamage;
         }
 
         private void OnDisable()
@@ -178,7 +178,7 @@ namespace TanksArmageddon
             _cameraController.UnlockMovement -= OnMovementUnlocked;
             _edgeOfMap.CollisionWithPlayer -= TakeDamage;
             _turnState.CanPlayerControl -= OnMovementUnlocked;
-            EnemyBullet.PlayerHit -= TakeDamage;
+            //EnemyBullet.PlayerHit -= TakeDamage;
         }
 
         public void PlayHitEffect(Vector3 hitPosition)

@@ -5867,7 +5867,7 @@ MonoBehaviour:
   _uiController: {fileID: 600745200}
   _tutorialManager: {fileID: 600745202}
   _projectileTransitionDuration: 1
-  _difficultyFactor: 3
+  _difficultyFactor: 0.5
 --- !u!114 &1325542180
 MonoBehaviour:
   m_ObjectHideFlags: 0

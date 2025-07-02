@@ -22,6 +22,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void Awake()
     {
+        _manager = FindObjectOfType<AudioManager>();
         _currentHealth = _maxHealth;
     }
 

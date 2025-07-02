@@ -13,7 +13,6 @@ public class PlayerEvents: MonoBehaviour
         _cameraController.UnlockMovement += OnControl;
         _turnState.CanPlayerControl += OnControl;
         _edgeOfMap.CollisionWithPlayer += _health.TakeDamage;
-        EnemyBullet.PlayerHit += _health.TakeDamage;
     }
 
     private void OnDisable()
@@ -21,7 +20,6 @@ public class PlayerEvents: MonoBehaviour
         _cameraController.UnlockMovement -= OnControl;
         _turnState.CanPlayerControl -= OnControl;
         _edgeOfMap.CollisionWithPlayer -= _health.TakeDamage;
-        EnemyBullet.PlayerHit -= _health.TakeDamage;
     }
 
     private void OnControl(bool canMove)

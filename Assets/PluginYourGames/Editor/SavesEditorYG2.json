@@ -7,13 +7,13 @@
         false,
         false
     ],
-    "idSave": 4,
+    "idSave": 8,
     "PlayerPoints": 100,
-    "PlayerBalance": 7000,
+    "PlayerBalance": 5600,
     "PlayerHealth": 1000,
     "TrainingLevelPassed": true,
     "WeaponCardCounts": [
-        0,
+        4,
         0,
         0,
         0,
@@ -22,8 +22,8 @@
     "ClearWeaponsData": [
         {
             "BaseDamage": 100,
-            "UpgradeLevel": 0,
-            "CurrentDamage": 100
+            "UpgradeLevel": 1,
+            "CurrentDamage": 110
         },
         {
             "BaseDamage": 200,

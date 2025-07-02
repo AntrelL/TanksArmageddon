@@ -6,14 +6,11 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _groundCollisionFX;
-    [SerializeField] private int _boundaryOfDestruction = -50;
 
     private AudioManager _manager;
     private LandCutter _landCutter;
 
     public static event Action EnemyBulletDestroyed;
-
-    public static event Action<int> PlayerHit;
 
     public static Transform CurrentEnemyBullet { get; private set; }
 
@@ -28,20 +25,12 @@ public class EnemyBullet : MonoBehaviour
         CurrentEnemyBullet = transform;
     }
 
-    private void Update()
-    {
-        if (transform.position.y < - _boundaryOfDestruction)
-        {
-            Destroy(gameObject);
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out PlayerHealth player))
         {
             int damage = GetRandomDamage();
-            PlayerHit?.Invoke(damage);
+            player.TakeDamage(damage);
             player.PlayHitEffect(transform.position);
             Destroy(gameObject);
         }

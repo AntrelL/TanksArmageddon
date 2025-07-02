@@ -9273,7 +9273,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &8863032324315366864
 CircleCollider2D:
@@ -9323,6 +9323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _groundCollisionFX: {fileID: 5156201333536720012, guid: b213c11fd875b52419a7ef909992a9bb, type: 3}
+  _boundaryOfDestruction: -50
 --- !u!1001 &5490792127558200275
 PrefabInstance:
   m_ObjectHideFlags: 0

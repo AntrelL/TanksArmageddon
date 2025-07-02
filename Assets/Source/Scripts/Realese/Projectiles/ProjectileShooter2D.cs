@@ -67,7 +67,7 @@ public class ProjectileShooter2D : MonoBehaviour
             {
                 return false;
             }
-
+            
             StartCoroutine(RotateThenShoot(turretTargetAngle));
 
             return true;

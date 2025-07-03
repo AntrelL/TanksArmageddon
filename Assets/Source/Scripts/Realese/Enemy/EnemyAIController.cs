@@ -5,6 +5,24 @@ public class EnemyAIController : MonoBehaviour
 {
     [SerializeField] private EnemyMovement _movement;
     [SerializeField] private EnemyCombat _combat;
+    
+    private EnemyBullet _activeBullet;
+    
+    private void OnEnable()
+    {
+        if (_combat != null && _combat.ProjectileShooter != null)
+        {
+            _combat.ProjectileShooter.EnemyBulletSpawned += HandleEnemyBulletSpawned;
+        }
+    }
+    
+    private void OnDisable()
+    {
+        if (_combat != null && _combat.ProjectileShooter != null)
+        {
+            _combat.ProjectileShooter.EnemyBulletSpawned -= HandleEnemyBulletSpawned;
+        }
+    }
 
     public IEnumerator DoEnemyTurn()
     {
@@ -34,14 +52,22 @@ public class EnemyAIController : MonoBehaviour
 
         _movement.StopMovement();
     }
+    
+    private void HandleEnemyBulletSpawned(EnemyBullet bullet)
+    {
+        _activeBullet = bullet;
+    }
 
     private IEnumerator WaitProjectileFly()
     {
+        if (_activeBullet == null)
+            yield break;
+        
         bool ended = false;
         void OnDestroyed() => ended = true;
 
-        EnemyBullet.EnemyBulletDestroyed += OnDestroyed;
+        _activeBullet.Destroyed += OnDestroyed;
         yield return new WaitUntil(() => ended);
-        EnemyBullet.EnemyBulletDestroyed -= OnDestroyed;
+        _activeBullet.Destroyed -= OnDestroyed;
     }
 }

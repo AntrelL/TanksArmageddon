@@ -11,15 +11,15 @@ public class WeaponSelector : MonoBehaviour
     
     public event Action<int> OnWeaponSelected;
 
-    public void Initialize(Action onProjectileDestroyed)
+    public void Initialize()
     {
         foreach (var slot in _ui.Slots)
         {
-            slot.GetComponent<Button>().onClick.AddListener(() => Select(slot, onProjectileDestroyed));
+            slot.GetComponent<Button>().onClick.AddListener(() => Select(slot));
         }
     }
 
-    public void Select(WeaponSlot slot, Action onProjectileDestroyed)
+    public void Select(WeaponSlot slot)
     {
         _selectedSlot?.Deselect();
         _selectedSlot = slot;
@@ -31,7 +31,6 @@ public class WeaponSelector : MonoBehaviour
         if (slot.name != "Slot01")
         {
             _slotToClean = slot;
-            DefaultProjectile.ProjectileDestroyed += onProjectileDestroyed;
         }
         else
         {
@@ -41,5 +40,5 @@ public class WeaponSelector : MonoBehaviour
 
     public WeaponSlot SlotToClean => _slotToClean;
     public void DeselectCurrent() => _selectedSlot?.Deselect();
-    public void SelectFirst() => Select(_ui.GetSlot(0), null);
+    public void SelectFirst() => Select(_ui.GetSlot(0));
 }

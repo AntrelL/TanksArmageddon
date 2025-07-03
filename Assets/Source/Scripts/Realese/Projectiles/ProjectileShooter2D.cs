@@ -13,6 +13,7 @@ public class ProjectileShooter2D : MonoBehaviour
     [SerializeField] private ParticleSystem _muzzleFlash;
     [SerializeField] private Tank _enemyTank;
     [SerializeField] private TurnState _turnState;
+    [SerializeField] private CameraController _cameraController;
 
     [Header("Поворот пушки")]
     [SerializeField] private Transform _turret;
@@ -23,6 +24,8 @@ public class ProjectileShooter2D : MonoBehaviour
 
     private float _turretInitialAngle;
     private AudioManager _manager;
+    
+    public event Action<EnemyBullet> EnemyBulletSpawned;
 
     private void Awake()
     {
@@ -106,8 +109,9 @@ public class ProjectileShooter2D : MonoBehaviour
         if (_bulletPrefab == null)
             return;
 
-        GameObject bullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
-        Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
+        GameObject bulletGO = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
+
+        Rigidbody2D rigidbody = bulletGO.GetComponent<Rigidbody2D>();
 
         float turretAngleDeg = _turret.eulerAngles.z;
 
@@ -120,6 +124,11 @@ public class ProjectileShooter2D : MonoBehaviour
         flash.Play();
 
         Destroy(flash.gameObject, flash.main.duration);
+        
+        if (bulletGO.TryGetComponent(out EnemyBullet bullet))
+        {
+            EnemyBulletSpawned?.Invoke(bullet);
+        }
     }
 
     private bool TryCalculateBallisticAngle2D(

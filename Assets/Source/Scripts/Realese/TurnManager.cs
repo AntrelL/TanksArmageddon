@@ -110,12 +110,13 @@ public class TurnManager : MonoBehaviour
         if (skipTurn == false)
         {
             bool projectileEnded = false;
-            Action onProjectileDestroyed = () => { projectileEnded = true; };
-            DefaultProjectile.ProjectileDestroyed += onProjectileDestroyed;
+            void OnProjectileDestroyed() => projectileEnded = true;
+
+            ProjectileTracker.Instance.ProjectileDestroyed += OnProjectileDestroyed;
 
             yield return new WaitUntil(() => projectileEnded);
 
-            DefaultProjectile.ProjectileDestroyed -= onProjectileDestroyed;
+            ProjectileTracker.Instance.ProjectileDestroyed -= OnProjectileDestroyed;
 
             Transform nextTarget = GetNextTargetForCamera();
 

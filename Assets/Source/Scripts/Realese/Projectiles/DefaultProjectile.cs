@@ -16,9 +16,9 @@ public class DefaultProjectile : MonoBehaviour
     private float _targetX;
     private float _targetY;
 
-    public static event Action ProjectileDestroyed;
+    public event Action ProjectileDestroyed;
 
-    public static Transform CurrentProjectile { get; private set; }
+    public Transform CurrentProjectile { get; private set; }
 
     public bool IsEnemyProjectile { get; set; } = false;
 
@@ -103,7 +103,12 @@ public class DefaultProjectile : MonoBehaviour
 
     private void OnDestroy()
     {
-        ProjectileDestroyed?.Invoke();
-        CurrentProjectile = null;
+        //ProjectileDestroyed?.Invoke();
+        //CurrentProjectile = null;
+        
+        if (ProjectileTracker.Instance != null && ProjectileTracker.Instance.CurrentProjectile == transform)
+        {
+            ProjectileTracker.Instance.ClearProjectile();
+        }
     }
 }

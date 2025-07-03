@@ -10,6 +10,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private AmmoManager _ammo;
     [SerializeField] private AirdropHandler _airdrop;
     [SerializeField] private List<WeaponData> _weaponDataList;
+    [SerializeField] private ProjectileTracker _projectileTracker;
 
     public event Action<int> UpdatePlayerDamage;
 
@@ -19,12 +20,25 @@ public class InventoryManager : MonoBehaviour
         _ui.HideAllExceptFirst();
 
         _selector.OnWeaponSelected += damage => UpdatePlayerDamage?.Invoke(damage);
-        _selector.Initialize(OnProjectileDestroyed);
+        _selector.Initialize();
         _selector.SelectFirst();
 
         _airdrop.Initialize(SetNewWeapon);
     }
+
+    private void Awake()
+    {
+        _projectileTracker.ProjectileDestroyed += OnProjectileDestroyed;
+    }
     
+    private void OnDestroy()
+    {
+        if (_projectileTracker != null)
+        {
+            _projectileTracker.ProjectileDestroyed -= OnProjectileDestroyed;
+        }
+    }
+
     public void AdButtonPressed()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
@@ -51,15 +65,17 @@ public class InventoryManager : MonoBehaviour
         slot.UpdateAmmoCount(_ammo.GetAmmo(index));
         
         _selector.DeselectCurrent();
-        _selector.Select(slot, OnProjectileDestroyed);
+        _selector.Select(slot);
     }
 
     private void OnProjectileDestroyed()
     {
         var slotToClean = _selector.SlotToClean;
+        
         if (slotToClean == null) return;
 
         int index = _ui.Slots.IndexOf(slotToClean);
+        
         if (_ammo.UseAmmo(index))
         {
             slotToClean.UpdateAmmoCount(_ammo.GetAmmo(index));
@@ -70,8 +86,6 @@ public class InventoryManager : MonoBehaviour
             slotToClean.gameObject.SetActive(false);
             _selector.SelectFirst();
         }
-
-        DefaultProjectile.ProjectileDestroyed -= OnProjectileDestroyed;
     }
 
     private int GenerateRandomIndex() => Random.Range(1, 5);

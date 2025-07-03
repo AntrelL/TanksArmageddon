@@ -31,7 +31,9 @@ public class Shoot : MonoBehaviour
     {
         _manager.PlayProjectileShoot();
         _tank.Shot();
-        Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+        GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+        
+        ProjectileTracker.Instance?.RegisterProjectile(bullet.transform);
 
         ParticleSystem flash = Instantiate(_muzzleFlash, _firePoint.position, _firePoint.rotation);
         flash.Play();

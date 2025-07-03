@@ -30,10 +30,13 @@ public class PlayerTurnHandler : MonoBehaviour
         if (!skip)
         {
             bool projectileEnded = false;
-            DefaultProjectile.ProjectileDestroyed += () => projectileEnded = true;
+            void OnProjectileDestroyed() => projectileEnded = true;
+
+            ProjectileTracker.Instance.ProjectileDestroyed += OnProjectileDestroyed;
 
             yield return new WaitUntil(() => projectileEnded);
-            DefaultProjectile.ProjectileDestroyed -= () => projectileEnded = true;
+
+            ProjectileTracker.Instance.ProjectileDestroyed -= OnProjectileDestroyed;
         }
 
         var next = _state.GetNextTarget();

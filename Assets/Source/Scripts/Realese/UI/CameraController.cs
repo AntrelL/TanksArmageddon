@@ -14,10 +14,13 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _delayBeforeSwitch = 0f;
     [SerializeField] private float _timeSinceSwitch = 0f;
     [SerializeField] private TurnState _turnState;
+    [SerializeField] private ProjectileShooter2D _enemyShooter;
 
     private bool _introFinished = false;
     private Transform _currentTarget;
     private string _currentScene;
+    private Transform _activeProjectile;
+    private EnemyBullet _enemyBulletInstance;
 
     public event Action ShowTips;
 
@@ -34,15 +37,15 @@ public class CameraController : MonoBehaviour
     private void OnEnable()
     {
         _turnState.TurnStarted += OnTurnStarted;
-        DefaultProjectile.ProjectileDestroyed += OnProjectileDestroyed;
-        EnemyBullet.EnemyBulletDestroyed += OnProjectileDestroyed;
+        ProjectileTracker.Instance.ProjectileDestroyed += OnProjectileDestroyed;
+        _enemyShooter.EnemyBulletSpawned += OnEnemyBulletSpawned;
     }
 
     private void OnDisable()
     {
         _turnState.TurnStarted -= OnTurnStarted;
-        DefaultProjectile.ProjectileDestroyed -= OnProjectileDestroyed;
-        EnemyBullet.EnemyBulletDestroyed -= OnProjectileDestroyed;
+        ProjectileTracker.Instance.ProjectileDestroyed -= OnProjectileDestroyed;
+        _enemyShooter.EnemyBulletSpawned -= OnEnemyBulletSpawned;
     }
 
     private void Start()
@@ -65,6 +68,21 @@ public class CameraController : MonoBehaviour
 
         transform.position = endPos;
         _currentTarget = newTarget;
+    }
+
+    private void OnEnemyBulletSpawned(EnemyBullet bullet)
+    {
+        _activeProjectile = bullet.transform;
+
+        bullet.Destroyed += () =>
+        {
+            if (_activeProjectile == bullet.transform)
+            {
+                _activeProjectile = null;
+                _timeSinceSwitch = 0f;
+                UpdateCameraTarget();
+            }
+        };
     }
 
     private IEnumerator CameraIntroSequence()
@@ -118,14 +136,14 @@ public class CameraController : MonoBehaviour
     {
         if (_introFinished && _currentTarget != null)
         {
-            if (DefaultProjectile.CurrentProjectile != null)
+            
+            if (_activeProjectile != null)
             {
-                _currentTarget = DefaultProjectile.CurrentProjectile;
+                _currentTarget = _activeProjectile;
             }
-
-            if (EnemyBullet.CurrentEnemyBullet != null)
+            else if (ProjectileTracker.Instance?.CurrentProjectile != null)
             {
-                _currentTarget = EnemyBullet.CurrentEnemyBullet;
+                _currentTarget = ProjectileTracker.Instance.CurrentProjectile;
             }
 
             if (_timeSinceSwitch >= _delayBeforeSwitch)
@@ -143,6 +161,7 @@ public class CameraController : MonoBehaviour
     private void OnProjectileDestroyed()
     {
         _timeSinceSwitch = 0f;
+        _activeProjectile = null;
         UpdateCameraTarget();
     }
 

@@ -10,9 +10,9 @@ public class EnemyBullet : MonoBehaviour
     private AudioManager _manager;
     private LandCutter _landCutter;
 
-    public static event Action EnemyBulletDestroyed;
-
-    public static Transform CurrentEnemyBullet { get; private set; }
+    public event Action Destroyed;
+    
+    public Transform BulletTransform => transform;
 
     private void Awake()
     {
@@ -22,7 +22,6 @@ public class EnemyBullet : MonoBehaviour
     private void Start()
     {
         _landCutter = FindObjectOfType<LandCutter>();
-        CurrentEnemyBullet = transform;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -82,6 +81,6 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnDestroy()
     {
-        EnemyBulletDestroyed?.Invoke();
+        Destroyed?.Invoke();
     }
 }

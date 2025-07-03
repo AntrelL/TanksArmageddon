@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace TanksArmageddon
+namespace Source.Scripts.Realese.Stuff
 {
     public class ColliderRenderer : MonoBehaviour
     {

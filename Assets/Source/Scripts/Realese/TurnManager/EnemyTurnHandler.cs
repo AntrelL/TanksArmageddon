@@ -1,33 +1,37 @@
 ﻿using System.Collections;
+using Source.Scripts.Realese.Enemy;
 using UnityEngine;
 
-public class EnemyTurnHandler : MonoBehaviour
+namespace Source.Scripts.Realese.TurnManager
 {
-    [SerializeField] private TurnState _state;
-
-    public IEnumerator ExecuteTurn(EnemyAIController enemy)
+    public class EnemyTurnHandler : MonoBehaviour
     {
-        _state.IncrementTurn();
-        _state.NotifyTurnStarted(enemy.transform);
+        [SerializeField] private TurnState _state;
 
-        yield return enemy.DoEnemyTurn();
-
-        if (enemy == GetLastActiveEnemy())
+        public IEnumerator ExecuteTurn(EnemyAIController enemy)
         {
-            yield return _state.CameraController.TransitionToTarget(_state.Player.transform, 1f);
+            _state.IncrementTurn();
+            _state.NotifyTurnStarted(enemy.transform);
+
+            yield return enemy.DoEnemyTurn();
+
+            if (enemy == GetLastActiveEnemy())
+            {
+                yield return _state.CameraController.TransitionToTarget(_state.Player.transform, 1f);
+            }
+
+            _state.NotifyTurnCompleted();
         }
 
-        _state.NotifyTurnCompleted();
-    }
-
-    private EnemyAIController GetLastActiveEnemy()
-    {
-        for (int i = _state.Enemies.Count - 1; i >= 0; i--)
+        private EnemyAIController GetLastActiveEnemy()
         {
-            if (_state.Enemies[i] != null && _state.Enemies[i].gameObject.activeSelf)
-                return _state.Enemies[i];
-        }
+            for (int i = _state.Enemies.Count - 1; i >= 0; i--)
+            {
+                if (_state.Enemies[i] != null && _state.Enemies[i].gameObject.activeSelf)
+                    return _state.Enemies[i];
+            }
 
-        return null;
+            return null;
+        }
     }
 }

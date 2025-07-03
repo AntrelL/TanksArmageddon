@@ -2,17 +2,20 @@ using System;
 using UnityEngine;
 using YG;
 
-public class SetProjectilesToSaves : MonoBehaviour
+namespace Source.Scripts.Realese.Projectiles
 {
-    [SerializeField] private WeaponData[] _weapons;
-
-    private void Awake()
+    public class SetProjectilesToSaves : MonoBehaviour
     {
-        if (YG2.saves.ClearWeaponsData == null)
+        [SerializeField] private WeaponData[] _weapons;
+
+        private void Awake()
         {
-            YG2.saves.ClearWeaponsData = Array.ConvertAll(_weapons, weapon => new ClearWeaponData(weapon));
-            YG2.SaveProgress();
-            Debug.Log("Converted weapons and save progress!");
+            if (YG2.saves.ClearWeaponsData == null)
+            {
+                YG2.saves.ClearWeaponsData = Array.ConvertAll(_weapons, weapon => new ClearWeaponData(weapon));
+                YG2.SaveProgress();
+                Debug.Log("Converted weapons and save progress!");
+            }
         }
     }
 }

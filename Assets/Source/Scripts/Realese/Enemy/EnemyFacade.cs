@@ -1,18 +1,21 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class EnemyFacade : MonoBehaviour
+namespace Source.Scripts.Realese.Enemy
 {
-    [SerializeField] private EnemyHealth _health;
-    [SerializeField] private EnemyMovement _movement;
-    [SerializeField] private EnemyAIController _ai;
-    [SerializeField] private EnemyCombat _combat;
+    public class EnemyFacade : MonoBehaviour
+    {
+        [SerializeField] private EnemyHealth _health;
+        [SerializeField] private EnemyMovement _movement;
+        [SerializeField] private EnemyAIController _ai;
+        [SerializeField] private EnemyCombat _combat;
 
-    public void TakeDamage(int value) => _health.TakeDamage(value);
+        public void TakeDamage(int value) => _health.TakeDamage(value);
     
-    public void PlayHitEffect(Vector3 pos) => _health.PlayHitEffect(pos);
+        public void PlayHitEffect(Vector3 pos) => _health.PlayHitEffect(pos);
 
-    public IEnumerator DoTurn() => _ai.DoEnemyTurn();
+        public IEnumerator DoTurn() => _ai.DoEnemyTurn();
 
-    public bool IsAlive => _health.IsAlive;
+        public bool IsAlive => _health.IsAlive;
+    }
 }

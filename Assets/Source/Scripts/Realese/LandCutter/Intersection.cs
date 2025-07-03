@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TanksArmageddon
+namespace Source.Scripts.Realese.LandCutter
 {
     public class Intersection
     {

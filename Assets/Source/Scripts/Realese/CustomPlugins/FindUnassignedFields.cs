@@ -4,97 +4,100 @@ using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-public class FindUnassignedFields : EditorWindow
+namespace Source.Scripts.Realese.CustomPlugins
 {
-    [MenuItem("Tools/Find Unassigned Fields")]
-    public static void ShowWindow()
+    public class FindUnassignedFields : EditorWindow
     {
-        GetWindow<FindUnassignedFields>("Find Unassigned Fields");
-    }
-
-    private string _results = "";
-    private readonly List<Object> _objectsToPing = new List<Object>();
-
-    private void OnGUI()
-    {
-        if (GUILayout.Button("Check Scene"))
+        [MenuItem("Tools/Find Unassigned Fields")]
+        public static void ShowWindow()
         {
-            _results = "";
-            _objectsToPing.Clear();
-            CheckSceneForUnassignedFields();
+            GetWindow<FindUnassignedFields>("Find Unassigned Fields");
         }
 
-        GUILayout.Label("Results:");
-        EditorGUILayout.BeginVertical("Box");
+        private string _results = "";
+        private readonly List<Object> _objectsToPing = new List<Object>();
 
-        for (int i = 0; i < _objectsToPing.Count; i++)
+        private void OnGUI()
         {
-            if (GUILayout.Button(_results.Split('\n')[i]))
+            if (GUILayout.Button("Check Scene"))
             {
-                EditorGUIUtility.PingObject(_objectsToPing[i]);
+                _results = "";
+                _objectsToPing.Clear();
+                CheckSceneForUnassignedFields();
             }
+
+            GUILayout.Label("Results:");
+            EditorGUILayout.BeginVertical("Box");
+
+            for (int i = 0; i < _objectsToPing.Count; i++)
+            {
+                if (GUILayout.Button(_results.Split('\n')[i]))
+                {
+                    EditorGUIUtility.PingObject(_objectsToPing[i]);
+                }
+            }
+
+            EditorGUILayout.EndVertical();
         }
 
-        EditorGUILayout.EndVertical();
-    }
-
-    private void CheckSceneForUnassignedFields()
-    {
-        GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
-
-        foreach (var obj in allObjects)
+        private void CheckSceneForUnassignedFields()
         {
-            Component[] components = obj.GetComponents<Component>();
+            GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
 
-            foreach (var component in components)
+            foreach (var obj in allObjects)
             {
-                if (component == null) continue;
-                
-                if (!IsCustomScript(component.GetType()))
-                    continue;
+                Component[] components = obj.GetComponents<Component>();
 
-                var fields = component.GetType().GetFields(
-                    System.Reflection.BindingFlags.Instance |
-                    System.Reflection.BindingFlags.NonPublic |
-                    System.Reflection.BindingFlags.Public);
-
-                foreach (var field in fields)
+                foreach (var component in components)
                 {
-                    if (Attribute.IsDefined(field, typeof(SerializeField)))
-                    {
-                        var value = field.GetValue(component);
+                    if (component == null) continue;
+                
+                    if (!IsCustomScript(component.GetType()))
+                        continue;
 
-                        if (value == null || (value is UnityEngine.Object unityObject && unityObject == null))
+                    var fields = component.GetType().GetFields(
+                        System.Reflection.BindingFlags.Instance |
+                        System.Reflection.BindingFlags.NonPublic |
+                        System.Reflection.BindingFlags.Public);
+
+                    foreach (var field in fields)
+                    {
+                        if (Attribute.IsDefined(field, typeof(SerializeField)))
                         {
-                            string message = $"Unassigned field '{field.Name}' in component '{component.GetType().Name}' on object '{obj.name}'";
-                            _results += message + "\n";
-                            _objectsToPing.Add(obj);
+                            var value = field.GetValue(component);
+
+                            if (value == null || (value is UnityEngine.Object unityObject && unityObject == null))
+                            {
+                                string message = $"Unassigned field '{field.Name}' in component '{component.GetType().Name}' on object '{obj.name}'";
+                                _results += message + "\n";
+                                _objectsToPing.Add(obj);
+                            }
                         }
                     }
                 }
             }
+
+            _results += "Check completed.\n";
         }
 
-        _results += "Check completed.\n";
-    }
-
-    private bool IsCustomScript(System.Type type)
-    {
-        if (!typeof(UnityEngine.Object).IsAssignableFrom(type))
-            return false;
-        
-        string[] scriptPaths = AssetDatabase.FindAssets($"t:Script {type.Name}");
-        
-        foreach (string guid in scriptPaths)
+        private bool IsCustomScript(System.Type type)
         {
-            string scriptPath = AssetDatabase.GUIDToAssetPath(guid);
-            
-            if (scriptPath.Contains("/Realese/"))
+            if (!typeof(UnityEngine.Object).IsAssignableFrom(type))
+                return false;
+        
+            string[] scriptPaths = AssetDatabase.FindAssets($"t:Script {type.Name}");
+        
+            foreach (string guid in scriptPaths)
             {
-                return true;
+                string scriptPath = AssetDatabase.GUIDToAssetPath(guid);
+            
+                if (scriptPath.Contains("/Realese/"))
+                {
+                    return true;
+                }
             }
-        }
 
-        return false;
+            return false;
+        }
     }
 }

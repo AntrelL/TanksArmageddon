@@ -1,32 +1,35 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class AmmoManager : MonoBehaviour
+namespace Source.Scripts.Realese.InventoryManager
 {
-    private readonly Dictionary<int, int> _ammo = new Dictionary<int, int>();
-
-    public void AddAmmo(int index)
+    public class AmmoManager : MonoBehaviour
     {
-        if (_ammo.ContainsKey(index))
-            _ammo[index]++;
-        else
-            _ammo[index] = 1;
-    }
+        private readonly Dictionary<int, int> _ammo = new Dictionary<int, int>();
 
-    public bool UseAmmo(int index)
-    {
-        if (!_ammo.ContainsKey(index)) return false;
-
-        if (_ammo[index] > 1)
+        public void AddAmmo(int index)
         {
-            _ammo[index]--;
-            return true;
+            if (_ammo.ContainsKey(index))
+                _ammo[index]++;
+            else
+                _ammo[index] = 1;
         }
 
-        _ammo.Remove(index);
-        return false;
-    }
+        public bool UseAmmo(int index)
+        {
+            if (!_ammo.ContainsKey(index)) return false;
 
-    public int GetAmmo(int index) => _ammo.TryGetValue(index, out int count) ? count : 0;
-    public bool HasAmmo(int index) => _ammo.ContainsKey(index);
+            if (_ammo[index] > 1)
+            {
+                _ammo[index]--;
+                return true;
+            }
+
+            _ammo.Remove(index);
+            return false;
+        }
+
+        public int GetAmmo(int index) => _ammo.TryGetValue(index, out int count) ? count : 0;
+        public bool HasAmmo(int index) => _ammo.ContainsKey(index);
+    }
 }

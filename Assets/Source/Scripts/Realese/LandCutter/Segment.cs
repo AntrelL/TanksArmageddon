@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Segment
+namespace Source.Scripts.Realese.LandCutter
 {
-    [field: SerializeField] public Point A { get; set; }
+    public class Segment
+    {
+        [field: SerializeField] public Point A { get; set; }
 
-    [field: SerializeField] public Point B { get; set; }
+        [field: SerializeField] public Point B { get; set; }
 
-    [field: SerializeField] public List<Point> CrossPoints { get; set; } = new List<Point>();
+        [field: SerializeField] public List<Point> CrossPoints { get; set; } = new List<Point>();
+    }
 }

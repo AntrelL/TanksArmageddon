@@ -2,40 +2,43 @@ using Lean.Localization;
 using UnityEngine;
 using YG;
 
-public class Localization : MonoBehaviour
+namespace Source.Scripts.Realese.UI
 {
-    private const string EnglishCode = "English";
-    private const string RussianCode = "Russian";
-    private const string TurkishCode = "Turkish";
-    private const string Turkish = "tr";
-    private const string Russian = "ru";
-    private const string English = "en";
-
-    [SerializeField] private LeanLocalization _leanLanguage;
-
-    private void Awake()
+    public class Localization : MonoBehaviour
     {
-        ChangeLanguage();
-    }
+        private const string EnglishCode = "English";
+        private const string RussianCode = "Russian";
+        private const string TurkishCode = "Turkish";
+        private const string Turkish = "tr";
+        private const string Russian = "ru";
+        private const string English = "en";
 
-    private void ChangeLanguage()
-    {
-        string languageCode = YG2.envir.language;
+        [SerializeField] private LeanLocalization _leanLanguage;
 
-        switch (languageCode)
+        private void Awake()
         {
-            case English:
-                _leanLanguage.SetCurrentLanguage(EnglishCode);
+            ChangeLanguage();
+        }
 
-                break;
-            case Turkish:
-                _leanLanguage.SetCurrentLanguage(TurkishCode);
+        private void ChangeLanguage()
+        {
+            string languageCode = YG2.envir.language;
 
-                break;
-            case Russian:
-                _leanLanguage.SetCurrentLanguage(RussianCode);
+            switch (languageCode)
+            {
+                case English:
+                    _leanLanguage.SetCurrentLanguage(EnglishCode);
 
-                break;
+                    break;
+                case Turkish:
+                    _leanLanguage.SetCurrentLanguage(TurkishCode);
+
+                    break;
+                case Russian:
+                    _leanLanguage.SetCurrentLanguage(RussianCode);
+
+                    break;
+            }
         }
     }
 }

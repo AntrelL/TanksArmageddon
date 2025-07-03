@@ -1,46 +1,37 @@
 ﻿using System.Collections;
+using Source.Scripts.Realese.Projectiles;
 using UnityEngine;
 
-public class EnemyAIController : MonoBehaviour
+namespace Source.Scripts.Realese.Enemy
 {
-    [SerializeField] private EnemyMovement _movement;
-    [SerializeField] private EnemyCombat _combat;
-    
-    private EnemyBullet _activeBullet;
-    
-    private void OnEnable()
+    public class EnemyAIController : MonoBehaviour
     {
-        if (_combat != null && _combat.ProjectileShooter != null)
+        [SerializeField] private EnemyMovement _movement;
+        [SerializeField] private EnemyCombat _combat;
+    
+        private EnemyBullet _activeBullet;
+    
+        private void OnEnable()
         {
-            _combat.ProjectileShooter.EnemyBulletSpawned += HandleEnemyBulletSpawned;
+            if (_combat != null && _combat.ProjectileShooter != null)
+            {
+                _combat.ProjectileShooter.EnemyBulletSpawned += HandleEnemyBulletSpawned;
+            }
         }
-    }
     
-    private void OnDisable()
-    {
-        if (_combat != null && _combat.ProjectileShooter != null)
+        private void OnDisable()
         {
-            _combat.ProjectileShooter.EnemyBulletSpawned -= HandleEnemyBulletSpawned;
-        }
-    }
-
-    public IEnumerator DoEnemyTurn()
-    {
-        _movement.StartMovement(-1f);
-        float elapsed = 0f;
-        float checkInterval = 0.1f;
-
-        if (_combat.TryShoot())
-        {
-            _movement.StopMovement();
-            yield return WaitProjectileFly();
-            yield break;
+            if (_combat != null && _combat.ProjectileShooter != null)
+            {
+                _combat.ProjectileShooter.EnemyBulletSpawned -= HandleEnemyBulletSpawned;
+            }
         }
 
-        while (elapsed < 3f)
+        public IEnumerator DoEnemyTurn()
         {
-            yield return new WaitForSeconds(checkInterval);
-            elapsed += checkInterval;
+            _movement.StartMovement(-1f);
+            float elapsed = 0f;
+            float checkInterval = 0.1f;
 
             if (_combat.TryShoot())
             {
@@ -48,26 +39,39 @@ public class EnemyAIController : MonoBehaviour
                 yield return WaitProjectileFly();
                 yield break;
             }
+
+            while (elapsed < 3f)
+            {
+                yield return new WaitForSeconds(checkInterval);
+                elapsed += checkInterval;
+
+                if (_combat.TryShoot())
+                {
+                    _movement.StopMovement();
+                    yield return WaitProjectileFly();
+                    yield break;
+                }
+            }
+
+            _movement.StopMovement();
+        }
+    
+        private void HandleEnemyBulletSpawned(EnemyBullet bullet)
+        {
+            _activeBullet = bullet;
         }
 
-        _movement.StopMovement();
-    }
-    
-    private void HandleEnemyBulletSpawned(EnemyBullet bullet)
-    {
-        _activeBullet = bullet;
-    }
-
-    private IEnumerator WaitProjectileFly()
-    {
-        if (_activeBullet == null)
-            yield break;
+        private IEnumerator WaitProjectileFly()
+        {
+            if (_activeBullet == null)
+                yield break;
         
-        bool ended = false;
-        void OnDestroyed() => ended = true;
+            bool ended = false;
+            void OnDestroyed() => ended = true;
 
-        _activeBullet.Destroyed += OnDestroyed;
-        yield return new WaitUntil(() => ended);
-        _activeBullet.Destroyed -= OnDestroyed;
+            _activeBullet.Destroyed += OnDestroyed;
+            yield return new WaitUntil(() => ended);
+            _activeBullet.Destroyed -= OnDestroyed;
+        }
     }
 }

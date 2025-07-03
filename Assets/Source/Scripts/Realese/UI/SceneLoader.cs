@@ -1,8 +1,11 @@
 ﻿using NaughtyAttributes;
+using Source.Scripts.Realese.Stuff;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+namespace Source.Scripts.Realese.UI
+{
+    public class SceneLoader : MonoBehaviour
     {
         [Scene]
         [SerializeField] private string _sceneName;
@@ -20,3 +23,4 @@ public class SceneLoader : MonoBehaviour
             SceneManager.LoadScene(_sceneName);
         }
     }
+}

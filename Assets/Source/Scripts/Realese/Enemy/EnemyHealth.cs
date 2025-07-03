@@ -1,63 +1,67 @@
 ﻿using System;
 using Assets.Constructors.FuturisticTanks.Scripts;
+using Source.Scripts.Realese.Stuff;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+namespace Source.Scripts.Realese.Enemy
 {
-    [SerializeField] private int _maxHealth;
-    [SerializeField] private Tank _tank;
-    [SerializeField] private ParticleSystem _hitFX;
-    [SerializeField] private int _edgeOfMapDamage = 5000;
-    [SerializeField] private EnemyCombat _combat;
+    public class EnemyHealth : MonoBehaviour
+    {
+        [SerializeField] private int _maxHealth;
+        [SerializeField] private Tank _tank;
+        [SerializeField] private ParticleSystem _hitFX;
+        [SerializeField] private int _edgeOfMapDamage = 5000;
+        [SerializeField] private EnemyCombat _combat;
 
-    private int _currentHealth;
-    private bool _isAlive = true;
-    private AudioManager _manager;
+        private int _currentHealth;
+        private bool _isAlive = true;
+        private AudioManager _manager;
     
-    public event Action<int> HealthChanged;
-    public event Action Defeated;
+        public event Action<int> HealthChanged;
+        public event Action Defeated;
 
-    public bool IsAlive => _isAlive;
-    public int MaxHealth => _maxHealth;
+        public bool IsAlive => _isAlive;
+        public int MaxHealth => _maxHealth;
 
-    private void Awake()
-    {
-        _manager = FindObjectOfType<AudioManager>();
-        _currentHealth = _maxHealth;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.TryGetComponent(out EdgeOfMap edge))
+        private void Awake()
         {
-            TakeDamage(_edgeOfMapDamage);
+            _manager = FindObjectOfType<AudioManager>();
+            _currentHealth = _maxHealth;
         }
-    }
 
-    public void TakeDamage(int value)
-    {
-        if (!_isAlive) return;
-
-        _currentHealth -= value;
-        HealthChanged?.Invoke(_currentHealth);
-
-        if (_currentHealth <= 0)
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            _isAlive = false;
-            _tank.Destroy();
-            gameObject.SetActive(false);
-            Defeated?.Invoke();
+            if (collision.gameObject.TryGetComponent(out EdgeOfMap edge))
+            {
+                TakeDamage(_edgeOfMapDamage);
+            }
         }
-    }
 
-    public void PlayHitEffect(Vector3 pos)
-    {
-        if (!_isAlive) return;
+        public void TakeDamage(int value)
+        {
+            if (!_isAlive) return;
 
-        TakeDamage(_combat.GetPlayerDamage());
-        _manager.PlayTankHit();
-        ParticleSystem flash = Instantiate(_hitFX, pos, Quaternion.identity);
-        flash.Play();
-        Destroy(flash.gameObject, flash.main.duration);
+            _currentHealth -= value;
+            HealthChanged?.Invoke(_currentHealth);
+
+            if (_currentHealth <= 0)
+            {
+                _isAlive = false;
+                _tank.Destroy();
+                gameObject.SetActive(false);
+                Defeated?.Invoke();
+            }
+        }
+
+        public void PlayHitEffect(Vector3 pos)
+        {
+            if (!_isAlive) return;
+
+            TakeDamage(_combat.GetPlayerDamage());
+            _manager.PlayTankHit();
+            ParticleSystem flash = Instantiate(_hitFX, pos, Quaternion.identity);
+            flash.Play();
+            Destroy(flash.gameObject, flash.main.duration);
+        }
     }
 }

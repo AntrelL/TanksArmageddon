@@ -1,49 +1,54 @@
+using Source.Scripts.Realese.Enemy;
+using Source.Scripts.Realese.Stuff;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyHealthBar : HealthBar
+namespace Source.Scripts.Realese.UI
 {
-    [SerializeField] private EnemyHealth _enemyHealth;
-    [SerializeField] private GameObject _enemy;
-    [SerializeField] private Vector3 _offset = new Vector3(0, 4, 0);
-    [SerializeField] private Slider _healthBar;
-
-    protected override void OnEnable()
+    public class EnemyHealthBar : HealthBar
     {
-        if (_enemyHealth != null)
+        [SerializeField] private EnemyHealth _enemyHealth;
+        [SerializeField] private GameObject _enemy;
+        [SerializeField] private Vector3 _offset = new Vector3(0, 4, 0);
+        [SerializeField] private Slider _healthBar;
+
+        protected override void OnEnable()
         {
-            _enemyHealth.HealthChanged += UpdateValue;
-            _enemyHealth.Defeated += DisableSlider;
+            if (_enemyHealth != null)
+            {
+                _enemyHealth.HealthChanged += UpdateValue;
+                _enemyHealth.Defeated += DisableSlider;
+            }
         }
-    }
 
-    protected override void OnDisable()
-    {
-        if (_enemyHealth != null)
+        protected override void OnDisable()
         {
-            _enemyHealth.HealthChanged -= UpdateValue;
-            _enemyHealth.Defeated -= DisableSlider;
+            if (_enemyHealth != null)
+            {
+                _enemyHealth.HealthChanged -= UpdateValue;
+                _enemyHealth.Defeated -= DisableSlider;
+            }
         }
-    }
 
-    protected override int GetMaxHealth()
-    {
-        return _enemyHealth.MaxHealth;
-    }
+        protected override int GetMaxHealth()
+        {
+            return _enemyHealth.MaxHealth;
+        }
 
-    private void FixedUpdate()
-    {
-        MoveSlider();
-    }
+        private void FixedUpdate()
+        {
+            MoveSlider();
+        }
 
-    private void DisableSlider()
-    {
-        gameObject.SetActive(false);
-    }
+        private void DisableSlider()
+        {
+            gameObject.SetActive(false);
+        }
 
-    private void MoveSlider()
-    {
-        Vector3 screenPosition = Camera.main.WorldToScreenPoint(_enemy.transform.position + _offset);
-        _healthBar.transform.position = screenPosition;
+        private void MoveSlider()
+        {
+            Vector3 screenPosition = Camera.main.WorldToScreenPoint(_enemy.transform.position + _offset);
+            _healthBar.transform.position = screenPosition;
+        }
     }
 }

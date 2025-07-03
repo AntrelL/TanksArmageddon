@@ -1,24 +1,35 @@
 using System;
 using IJunior.TypedScenes;
-using Source.Scripts.Realese.Stuff;
 using UnityEngine;
 using YG;
 
-namespace Source.Scripts.Realese.UI
+namespace Source.Scripts.Realese.Stuff
 {
-    public class ShopSceneNavigationManager : MonoBehaviour
+    public class HangarSceneNavigationManager : MonoBehaviour
     {
         [SerializeField] private Canvas _helpViewCanvas;
     
         private AudioManager _manager;
-
-        public  event Action TextShowing;
+    
+        public event Action TextShowing;
 
         private void Awake()
         {
             _manager = FindObjectOfType<AudioManager>();
         }
     
+        private void Start()
+        {
+            Time.timeScale = 1f;
+        }
+
+        public void LoadHomeScene()
+        {
+            YG2.SaveProgress();
+            _manager.PlayButtonClick();
+            MainScene.Load();
+        }
+
         public void HelpButtonPressed()
         {
             _manager.PlayButtonClick();
@@ -30,13 +41,6 @@ namespace Source.Scripts.Realese.UI
         {
             _manager.PlayButtonClick();
             _helpViewCanvas.gameObject.SetActive(false);
-        }
-
-        public void LoadMainScene()
-        {
-            YG2.SaveProgress();
-            _manager.PlayButtonClick();
-            MainScene.Load();
         }
     }
 }

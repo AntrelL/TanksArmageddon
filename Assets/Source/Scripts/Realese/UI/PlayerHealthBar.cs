@@ -1,27 +1,32 @@
+using Source.Scripts.Realese.Player;
+using Source.Scripts.Realese.Stuff;
 using UnityEngine;
 
-public class PlayerHealthBar : HealthBar
+namespace Source.Scripts.Realese.UI
 {
-    [SerializeField] private PlayerHealth _player;
-
-    protected override void OnEnable()
+    public class PlayerHealthBar : HealthBar
     {
-        if (_player != null)
+        [SerializeField] private PlayerHealth _player;
+
+        protected override void OnEnable()
         {
-            _player.HealthChanged += UpdateValue;
+            if (_player != null)
+            {
+                _player.HealthChanged += UpdateValue;
+            }
         }
-    }
 
-    protected override void OnDisable()
-    {
-        if (_player != null)
+        protected override void OnDisable()
         {
-            _player.HealthChanged -= UpdateValue;
+            if (_player != null)
+            {
+                _player.HealthChanged -= UpdateValue;
+            }
         }
-    }
 
-    protected override int GetMaxHealth()
-    {
-        return PlayerDataHandler.Instance.GetPlayerMaxHealth();
+        protected override int GetMaxHealth()
+        {
+            return PlayerDataHandler.Instance.GetPlayerMaxHealth();
+        }
     }
 }

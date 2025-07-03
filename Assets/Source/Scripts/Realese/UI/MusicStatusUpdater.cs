@@ -1,22 +1,26 @@
+using Source.Scripts.Realese.Stuff;
 using UnityEngine;
 
-public class MusicStatusUpdater : MonoBehaviour
+namespace Source.Scripts.Realese.UI
 {
-    [SerializeField] private UIController _UIcontroller;
-
-    private AudioManager _audioManager;
-
-    private void Start()
+    public class MusicStatusUpdater : MonoBehaviour
     {
-        _audioManager = FindObjectOfType<AudioManager>();
+        [SerializeField] private UIController _UIcontroller;
 
-        if (_audioManager.IsMusicOn == true)
+        private AudioManager _audioManager;
+
+        private void Start()
         {
-            _UIcontroller.UnmuteSound();
-        }
-        else
-        {
-            _UIcontroller.MuteSound();
+            _audioManager = FindObjectOfType<AudioManager>();
+
+            if (_audioManager.IsMusicOn == true)
+            {
+                _UIcontroller.UnmuteSound();
+            }
+            else
+            {
+                _UIcontroller.MuteSound();
+            }
         }
     }
 }

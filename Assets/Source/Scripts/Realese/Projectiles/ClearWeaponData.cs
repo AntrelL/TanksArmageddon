@@ -1,16 +1,19 @@
 using System;
 
-[Serializable]
-public class ClearWeaponData
+namespace Source.Scripts.Realese.Projectiles
 {
-    public int BaseDamage;
-    public int UpgradeLevel;
-    public int CurrentDamage;
-
-    public ClearWeaponData(WeaponData weaponData)
+    [Serializable]
+    public class ClearWeaponData
     {
-        BaseDamage = weaponData.BaseDamage;
-        UpgradeLevel = weaponData.UpgradeLevel;
-        CurrentDamage = weaponData.CurrentDamage;
+        public int BaseDamage;
+        public int UpgradeLevel;
+        public int CurrentDamage;
+
+        public ClearWeaponData(WeaponData weaponData)
+        {
+            BaseDamage = weaponData.BaseDamage;
+            UpgradeLevel = weaponData.UpgradeLevel;
+            CurrentDamage = weaponData.CurrentDamage;
+        }
     }
 }

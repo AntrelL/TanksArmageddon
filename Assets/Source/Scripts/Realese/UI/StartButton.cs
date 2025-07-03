@@ -1,18 +1,22 @@
 using IJunior.TypedScenes;
+using Source.Scripts.Realese.Stuff;
 using UnityEngine;
 
-public class StartButton : MonoBehaviour
+namespace Source.Scripts.Realese.UI
 {
-    private AudioManager _manager;
-
-    private void Awake()
+    public class StartButton : MonoBehaviour
     {
-        _manager = FindObjectOfType<AudioManager>();
-    }
+        private AudioManager _manager;
 
-    public void OpenMainScene()
-    {
-        _manager.PlayButtonClick();
-        MainScene.Load();
+        private void Awake()
+        {
+            _manager = FindObjectOfType<AudioManager>();
+        }
+
+        public void OpenMainScene()
+        {
+            _manager.PlayButtonClick();
+            MainScene.Load();
+        }
     }
 }

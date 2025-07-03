@@ -1,84 +1,88 @@
 using System;
+using Source.Scripts.Realese.TurnManager;
 using UnityEngine;
 
-public class AirdropSpawner : MonoBehaviour
+namespace Source.Scripts.Realese.Airdrop
 {
-    [SerializeField] private GameObject _airDropPrefab;
-    [SerializeField] private Transform _spawnPoint;
-    [SerializeField] private PolygonCollider2D _land;
-    [SerializeField] private int _spawnRate;
-    [SerializeField] private TurnState _turnState;
-
-    private float _minX = 0;
-    private float _maxX = 0;
-
-    public event Action Spawned;
-
-    private void Start()
+    public class AirdropSpawner : MonoBehaviour
     {
-        if (_spawnPoint == null)
+        [SerializeField] private GameObject _airDropPrefab;
+        [SerializeField] private Transform _spawnPoint;
+        [SerializeField] private PolygonCollider2D _land;
+        [SerializeField] private int _spawnRate;
+        [SerializeField] private TurnState _turnState;
+
+        private float _minX = 0;
+        private float _maxX = 0;
+
+        public event Action Spawned;
+
+        private void Start()
         {
-            _spawnPoint = this.transform;
+            if (_spawnPoint == null)
+            {
+                _spawnPoint = this.transform;
+            }
+
+            CalculateWidth();
         }
 
-        CalculateWidth();
-    }
-
-    private void OnEnable()
-    {
-        _turnState.CompletedTurns += CheckTurnsCount;
-    }
-
-    private void OnDisable()
-    {
-        _turnState.CompletedTurns -= CheckTurnsCount;
-    }
-
-    private void CalculateWidth()
-    {
-        Vector2[] points = _land.points;
-
-        float minX = float.MaxValue;
-        float maxX = float.MinValue;
-
-        foreach (Vector2 point in points)
+        private void OnEnable()
         {
-            Vector2 worldPoint = (Vector2)_land.transform.TransformPoint(point);
-
-            if (worldPoint.x < minX)
-                minX = worldPoint.x;
-
-            if (worldPoint.x > maxX)
-                maxX = worldPoint.x;
+            _turnState.CompletedTurns += CheckTurnsCount;
         }
 
-        _minX = minX;
-        _maxX = maxX;
-    }
-
-    private void CheckTurnsCount(int count)
-    {
-        if (count % _spawnRate == 0)
+        private void OnDisable()
         {
-            SpawnAirDrop();
+            _turnState.CompletedTurns -= CheckTurnsCount;
         }
-    }
 
-    private void SpawnAirDrop()
-    {
-        if (_airDropPrefab != null)
+        private void CalculateWidth()
         {
-            Instantiate(_airDropPrefab, _spawnPoint.position, Quaternion.identity);
-            Spawned?.Invoke();
-            SetRandomSpawnPointX();
-        }
-    }
+            Vector2[] points = _land.points;
 
-    private void SetRandomSpawnPointX()
-    {
-        float randomX = UnityEngine.Random.Range(_minX, _maxX);
-        Vector3 newPosition = _spawnPoint.position;
-        newPosition.x = randomX;
-        _spawnPoint.position = newPosition;
+            float minX = float.MaxValue;
+            float maxX = float.MinValue;
+
+            foreach (Vector2 point in points)
+            {
+                Vector2 worldPoint = (Vector2)_land.transform.TransformPoint(point);
+
+                if (worldPoint.x < minX)
+                    minX = worldPoint.x;
+
+                if (worldPoint.x > maxX)
+                    maxX = worldPoint.x;
+            }
+
+            _minX = minX;
+            _maxX = maxX;
+        }
+
+        private void CheckTurnsCount(int count)
+        {
+            if (count % _spawnRate == 0)
+            {
+                SpawnAirDrop();
+            }
+        }
+
+        private void SpawnAirDrop()
+        {
+            if (_airDropPrefab != null)
+            {
+                Instantiate(_airDropPrefab, _spawnPoint.position, Quaternion.identity);
+                Spawned?.Invoke();
+                SetRandomSpawnPointX();
+            }
+        }
+
+        private void SetRandomSpawnPointX()
+        {
+            float randomX = UnityEngine.Random.Range(_minX, _maxX);
+            Vector3 newPosition = _spawnPoint.position;
+            newPosition.x = randomX;
+            _spawnPoint.position = newPosition;
+        }
     }
 }

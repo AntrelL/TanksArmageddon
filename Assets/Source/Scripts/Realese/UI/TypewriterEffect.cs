@@ -1,55 +1,59 @@
 using System.Collections;
+using Source.Scripts.Realese.Stuff;
 using TMPro;
 using UnityEngine;
 
-public class TypewriterEffect : MonoBehaviour
+namespace Source.Scripts.Realese.UI
 {
-    [SerializeField] private float _delay = 0.05f;
-    [SerializeField] private TMP_Text _text;
-    [SerializeField] private ShopSceneNavigationManager _shopSceneNavigationManager;
-    [SerializeField] private HangarSceneNavigationManager _hangarSceneNavigationManager;
-
-    private string _fullText;
-
-    private void OnEnable()
+    public class TypewriterEffect : MonoBehaviour
     {
-        if (_shopSceneNavigationManager != null && _hangarSceneNavigationManager != null)
+        [SerializeField] private float _delay = 0.05f;
+        [SerializeField] private TMP_Text _text;
+        [SerializeField] private ShopSceneNavigationManager _shopSceneNavigationManager;
+        [SerializeField] private HangarSceneNavigationManager _hangarSceneNavigationManager;
+
+        private string _fullText;
+
+        private void OnEnable()
         {
-            _shopSceneNavigationManager.TextShowing += GetText;
-            _hangarSceneNavigationManager.TextShowing += GetText;
+            if (_shopSceneNavigationManager != null && _hangarSceneNavigationManager != null)
+            {
+                _shopSceneNavigationManager.TextShowing += GetText;
+                _hangarSceneNavigationManager.TextShowing += GetText;
+            }
         }
-    }
 
-    private void OnDisable()
-    {
-        if (_shopSceneNavigationManager != null && _hangarSceneNavigationManager != null)
+        private void OnDisable()
         {
-            _shopSceneNavigationManager.TextShowing -= GetText;
-            _hangarSceneNavigationManager.TextShowing -= GetText;
+            if (_shopSceneNavigationManager != null && _hangarSceneNavigationManager != null)
+            {
+                _shopSceneNavigationManager.TextShowing -= GetText;
+                _hangarSceneNavigationManager.TextShowing -= GetText;
+            }
         }
-    }
 
-    public void GetText(TMP_Text tmpText)
-    {
-        _fullText = tmpText.text;
-        tmpText.text = string.Empty;
-        StartCoroutine(ShowText(tmpText));
-    }
-
-    private void GetText()
-    {
-        _fullText = _text.text;
-        _text.text = string.Empty;
-        StartCoroutine(ShowText(_text));
-    }
-
-    private IEnumerator ShowText(TMP_Text tmpText)
-    {
-        foreach (char letter in _fullText)
+        public void GetText(TMP_Text tmpText)
         {
-            tmpText.text += letter;
+            _fullText = tmpText.text;
+            tmpText.text = string.Empty;
+            StartCoroutine(ShowText(tmpText));
+        }
 
-            yield return new WaitForSeconds(_delay);
+        private void GetText()
+        {
+            _fullText = _text.text;
+            _text.text = string.Empty;
+            StartCoroutine(ShowText(_text));
+        }
+
+        private IEnumerator ShowText(TMP_Text tmpText)
+        {
+            foreach (char letter in _fullText)
+            {
+                tmpText.text += letter;
+
+                yield return new WaitForSeconds(_delay);
+            }
         }
     }
 }

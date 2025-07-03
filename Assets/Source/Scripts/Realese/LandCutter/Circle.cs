@@ -1,21 +1,24 @@
-using TanksArmageddon;
+using Source.Scripts.Realese.Stuff;
 using UnityEngine;
 
-[ExecuteAlways]
-public class Circle : MonoBehaviour
+namespace Source.Scripts.Realese.LandCutter
 {
-    [SerializeField] private ColliderRenderer _colliderRenderer;
-    [SerializeField] private int _sides;
-    [SerializeField] private PolygonCollider2D _collider;
-
-    private void OnValidate()
+    [ExecuteAlways]
+    public class Circle : MonoBehaviour
     {
-        CreateCircle();
-    }
+        [SerializeField] private ColliderRenderer _colliderRenderer;
+        [SerializeField] private int _sides;
+        [SerializeField] private PolygonCollider2D _collider;
 
-    private void CreateCircle()
-    {
-        _collider.CreatePrimitive(_sides, Vector2.one);
-        _colliderRenderer.CreateMesh();
+        private void OnValidate()
+        {
+            CreateCircle();
+        }
+
+        private void CreateCircle()
+        {
+            _collider.CreatePrimitive(_sides, Vector2.one);
+            _colliderRenderer.CreateMesh();
+        }
     }
 }

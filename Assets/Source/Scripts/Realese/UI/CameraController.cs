@@ -1,191 +1,197 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Source.Scripts.Realese.Enemy;
+using Source.Scripts.Realese.Projectiles;
+using Source.Scripts.Realese.TurnManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CameraController : MonoBehaviour
+namespace Source.Scripts.Realese.UI
 {
-    [SerializeField] private GameObject _blockUICanvas;
-    [SerializeField] private Transform _player;
-    [SerializeField] private List<EnemyAIController> _enemies;
-    [SerializeField] private float _moveSpeed = 3f;
-    [SerializeField] private float _followSpeed = 5f;
-    [SerializeField] private float _delayBeforeSwitch = 0f;
-    [SerializeField] private float _timeSinceSwitch = 0f;
-    [SerializeField] private TurnState _turnState;
-    [SerializeField] private ProjectileShooter2D _enemyShooter;
-
-    private bool _introFinished = false;
-    private Transform _currentTarget;
-    private string _currentScene;
-    private Transform _activeProjectile;
-    private EnemyBullet _enemyBulletInstance;
-
-    public event Action ShowTips;
-
-    public event Action<bool> UnlockMovement;
-
-    public bool IntroFinished => _introFinished;
-
-    private void Awake()
+    public class CameraController : MonoBehaviour
     {
-        _currentScene = SceneManager.GetActiveScene().name;
-        _currentTarget = _player;
-    }
+        [SerializeField] private GameObject _blockUICanvas;
+        [SerializeField] private Transform _player;
+        [SerializeField] private List<EnemyAIController> _enemies;
+        [SerializeField] private float _moveSpeed = 3f;
+        [SerializeField] private float _followSpeed = 5f;
+        [SerializeField] private float _delayBeforeSwitch = 0f;
+        [SerializeField] private float _timeSinceSwitch = 0f;
+        [SerializeField] private TurnState _turnState;
+        [SerializeField] private ProjectileShooter2D _enemyShooter;
 
-    private void OnEnable()
-    {
-        _turnState.TurnStarted += OnTurnStarted;
-        ProjectileTracker.Instance.ProjectileDestroyed += OnProjectileDestroyed;
-        _enemyShooter.EnemyBulletSpawned += OnEnemyBulletSpawned;
-    }
+        private bool _introFinished = false;
+        private Transform _currentTarget;
+        private string _currentScene;
+        private Transform _activeProjectile;
+        private EnemyBullet _enemyBulletInstance;
 
-    private void OnDisable()
-    {
-        _turnState.TurnStarted -= OnTurnStarted;
-        ProjectileTracker.Instance.ProjectileDestroyed -= OnProjectileDestroyed;
-        _enemyShooter.EnemyBulletSpawned -= OnEnemyBulletSpawned;
-    }
+        public event Action ShowTips;
 
-    private void Start()
-    {
-        StartCoroutine(CameraIntroSequence());
-    }
+        public event Action<bool> UnlockMovement;
 
-    public IEnumerator TransitionToTarget(Transform newTarget, float duration)
-    {
-        Vector3 startPos = transform.position;
-        Vector3 endPos = new Vector3(newTarget.position.x, newTarget.position.y, transform.position.z);
-        float elapsed = 0f;
+        public bool IntroFinished => _introFinished;
 
-        while (elapsed < duration)
+        private void Awake()
         {
-            transform.position = Vector3.Lerp(startPos, endPos, elapsed / duration);
-            elapsed += Time.deltaTime;
-            yield return null;
+            _currentScene = SceneManager.GetActiveScene().name;
+            _currentTarget = _player;
         }
 
-        transform.position = endPos;
-        _currentTarget = newTarget;
-    }
-
-    private void OnEnemyBulletSpawned(EnemyBullet bullet)
-    {
-        _activeProjectile = bullet.transform;
-
-        bullet.Destroyed += () =>
+        private void OnEnable()
         {
-            if (_activeProjectile == bullet.transform)
-            {
-                _activeProjectile = null;
-                _timeSinceSwitch = 0f;
-                UpdateCameraTarget();
-            }
-        };
-    }
-
-    private IEnumerator CameraIntroSequence()
-    {
-        float waitTime = 1.5f;
-        _blockUICanvas.SetActive(true);
-
-        yield return MoveToTarget(_player.position);
-        yield return new WaitForSeconds(waitTime);
-
-        foreach (var enemy in _enemies)
-        {
-            if (enemy != null && enemy.gameObject.activeSelf)
-            {
-                yield return MoveToTarget(enemy.transform.position);
-                yield return new WaitForSeconds(waitTime);
-            }
+            _turnState.TurnStarted += OnTurnStarted;
+            ProjectileTracker.Instance.ProjectileDestroyed += OnProjectileDestroyed;
+            _enemyShooter.EnemyBulletSpawned += OnEnemyBulletSpawned;
         }
 
-        yield return MoveToTarget(_player.position);
-        yield return new WaitForSeconds(waitTime);
-
-        _introFinished = true;
-        UnlockMovement?.Invoke(true);
-
-        if (_currentScene == "TrainingScene")
+        private void OnDisable()
         {
-            ShowTips?.Invoke();
+            _turnState.TurnStarted -= OnTurnStarted;
+            ProjectileTracker.Instance.ProjectileDestroyed -= OnProjectileDestroyed;
+            _enemyShooter.EnemyBulletSpawned -= OnEnemyBulletSpawned;
         }
 
-        _blockUICanvas.SetActive(false);
-    }
-
-    private IEnumerator MoveToTarget(Vector3 targetPosition)
-    {
-        targetPosition.z = transform.position.z;
-
-        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+        private void Start()
         {
-            transform.position = Vector3.Lerp(transform.position, targetPosition, _moveSpeed * Time.deltaTime);
-            yield return null;
+            StartCoroutine(CameraIntroSequence());
         }
-    }
 
-    private void OnTurnStarted(Transform target)
-    {
-        _currentTarget = target;
-    }
-
-    private void LateUpdate()
-    {
-        if (_introFinished && _currentTarget != null)
+        public IEnumerator TransitionToTarget(Transform newTarget, float duration)
         {
-            
-            if (_activeProjectile != null)
+            Vector3 startPos = transform.position;
+            Vector3 endPos = new Vector3(newTarget.position.x, newTarget.position.y, transform.position.z);
+            float elapsed = 0f;
+
+            while (elapsed < duration)
             {
-                _currentTarget = _activeProjectile;
-            }
-            else if (ProjectileTracker.Instance?.CurrentProjectile != null)
-            {
-                _currentTarget = ProjectileTracker.Instance.CurrentProjectile;
+                transform.position = Vector3.Lerp(startPos, endPos, elapsed / duration);
+                elapsed += Time.deltaTime;
+                yield return null;
             }
 
-            if (_timeSinceSwitch >= _delayBeforeSwitch)
-            {
-                Vector3 targetPosition = new Vector3(_currentTarget.position.x, _currentTarget.position.y, transform.position.z);
-                transform.position = Vector3.Lerp(transform.position, targetPosition, _followSpeed * 1000f * Time.deltaTime);
-            }
-            else
-            {
-                _timeSinceSwitch += Time.deltaTime;
-            }
+            transform.position = endPos;
+            _currentTarget = newTarget;
         }
-    }
 
-    private void OnProjectileDestroyed()
-    {
-        _timeSinceSwitch = 0f;
-        _activeProjectile = null;
-        UpdateCameraTarget();
-    }
-
-    private void UpdateCameraTarget()
-    {
-        Transform nextTarget = _player.transform;
-
-        if (_turnState.CurrentTurnIsPlayer == false)
+        private void OnEnemyBulletSpawned(EnemyBullet bullet)
         {
+            _activeProjectile = bullet.transform;
+
+            bullet.Destroyed += () =>
+            {
+                if (_activeProjectile == bullet.transform)
+                {
+                    _activeProjectile = null;
+                    _timeSinceSwitch = 0f;
+                    UpdateCameraTarget();
+                }
+            };
+        }
+
+        private IEnumerator CameraIntroSequence()
+        {
+            float waitTime = 1.5f;
+            _blockUICanvas.SetActive(true);
+
+            yield return MoveToTarget(_player.position);
+            yield return new WaitForSeconds(waitTime);
+
             foreach (var enemy in _enemies)
             {
                 if (enemy != null && enemy.gameObject.activeSelf)
                 {
-                    nextTarget = enemy.transform;
+                    yield return MoveToTarget(enemy.transform.position);
+                    yield return new WaitForSeconds(waitTime);
+                }
+            }
 
-                    break;
+            yield return MoveToTarget(_player.position);
+            yield return new WaitForSeconds(waitTime);
+
+            _introFinished = true;
+            UnlockMovement?.Invoke(true);
+
+            if (_currentScene == "TrainingScene")
+            {
+                ShowTips?.Invoke();
+            }
+
+            _blockUICanvas.SetActive(false);
+        }
+
+        private IEnumerator MoveToTarget(Vector3 targetPosition)
+        {
+            targetPosition.z = transform.position.z;
+
+            while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+            {
+                transform.position = Vector3.Lerp(transform.position, targetPosition, _moveSpeed * Time.deltaTime);
+                yield return null;
+            }
+        }
+
+        private void OnTurnStarted(Transform target)
+        {
+            _currentTarget = target;
+        }
+
+        private void LateUpdate()
+        {
+            if (_introFinished && _currentTarget != null)
+            {
+            
+                if (_activeProjectile != null)
+                {
+                    _currentTarget = _activeProjectile;
+                }
+                else if (ProjectileTracker.Instance?.CurrentProjectile != null)
+                {
+                    _currentTarget = ProjectileTracker.Instance.CurrentProjectile;
+                }
+
+                if (_timeSinceSwitch >= _delayBeforeSwitch)
+                {
+                    Vector3 targetPosition = new Vector3(_currentTarget.position.x, _currentTarget.position.y, transform.position.z);
+                    transform.position = Vector3.Lerp(transform.position, targetPosition, _followSpeed * 1000f * Time.deltaTime);
+                }
+                else
+                {
+                    _timeSinceSwitch += Time.deltaTime;
                 }
             }
         }
-        else
+
+        private void OnProjectileDestroyed()
         {
-            nextTarget = _player.transform;
+            _timeSinceSwitch = 0f;
+            _activeProjectile = null;
+            UpdateCameraTarget();
         }
 
-        _currentTarget = nextTarget;
+        private void UpdateCameraTarget()
+        {
+            Transform nextTarget = _player.transform;
+
+            if (_turnState.CurrentTurnIsPlayer == false)
+            {
+                foreach (var enemy in _enemies)
+                {
+                    if (enemy != null && enemy.gameObject.activeSelf)
+                    {
+                        nextTarget = enemy.transform;
+
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                nextTarget = _player.transform;
+            }
+
+            _currentTarget = nextTarget;
+        }
     }
 }

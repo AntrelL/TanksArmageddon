@@ -1,23 +1,27 @@
-﻿using UnityEngine;
+﻿using Source.Scripts.Realese.Airdrop;
+using UnityEngine;
 
-public class AirdropHandler : MonoBehaviour
+namespace Source.Scripts.Realese.InventoryManager
 {
-    [SerializeField] private AirdropSpawner _spawner;
+    public class AirdropHandler : MonoBehaviour
+    {
+        [SerializeField] private AirdropSpawner _spawner;
     
-    private AirdropBox _box;
+        private AirdropBox _box;
 
-    private void OnDisable()
-    {
-        if (_box != null)
-            _box.PlayerPickedUpAirdrop -= null;
-    }
-    
-    public void Initialize(System.Action<int> onPickedUp)
-    {
-        _spawner.Spawned += () =>
+        private void OnDisable()
         {
-            _box = FindObjectOfType<AirdropBox>();
-            _box.PlayerPickedUpAirdrop += onPickedUp;
-        };
+            if (_box != null)
+                _box.PlayerPickedUpAirdrop -= null;
+        }
+    
+        public void Initialize(System.Action<int> onPickedUp)
+        {
+            _spawner.Spawned += () =>
+            {
+                _box = FindObjectOfType<AirdropBox>();
+                _box.PlayerPickedUpAirdrop += onPickedUp;
+            };
+        }
     }
 }

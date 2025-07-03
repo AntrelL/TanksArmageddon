@@ -1,49 +1,54 @@
 ﻿using System;
 using System.Collections;
+using Source.Scripts.Realese.Projectiles;
+using Source.Scripts.Realese.UI;
 using UnityEngine;
 
-public class PlayerTurnHandler : MonoBehaviour
+namespace Source.Scripts.Realese.TurnManager
 {
-    [SerializeField] private TurnState _state;
-
-    public IEnumerator ExecuteTurn()
+    public class PlayerTurnHandler : MonoBehaviour
     {
-        _state.IncrementTurn();
-        _state.SetPlayerTurn(true);
-        _state.NotifyTurnStarted(_state.Player.transform);
-        _state.SetPlayerControl(true);
+        [SerializeField] private TurnState _state;
 
-        bool shot = false, skip = false;
-
-        Action onShot = () => shot = true;
-        Action onSkip = () => skip = true;
-
-        _state.UI.PlayerShootButtonPressed += onShot;
-        UIController.SkipTurnButtonPressed += onSkip;
-
-        yield return new WaitUntil(() => shot || skip);
-
-        _state.SetPlayerControl(false);
-        _state.UI.PlayerShootButtonPressed -= onShot;
-        UIController.SkipTurnButtonPressed -= onSkip;
-
-        if (!skip)
+        public IEnumerator ExecuteTurn()
         {
-            bool projectileEnded = false;
-            void OnProjectileDestroyed() => projectileEnded = true;
+            _state.IncrementTurn();
+            _state.SetPlayerTurn(true);
+            _state.NotifyTurnStarted(_state.Player.transform);
+            _state.SetPlayerControl(true);
 
-            ProjectileTracker.Instance.ProjectileDestroyed += OnProjectileDestroyed;
+            bool shot = false, skip = false;
 
-            yield return new WaitUntil(() => projectileEnded);
+            Action onShot = () => shot = true;
+            Action onSkip = () => skip = true;
 
-            ProjectileTracker.Instance.ProjectileDestroyed -= OnProjectileDestroyed;
+            _state.UI.PlayerShootButtonPressed += onShot;
+            UIController.SkipTurnButtonPressed += onSkip;
+
+            yield return new WaitUntil(() => shot || skip);
+
+            _state.SetPlayerControl(false);
+            _state.UI.PlayerShootButtonPressed -= onShot;
+            UIController.SkipTurnButtonPressed -= onSkip;
+
+            if (!skip)
+            {
+                bool projectileEnded = false;
+                void OnProjectileDestroyed() => projectileEnded = true;
+
+                ProjectileTracker.Instance.ProjectileDestroyed += OnProjectileDestroyed;
+
+                yield return new WaitUntil(() => projectileEnded);
+
+                ProjectileTracker.Instance.ProjectileDestroyed -= OnProjectileDestroyed;
+            }
+
+            var next = _state.GetNextTarget();
+            if (next != null)
+                yield return _state.CameraController.TransitionToTarget(next, 1f);
+
+            _state.NotifyTurnCompleted();
+            _state.SetPlayerTurn(false);
         }
-
-        var next = _state.GetNextTarget();
-        if (next != null)
-            yield return _state.CameraController.TransitionToTarget(next, 1f);
-
-        _state.NotifyTurnCompleted();
-        _state.SetPlayerTurn(false);
     }
 }

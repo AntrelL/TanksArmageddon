@@ -1,20 +1,23 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WeaponData", menuName = "ScriptableObjects/WeaponData")]
-public class WeaponData : ScriptableObject
+namespace Source.Scripts.Realese.Projectiles
 {
-    [field: SerializeField] public new string Name { get; set; }
-
-    [field: SerializeField] public Sprite Icon { get; set; }
-
-    [field: SerializeField] public int BaseDamage { get; set; }
-
-    [field: SerializeField] public int UpgradeLevel { get; set; }
-
-    [field: SerializeField] public int CurrentDamage { get; set; }
-
-    private void OnEnable()
+    [CreateAssetMenu(fileName = "WeaponData", menuName = "ScriptableObjects/WeaponData")]
+    public class WeaponData : ScriptableObject
     {
-        CurrentDamage = BaseDamage;
+        [field: SerializeField] public new string Name { get; set; }
+
+        [field: SerializeField] public Sprite Icon { get; set; }
+
+        [field: SerializeField] public int BaseDamage { get; set; }
+
+        [field: SerializeField] public int UpgradeLevel { get; set; }
+
+        [field: SerializeField] public int CurrentDamage { get; set; }
+
+        private void OnEnable()
+        {
+            CurrentDamage = BaseDamage;
+        }
     }
 }

@@ -1,34 +1,37 @@
 ﻿using System;
 using UnityEngine;
 
-public class ProjectileTracker : MonoBehaviour
+namespace Source.Scripts.Realese.Projectiles
 {
-    public static ProjectileTracker Instance { get; private set; }
-
-    public Transform CurrentProjectile { get; private set; }
-
-    public event Action ProjectileDestroyed;
-
-    private void Awake()
+    public class ProjectileTracker : MonoBehaviour
     {
-        if (Instance != null && Instance != this)
+        public static ProjectileTracker Instance { get; private set; }
+
+        public Transform CurrentProjectile { get; private set; }
+
+        public event Action ProjectileDestroyed;
+
+        private void Awake()
         {
-            Destroy(gameObject);
-            return;
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
+        public void RegisterProjectile(Transform projectile)
+        {
+            CurrentProjectile = projectile;
+        }
 
-    public void RegisterProjectile(Transform projectile)
-    {
-        CurrentProjectile = projectile;
-    }
-
-    public void ClearProjectile()
-    {
-        CurrentProjectile = null;
-        ProjectileDestroyed?.Invoke();
+        public void ClearProjectile()
+        {
+            CurrentProjectile = null;
+            ProjectileDestroyed?.Invoke();
+        }
     }
 }

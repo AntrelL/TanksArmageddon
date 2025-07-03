@@ -1,114 +1,120 @@
 using System;
-using TanksArmageddon;
+using Source.Scripts.Realese.Enemy;
+using Source.Scripts.Realese.LandCutter;
+using Source.Scripts.Realese.Player;
+using Source.Scripts.Realese.Stuff;
 using UnityEngine;
 
-public class DefaultProjectile : MonoBehaviour
+namespace Source.Scripts.Realese.Projectiles
 {
-    private readonly bool _isDead;
-
-    [SerializeField] private ParticleSystem _groundCollisionFX;
-    [SerializeField] private float _speed;
-
-    private Rigidbody2D _rigidbody;
-    private LandCutter _landCutter;
-    private AudioManager _manager;
-
-    private float _targetX;
-    private float _targetY;
-
-    public event Action ProjectileDestroyed;
-
-    public Transform CurrentProjectile { get; private set; }
-
-    public bool IsEnemyProjectile { get; set; } = false;
-
-    public float Speed => _speed;
-
-    private void Awake()
+    public class DefaultProjectile : MonoBehaviour
     {
-        _manager = FindObjectOfType<AudioManager>();
-    }
+        private readonly bool _isDead;
+
+        [SerializeField] private ParticleSystem _groundCollisionFX;
+        [SerializeField] private float _speed;
+
+        private Rigidbody2D _rigidbody;
+        private LandCutter.LandCutter _landCutter;
+        private AudioManager _manager;
+
+        private float _targetX;
+        private float _targetY;
+
+        public event Action ProjectileDestroyed;
+
+        public Transform CurrentProjectile { get; private set; }
+
+        public bool IsEnemyProjectile { get; set; } = false;
+
+        public float Speed => _speed;
+
+        private void Awake()
+        {
+            _manager = FindObjectOfType<AudioManager>();
+        }
     
-    private void Start()
-    {
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        _rigidbody.velocity = transform.right * _speed;
-        _landCutter = FindObjectOfType<LandCutter>();
-        CurrentProjectile = transform;
-    }
-
-    private void Update()
-    {
-        transform.right = _rigidbody.velocity;
-
-        if (transform.position.y < -50)
+        private void Start()
         {
-            Destroy(gameObject);
-        }
-    }
-
-    public void SetupBallisticTrajectory(float targetX, float targetY)
-    {
-        _targetX = targetX;
-        _targetY = targetY;
-
-        Vector2 direction = new Vector2(_targetX - transform.position.x, _targetY - transform.position.y);
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        _rigidbody.velocity = new Vector2(Mathf.Cos(angle) * _speed, Mathf.Sin(angle) * _speed);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.TryGetComponent(out EdgeOfMap edgeOfMap))
-        {
-            _manager.PlayButtonClick();
-            Destroy(gameObject);
+            _rigidbody = GetComponent<Rigidbody2D>();
+            _rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+            _rigidbody.velocity = transform.right * _speed;
+            _landCutter = FindObjectOfType<LandCutter.LandCutter>();
+            CurrentProjectile = transform;
         }
 
-        if (IsEnemyProjectile)
+        private void Update()
         {
-            if (collision.gameObject.TryGetComponent(out PlayerHealth player))
+            transform.right = _rigidbody.velocity;
+
+            if (transform.position.y < -50)
             {
-                player.PlayHitEffect(transform.position);
-                Destroy(gameObject);
-            }
-        }
-        else
-        {
-            if (collision.gameObject.TryGetComponent(out EnemyFacade enemy))
-            {
-                enemy.PlayHitEffect(transform.position);
                 Destroy(gameObject);
             }
         }
 
-        if (collision.gameObject.TryGetComponent(out Land land))
+        public void SetupBallisticTrajectory(float targetX, float targetY)
         {
-            _landCutter.transform.position = transform.position;
-            Invoke(nameof(DoCut), 0.001f);
+            _targetX = targetX;
+            _targetY = targetY;
+
+            Vector2 direction = new Vector2(_targetX - transform.position.x, _targetY - transform.position.y);
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            _rigidbody.velocity = new Vector2(Mathf.Cos(angle) * _speed, Mathf.Sin(angle) * _speed);
         }
-    }
 
-    private void DoCut()
-    {
-        ParticleSystem flash = Instantiate(_groundCollisionFX, transform.position, transform.rotation);
-        flash.Play();
-        Destroy(flash.gameObject, flash.main.duration);
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.TryGetComponent(out EdgeOfMap edgeOfMap))
+            {
+                _manager.PlayButtonClick();
+                Destroy(gameObject);
+            }
 
-        _landCutter.DoCut();
-        _manager.PlayTankHit();
-        Destroy(gameObject);
-    }
+            if (IsEnemyProjectile)
+            {
+                if (collision.gameObject.TryGetComponent(out PlayerHealth player))
+                {
+                    player.PlayHitEffect(transform.position);
+                    Destroy(gameObject);
+                }
+            }
+            else
+            {
+                if (collision.gameObject.TryGetComponent(out EnemyFacade enemy))
+                {
+                    enemy.PlayHitEffect(transform.position);
+                    Destroy(gameObject);
+                }
+            }
 
-    private void OnDestroy()
-    {
-        //ProjectileDestroyed?.Invoke();
-        //CurrentProjectile = null;
+            if (collision.gameObject.TryGetComponent(out Land land))
+            {
+                _landCutter.transform.position = transform.position;
+                Invoke(nameof(DoCut), 0.001f);
+            }
+        }
+
+        private void DoCut()
+        {
+            ParticleSystem flash = Instantiate(_groundCollisionFX, transform.position, transform.rotation);
+            flash.Play();
+            Destroy(flash.gameObject, flash.main.duration);
+
+            _landCutter.DoCut();
+            _manager.PlayTankHit();
+            Destroy(gameObject);
+        }
+
+        private void OnDestroy()
+        {
+            //ProjectileDestroyed?.Invoke();
+            //CurrentProjectile = null;
         
-        if (ProjectileTracker.Instance != null && ProjectileTracker.Instance.CurrentProjectile == transform)
-        {
-            ProjectileTracker.Instance.ClearProjectile();
+            if (ProjectileTracker.Instance != null && ProjectileTracker.Instance.CurrentProjectile == transform)
+            {
+                ProjectileTracker.Instance.ClearProjectile();
+            }
         }
     }
 }

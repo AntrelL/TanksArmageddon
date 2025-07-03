@@ -1,4 +1,3 @@
-using System;
 using IJunior.TypedScenes;
 using UnityEngine;
 

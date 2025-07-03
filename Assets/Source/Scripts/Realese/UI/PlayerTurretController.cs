@@ -15,6 +15,17 @@ public class PlayerTurretController : MonoBehaviour
         _angleSlider.onValueChanged.AddListener(OnSliderValueChanged);
         _initialGunAngle = GetLocalGunAngle();
     }
+    
+    private void OnEnable()
+    {
+        _turnManager.CanPlayerShoot += OnCanPlayerShoot;
+    }
+
+    private void OnDisable()
+    {
+        _turnManager.CanPlayerShoot -= OnCanPlayerShoot;
+        _turret.DOKill();
+    }
 
     private void OnSliderValueChanged(float value)
     {
@@ -25,17 +36,6 @@ public class PlayerTurretController : MonoBehaviour
     private float GetLocalGunAngle()
     {
         return _turret.localEulerAngles.z;
-    }
-
-    private void OnEnable()
-    {
-        _turnManager.CanPlayerShoot += OnCanPlayerShoot;
-    }
-
-    private void OnDisable()
-    {
-        _turnManager.CanPlayerShoot -= OnCanPlayerShoot;
-        _turret.DOKill();
     }
 
     private void OnCanPlayerShoot(bool canShoot)

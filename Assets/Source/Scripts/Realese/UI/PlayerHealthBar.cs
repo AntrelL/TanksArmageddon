@@ -1,4 +1,3 @@
-using TanksArmageddon;
 using UnityEngine;
 
 public class PlayerHealthBar : HealthBar

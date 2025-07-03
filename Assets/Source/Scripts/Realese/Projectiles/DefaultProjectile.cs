@@ -16,10 +16,6 @@ public class DefaultProjectile : MonoBehaviour
     private float _targetX;
     private float _targetY;
 
-    //public static event Action GroundHit;
-
-    //public static event Action EdgeOfMapHit;
-
     public static event Action ProjectileDestroyed;
 
     public static Transform CurrentProjectile { get; private set; }

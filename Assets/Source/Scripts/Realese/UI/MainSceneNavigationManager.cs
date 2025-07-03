@@ -1,8 +1,5 @@
-using System;
 using IJunior.TypedScenes;
-using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using YG;
 
 public class MainSceneNavigationManager : MonoBehaviour
@@ -46,6 +43,19 @@ public class MainSceneNavigationManager : MonoBehaviour
         YG2.onGetSDKData -= TryOpenLeaderboard;
     }
 
+    private void TryOpenLeaderboard()
+    {
+        if (YG2.player.auth)
+        {
+            _authView.SetActive(false);
+            LeaderboardScene.Load();
+        }
+        else
+        {
+            _authView.SetActive(true);
+        }
+    }
+    
     public void AcceptPressed()
     {
         _manager.PlayButtonClick();
@@ -62,18 +72,5 @@ public class MainSceneNavigationManager : MonoBehaviour
     {
         _manager.PlayButtonClick();
         TryOpenLeaderboard();
-    }
-
-    private void TryOpenLeaderboard()
-    {
-        if (YG2.player.auth)
-        {
-            _authView.SetActive(false);
-            LeaderboardScene.Load();
-        }
-        else
-        {
-            _authView.SetActive(true);
-        }
     }
 }

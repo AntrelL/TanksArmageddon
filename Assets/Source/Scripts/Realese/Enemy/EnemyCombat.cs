@@ -16,16 +16,16 @@ public class EnemyCombat : MonoBehaviour
     {
         _inventoryManager.UpdatePlayerDamage -= UpdatePlayerDamage;
     }
-
-    private void UpdatePlayerDamage(int value)
-    {
-        _playerDamage = value;
-    }
-
+    
     public bool TryShoot()
     {
         return _projectileShooter.ShootIfPossible();
     }
 
     public int GetPlayerDamage() => _playerDamage;
+
+    private void UpdatePlayerDamage(int value)
+    {
+        _playerDamage = value;
+    }
 }

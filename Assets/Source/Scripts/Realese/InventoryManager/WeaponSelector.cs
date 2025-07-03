@@ -5,10 +5,11 @@ using UnityEngine.UI;
 public class WeaponSelector : MonoBehaviour
 {
     [SerializeField] private InventoryUIController _ui;
-    public event Action<int> OnWeaponSelected;
 
     private WeaponSlot _selectedSlot;
     private WeaponSlot _slotToClean;
+    
+    public event Action<int> OnWeaponSelected;
 
     public void Initialize(Action onProjectileDestroyed)
     {
@@ -39,7 +40,6 @@ public class WeaponSelector : MonoBehaviour
     }
 
     public WeaponSlot SlotToClean => _slotToClean;
-
     public void DeselectCurrent() => _selectedSlot?.Deselect();
     public void SelectFirst() => Select(_ui.GetSlot(0), null);
 }

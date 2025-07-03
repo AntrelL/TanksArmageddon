@@ -18,13 +18,6 @@ public class PlayerMovement : MonoBehaviour
     private float _availableTravelTime;
     private bool _canMove;
 
-    public void Initialize(float travelTime)
-    {
-        _availableTravelTime = travelTime;
-        _petrolTank.maxValue = travelTime;
-        _petrolTank.value = travelTime;
-    }
-
     private void Awake()
     {
         _baseDrag = _rigidbody2D.drag;
@@ -38,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         float input = Input.GetAxis("Horizontal");
+        
         if (_travelTimeSpent >= _availableTravelTime)
         {
             _rigidbody2D.drag = 100f;
@@ -62,6 +56,23 @@ public class PlayerMovement : MonoBehaviour
         if (_rigidbody2D.velocity.magnitude > _maxSpeed)
             _rigidbody2D.velocity = _rigidbody2D.velocity.normalized * _maxSpeed;
     }
+    
+    public void Initialize(float travelTime)
+    {
+        _availableTravelTime = travelTime;
+        _petrolTank.maxValue = travelTime;
+        _petrolTank.value = travelTime;
+    }
+    
+    public void SetCanMove(bool value)
+    {
+        _canMove = value;
+        if (value)
+        {
+            _travelTimeSpent = 0;
+            _petrolTank.value = _availableTravelTime;
+        }
+    }
 
     private void ApplyForce(float directionInput)
     {
@@ -84,15 +95,5 @@ public class PlayerMovement : MonoBehaviour
 
         _rigidbody2D.gravityScale = hit.collider != null ? 1f : 10f;
         _rigidbody2D.AddForceAtPosition(forceDir.normalized * _force, selectedPoint);
-    }
-
-    public void SetCanMove(bool value)
-    {
-        _canMove = value;
-        if (value)
-        {
-            _travelTimeSpent = 0;
-            _petrolTank.value = _availableTravelTime;
-        }
     }
 }

@@ -36,10 +36,19 @@ public class TurnState : MonoBehaviour
     public UIController UI => _uiController;
 
     public void IncrementTurn() => _turnCount++;
-
     public void NotifyTurnStarted(Transform t) => TurnStarted?.Invoke(t);
     public void NotifyTurnCompleted() => CompletedTurns?.Invoke(_turnCount);
 
+    private void OnEnable()
+    {
+        _tutorialManager.TutorialEnded += SetPlayerControl;
+    }
+
+    private void OnDisable()
+    {
+        _tutorialManager.TutorialEnded -= SetPlayerControl;
+    }
+    
     public void SetPlayerControl(bool value)
     {
         CanPlayerControl?.Invoke(value);
@@ -76,15 +85,5 @@ public class TurnState : MonoBehaviour
         }
 
         return _player ? _player.transform : null;
-    }
-
-    private void OnEnable()
-    {
-        _tutorialManager.TutorialEnded += SetPlayerControl;
-    }
-
-    private void OnDisable()
-    {
-        _tutorialManager.TutorialEnded -= SetPlayerControl;
     }
 }

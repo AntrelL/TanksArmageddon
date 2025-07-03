@@ -26,17 +26,6 @@ public class EnemyMovement : MonoBehaviour
         _baseDrag = _rigidbody2D.drag;
     }
 
-    public void StartMovement(float direction)
-    {
-        _movementTimeUsed = 0f;
-        _moveDirection = direction;
-    }
-
-    public void StopMovement()
-    {
-        _moveDirection = 0f;
-    }
-
     private void FixedUpdate()
     {
         if (_movementTimeUsed >= _availableTravelTime || _moveDirection == 0f)
@@ -79,5 +68,16 @@ public class EnemyMovement : MonoBehaviour
 
         _tank.Move();
         _movementTimeUsed += Time.fixedDeltaTime;
+    }
+    
+    public void StartMovement(float direction)
+    {
+        _movementTimeUsed = 0f;
+        _moveDirection = direction;
+    }
+
+    public void StopMovement()
+    {
+        _moveDirection = 0f;
     }
 }

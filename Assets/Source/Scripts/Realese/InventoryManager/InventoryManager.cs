@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using YG;
 using Random = UnityEngine.Random;
+using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -26,7 +24,7 @@ public class InventoryManager : MonoBehaviour
 
         _airdrop.Initialize(SetNewWeapon);
     }
-
+    
     public void AdButtonPressed()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL

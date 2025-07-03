@@ -9,6 +9,7 @@ public class EnemyFacade : MonoBehaviour
     [SerializeField] private EnemyCombat _combat;
 
     public void TakeDamage(int value) => _health.TakeDamage(value);
+    
     public void PlayHitEffect(Vector3 pos) => _health.PlayHitEffect(pos);
 
     public IEnumerator DoTurn() => _ai.DoEnemyTurn();

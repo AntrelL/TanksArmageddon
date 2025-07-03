@@ -22,5 +22,6 @@ public class InventoryUIController : MonoBehaviour
     }
 
     public WeaponSlot GetSlot(int index) => _weaponSlots[index];
+    
     public List<WeaponSlot> Slots => _weaponSlots;
 }

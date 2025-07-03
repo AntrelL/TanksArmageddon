@@ -6,6 +6,12 @@ public class AirdropHandler : MonoBehaviour
     
     private AirdropBox _box;
 
+    private void OnDisable()
+    {
+        if (_box != null)
+            _box.PlayerPickedUpAirdrop -= null;
+    }
+    
     public void Initialize(System.Action<int> onPickedUp)
     {
         _spawner.Spawned += () =>
@@ -13,11 +19,5 @@ public class AirdropHandler : MonoBehaviour
             _box = FindObjectOfType<AirdropBox>();
             _box.PlayerPickedUpAirdrop += onPickedUp;
         };
-    }
-
-    private void OnDisable()
-    {
-        if (_box != null)
-            _box.PlayerPickedUpAirdrop -= null;
     }
 }

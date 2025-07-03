@@ -26,6 +26,7 @@ namespace Source.Scripts.Realese.InventoryManager
             }
 
             _ammo.Remove(index);
+            
             return false;
         }
 

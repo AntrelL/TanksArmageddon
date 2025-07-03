@@ -14,7 +14,6 @@ namespace Source.Scripts.Realese.Projectiles
             {
                 YG2.saves.ClearWeaponsData = Array.ConvertAll(_weapons, weapon => new ClearWeaponData(weapon));
                 YG2.SaveProgress();
-                Debug.Log("Converted weapons and save progress!");
             }
         }
     }

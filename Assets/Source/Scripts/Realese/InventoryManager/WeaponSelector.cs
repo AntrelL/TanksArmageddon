@@ -41,7 +41,9 @@ namespace Source.Scripts.Realese.InventoryManager
         }
 
         public WeaponSlot SlotToClean => _slotToClean;
+        
         public void DeselectCurrent() => _selectedSlot?.Deselect();
+        
         public void SelectFirst() => Select(_ui.GetSlot(0));
     }
 }

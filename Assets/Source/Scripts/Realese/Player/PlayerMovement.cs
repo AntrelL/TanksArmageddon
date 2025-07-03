@@ -27,8 +27,10 @@ namespace Source.Scripts.Realese.Player
 
         private void FixedUpdate()
         {
-            if (!_canMove) {
+            if (!_canMove) 
+            {
                 _rigidbody2D.drag = 100f;
+                
                 return;
             }
 
@@ -38,6 +40,7 @@ namespace Source.Scripts.Realese.Player
             {
                 _rigidbody2D.drag = 100f;
                 _tank.Idle();
+                
                 return;
             }
 

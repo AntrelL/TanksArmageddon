@@ -14,12 +14,12 @@ namespace Source.Scripts.Realese.Enemy
 
         private void OnEnable()
         {
-            _inventoryManager.UpdatePlayerDamage += UpdatePlayerDamage;
+            _inventoryManager.UpdatePlayerDamage += OnUpdatePlayerDamage;
         }
 
         private void OnDisable()
         {
-            _inventoryManager.UpdatePlayerDamage -= UpdatePlayerDamage;
+            _inventoryManager.UpdatePlayerDamage -= OnUpdatePlayerDamage;
         }
     
         public bool TryShoot()
@@ -29,7 +29,7 @@ namespace Source.Scripts.Realese.Enemy
 
         public int GetPlayerDamage() => _playerDamage;
 
-        private void UpdatePlayerDamage(int value)
+        private void OnUpdatePlayerDamage(int value)
         {
             _playerDamage = value;
         }

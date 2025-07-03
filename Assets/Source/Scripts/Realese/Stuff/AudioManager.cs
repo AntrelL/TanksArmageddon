@@ -41,6 +41,12 @@ namespace Source.Scripts.Realese.Stuff
         {
             PlayMainMusic();
         }
+        
+        private void OnInBackgroundChange(bool inBackground)
+        {
+            AudioListener.pause = inBackground;
+            AudioListener.volume = inBackground ? 0f : 1f;
+        }
 
         public void PlayMainMusic()
         {
@@ -59,12 +65,6 @@ namespace Source.Scripts.Realese.Stuff
 
             _backgroundMusicSource.Stop();
             _isMusicOn = false;
-        }
-
-        private void OnInBackgroundChange(bool inBackground)
-        {
-            AudioListener.pause = inBackground;
-            AudioListener.volume = inBackground ? 0f : 1f;
         }
 
         public void PlayLevelFailed()

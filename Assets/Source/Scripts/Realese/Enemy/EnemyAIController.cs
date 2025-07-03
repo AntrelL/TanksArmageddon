@@ -15,7 +15,7 @@ namespace Source.Scripts.Realese.Enemy
         {
             if (_combat != null && _combat.ProjectileShooter != null)
             {
-                _combat.ProjectileShooter.EnemyBulletSpawned += HandleEnemyBulletSpawned;
+                _combat.ProjectileShooter.EnemyBulletSpawned += OnEnemyBulletSpawned;
             }
         }
     
@@ -23,7 +23,7 @@ namespace Source.Scripts.Realese.Enemy
         {
             if (_combat != null && _combat.ProjectileShooter != null)
             {
-                _combat.ProjectileShooter.EnemyBulletSpawned -= HandleEnemyBulletSpawned;
+                _combat.ProjectileShooter.EnemyBulletSpawned -= OnEnemyBulletSpawned;
             }
         }
 
@@ -55,12 +55,7 @@ namespace Source.Scripts.Realese.Enemy
 
             _movement.StopMovement();
         }
-    
-        private void HandleEnemyBulletSpawned(EnemyBullet bullet)
-        {
-            _activeBullet = bullet;
-        }
-
+        
         private IEnumerator WaitProjectileFly()
         {
             if (_activeBullet == null)
@@ -72,6 +67,11 @@ namespace Source.Scripts.Realese.Enemy
             _activeBullet.Destroyed += OnDestroyed;
             yield return new WaitUntil(() => ended);
             _activeBullet.Destroyed -= OnDestroyed;
+        }
+        
+        private void OnEnemyBulletSpawned(EnemyBullet bullet)
+        {
+            _activeBullet = bullet;
         }
     }
 }

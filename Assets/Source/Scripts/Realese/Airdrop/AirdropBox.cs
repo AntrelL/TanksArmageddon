@@ -5,7 +5,6 @@ using UnityEngine;
 public class AirdropBox : MonoBehaviour
 {
     public event Action<int> PlayerPickedUpAirdrop;
-    public event Action PickedUp;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -30,10 +29,6 @@ public class AirdropBox : MonoBehaviour
 
             return;
         }
-    }
-
-    public void OnDestroy()
-    {
     }
 
     private int GenerateRandomWeaponIndex()

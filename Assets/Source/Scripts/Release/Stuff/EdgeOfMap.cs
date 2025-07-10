@@ -1,12 +1,13 @@
 using System;
+using Source.Scripts.Release.HitProcessing;
 using Source.Scripts.Release.Player;
 using UnityEngine;
 
 namespace Source.Scripts.Release.Stuff
 {
-    public class EdgeOfMap : MonoBehaviour
+    public class EdgeOfMap : MonoBehaviour, IImpactTarget
     {
-        private int _damage = 5000;
+        private const int Damage = 5000;
 
         public event Action<int> CollisionWithPlayer;
 
@@ -14,7 +15,7 @@ namespace Source.Scripts.Release.Stuff
         {
             if (collision.gameObject.TryGetComponent(out PlayerRoot player))
             {
-                CollisionWithPlayer?.Invoke(_damage);
+                CollisionWithPlayer?.Invoke(Damage);
             }
         }
     }

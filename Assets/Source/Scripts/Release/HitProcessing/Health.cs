@@ -3,43 +3,46 @@ using Assets.Constructors.FuturisticTanks.Scripts;
 using Source.Scripts.Release.Stuff;
 using UnityEngine;
 
-namespace Source.Scripts.Release.Enemy
+namespace Source.Scripts.Release.HitProcessing
 {
-    public class EnemyHealth : MonoBehaviour
+    public abstract class Health : MonoBehaviour
     {
-        [SerializeField] private int _maxHealth;
         [SerializeField] private Tank _tank;
         [SerializeField] private ParticleSystem _hitFX;
-        [SerializeField] private int _edgeOfMapDamage = 5000;
-        [SerializeField] private EnemyCombat _combat;
-
+        
+        private int _maxHealth;
         private int _currentHealth;
         private bool _isAlive = true;
         private AudioManager _manager;
-    
+        
         public event Action<int> HealthChanged;
+        
         public event Action Defeated;
-
-        public bool IsAlive => _isAlive;
-        public int MaxHealth => _maxHealth;
-
+        
         private void Awake()
         {
             _manager = FindObjectOfType<AudioManager>();
+            _maxHealth = GetMaxHealth();
             _currentHealth = _maxHealth;
         }
-
-        private void OnCollisionEnter2D(Collision2D collision)
+        
+        public void PlayHitEffect(Vector3 position)
         {
-            if (collision.gameObject.TryGetComponent(out EdgeOfMap edge))
-            {
-                TakeDamage(_edgeOfMapDamage);
-            }
+            if (_isAlive == false) 
+                return;
+            
+            _manager.PlayTankHit();
+            var flash = Instantiate(_hitFX, position, Quaternion.identity);
+            flash.Play();
+            Destroy(flash.gameObject, flash.main.duration);
+            
+            OnPlayHitEffect();
         }
-
+        
         public void TakeDamage(int value)
         {
-            if (!_isAlive) return;
+            if (_isAlive == false)
+                return;
 
             _currentHealth -= value;
             HealthChanged?.Invoke(_currentHealth);
@@ -53,15 +56,8 @@ namespace Source.Scripts.Release.Enemy
             }
         }
 
-        public void PlayHitEffect(Vector3 pos)
-        {
-            if (!_isAlive) return;
-
-            TakeDamage(_combat.PlayerDamage);
-            _manager.PlayTankHit();
-            ParticleSystem flash = Instantiate(_hitFX, pos, Quaternion.identity);
-            flash.Play();
-            Destroy(flash.gameObject, flash.main.duration);
-        }
+        protected virtual void OnPlayHitEffect() { }
+        
+        protected abstract int GetMaxHealth();
     }
 }

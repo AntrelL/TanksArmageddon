@@ -1,4 +1,5 @@
 using Source.Scripts.Release.Enemy;
+using Source.Scripts.Release.HitProcessing;
 using Source.Scripts.Release.LandCutter;
 using Source.Scripts.Release.Player;
 using Source.Scripts.Release.Stuff;
@@ -8,6 +9,9 @@ namespace Source.Scripts.Release.Projectiles
 {
     public class DefaultProjectile : MonoBehaviour
     {
+        private const float LandCutDelay = 0.001f;
+        private const int MinWorldY = -50;
+        
         [SerializeField] private ParticleSystem _groundCollisionFX;
         [SerializeField] private float _speed;
 
@@ -42,7 +46,7 @@ namespace Source.Scripts.Release.Projectiles
         {
             transform.right = _rigidbody.velocity;
 
-            if (transform.position.y < -50)
+            if (transform.position.y < MinWorldY)
             {
                 Destroy(gameObject);
             }
@@ -50,36 +54,41 @@ namespace Source.Scripts.Release.Projectiles
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.TryGetComponent(out EdgeOfMap edgeOfMap))
+            if (collision.gameObject.TryGetComponent(out IImpactTarget impactTarget))
+                OnHitImpactTarget(impactTarget);
+            
+            if (collision.gameObject.TryGetComponent<Land>(out _))
+            {
+                _landCutter.transform.position = transform.position;
+                Invoke(nameof(DoCut), LandCutDelay);
+            }
+        }
+
+        private void OnHitImpactTarget(IImpactTarget impactTarget)
+        {
+            if (impactTarget is EdgeOfMap)
             {
                 _manager.PlayButtonClick();
                 Destroy(gameObject);
             }
 
-            if (IsEnemyProjectile)
-            {
-                if (collision.gameObject.TryGetComponent(out PlayerHealth player))
-                {
-                    player.PlayHitEffect(transform.position);
-                    Destroy(gameObject);
-                }
-            }
-            else
-            {
-                if (collision.gameObject.TryGetComponent(out EnemyFacade enemy))
-                {
-                    enemy.PlayHitEffect(transform.position);
-                    Destroy(gameObject);
-                }
-            }
-
-            if (collision.gameObject.TryGetComponent<Land>(out _))
-            {
-                _landCutter.transform.position = transform.position;
-                Invoke(nameof(DoCut), 0.001f);
-            }
+            if (impactTarget is IHealthImpactTarget target)
+                OnHitHealthImpactTarget(target);
         }
 
+        private void OnHitHealthImpactTarget(IHealthImpactTarget healthImpactTarget)
+        {
+            switch (healthImpactTarget)
+            {
+                case PlayerRoot when !IsEnemyProjectile:
+                case EnemyFacade when IsEnemyProjectile:
+                    return;
+            }
+            
+            healthImpactTarget.Health.PlayHitEffect(transform.position);
+            Destroy(gameObject);
+        }
+        
         private void DoCut()
         {
             ParticleSystem flash = Instantiate(_groundCollisionFX, transform.position, transform.rotation);
@@ -93,7 +102,8 @@ namespace Source.Scripts.Release.Projectiles
 
         private void OnDestroy()
         {
-            if (ProjectileTracker.Instance != null && ProjectileTracker.Instance.CurrentProjectile == transform)
+            if (ProjectileTracker.Instance != null && 
+                ProjectileTracker.Instance.CurrentProjectile == transform)
             {
                 ProjectileTracker.Instance.ClearProjectile();
             }

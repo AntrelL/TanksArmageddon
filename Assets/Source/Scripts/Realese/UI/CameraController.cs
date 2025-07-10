@@ -1,13 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Source.Scripts.Realese.Enemy;
-using Source.Scripts.Realese.Projectiles;
-using Source.Scripts.Realese.TurnManager;
+using Source.Scripts.Release.Enemy;
+using Source.Scripts.Release.Projectiles;
+using Source.Scripts.Release.TurnManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Source.Scripts.Realese.UI
+namespace Source.Scripts.Release.UI
 {
     public class CameraController : MonoBehaviour
     {

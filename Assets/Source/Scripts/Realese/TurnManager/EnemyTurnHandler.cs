@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using Source.Scripts.Realese.Enemy;
+using Source.Scripts.Release.Enemy;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.TurnManager
+namespace Source.Scripts.Release.TurnManager
 {
     public class EnemyTurnHandler : MonoBehaviour
     {

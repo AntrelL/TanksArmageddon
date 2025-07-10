@@ -1,9 +1,9 @@
 ﻿using System;
 using Assets.Constructors.FuturisticTanks.Scripts;
-using Source.Scripts.Realese.Stuff;
+using Source.Scripts.Release.Stuff;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.Player
+namespace Source.Scripts.Release.Player
 {
     public class PlayerHealth : MonoBehaviour
     {

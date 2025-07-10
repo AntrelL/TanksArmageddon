@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
 using Assets.Constructors.FuturisticTanks.Scripts;
-using Source.Scripts.Realese.Stuff;
-using Source.Scripts.Realese.TurnManager;
-using Source.Scripts.Realese.UI;
+using Source.Scripts.Release.Stuff;
+using Source.Scripts.Release.TurnManager;
+using Source.Scripts.Release.UI;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.Projectiles
+namespace Source.Scripts.Release.Projectiles
 {
     public class ProjectileShooter2D : MonoBehaviour
     {

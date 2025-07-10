@@ -2,7 +2,7 @@ using Lean.Localization;
 using UnityEngine;
 using YG;
 
-namespace Source.Scripts.Realese.UI
+namespace Source.Scripts.Release.UI
 {
     public class Localization : MonoBehaviour
     {

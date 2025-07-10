@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.Stuff
+namespace Source.Scripts.Release.Stuff
 {
     public class ColliderRenderer : MonoBehaviour
     {

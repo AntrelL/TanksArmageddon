@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.Projectiles
+namespace Source.Scripts.Release.Projectiles
 {
     public class ProjectileTracker : MonoBehaviour
     {

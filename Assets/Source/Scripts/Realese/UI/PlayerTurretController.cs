@@ -1,9 +1,9 @@
 using DG.Tweening;
-using Source.Scripts.Realese.TurnManager;
+using Source.Scripts.Release.TurnManager;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Source.Scripts.Realese.UI
+namespace Source.Scripts.Release.UI
 {
     public class PlayerTurretController : MonoBehaviour
     {

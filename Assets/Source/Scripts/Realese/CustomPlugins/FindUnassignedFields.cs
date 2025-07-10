@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Source.Scripts.Realese.CustomPlugins
+namespace Source.Scripts.Release.CustomPlugins
 {
     public class FindUnassignedFields : EditorWindow
     {

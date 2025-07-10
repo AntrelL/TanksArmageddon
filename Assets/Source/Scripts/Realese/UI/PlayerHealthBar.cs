@@ -1,8 +1,8 @@
-using Source.Scripts.Realese.Player;
-using Source.Scripts.Realese.Stuff;
+using Source.Scripts.Release.Player;
+using Source.Scripts.Release.Stuff;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.UI
+namespace Source.Scripts.Release.UI
 {
     public class PlayerHealthBar : HealthBar
     {

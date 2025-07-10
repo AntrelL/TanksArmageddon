@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.InventoryManager
+namespace Source.Scripts.Release.InventoryManager
 {
     public class AmmoManager : MonoBehaviour
     {

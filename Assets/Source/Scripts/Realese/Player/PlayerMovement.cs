@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Source.Scripts.Realese.Player
+namespace Source.Scripts.Release.Player
 {
     public class PlayerMovement : MonoBehaviour
     {

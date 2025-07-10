@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Source.Scripts.Realese.Player
+namespace Source.Scripts.Release.Player
 {
     public class PlayerRoot : MonoBehaviour
     {

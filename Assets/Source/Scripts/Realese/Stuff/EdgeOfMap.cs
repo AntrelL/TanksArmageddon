@@ -1,8 +1,8 @@
 using System;
-using Source.Scripts.Realese.Player;
+using Source.Scripts.Release.Player;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.Stuff
+namespace Source.Scripts.Release.Stuff
 {
     public class EdgeOfMap : MonoBehaviour
     {

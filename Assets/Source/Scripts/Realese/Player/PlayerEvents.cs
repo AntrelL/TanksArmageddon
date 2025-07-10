@@ -1,9 +1,9 @@
-﻿using Source.Scripts.Realese.Stuff;
-using Source.Scripts.Realese.TurnManager;
-using Source.Scripts.Realese.UI;
+﻿using Source.Scripts.Release.Stuff;
+using Source.Scripts.Release.TurnManager;
+using Source.Scripts.Release.UI;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.Player
+namespace Source.Scripts.Release.Player
 {
     public class PlayerEvents: MonoBehaviour
     {

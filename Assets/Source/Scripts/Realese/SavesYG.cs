@@ -1,4 +1,4 @@
-using Source.Scripts.Realese.Projectiles;
+using Source.Scripts.Release.Projectiles;
 
 namespace YG
 {

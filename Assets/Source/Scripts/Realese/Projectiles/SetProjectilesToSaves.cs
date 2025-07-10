@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using YG;
 
-namespace Source.Scripts.Realese.Projectiles
+namespace Source.Scripts.Release.Projectiles
 {
     public class SetProjectilesToSaves : MonoBehaviour
     {

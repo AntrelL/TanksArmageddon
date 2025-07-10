@@ -1,17 +1,17 @@
 using System;
 using System.Collections;
 using IJunior.TypedScenes;
-using Source.Scripts.Realese.Airdrop;
-using Source.Scripts.Realese.Player;
-using Source.Scripts.Realese.Stuff;
-using Source.Scripts.Realese.TurnManager;
+using Source.Scripts.Release.Airdrop;
+using Source.Scripts.Release.Player;
+using Source.Scripts.Release.Stuff;
+using Source.Scripts.Release.TurnManager;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using YG;
 
-namespace Source.Scripts.Realese.UI
+namespace Source.Scripts.Release.UI
 {
     public class UIController : MonoBehaviour
     {
@@ -50,10 +50,6 @@ namespace Source.Scripts.Realese.UI
         public static event Action<int> PlayerRewardReceived;
 
         public static event Action<int> PlayerPointsReceived;
-
-        //public static event Action FinishedCanvasShown;
-
-        //public static event Action FailedCanvasShown;
 
         public static event Action SkipTurnButtonPressed;
     

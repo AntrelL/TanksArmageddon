@@ -1,9 +1,9 @@
 using Assets.Constructors.FuturisticTanks.Scripts;
-using Source.Scripts.Realese.Projectiles;
-using Source.Scripts.Realese.UI;
+using Source.Scripts.Release.Projectiles;
+using Source.Scripts.Release.UI;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.Stuff
+namespace Source.Scripts.Release.Stuff
 {
     public class Shoot : MonoBehaviour
     {
@@ -11,7 +11,7 @@ namespace Source.Scripts.Realese.Stuff
         [SerializeField] private Tank _tank;
         [SerializeField] private Transform _firePoint;
         [SerializeField] private ParticleSystem _muzzleFlash;
-        [SerializeField] private UIController _UIcontroller;
+        [SerializeField] private UIController _uiController;
     
         private AudioManager _manager;
 
@@ -22,12 +22,12 @@ namespace Source.Scripts.Realese.Stuff
 
         private void OnEnable()
         {
-            _UIcontroller.PlayerShootButtonPressed += StartShoot;
+            _uiController.PlayerShootButtonPressed += StartShoot;
         }
 
         private void OnDisable()
         {
-            _UIcontroller.PlayerShootButtonPressed -= StartShoot;
+            _uiController.PlayerShootButtonPressed -= StartShoot;
         }
 
         private void StartShoot()

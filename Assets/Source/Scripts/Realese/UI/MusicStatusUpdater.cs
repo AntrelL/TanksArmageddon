@@ -1,11 +1,11 @@
-using Source.Scripts.Realese.Stuff;
+using Source.Scripts.Release.Stuff;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.UI
+namespace Source.Scripts.Release.UI
 {
     public class MusicStatusUpdater : MonoBehaviour
     {
-        [SerializeField] private UIController _UIcontroller;
+        [SerializeField] private UIController _uiController;
 
         private AudioManager _audioManager;
 
@@ -15,11 +15,11 @@ namespace Source.Scripts.Realese.UI
 
             if (_audioManager.IsMusicOn == true)
             {
-                _UIcontroller.UnmuteSound();
+                _uiController.UnmuteSound();
             }
             else
             {
-                _UIcontroller.MuteSound();
+                _uiController.MuteSound();
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.LandCutter
+namespace Source.Scripts.Release.LandCutter
 {
     public class Segment
     {

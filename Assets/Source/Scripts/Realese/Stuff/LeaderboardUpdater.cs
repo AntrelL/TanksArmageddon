@@ -1,7 +1,7 @@
 using UnityEngine;
 using YG;
 
-namespace Source.Scripts.Realese.Stuff
+namespace Source.Scripts.Release.Stuff
 {
     public class LeaderboardUpdater : MonoBehaviour
     {

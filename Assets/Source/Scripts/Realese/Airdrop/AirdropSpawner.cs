@@ -1,8 +1,8 @@
 using System;
-using Source.Scripts.Realese.TurnManager;
+using Source.Scripts.Release.TurnManager;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.Airdrop
+namespace Source.Scripts.Release.Airdrop
 {
     public class AirdropSpawner : MonoBehaviour
     {

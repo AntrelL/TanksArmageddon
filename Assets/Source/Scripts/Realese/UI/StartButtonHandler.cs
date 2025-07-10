@@ -2,7 +2,7 @@ using IJunior.TypedScenes;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Source.Scripts.Realese.UI
+namespace Source.Scripts.Release.UI
 {
     public class StartButtonHandler : MonoBehaviour, IPointerClickHandler
     {

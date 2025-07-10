@@ -1,6 +1,6 @@
 using System;
 
-namespace Source.Scripts.Realese.Projectiles
+namespace Source.Scripts.Release.Projectiles
 {
     [Serializable]
     public class ClearWeaponData

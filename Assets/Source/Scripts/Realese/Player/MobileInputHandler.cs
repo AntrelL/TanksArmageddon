@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Source.Scripts.Realese.Player
+namespace Source.Scripts.Release.Player
 {
     public class MobileInputHandler : MonoBehaviour
     {

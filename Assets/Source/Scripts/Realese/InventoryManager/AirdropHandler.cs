@@ -1,7 +1,7 @@
-﻿using Source.Scripts.Realese.Airdrop;
+﻿using Source.Scripts.Release.Airdrop;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.InventoryManager
+namespace Source.Scripts.Release.InventoryManager
 {
     public class AirdropHandler : MonoBehaviour
     {

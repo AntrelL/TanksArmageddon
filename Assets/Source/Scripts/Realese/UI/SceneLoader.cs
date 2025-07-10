@@ -1,9 +1,9 @@
 ﻿using NaughtyAttributes;
-using Source.Scripts.Realese.Stuff;
+using Source.Scripts.Release.Stuff;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Source.Scripts.Realese.UI
+namespace Source.Scripts.Release.UI
 {
     public class SceneLoader : MonoBehaviour
     {

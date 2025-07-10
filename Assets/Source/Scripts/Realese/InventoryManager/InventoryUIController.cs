@@ -2,7 +2,7 @@
 using UnityEngine;
 using YG;
 
-namespace Source.Scripts.Realese.InventoryManager
+namespace Source.Scripts.Release.InventoryManager
 {
     public class InventoryUIController : MonoBehaviour
     {

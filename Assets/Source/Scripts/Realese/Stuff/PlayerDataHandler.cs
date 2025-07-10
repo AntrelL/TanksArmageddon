@@ -1,8 +1,8 @@
-using Source.Scripts.Realese.UI;
+using Source.Scripts.Release.UI;
 using UnityEngine;
 using YG;
 
-namespace Source.Scripts.Realese.Stuff
+namespace Source.Scripts.Release.Stuff
 {
     public class PlayerDataHandler : MonoBehaviour
     {

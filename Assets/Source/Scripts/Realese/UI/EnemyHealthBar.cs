@@ -1,9 +1,9 @@
-using Source.Scripts.Realese.Enemy;
-using Source.Scripts.Realese.Stuff;
+using Source.Scripts.Release.Enemy;
+using Source.Scripts.Release.Stuff;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Source.Scripts.Realese.UI
+namespace Source.Scripts.Release.UI
 {
     public class EnemyHealthBar : HealthBar
     {

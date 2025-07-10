@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Source.Scripts.Realese.Enemy;
-using Source.Scripts.Realese.Player;
-using Source.Scripts.Realese.UI;
+using Source.Scripts.Release.Enemy;
+using Source.Scripts.Release.Player;
+using Source.Scripts.Release.UI;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.TurnManager
+namespace Source.Scripts.Release.TurnManager
 {
     public class TurnState : MonoBehaviour
     {

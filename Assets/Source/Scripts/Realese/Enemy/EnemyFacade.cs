@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.Enemy
+namespace Source.Scripts.Release.Enemy
 {
     public class EnemyFacade : MonoBehaviour
     {

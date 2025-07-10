@@ -1,7 +1,7 @@
 ﻿using Assets.Constructors.FuturisticTanks.Scripts;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.Enemy
+namespace Source.Scripts.Release.Enemy
 {
     public class EnemyMovement : MonoBehaviour
     {

@@ -1,10 +1,10 @@
 using System;
-using Source.Scripts.Realese.Enemy;
-using Source.Scripts.Realese.Player;
-using Source.Scripts.Realese.Stuff;
+using Source.Scripts.Release.Enemy;
+using Source.Scripts.Release.Player;
+using Source.Scripts.Release.Stuff;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.Airdrop
+namespace Source.Scripts.Release.Airdrop
 {
     public class AirdropBox : MonoBehaviour
     {

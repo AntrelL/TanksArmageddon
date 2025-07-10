@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Source.Scripts.Realese.Projectiles
+namespace Source.Scripts.Release.Projectiles
 {
     [CreateAssetMenu(fileName = "WeaponData", menuName = "ScriptableObjects/WeaponData")]
     public class WeaponData : ScriptableObject

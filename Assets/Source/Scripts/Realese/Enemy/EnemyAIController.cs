@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using Source.Scripts.Realese.Projectiles;
+using Source.Scripts.Release.Projectiles;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.Enemy
+namespace Source.Scripts.Release.Enemy
 {
     public class EnemyAIController : MonoBehaviour
     {

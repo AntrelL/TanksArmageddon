@@ -1,7 +1,7 @@
-using Source.Scripts.Realese.Stuff;
+using Source.Scripts.Release.Stuff;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.LandCutter
+namespace Source.Scripts.Release.LandCutter
 {
     [ExecuteAlways]
     public class Circle : MonoBehaviour

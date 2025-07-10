@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Source.Scripts.Realese.Stuff;
+using Source.Scripts.Release.Stuff;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.LandCutter
+namespace Source.Scripts.Release.LandCutter
 {
     public class Land : MonoBehaviour
     {

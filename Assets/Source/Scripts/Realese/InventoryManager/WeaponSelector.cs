@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Source.Scripts.Realese.InventoryManager
+namespace Source.Scripts.Release.InventoryManager
 {
     public class WeaponSelector : MonoBehaviour
     {
@@ -13,6 +13,12 @@ namespace Source.Scripts.Realese.InventoryManager
     
         public event Action<int> OnWeaponSelected;
 
+        public WeaponSlot SlotToClean => _slotToClean;
+        
+        public void DeselectCurrent() => _selectedSlot?.Deselect();
+        
+        public void SelectFirst() => Select(_ui.GetSlot(0));
+        
         public void Initialize()
         {
             foreach (var slot in _ui.Slots)
@@ -39,11 +45,5 @@ namespace Source.Scripts.Realese.InventoryManager
                 _slotToClean = null;
             }
         }
-
-        public WeaponSlot SlotToClean => _slotToClean;
-        
-        public void DeselectCurrent() => _selectedSlot?.Deselect();
-        
-        public void SelectFirst() => Select(_ui.GetSlot(0));
     }
 }

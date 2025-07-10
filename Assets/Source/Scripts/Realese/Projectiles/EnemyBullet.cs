@@ -1,11 +1,11 @@
 using System;
-using Source.Scripts.Realese.Enemy;
-using Source.Scripts.Realese.LandCutter;
-using Source.Scripts.Realese.Player;
-using Source.Scripts.Realese.Stuff;
+using Source.Scripts.Release.Enemy;
+using Source.Scripts.Release.LandCutter;
+using Source.Scripts.Release.Player;
+using Source.Scripts.Release.Stuff;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.Projectiles
+namespace Source.Scripts.Release.Projectiles
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class EnemyBullet : MonoBehaviour

@@ -1,9 +1,9 @@
-using Source.Scripts.Realese.Projectiles;
+using Source.Scripts.Release.Projectiles;
 using TMPro;
 using UnityEngine;
 using YG;
 
-namespace Source.Scripts.Realese.Stuff
+namespace Source.Scripts.Release.Stuff
 {
     public class Hangar : MonoBehaviour
     {

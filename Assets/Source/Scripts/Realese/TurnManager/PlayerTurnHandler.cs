@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections;
-using Source.Scripts.Realese.Projectiles;
-using Source.Scripts.Realese.UI;
+using Source.Scripts.Release.Projectiles;
+using Source.Scripts.Release.UI;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.TurnManager
+namespace Source.Scripts.Release.TurnManager
 {
     public class PlayerTurnHandler : MonoBehaviour
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using Assets.Constructors.FuturisticTanks.Scripts;
-using Source.Scripts.Realese.Stuff;
+using Source.Scripts.Release.Stuff;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.Enemy
+namespace Source.Scripts.Release.Enemy
 {
     public class EnemyHealth : MonoBehaviour
     {

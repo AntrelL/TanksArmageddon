@@ -1,9 +1,9 @@
 using System.Collections;
-using Source.Scripts.Realese.Stuff;
+using Source.Scripts.Release.Stuff;
 using TMPro;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.UI
+namespace Source.Scripts.Release.UI
 {
     public class TypewriterEffect : MonoBehaviour
     {

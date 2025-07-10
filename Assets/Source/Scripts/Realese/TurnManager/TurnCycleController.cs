@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.TurnManager
+namespace Source.Scripts.Release.TurnManager
 {
     public class TurnCycleController : MonoBehaviour
     {

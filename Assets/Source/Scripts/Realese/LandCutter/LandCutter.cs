@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.LandCutter
+namespace Source.Scripts.Release.LandCutter
 {
     public class LandCutter : MonoBehaviour
     {

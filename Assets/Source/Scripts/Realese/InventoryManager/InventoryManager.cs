@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Source.Scripts.Realese.Projectiles;
+using Source.Scripts.Release.Projectiles;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Source.Scripts.Realese.InventoryManager
+namespace Source.Scripts.Release.InventoryManager
 {
     public class InventoryManager : MonoBehaviour
     {

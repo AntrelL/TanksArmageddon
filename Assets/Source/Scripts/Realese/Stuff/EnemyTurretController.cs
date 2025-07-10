@@ -1,10 +1,10 @@
 using Assets.Constructors.FuturisticTanks.Scripts;
 using DG.Tweening;
-using Source.Scripts.Realese.Projectiles;
-using Source.Scripts.Realese.TurnManager;
+using Source.Scripts.Release.Projectiles;
+using Source.Scripts.Release.TurnManager;
 using UnityEngine;
 
-namespace Source.Scripts.Realese.Stuff
+namespace Source.Scripts.Release.Stuff
 {
     public class EnemyTurretController : MonoBehaviour
     {

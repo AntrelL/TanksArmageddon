@@ -20,14 +20,14 @@ namespace EpicToonFX
 		public bool disableSound = true;
 
 		void Start ()
-		{	
+		{
 			Invoke("PlayEffect", startDelay);
 		}
 
 		public void PlayEffect()
 		{
 			StartCoroutine("EffectLoop");
-			
+
 			if (effectIndex < listOfEffects.Count - 1)
 			{
                 effectIndex++;
@@ -42,7 +42,7 @@ namespace EpicToonFX
 		private IEnumerator EffectLoop()
 		{
             GameObject instantiatedEffect = (GameObject) Instantiate(listOfEffects[effectIndex], transform.position, transform.rotation * Quaternion.Euler (0, 0, 0));
-			
+
 			if (disableLights && instantiatedEffect.GetComponent<Light>())
 			{
 				instantiatedEffect.GetComponent<Light>().enabled = false;
@@ -52,9 +52,9 @@ namespace EpicToonFX
 			{
 				instantiatedEffect.GetComponent<AudioSource>().enabled = false;
 			}
-			
+
 			yield return new WaitForSeconds(loopLength);
-			
+
 			Destroy(instantiatedEffect);
 			PlayEffect();
 		}

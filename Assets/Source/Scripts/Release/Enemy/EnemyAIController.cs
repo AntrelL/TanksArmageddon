@@ -8,9 +8,9 @@ namespace Source.Scripts.Release.Enemy
     {
         [SerializeField] private EnemyMovement _movement;
         [SerializeField] private EnemyCombat _combat;
-    
+
         private EnemyBullet _activeBullet;
-    
+
         private void OnEnable()
         {
             if (_combat != null && _combat.ProjectileShooter != null)
@@ -18,7 +18,7 @@ namespace Source.Scripts.Release.Enemy
                 _combat.ProjectileShooter.EnemyBulletSpawned += OnEnemyBulletSpawned;
             }
         }
-    
+
         private void OnDisable()
         {
             if (_combat != null && _combat.ProjectileShooter != null)
@@ -55,12 +55,12 @@ namespace Source.Scripts.Release.Enemy
 
             _movement.StopMovement();
         }
-        
+
         private IEnumerator WaitProjectileFly()
         {
             if (_activeBullet == null)
                 yield break;
-        
+
             bool ended = false;
             void OnDestroyed() => ended = true;
 
@@ -68,7 +68,7 @@ namespace Source.Scripts.Release.Enemy
             yield return new WaitUntil(() => ended);
             _activeBullet.Destroyed -= OnDestroyed;
         }
-        
+
         private void OnEnemyBulletSpawned(EnemyBullet bullet)
         {
             _activeBullet = bullet;

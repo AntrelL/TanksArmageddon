@@ -37,7 +37,7 @@ namespace Source.Scripts.Release.UI
         [SerializeField] private float _fadeDuration = 1.0f;
         [SerializeField] private float _visibleDuration = 1.0f;
         [SerializeField] private AirdropSpawner _airdropSpawner;
-        
+
         private readonly List<(int UpperRangeLimit, int LevelReward, int PointsReward)> _goalTable =
             new List<(int UpperRangeLimit, int LevelReward, int PointsReward)>
             {
@@ -45,12 +45,12 @@ namespace Source.Scripts.Release.UI
                 (20, 1000, 50),
                 (40, 500, 10)
             };
-        
+
         private int _turnCount;
         private int _levelRewardAmount;
         private int _pointsRewardAmount;
         private string _currentScene;
-        private AudioManager _manager; 
+        private AudioManager _manager;
 
         public event Action PlayerShootButtonPressed;
 
@@ -59,11 +59,11 @@ namespace Source.Scripts.Release.UI
         public static event Action<int> PlayerPointsReceived;
 
         public static event Action SkipTurnButtonPressed;
-    
+
         private void Awake()
         {
             _manager = FindObjectOfType<AudioManager>();
-        } 
+        }
 
         private void Start()
         {
@@ -290,11 +290,11 @@ namespace Source.Scripts.Release.UI
         private void UpdateGoalStatus()
         {
             _turnCount = _turnState.TurnCount;
-            
+
             for (int i = 0; i < _goalTable.Count; i++)
             {
                 var goal = _goalTable[i];
-                
+
                 if (_turnCount <= goal.UpperRangeLimit)
                 {
                     _levelRewardAmount = goal.LevelReward;
@@ -304,7 +304,7 @@ namespace Source.Scripts.Release.UI
 
                     for (int j = 0; j < numberOfGoalsCompleted; j++)
                         _textGoals[j].SetActive(true);
-                    
+
                     break;
                 }
             }

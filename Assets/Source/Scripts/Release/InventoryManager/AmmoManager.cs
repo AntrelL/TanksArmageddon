@@ -26,7 +26,7 @@ namespace Source.Scripts.Release.InventoryManager
             }
 
             _ammo.Remove(index);
-            
+
             return false;
         }
 

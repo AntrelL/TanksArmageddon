@@ -9,7 +9,7 @@ namespace Source.Scripts.Release.UI
     public class ShopSceneNavigationManager : MonoBehaviour
     {
         [SerializeField] private Canvas _helpViewCanvas;
-    
+
         private AudioManager _manager;
 
         public  event Action TextShowing;
@@ -18,7 +18,7 @@ namespace Source.Scripts.Release.UI
         {
             _manager = FindObjectOfType<AudioManager>();
         }
-    
+
         public void HelpButtonPressed()
         {
             _manager.PlayButtonClick();

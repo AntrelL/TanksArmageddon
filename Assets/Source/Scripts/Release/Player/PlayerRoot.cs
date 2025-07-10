@@ -8,9 +8,9 @@ namespace Source.Scripts.Release.Player
         [SerializeField] private PlayerHealth _health;
         [SerializeField] private PlayerMovement _movement;
         [SerializeField] private float _travelTime;
-        
+
         public Health Health => _health;
-        
+
         private void Awake()
         {
             _movement.Initialize(_travelTime);

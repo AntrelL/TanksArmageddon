@@ -2,6 +2,6 @@
 {
     public interface IHealthImpactTarget : IImpactTarget
     {
-        Health Health { get; } 
+        Health Health { get; }
     }
 }

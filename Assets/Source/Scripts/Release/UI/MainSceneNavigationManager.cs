@@ -16,7 +16,7 @@ namespace Source.Scripts.Release.UI
         {
             _manager = FindObjectOfType<AudioManager>();
         }
-    
+
         private void Start()
         {
             Time.timeScale = 1f;
@@ -58,7 +58,7 @@ namespace Source.Scripts.Release.UI
                 _authView.SetActive(true);
             }
         }
-    
+
         public void AcceptPressed()
         {
             _manager.PlayButtonClick();

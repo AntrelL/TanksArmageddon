@@ -14,10 +14,10 @@ namespace Source.Scripts.Release.Projectiles
         private const float LandCutDelay = 0.001f;
         private const int MinPercentageValue = 0;
         private const int MaxPercentageValue = 100;
-        
+
         [SerializeField] private ParticleSystem _groundCollisionFX;
 
-        private readonly List<(int Value, int UpperRangeLimit)> _damageTable = 
+        private readonly List<(int Value, int UpperRangeLimit)> _damageTable =
             new List<(int Value, int UpperRangeLimit)>
             {
                 (100, 60),
@@ -25,7 +25,7 @@ namespace Source.Scripts.Release.Projectiles
                 (250, 90),
                 (500, 100)
             };
-        
+
         private AudioManager _manager;
         private LandCutter.LandCutter _landCutter;
 

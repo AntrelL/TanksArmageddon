@@ -27,20 +27,20 @@ namespace Source.Scripts.Release.Player
 
         private void FixedUpdate()
         {
-            if (!_canMove) 
+            if (!_canMove)
             {
                 _rigidbody2D.drag = 100f;
-                
+
                 return;
             }
 
             float input = Input.GetAxis("Horizontal");
-        
+
             if (_travelTimeSpent >= _availableTravelTime)
             {
                 _rigidbody2D.drag = 100f;
                 _tank.Idle();
-                
+
                 return;
             }
 
@@ -61,14 +61,14 @@ namespace Source.Scripts.Release.Player
             if (_rigidbody2D.velocity.magnitude > _maxSpeed)
                 _rigidbody2D.velocity = _rigidbody2D.velocity.normalized * _maxSpeed;
         }
-    
+
         public void Initialize(float travelTime)
         {
             _availableTravelTime = travelTime;
             _petrolTank.maxValue = travelTime;
             _petrolTank.value = travelTime;
         }
-    
+
         public void SetCanMove(bool value)
         {
             _canMove = value;

@@ -13,11 +13,11 @@ namespace Source.Scripts.Release.LandCutter
                 circleLine.Points[i].NextPoint = circleLine.Points[nextIndex];
             }
         }
-        
+
         public void LinkPointsAcrossLines(
-            Line landLine, 
-            Line circleLine, 
-            PolygonCollider2D circleCollider, 
+            Line landLine,
+            Line circleLine,
+            PolygonCollider2D circleCollider,
             int iterationCount)
         {
             List<Point> allPoints = new List<Point>(landLine.Points);
@@ -55,7 +55,7 @@ namespace Source.Scripts.Release.LandCutter
                 }
             }
         }
-        
+
         private int GetCircularIndex(int index, int length, bool clockwise)
         {
             int next = index + (clockwise ? 1 : -1);

@@ -121,7 +121,7 @@ namespace CW.Common
 			{
 				Application.OpenURL("http://CarlosWilkes.com/Forum/" + tgt.ShortName);
 			}
-				
+
 			if (GUILayout.Button(new GUIContent("E-Mail Me", "carlos.wilkes@gmail.com")) == true)
 			{
 				Application.OpenURL("mailto:carlos.wilkes@gmail.com");

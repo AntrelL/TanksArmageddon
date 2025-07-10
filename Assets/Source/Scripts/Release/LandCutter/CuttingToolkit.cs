@@ -21,7 +21,7 @@ namespace Source.Scripts.Release.LandCutter
                     if (Intersection.IsIntersecting(al, bl, ac, bc))
                     {
                         Vector2 position = Intersection.GetIntersection(al, bl, ac, bc);
-                        
+
                         Point crossPoint = new Point
                         {
                             Position = position,
@@ -29,14 +29,14 @@ namespace Source.Scripts.Release.LandCutter
                             CircleSegment = circleSegment,
                             IsCross = true
                         };
-                        
+
                         landSegment.CrossPoints.Add(crossPoint);
                         circleSegment.CrossPoints.Add(crossPoint);
                     }
                 }
             }
         }
-        
+
         public void AlignLineToOutside(Line landLine, PolygonCollider2D circleCollider)
         {
             for (int i = 0; i < landLine.Points.Count; i++)
@@ -52,7 +52,7 @@ namespace Source.Scripts.Release.LandCutter
                 }
             }
         }
-        
+
         public List<List<Point>> CollectSplines(Line landLine, PolygonCollider2D circleCollider, int iterations)
         {
             var allSplines = new List<List<Point>>();

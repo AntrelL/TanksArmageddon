@@ -14,14 +14,14 @@ namespace Source.Scripts.Release.Stuff
         [SerializeField] private TextMeshProUGUI[] _weaponLevelTexts;
         [SerializeField] private TextMeshProUGUI[] _weaponCardTexts;
         [SerializeField] private TextMeshProUGUI[] _weaponDamageTexts;
-    
+
         private AudioManager _manager;
 
         private void Awake()
         {
             _manager = FindObjectOfType<AudioManager>();
         }
-    
+
         private void Start()
         {
             Time.timeScale = 1.0f;

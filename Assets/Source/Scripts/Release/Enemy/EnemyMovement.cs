@@ -71,7 +71,7 @@ namespace Source.Scripts.Release.Enemy
             _tank.Move();
             _movementTimeUsed += Time.fixedDeltaTime;
         }
-    
+
         public void StartMovement(float direction)
         {
             _movementTimeUsed = 0f;

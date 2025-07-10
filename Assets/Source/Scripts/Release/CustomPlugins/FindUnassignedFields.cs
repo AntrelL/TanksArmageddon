@@ -51,7 +51,7 @@ namespace Source.Scripts.Release.CustomPlugins
                 foreach (var component in components)
                 {
                     if (component == null) continue;
-                
+
                     if (!IsCustomScript(component.GetType()))
                         continue;
 
@@ -84,13 +84,13 @@ namespace Source.Scripts.Release.CustomPlugins
         {
             if (!typeof(UnityEngine.Object).IsAssignableFrom(type))
                 return false;
-        
+
             string[] scriptPaths = AssetDatabase.FindAssets($"t:Script {type.Name}");
-        
+
             foreach (string guid in scriptPaths)
             {
                 string scriptPath = AssetDatabase.GUIDToAssetPath(guid);
-            
+
                 if (scriptPath.Contains("/Realese/"))
                 {
                     return true;

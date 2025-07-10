@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using YG.Insides;
 using YG.Utils.LB;
 
 namespace YG

@@ -9,7 +9,7 @@ namespace Source.Scripts.Release.Enemy
         [SerializeField] private InventoryManager.InventoryManager _inventoryManager;
 
         public int PlayerDamage { get; private set; } = 100;
-        
+
         public ProjectileShooter2D ProjectileShooter => _projectileShooter;
 
         private void OnEnable()
@@ -21,7 +21,7 @@ namespace Source.Scripts.Release.Enemy
         {
             _inventoryManager.UpdatePlayerDamage -= OnUpdatePlayerDamage;
         }
-    
+
         public bool TryShoot()
         {
             return _projectileShooter.ShootIfPossible();

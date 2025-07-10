@@ -11,7 +11,7 @@ namespace Source.Scripts.Release.Projectiles
     {
         private const float LandCutDelay = 0.001f;
         private const int MinWorldY = -50;
-        
+
         [SerializeField] private ParticleSystem _groundCollisionFX;
         [SerializeField] private float _speed;
 
@@ -23,7 +23,7 @@ namespace Source.Scripts.Release.Projectiles
 
         private float _targetX;
         private float _targetY;
-        
+
         public Transform CurrentProjectile { get; private set; }
 
         public bool IsEnemyProjectile { get; set; } = false;
@@ -32,7 +32,7 @@ namespace Source.Scripts.Release.Projectiles
         {
             _manager = FindObjectOfType<AudioManager>();
         }
-    
+
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
@@ -56,7 +56,7 @@ namespace Source.Scripts.Release.Projectiles
         {
             if (collision.gameObject.TryGetComponent(out IImpactTarget impactTarget))
                 OnHitImpactTarget(impactTarget);
-            
+
             if (collision.gameObject.TryGetComponent<Land>(out _))
             {
                 _landCutter.transform.position = transform.position;
@@ -84,11 +84,11 @@ namespace Source.Scripts.Release.Projectiles
                 case EnemyFacade when IsEnemyProjectile:
                     return;
             }
-            
+
             healthImpactTarget.Health.PlayHitEffect(transform.position);
             Destroy(gameObject);
         }
-        
+
         private void DoCut()
         {
             ParticleSystem flash = Instantiate(_groundCollisionFX, transform.position, transform.rotation);
@@ -102,7 +102,7 @@ namespace Source.Scripts.Release.Projectiles
 
         private void OnDestroy()
         {
-            if (ProjectileTracker.Instance != null && 
+            if (ProjectileTracker.Instance != null &&
                 ProjectileTracker.Instance.CurrentProjectile == transform)
             {
                 ProjectileTracker.Instance.ClearProjectile();

@@ -18,7 +18,7 @@ namespace Source.Scripts.Release.UI
             _angleSlider.onValueChanged.AddListener(OnSliderValueChanged);
             _initialGunAngle = GetLocalGunAngle();
         }
-    
+
         private void OnEnable()
         {
             _turnManager.CanPlayerShoot += OnCanPlayerShoot;

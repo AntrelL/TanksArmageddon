@@ -22,7 +22,7 @@ namespace Source.Scripts.Release.InventoryManager
             _ui.UpdateUI();
             _ui.HideAllExceptFirst();
 
-            _selector.OnWeaponSelected += damage => UpdatePlayerDamage?.Invoke(damage);
+            _selector.WeaponSelected += damage => UpdatePlayerDamage?.Invoke(damage);
             _selector.Initialize();
             _selector.SelectFirst();
 
@@ -33,7 +33,7 @@ namespace Source.Scripts.Release.InventoryManager
         {
             _projectileTracker.ProjectileDestroyed += OnProjectileDestroyed;
         }
-    
+
         private void OnDestroy()
         {
             if (_projectileTracker != null)
@@ -61,12 +61,12 @@ namespace Source.Scripts.Release.InventoryManager
 
             var weaponData = _weaponDataList[index];
             slot.Icon.sprite = weaponData.Icon;
-        
+
             var weapon = new ClearWeaponData(weaponData);
             slot.SetWeaponData(weapon);
-        
+
             slot.UpdateAmmoCount(_ammo.GetAmmo(index));
-        
+
             _selector.DeselectCurrent();
             _selector.Select(slot);
         }
@@ -74,11 +74,11 @@ namespace Source.Scripts.Release.InventoryManager
         private void OnProjectileDestroyed()
         {
             var slotToClean = _selector.SlotToClean;
-        
+
             if (slotToClean == null) return;
 
             int index = _ui.Slots.IndexOf(slotToClean);
-        
+
             if (_ammo.UseAmmo(index))
             {
                 slotToClean.UpdateAmmoCount(_ammo.GetAmmo(index));

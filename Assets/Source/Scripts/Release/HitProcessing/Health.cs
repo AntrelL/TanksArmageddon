@@ -9,36 +9,36 @@ namespace Source.Scripts.Release.HitProcessing
     {
         [SerializeField] private Tank _tank;
         [SerializeField] private ParticleSystem _hitFX;
-        
+
         private int _maxHealth;
         private int _currentHealth;
         private bool _isAlive = true;
         private AudioManager _manager;
-        
+
         public event Action<int> HealthChanged;
-        
+
         public event Action Defeated;
-        
+
         private void Awake()
         {
             _manager = FindObjectOfType<AudioManager>();
             _maxHealth = GetMaxHealth();
             _currentHealth = _maxHealth;
         }
-        
+
         public void PlayHitEffect(Vector3 position)
         {
-            if (_isAlive == false) 
+            if (_isAlive == false)
                 return;
-            
+
             _manager.PlayTankHit();
             var flash = Instantiate(_hitFX, position, Quaternion.identity);
             flash.Play();
             Destroy(flash.gameObject, flash.main.duration);
-            
+
             OnPlayHitEffect();
         }
-        
+
         public void TakeDamage(int value)
         {
             if (_isAlive == false)
@@ -57,7 +57,7 @@ namespace Source.Scripts.Release.HitProcessing
         }
 
         protected virtual void OnPlayHitEffect() { }
-        
+
         protected abstract int GetMaxHealth();
     }
 }

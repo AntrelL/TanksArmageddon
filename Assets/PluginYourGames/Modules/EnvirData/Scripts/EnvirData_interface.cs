@@ -1,6 +1,5 @@
 namespace YG
 {
-    using System;
     using UnityEngine;
 #if UNITY_WEBGL
     using System.Runtime.InteropServices;

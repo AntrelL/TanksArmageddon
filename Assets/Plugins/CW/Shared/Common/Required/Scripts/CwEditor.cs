@@ -474,7 +474,7 @@ namespace CW.Common
 		public static SerializedProperty GetProperty(string propertyPath)
 		{
 			var data = datas.Peek();
-			
+
 			if (data != null)
 			{
 				var dataA = data as SerializedObject;

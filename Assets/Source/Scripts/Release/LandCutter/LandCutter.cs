@@ -8,11 +8,11 @@ namespace Source.Scripts.Release.LandCutter
         [SerializeField] private PolygonCollider2D _landCollider;
         [SerializeField] private PolygonCollider2D _circleCollider;
         [SerializeField] private int _testIterations = 10;
-        
+
         private readonly LineFactory _lineFactory = new LineFactory();
         private readonly PointConnector _pointConnector = new PointConnector();
         private readonly CuttingToolkit _cuttingToolkit = new CuttingToolkit();
-        
+
         public void DoCut()
         {
             Line circleLine = _lineFactory.CreateFromCollider(_circleCollider, 0);
@@ -29,7 +29,7 @@ namespace Source.Scripts.Release.LandCutter
 
             _landCollider.GetComponent<Land>().SetPath(allSplines);
         }
-        
+
         private List<List<Point>> Subtract(Line landLine, Line circleLine)
         {
             _pointConnector.LinkCircular(circleLine, false);
@@ -37,7 +37,7 @@ namespace Source.Scripts.Release.LandCutter
 
             _lineFactory.Recalculate(landLine);
             _lineFactory.Recalculate(circleLine);
-            
+
             _pointConnector.LinkPointsAcrossLines(landLine, circleLine, _circleCollider, _testIterations);
             return _cuttingToolkit.CollectSplines(landLine, _circleCollider, _testIterations);
         }

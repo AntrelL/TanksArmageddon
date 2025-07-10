@@ -13,7 +13,7 @@ namespace Source.Scripts.Release.Airdrop
         {
             if (collision.gameObject.TryGetComponent(out IImpactTarget impactTarget) == false)
                 return;
-            
+
             if (impactTarget is PlayerRoot)
                 PlayerPickedUpAirdrop?.Invoke(GenerateRandomWeaponIndex());
 

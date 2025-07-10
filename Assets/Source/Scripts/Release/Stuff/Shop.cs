@@ -17,7 +17,7 @@ namespace Source.Scripts.Release.Stuff
         {
             _manager = FindObjectOfType<AudioManager>();
         }
-    
+
         private void Start()
         {
             Time.timeScale = 1f;
@@ -78,15 +78,15 @@ namespace Source.Scripts.Release.Stuff
                 case "ru":
                     _purchasedCardsInfo.text = "Недостаточно ядер.";
                     break;
-            
+
                 case "en":
                     _purchasedCardsInfo.text = "Not enough cores.";
                     break;
-            
+
                 case "tr":
                     _purchasedCardsInfo.text = "Yeterli çekirdek yok.";
                     break;
-            
+
                 default:
                     _purchasedCardsInfo.text = "Not enough cores.";
                     break;
@@ -102,7 +102,7 @@ namespace Source.Scripts.Release.Stuff
                     return cardCost;
                 }
             }
-        
+
             return 0;
         }
 
@@ -118,15 +118,15 @@ namespace Source.Scripts.Release.Stuff
                 case "ru":
                     _purchasedCardsInfo.text = $"Здоровье игрока увеличено на 10. \r\nТекущее здоровье игрока: {currentPlayerHealth}";
                     break;
-            
+
                 case "en":
                     _purchasedCardsInfo.text = $"Player's health has been increased by 10. \r\nPlayer's current health: {currentPlayerHealth}";
                     break;
-            
+
                 case "tr":
                     _purchasedCardsInfo.text = $"Oyuncunun sağlığı 10 arttı. \r\nOyuncunun mevcut sağlığı: {currentPlayerHealth}";
                     break;
-            
+
                 default:
                     _purchasedCardsInfo.text = $"Player's health has been increased by 10. \r\nPlayer's current health: {currentPlayerHealth}";
                     break;
@@ -140,15 +140,15 @@ namespace Source.Scripts.Release.Stuff
                 case "ru":
                     _purchasedCardsInfo.text = $"Куплена карточка для {index + 1} снаряда. \r\nКоличество доступных карточек для улучшения: {cardCount}";
                     break;
-            
+
                 case "en":
                     _purchasedCardsInfo.text = $"Purchased card for {index + 1} projectile. \r\nAmount of available improvement cards: {cardCount}";
                     break;
-            
+
                 case "tr":
                     _purchasedCardsInfo.text = $"{index + 1} mermisi için kart satın alındı. \r\nGeliştirilebilecek kart sayısı: {cardCount}";
                     break;
-            
+
                 default:
                     _purchasedCardsInfo.text = $"Purchased card for {index + 1} projectile. \r\nAmount of available improvement cards: {cardCount}";
                     break;

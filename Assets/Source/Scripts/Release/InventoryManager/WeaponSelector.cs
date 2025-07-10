@@ -10,15 +10,11 @@ namespace Source.Scripts.Release.InventoryManager
 
         private WeaponSlot _selectedSlot;
         private WeaponSlot _slotToClean;
-    
-        public event Action<int> OnWeaponSelected;
+
+        public event Action<int> WeaponSelected;
 
         public WeaponSlot SlotToClean => _slotToClean;
-        
-        public void DeselectCurrent() => _selectedSlot?.Deselect();
-        
-        public void SelectFirst() => Select(_ui.GetSlot(0));
-        
+
         public void Initialize()
         {
             foreach (var slot in _ui.Slots)
@@ -29,12 +25,13 @@ namespace Source.Scripts.Release.InventoryManager
 
         public void Select(WeaponSlot slot)
         {
-            _selectedSlot?.Deselect();
+            DeselectCurrent();
+
             _selectedSlot = slot;
             _selectedSlot.Select();
 
             int damage = int.Parse(slot.CurrentDamage.text);
-            OnWeaponSelected?.Invoke(damage);
+            WeaponSelected?.Invoke(damage);
 
             if (slot.name != "Slot01")
             {
@@ -44,6 +41,14 @@ namespace Source.Scripts.Release.InventoryManager
             {
                 _slotToClean = null;
             }
+        }
+
+        public void SelectFirst() => Select(_ui.GetSlot(0));
+
+        public void DeselectCurrent()
+        {
+            if (_selectedSlot != null)
+                _selectedSlot.Deselect();
         }
     }
 }

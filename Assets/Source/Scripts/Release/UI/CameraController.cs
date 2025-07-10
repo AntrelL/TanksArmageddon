@@ -141,7 +141,7 @@ namespace Source.Scripts.Release.UI
         {
             if (_introFinished && _currentTarget != null)
             {
-            
+
                 if (_activeProjectile != null)
                 {
                     _currentTarget = _activeProjectile;

@@ -1,9 +1,4 @@
-﻿using System.Linq;
-using System.IO;
-using System.IO.Compression;
-using YG.Insides;
-
-namespace YG.EditorScr.BuildModify
+﻿namespace YG.EditorScr.BuildModify
 {
     public static class ArchivingBuild
     {

@@ -29,14 +29,14 @@ namespace Source.Scripts.Release.Projectiles
 
         private float _turretInitialAngle;
         private AudioManager _manager;
-    
+
         public event Action<EnemyBullet> EnemyBulletSpawned;
 
         private void Awake()
         {
             _manager = FindObjectOfType<AudioManager>();
         }
-    
+
         private void Start()
         {
             if (_turret != null)
@@ -75,7 +75,7 @@ namespace Source.Scripts.Release.Projectiles
                 {
                     return false;
                 }
-            
+
                 StartCoroutine(RotateThenShoot(turretTargetAngle));
 
                 return true;
@@ -103,7 +103,7 @@ namespace Source.Scripts.Release.Projectiles
             }
 
             _turret.eulerAngles = new Vector3(0f, 0f, targetAngle);
-        
+
             _manager.PlayProjectileShoot();
             _enemyTank.Shot();
             ShootBullet();
@@ -129,7 +129,7 @@ namespace Source.Scripts.Release.Projectiles
             flash.Play();
 
             Destroy(flash.gameObject, flash.main.duration);
-        
+
             if (bulletGO.TryGetComponent(out EnemyBullet bullet))
             {
                 EnemyBulletSpawned?.Invoke(bullet);

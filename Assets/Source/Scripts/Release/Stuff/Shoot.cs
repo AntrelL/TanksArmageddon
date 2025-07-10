@@ -12,7 +12,7 @@ namespace Source.Scripts.Release.Stuff
         [SerializeField] private Transform _firePoint;
         [SerializeField] private ParticleSystem _muzzleFlash;
         [SerializeField] private UIController _uiController;
-    
+
         private AudioManager _manager;
 
         private void Awake()
@@ -35,7 +35,7 @@ namespace Source.Scripts.Release.Stuff
             _manager.PlayProjectileShoot();
             _tank.Shot();
             GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
-        
+
             ProjectileTracker.Instance?.RegisterProjectile(bullet.transform);
 
             ParticleSystem flash = Instantiate(_muzzleFlash, _firePoint.position, _firePoint.rotation);

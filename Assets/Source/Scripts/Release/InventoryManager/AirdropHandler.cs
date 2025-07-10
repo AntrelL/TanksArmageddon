@@ -6,7 +6,7 @@ namespace Source.Scripts.Release.InventoryManager
     public class AirdropHandler : MonoBehaviour
     {
         [SerializeField] private AirdropSpawner _spawner;
-    
+
         private AirdropBox _box;
 
         private void OnDisable()
@@ -14,7 +14,7 @@ namespace Source.Scripts.Release.InventoryManager
             if (_box != null)
                 _box.PlayerPickedUpAirdrop -= null;
         }
-    
+
         public void Initialize(System.Action<int> onPickedUp)
         {
             _spawner.Spawned += () =>

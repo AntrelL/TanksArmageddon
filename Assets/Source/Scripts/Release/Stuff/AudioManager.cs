@@ -19,7 +19,7 @@ namespace Source.Scripts.Release.Stuff
         [SerializeField] private AudioClip _buttonClickSound;
 
         public bool IsMusicOn { get; private set; } = true;
-        
+
         private void Awake()
         {
             if (_instance == null)

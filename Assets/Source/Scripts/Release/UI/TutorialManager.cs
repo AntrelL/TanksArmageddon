@@ -20,7 +20,7 @@ namespace Source.Scripts.Release.UI
         private AudioManager _manager;
 
         public event Action<bool> TutorialEnded;
-    
+
         private void Awake()
         {
             _manager = FindObjectOfType<AudioManager>();

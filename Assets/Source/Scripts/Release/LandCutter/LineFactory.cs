@@ -15,7 +15,7 @@ namespace Source.Scripts.Release.LandCutter
 
             return CreateFromPoints(localPoints);
         }
-        
+
         public void Recalculate(Line line)
         {
             var newPoints = new List<Point>();
@@ -36,7 +36,7 @@ namespace Source.Scripts.Release.LandCutter
 
             line.Points = newPoints;
         }
-        
+
         private Line CreateFromPoints(List<Vector2> worldPoints)
         {
             List<Point> points = new List<Point>();

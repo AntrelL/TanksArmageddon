@@ -8,16 +8,16 @@ namespace Source.Scripts.Release.Stuff
     public class HangarSceneNavigationManager : MonoBehaviour
     {
         [SerializeField] private Canvas _helpViewCanvas;
-    
+
         private AudioManager _manager;
-    
+
         public event Action TextShowing;
 
         private void Awake()
         {
             _manager = FindObjectOfType<AudioManager>();
         }
-    
+
         private void Start()
         {
             Time.timeScale = 1f;

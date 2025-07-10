@@ -57,7 +57,7 @@ namespace Source.Scripts.Release.Enemy
         {
             if (!_isAlive) return;
 
-            TakeDamage(_combat.GetPlayerDamage());
+            TakeDamage(_combat.PlayerDamage);
             _manager.PlayTankHit();
             ParticleSystem flash = Instantiate(_hitFX, pos, Quaternion.identity);
             flash.Play();

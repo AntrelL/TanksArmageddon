@@ -2750,9 +2750,10 @@ MonoBehaviour:
   _playerShootButton: {fileID: 5769065162723444670}
   _playerSkipTurnButton: {fileID: 1812816205}
   _player: {fileID: 7719935703618628174}
-  _textGoal1: {fileID: 1856352405756517842}
-  _textGoal2: {fileID: 1152352377396067984}
-  _textGoal3: {fileID: 4432716786462075380}
+  _textGoals:
+  - {fileID: 1856352405756517842}
+  - {fileID: 1152352377396067984}
+  - {fileID: 4432716786462075380}
   _turnState: {fileID: 1325542179}
   _counterText: {fileID: 491983763}
   _moneyRewardText: {fileID: 8924263560611432729}

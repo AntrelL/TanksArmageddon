@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Source.Scripts.Release.Enemy;
 using Source.Scripts.Release.LandCutter;
 using Source.Scripts.Release.Player;
@@ -10,8 +11,21 @@ namespace Source.Scripts.Release.Projectiles
     [RequireComponent(typeof(Rigidbody2D))]
     public class EnemyBullet : MonoBehaviour
     {
+        private const float LandCutDelay = 0.001f;
+        private const int MinPercentageValue = 0;
+        private const int MaxPercentageValue = 100;
+        
         [SerializeField] private ParticleSystem _groundCollisionFX;
 
+        private readonly List<(int Value, int UpperRangeLimit)> _damageTable = 
+            new List<(int Value, int UpperRangeLimit)>
+            {
+                (100, 60),
+                (200, 80),
+                (250, 90),
+                (500, 100)
+            };
+        
         private AudioManager _manager;
         private LandCutter.LandCutter _landCutter;
 
@@ -48,30 +62,21 @@ namespace Source.Scripts.Release.Projectiles
             {
                 _landCutter.transform.position = transform.position;
                 _manager.PlayTankHit();
-                Invoke(nameof(DoCut), 0.001f);
+                Invoke(nameof(DoCut), LandCutDelay);
             }
         }
 
         private int GetRandomDamage()
         {
-            int randomDamage = UnityEngine.Random.Range(0, 100);
+            int damageChancePercent = UnityEngine.Random.Range(MinPercentageValue, MaxPercentageValue);
 
-            if (randomDamage < 60)
+            foreach (var damageChanceRange in _damageTable)
             {
-                return 100;
+                if (damageChancePercent < damageChanceRange.UpperRangeLimit)
+                    return damageChanceRange.Value;
             }
-            else if (randomDamage < 80)
-            {
-                return 200;
-            }
-            else if (randomDamage < 90)
-            {
-                return 250;
-            }
-            else
-            {
-                return 500;
-            }
+
+            return _damageTable[0].Value;
         }
 
         private void DoCut()

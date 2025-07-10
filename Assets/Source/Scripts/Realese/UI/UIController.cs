@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using IJunior.TypedScenes;
 using Source.Scripts.Release.Airdrop;
 using Source.Scripts.Release.Player;
@@ -28,9 +29,7 @@ namespace Source.Scripts.Release.UI
         [SerializeField] private Button _playerShootButton;
         [SerializeField] private Button _playerSkipTurnButton;
         [SerializeField] private PlayerHealth _player;
-        [SerializeField] private GameObject _textGoal1;
-        [SerializeField] private GameObject _textGoal2;
-        [SerializeField] private GameObject _textGoal3;
+        [SerializeField] private List<GameObject> _textGoals;
         [SerializeField] private TurnState _turnState;
         [SerializeField] private TMP_Text _counterText;
         [SerializeField] private TMP_Text _moneyRewardText;
@@ -38,7 +37,15 @@ namespace Source.Scripts.Release.UI
         [SerializeField] private float _fadeDuration = 1.0f;
         [SerializeField] private float _visibleDuration = 1.0f;
         [SerializeField] private AirdropSpawner _airdropSpawner;
-
+        
+        private readonly List<(int UpperRangeLimit, int LevelReward, int PointsReward)> _goalTable =
+            new List<(int UpperRangeLimit, int LevelReward, int PointsReward)>
+            {
+                (10, 2000, 100),
+                (20, 1000, 50),
+                (40, 500, 10)
+            };
+        
         private int _turnCount;
         private int _levelRewardAmount;
         private int _pointsRewardAmount;
@@ -283,29 +290,23 @@ namespace Source.Scripts.Release.UI
         private void UpdateGoalStatus()
         {
             _turnCount = _turnState.TurnCount;
-
-            if (_turnCount <= 10)
+            
+            for (int i = 0; i < _goalTable.Count; i++)
             {
-                _textGoal1.SetActive(true);
-                _textGoal2.SetActive(true);
-                _textGoal3.SetActive(true);
-                _levelRewardAmount = 2000;
-                _pointsRewardAmount = 100;
-            }
+                var goal = _goalTable[i];
+                
+                if (_turnCount <= goal.UpperRangeLimit)
+                {
+                    _levelRewardAmount = goal.LevelReward;
+                    _pointsRewardAmount = goal.PointsReward;
 
-            if (_turnCount <= 20 && _turnCount > 10)
-            {
-                _textGoal1.SetActive(true);
-                _textGoal2.SetActive(true);
-                _levelRewardAmount = 1000;
-                _pointsRewardAmount = 50;
-            }
+                    int numberOfGoalsCompleted = _textGoals.Count - i;
 
-            if (_turnCount <= 40 && _turnCount > 20)
-            {
-                _textGoal1.SetActive(true);
-                _levelRewardAmount = 500;
-                _pointsRewardAmount = 10;
+                    for (int j = 0; j < numberOfGoalsCompleted; j++)
+                        _textGoals[j].SetActive(true);
+                    
+                    break;
+                }
             }
 
             _moneyRewardText.text = $"{_levelRewardAmount}";

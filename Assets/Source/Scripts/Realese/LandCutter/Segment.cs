@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Source.Scripts.Release.LandCutter
 {
+    [Serializable]
     public class Segment
     {
         [field: SerializeField] public Point A { get; set; }

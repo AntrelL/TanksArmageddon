@@ -23,14 +23,6 @@ namespace Source.Scripts.Release.InventoryManager
             UpdateHighlight();
         }
 
-        public void SelectWeapon()
-        {
-            if (_isSelected)
-            {
-                UpdateHighlight();
-            }
-        }
-
         public void UpdateAmmoCount(int ammoCount)
         {
             if (_ammoCountText == null)

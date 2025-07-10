@@ -30,8 +30,6 @@ namespace Source.Scripts.Release.Projectiles
         private LandCutter.LandCutter _landCutter;
 
         public event Action Destroyed;
-    
-        public Transform BulletTransform => transform;
 
         private void Awake()
         {

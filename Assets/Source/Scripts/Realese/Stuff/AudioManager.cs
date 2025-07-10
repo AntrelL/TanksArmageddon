@@ -18,12 +18,8 @@ namespace Source.Scripts.Release.Stuff
         [SerializeField] private AudioClip _tankHittedSound;
         [SerializeField] private AudioClip _buttonClickSound;
 
-        private bool _isMusicOn = true;
-
-        public static AudioManager Instance => _instance;
-
-        public bool IsMusicOn => _isMusicOn;
-
+        public bool IsMusicOn { get; private set; } = true;
+        
         private void Awake()
         {
             if (_instance == null)
@@ -41,12 +37,6 @@ namespace Source.Scripts.Release.Stuff
         {
             PlayMainMusic();
         }
-        
-        private void OnInBackgroundChange(bool inBackground)
-        {
-            AudioListener.pause = inBackground;
-            AudioListener.volume = inBackground ? 0f : 1f;
-        }
 
         public void PlayMainMusic()
         {
@@ -55,7 +45,7 @@ namespace Source.Scripts.Release.Stuff
             _backgroundMusicSource.clip = _mainBackgroundMusic;
             _backgroundMusicSource.loop = true;
             _backgroundMusicSource.Play();
-            _isMusicOn = true;
+            IsMusicOn = true;
         }
 
         public void StopMainMusic()
@@ -64,12 +54,12 @@ namespace Source.Scripts.Release.Stuff
                 return;
 
             _backgroundMusicSource.Stop();
-            _isMusicOn = false;
+            IsMusicOn = false;
         }
 
         public void PlayLevelFailed()
         {
-            if (_isMusicOn)
+            if (IsMusicOn)
             {
                 if (_sfxSource == null || _levelFailedSound == null)
                     return;
@@ -81,7 +71,7 @@ namespace Source.Scripts.Release.Stuff
 
         public void PlayLevelFinished()
         {
-            if (_isMusicOn)
+            if (IsMusicOn)
             {
                 if (_sfxSource == null || _levelFinishedSound == null)
                     return;
@@ -93,7 +83,7 @@ namespace Source.Scripts.Release.Stuff
 
         public void PlayProjectileShoot()
         {
-            if (_isMusicOn)
+            if (IsMusicOn)
             {
                 if (_sfxSource == null || _projectileShootedSound == null)
                     return;
@@ -105,7 +95,7 @@ namespace Source.Scripts.Release.Stuff
 
         public void PlayTankHit()
         {
-            if (_isMusicOn)
+            if (IsMusicOn)
             {
                 if (_sfxSource == null || _tankHittedSound == null)
                     return;
@@ -117,7 +107,7 @@ namespace Source.Scripts.Release.Stuff
 
         public void PlayButtonClick()
         {
-            if (_isMusicOn)
+            if (IsMusicOn)
             {
                 if (_sfxSource == null || _buttonClickSound == null)
                     return;

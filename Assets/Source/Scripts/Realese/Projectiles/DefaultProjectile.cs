@@ -1,4 +1,3 @@
-using System;
 using Source.Scripts.Release.Enemy;
 using Source.Scripts.Release.LandCutter;
 using Source.Scripts.Release.Player;
@@ -9,10 +8,10 @@ namespace Source.Scripts.Release.Projectiles
 {
     public class DefaultProjectile : MonoBehaviour
     {
-        private readonly bool _isDead;
-
         [SerializeField] private ParticleSystem _groundCollisionFX;
         [SerializeField] private float _speed;
+
+        private readonly bool _isDead;
 
         private Rigidbody2D _rigidbody;
         private LandCutter.LandCutter _landCutter;
@@ -20,14 +19,10 @@ namespace Source.Scripts.Release.Projectiles
 
         private float _targetX;
         private float _targetY;
-
-        public event Action ProjectileDestroyed;
-
+        
         public Transform CurrentProjectile { get; private set; }
 
         public bool IsEnemyProjectile { get; set; } = false;
-
-        public float Speed => _speed;
 
         private void Awake()
         {
@@ -51,16 +46,6 @@ namespace Source.Scripts.Release.Projectiles
             {
                 Destroy(gameObject);
             }
-        }
-
-        public void SetupBallisticTrajectory(float targetX, float targetY)
-        {
-            _targetX = targetX;
-            _targetY = targetY;
-
-            Vector2 direction = new Vector2(_targetX - transform.position.x, _targetY - transform.position.y);
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            _rigidbody.velocity = new Vector2(Mathf.Cos(angle) * _speed, Mathf.Sin(angle) * _speed);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -88,7 +73,7 @@ namespace Source.Scripts.Release.Projectiles
                 }
             }
 
-            if (collision.gameObject.TryGetComponent(out Land land))
+            if (collision.gameObject.TryGetComponent<Land>(out _))
             {
                 _landCutter.transform.position = transform.position;
                 Invoke(nameof(DoCut), 0.001f);
@@ -108,9 +93,6 @@ namespace Source.Scripts.Release.Projectiles
 
         private void OnDestroy()
         {
-            //ProjectileDestroyed?.Invoke();
-            //CurrentProjectile = null;
-        
             if (ProjectileTracker.Instance != null && ProjectileTracker.Instance.CurrentProjectile == transform)
             {
                 ProjectileTracker.Instance.ClearProjectile();

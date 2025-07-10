@@ -17,7 +17,6 @@ namespace Source.Scripts.Release.TurnManager
         [SerializeField] private TutorialManager _tutorialManager;
 
         [Header("Turn Settings")]
-        [SerializeField] private float _projectileTransitionDuration = 1f;
         [SerializeField] private float _difficultyFactor = 0.1f;
 
         private int _turnCount;
@@ -25,23 +24,35 @@ namespace Source.Scripts.Release.TurnManager
         private bool _isPlayerTurn;
 
         public event Action AllEnemiesDead;
+        
         public event Action<bool> CanPlayerControl;
+        
         public event Action<bool> CanPlayerShoot;
+        
         public event Action<Transform> TurnStarted;
+        
         public event Action<int> CompletedTurns;
 
         public int TurnCount => _turnCount;
+        
         public bool IsAllEnemiesDead => _isAllEnemiesDead;
+        
         public float DifficultyFactor => _difficultyFactor;
+        
         public bool CurrentTurnIsPlayer => _isPlayerTurn;
 
         public PlayerHealth Player => _player;
+        
         public List<EnemyAIController> Enemies => _enemies;
+        
         public CameraController CameraController => _cameraController;
+        
         public UIController UI => _uiController;
 
         public void IncrementTurn() => _turnCount++;
+        
         public void NotifyTurnStarted(Transform t) => TurnStarted?.Invoke(t);
+        
         public void NotifyTurnCompleted() => CompletedTurns?.Invoke(_turnCount);
 
         private void OnEnable()

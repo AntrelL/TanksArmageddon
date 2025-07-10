@@ -27,8 +27,9 @@ namespace Source.Scripts.Release.Stuff
 
         public void AdReward()
         {
-            string ad = "ad";
 #if !UNITY_EDITOR && UNITY_WEBGL
+        string ad = "ad";
+
         YG2.RewardedAdvShow(ad, () =>
         {
             GameManager.Instance.SetPlayerBalance(1000);

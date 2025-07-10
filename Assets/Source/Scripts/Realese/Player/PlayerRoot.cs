@@ -4,7 +4,6 @@ namespace Source.Scripts.Release.Player
 {
     public class PlayerRoot : MonoBehaviour
     {
-        [SerializeField] private PlayerHealth _health;
         [SerializeField] private PlayerMovement _movement;
         [SerializeField] private float _travelTime;
 
@@ -12,8 +11,5 @@ namespace Source.Scripts.Release.Player
         {
             _movement.Initialize(_travelTime);
         }
-
-        public void TakeDamage(int amount) => _health.TakeDamage(amount);
-        public void EnableMovement() => _movement.SetCanMove(true);
     }
 }

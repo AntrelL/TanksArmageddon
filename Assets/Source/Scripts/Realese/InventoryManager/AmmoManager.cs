@@ -31,6 +31,5 @@ namespace Source.Scripts.Release.InventoryManager
         }
 
         public int GetAmmo(int index) => _ammo.TryGetValue(index, out int count) ? count : 0;
-        public bool HasAmmo(int index) => _ammo.ContainsKey(index);
     }
 }

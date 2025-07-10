@@ -5,7 +5,7 @@ namespace Source.Scripts.Release.Projectiles
     [CreateAssetMenu(fileName = "WeaponData", menuName = "ScriptableObjects/WeaponData")]
     public class WeaponData : ScriptableObject
     {
-        [field: SerializeField] public new string Name { get; set; }
+        [field: SerializeField] public string Name { get; set; }
 
         [field: SerializeField] public Sprite Icon { get; set; }
 

@@ -24,7 +24,7 @@ namespace Source.Scripts.Release.Enemy
 
         public bool TryShoot()
         {
-            return _projectileShooter.ShootIfPossible();
+            return _projectileShooter.TryShootAtPlayerPosition();
         }
 
         private void OnUpdatePlayerDamage(int value)

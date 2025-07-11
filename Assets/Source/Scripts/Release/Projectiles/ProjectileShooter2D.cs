@@ -45,7 +45,7 @@ namespace Source.Scripts.Release.Projectiles
             }
         }
 
-        public bool ShootIfPossible()
+        public bool TryShootAtPlayerPosition()
         {
             float difficultyFactor = _turnState.DifficultyFactor;
 

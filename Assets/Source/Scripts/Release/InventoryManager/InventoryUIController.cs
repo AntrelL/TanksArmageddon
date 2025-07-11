@@ -8,6 +8,8 @@ namespace Source.Scripts.Release.InventoryManager
     {
         [SerializeField] private List<WeaponSlot> _weaponSlots;
 
+        public List<WeaponSlot> Slots => _weaponSlots;
+        
         public void UpdateUI()
         {
             for (int i = 0; i < _weaponSlots.Count; i++)
@@ -24,7 +26,5 @@ namespace Source.Scripts.Release.InventoryManager
         }
 
         public WeaponSlot GetSlot(int index) => _weaponSlots[index];
-
-        public List<WeaponSlot> Slots => _weaponSlots;
     }
 }

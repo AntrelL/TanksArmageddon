@@ -5635,7 +5635,6 @@ MonoBehaviour:
   _cameraController: {fileID: 1493516531}
   _uiController: {fileID: 600745200}
   _tutorialManager: {fileID: 600745202}
-  _projectileTransitionDuration: 1
   _difficultyFactor: 0.2
 --- !u!114 &1325542180
 MonoBehaviour:
@@ -31348,8 +31347,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b74db2ed4a41fca6f6b449adb70a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitFX: {fileID: 5156201333536720012, guid: b213c11fd875b52419a7ef909992a9bb, type: 3}
   _tank: {fileID: 2118787033623540613}
+  _hitFX: {fileID: 5156201333536720012, guid: b213c11fd875b52419a7ef909992a9bb, type: 3}
 --- !u!114 &7719935703618628175
 MonoBehaviour:
   m_ObjectHideFlags: 0

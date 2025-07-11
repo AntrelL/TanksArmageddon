@@ -16,6 +16,14 @@ namespace Source.Scripts.Release.UI
 {
     public class UIController : MonoBehaviour
     {
+        private readonly List<(int UpperRangeLimit, int LevelReward, int PointsReward)> _goalTable =
+            new List<(int UpperRangeLimit, int LevelReward, int PointsReward)>
+            {
+                (10, 2000, 100),
+                (20, 1000, 50),
+                (40, 500, 10)
+            };
+        
         [SerializeField] private CanvasGroup _airdropNotifierCanvasGroup;
         [SerializeField] private CanvasGroup _pauseCanvasGroup;
         [SerializeField] private CanvasGroup _continueCanvasGroup;
@@ -37,15 +45,7 @@ namespace Source.Scripts.Release.UI
         [SerializeField] private float _fadeDuration = 1.0f;
         [SerializeField] private float _visibleDuration = 1.0f;
         [SerializeField] private AirdropSpawner _airdropSpawner;
-
-        private readonly List<(int UpperRangeLimit, int LevelReward, int PointsReward)> _goalTable =
-            new List<(int UpperRangeLimit, int LevelReward, int PointsReward)>
-            {
-                (10, 2000, 100),
-                (20, 1000, 50),
-                (40, 500, 10)
-            };
-
+        
         private int _turnCount;
         private int _levelRewardAmount;
         private int _pointsRewardAmount;

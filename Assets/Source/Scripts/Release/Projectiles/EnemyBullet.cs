@@ -14,9 +14,7 @@ namespace Source.Scripts.Release.Projectiles
         private const float LandCutDelay = 0.001f;
         private const int MinPercentageValue = 0;
         private const int MaxPercentageValue = 100;
-
-        [SerializeField] private ParticleSystem _groundCollisionFX;
-
+        
         private readonly List<(int Value, int UpperRangeLimit)> _damageTable =
             new List<(int Value, int UpperRangeLimit)>
             {
@@ -26,6 +24,8 @@ namespace Source.Scripts.Release.Projectiles
                 (500, 100)
             };
 
+        [SerializeField] private ParticleSystem _groundCollisionFX;
+        
         private AudioManager _manager;
         private LandCutter.LandCutter _landCutter;
 
@@ -41,6 +41,11 @@ namespace Source.Scripts.Release.Projectiles
             _landCutter = FindObjectOfType<LandCutter.LandCutter>();
         }
 
+        private void OnDestroy()
+        {
+            Destroyed?.Invoke();
+        }
+        
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.TryGetComponent(out PlayerHealth player))
@@ -85,11 +90,6 @@ namespace Source.Scripts.Release.Projectiles
 
             _landCutter.DoCut();
             Destroy(gameObject);
-        }
-
-        private void OnDestroy()
-        {
-            Destroyed?.Invoke();
         }
     }
 }

@@ -5,6 +5,8 @@ namespace Source.Scripts.Release.Enemy
 {
     public class EnemyMovement : MonoBehaviour
     {
+        private readonly float _checkRaycastLength = 0.8f;
+        
         [SerializeField] private Rigidbody2D _rigidbody2D;
         [SerializeField] private float _movementForce = 15f;
         [SerializeField] private float _maxSpeed = 5f;
@@ -20,7 +22,6 @@ namespace Source.Scripts.Release.Enemy
         private float _baseDrag;
         private float _movementTimeUsed;
         private float _moveDirection;
-        private readonly float _checkRaycastLength = 0.8f;
         private Vector3 _selectedPointPosition;
 
         private void Awake()
@@ -41,13 +42,17 @@ namespace Source.Scripts.Release.Enemy
             _rigidbody2D.centerOfMass = _centerPoint.localPosition;
 
             _selectedPointPosition = _moveDirection > 0 ? _rightPoint.position : _leftPoint.position;
-            RaycastHit2D hit = Physics2D.Raycast(_selectedPointPosition, -Vector2.up, _checkRaycastLength, _landLayer);
+            RaycastHit2D hit = Physics2D.Raycast(
+                _selectedPointPosition, -Vector2.up, _checkRaycastLength, _landLayer);
 
             if (hit.collider == null)
             {
-                _rigidbody2D.AddForceAtPosition(Vector2.right * (_moveDirection * _movementForce), _selectedPointPosition);
+                _rigidbody2D.AddForceAtPosition(
+                    Vector2.right * (_moveDirection * _movementForce), _selectedPointPosition);
+                
                 _rigidbody2D.gravityScale = 10f;
-                hit = Physics2D.Raycast(_centerPoint.position, -Vector2.up, _checkRaycastLength, _landLayer);
+                hit = Physics2D.Raycast(
+                    _centerPoint.position, -Vector2.up, _checkRaycastLength, _landLayer);
             }
 
             Vector2 direction;
@@ -55,7 +60,8 @@ namespace Source.Scripts.Release.Enemy
             if (hit.collider != null)
             {
                 _rigidbody2D.gravityScale = 1f;
-                direction = Vector2.right * _moveDirection - Vector2.Dot(Vector2.right * _moveDirection, hit.normal) * hit.normal;
+                direction = Vector2.right * _moveDirection - 
+                            Vector2.Dot(Vector2.right * _moveDirection, hit.normal) * hit.normal;
             }
             else
             {

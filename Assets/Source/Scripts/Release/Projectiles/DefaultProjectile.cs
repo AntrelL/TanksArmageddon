@@ -12,10 +12,10 @@ namespace Source.Scripts.Release.Projectiles
         private const float LandCutDelay = 0.001f;
         private const int MinWorldY = -50;
 
+        private readonly bool _isDead;
+        
         [SerializeField] private ParticleSystem _groundCollisionFX;
         [SerializeField] private float _speed;
-
-        private readonly bool _isDead;
 
         private Rigidbody2D _rigidbody;
         private LandCutter.LandCutter _landCutter;
@@ -52,6 +52,15 @@ namespace Source.Scripts.Release.Projectiles
             }
         }
 
+        private void OnDestroy()
+        {
+            if (ProjectileTracker.Instance != null &&
+                ProjectileTracker.Instance.CurrentProjectile == transform)
+            {
+                ProjectileTracker.Instance.ClearProjectile();
+            }
+        }
+        
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.TryGetComponent(out IImpactTarget impactTarget))
@@ -98,15 +107,6 @@ namespace Source.Scripts.Release.Projectiles
             _landCutter.DoCut();
             _manager.PlayTankHit();
             Destroy(gameObject);
-        }
-
-        private void OnDestroy()
-        {
-            if (ProjectileTracker.Instance != null &&
-                ProjectileTracker.Instance.CurrentProjectile == transform)
-            {
-                ProjectileTracker.Instance.ClearProjectile();
-            }
         }
     }
 }

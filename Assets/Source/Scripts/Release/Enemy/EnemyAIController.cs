@@ -6,6 +6,9 @@ namespace Source.Scripts.Release.Enemy
 {
     public class EnemyAIController : MonoBehaviour
     {
+        private const float CombatAttemptTimeLimit = 3f;
+        private const float LeftDirection = -1f;
+        
         [SerializeField] private EnemyMovement _movement;
         [SerializeField] private EnemyCombat _combat;
 
@@ -29,18 +32,11 @@ namespace Source.Scripts.Release.Enemy
 
         public IEnumerator DoEnemyTurn()
         {
-            _movement.StartMovement(-1f);
+            _movement.StartMovement(LeftDirection);
             float elapsed = 0f;
             float checkInterval = 0.1f;
 
-            if (_combat.TryShoot())
-            {
-                _movement.StopMovement();
-                yield return WaitProjectileFly();
-                yield break;
-            }
-
-            while (elapsed < 3f)
+            while (elapsed < CombatAttemptTimeLimit)
             {
                 yield return new WaitForSeconds(checkInterval);
                 elapsed += checkInterval;

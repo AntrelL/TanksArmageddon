@@ -8,22 +8,23 @@ namespace Source.Scripts.Release.CustomPlugins
 {
     public class FindUnassignedFields : EditorWindow
     {
+        private readonly List<Object> _objectsToPing = new List<Object>();
+        
+        private string _results = "";
+
         [MenuItem("Tools/Find Unassigned Fields")]
         public static void ShowWindow()
         {
             GetWindow<FindUnassignedFields>("Find Unassigned Fields");
         }
-
-        private string _results = "";
-        private readonly List<Object> _objectsToPing = new List<Object>();
-
+        
         private void OnGUI()
         {
             if (GUILayout.Button("Check Scene"))
             {
                 _results = "";
                 _objectsToPing.Clear();
-                CheckSceneForUnassignedFields();
+                ScanSceneForUnassignedFields();
             }
 
             GUILayout.Label("Results:");
@@ -40,7 +41,7 @@ namespace Source.Scripts.Release.CustomPlugins
             EditorGUILayout.EndVertical();
         }
 
-        private void CheckSceneForUnassignedFields()
+        private void ScanSceneForUnassignedFields()
         {
             GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
 
@@ -50,7 +51,8 @@ namespace Source.Scripts.Release.CustomPlugins
 
                 foreach (var component in components)
                 {
-                    if (component == null) continue;
+                    if (component == null)
+                        continue;
 
                     if (!IsCustomScript(component.GetType()))
                         continue;
@@ -66,9 +68,13 @@ namespace Source.Scripts.Release.CustomPlugins
                         {
                             var value = field.GetValue(component);
 
-                            if (value == null || (value is UnityEngine.Object unityObject && unityObject == null))
+                            if (value == null || 
+                                (value is UnityEngine.Object unityObject && unityObject == null))
                             {
-                                string message = $"Unassigned field '{field.Name}' in component '{component.GetType().Name}' on object '{obj.name}'";
+                                string message = $"Unassigned field '{field.Name}' " +
+                                                 $"in component '{component.GetType().Name}' " +
+                                                 $"on object '{obj.name}'";
+                                
                                 _results += message + "\n";
                                 _objectsToPing.Add(obj);
                             }
@@ -91,7 +97,7 @@ namespace Source.Scripts.Release.CustomPlugins
             {
                 string scriptPath = AssetDatabase.GUIDToAssetPath(guid);
 
-                if (scriptPath.Contains("/Realese/"))
+                if (scriptPath.Contains("/Release/"))
                 {
                     return true;
                 }

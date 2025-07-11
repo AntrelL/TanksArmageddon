@@ -5,6 +5,9 @@ namespace Source.Scripts.Release.Player
 {
     public class PlayerHealth : Health
     {
-        protected override int GetMaxHealth() => PlayerDataHandler.Instance.GetPlayerMaxHealth();
+        protected override int GetMaxHealth()
+        {
+            return PlayerDataHandler.Instance.GetPlayerMaxHealth();
+        }
     }
 }

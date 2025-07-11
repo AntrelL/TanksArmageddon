@@ -29,12 +29,12 @@ namespace Source.Scripts.Release.Airdrop
 
         private void OnEnable()
         {
-            _turnState.CompletedTurns += CheckTurnsCount;
+            _turnState.CompletedTurns += OnCompletedTurns;
         }
 
         private void OnDisable()
         {
-            _turnState.CompletedTurns -= CheckTurnsCount;
+            _turnState.CompletedTurns -= OnCompletedTurns;
         }
 
         private void CalculateWidth()
@@ -59,12 +59,15 @@ namespace Source.Scripts.Release.Airdrop
             _maxX = maxX;
         }
 
-        private void CheckTurnsCount(int count)
+        private bool TrySpawn(int turnsCount)
         {
-            if (count % _spawnRate == 0)
+            if (turnsCount % _spawnRate == 0)
             {
                 SpawnAirDrop();
+                return true;
             }
+
+            return false;
         }
 
         private void SpawnAirDrop()
@@ -84,5 +87,7 @@ namespace Source.Scripts.Release.Airdrop
             newPosition.x = randomX;
             _spawnPoint.position = newPosition;
         }
+
+        private void OnCompletedTurns(int count) => TrySpawn(count);
     }
 }

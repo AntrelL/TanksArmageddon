@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Source.Scripts.Release.Projectiles;
+using Source.Scripts.Release.Utils;
 using UnityEngine;
 
 namespace Source.Scripts.Release.Enemy
@@ -38,31 +39,19 @@ namespace Source.Scripts.Release.Enemy
 
             while (elapsed < CombatAttemptTimeLimit)
             {
-                yield return new WaitForSeconds(checkInterval);
-                elapsed += checkInterval;
-
                 if (_combat.TryShoot())
                 {
                     _movement.StopMovement();
-                    yield return WaitProjectileFly();
+
+                    yield return new WaitDestroy(_activeBullet);
                     yield break;
                 }
+                
+                yield return new WaitForSeconds(checkInterval);
+                elapsed += checkInterval;
             }
 
             _movement.StopMovement();
-        }
-
-        private IEnumerator WaitProjectileFly()
-        {
-            if (_activeBullet == null)
-                yield break;
-
-            bool ended = false;
-            void OnDestroyed() => ended = true;
-
-            _activeBullet.Destroyed += OnDestroyed;
-            yield return new WaitUntil(() => ended);
-            _activeBullet.Destroyed -= OnDestroyed;
         }
 
         private void OnEnemyBulletSpawned(EnemyBullet bullet)

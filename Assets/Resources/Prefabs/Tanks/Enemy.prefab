@@ -20170,7 +20170,6 @@ GameObject:
   - component: {fileID: 8841997395530360643}
   - component: {fileID: 5285828087035447929}
   - component: {fileID: 604826260115673507}
-  - component: {fileID: 6920573785277926218}
   - component: {fileID: 5703738389953570646}
   - component: {fileID: 2757653407091748336}
   m_Layer: 12
@@ -20363,19 +20362,6 @@ MonoBehaviour:
   _edgeOfMapDamage: 5000
   _combat: {fileID: 5703738389953570646}
   <MaxHealth>k__BackingField: 500
---- !u!114 &6920573785277926218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5589818049052933711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94b79f9c9fae4ca69fd7f978fe8167c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: {fileID: 604826260115673507}
 --- !u!114 &5703738389953570646
 MonoBehaviour:
   m_ObjectHideFlags: 0

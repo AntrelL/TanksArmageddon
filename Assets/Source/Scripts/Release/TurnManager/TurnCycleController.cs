@@ -9,12 +9,10 @@ namespace Source.Scripts.Release.TurnManager
         [SerializeField] private EnemyTurnHandler _enemyTurn;
         [SerializeField] private TurnState _turnState;
 
-        private Coroutine _cycle;
-
         private void Start()
         {
             if (_turnState.CameraController.IntroFinished)
-                _cycle = StartCoroutine(TurnCycle());
+                StartCoroutine(TurnCycle());
             else
                 _turnState.CameraController.UnlockMovement += OnCameraIntroFinished;
         }
@@ -45,7 +43,7 @@ namespace Source.Scripts.Release.TurnManager
             if (unlocked)
             {
                 _turnState.CameraController.UnlockMovement -= OnCameraIntroFinished;
-                _cycle = StartCoroutine(TurnCycle());
+                StartCoroutine(TurnCycle());
             }
         }
     }

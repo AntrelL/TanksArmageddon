@@ -26,8 +26,7 @@ namespace Source.Scripts.Release.Projectiles
 
         [Header("Ограничение угла (±) выстрела")]
         [SerializeField] private float _maxAngleDeviation;
-
-        private float _turretInitialAngle;
+        
         private AudioManager _manager;
 
         public event Action<EnemyBullet> EnemyBulletSpawned;
@@ -36,15 +35,7 @@ namespace Source.Scripts.Release.Projectiles
         {
             _manager = FindObjectOfType<AudioManager>();
         }
-
-        private void Start()
-        {
-            if (_turret != null)
-            {
-                _turretInitialAngle = _turret.localEulerAngles.z;
-            }
-        }
-
+        
         public bool TryShootAtPlayerPosition()
         {
             float difficultyFactor = _turnState.DifficultyFactor;

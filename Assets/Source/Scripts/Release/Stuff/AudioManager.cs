@@ -4,7 +4,7 @@ namespace Source.Scripts.Release.Stuff
 {
     public class AudioManager : MonoBehaviour
     {
-        private static AudioManager _instance;
+        private static bool _instanceInitialized;
 
         [Header("Audio Sources")]
         [SerializeField] private AudioSource _backgroundMusicSource;
@@ -22,15 +22,12 @@ namespace Source.Scripts.Release.Stuff
 
         private void Awake()
         {
-            if (_instance == null)
-            {
-                _instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
+            if (_instanceInitialized)
                 Destroy(gameObject);
-            }
+            else
+                DontDestroyOnLoad(gameObject);
+            
+            _instanceInitialized = true;
         }
 
         private void Start()
@@ -42,6 +39,7 @@ namespace Source.Scripts.Release.Stuff
         {
             if (_backgroundMusicSource == null || _mainBackgroundMusic == null)
                 return;
+            
             _backgroundMusicSource.clip = _mainBackgroundMusic;
             _backgroundMusicSource.loop = true;
             _backgroundMusicSource.Play();

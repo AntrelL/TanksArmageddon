@@ -1,6 +1,6 @@
 using Assets.Constructors.FuturisticTanks.Scripts;
 using Source.Scripts.Release.Projectiles;
-using Source.Scripts.Release.UI;
+using Source.Scripts.Release.UI.ControllerParts;
 using UnityEngine;
 
 namespace Source.Scripts.Release.Stuff
@@ -11,7 +11,7 @@ namespace Source.Scripts.Release.Stuff
         [SerializeField] private Tank _tank;
         [SerializeField] private Transform _firePoint;
         [SerializeField] private ParticleSystem _muzzleFlash;
-        [SerializeField] private UIController _uiController;
+        [SerializeField] private PlayerInteractionUI _playerInteractionUI;
 
         private AudioManager _manager;
 
@@ -22,12 +22,12 @@ namespace Source.Scripts.Release.Stuff
 
         private void OnEnable()
         {
-            _uiController.PlayerShootButtonPressed += StartShoot;
+            _playerInteractionUI.PlayerShootButtonPressed += StartShoot;
         }
 
         private void OnDisable()
         {
-            _uiController.PlayerShootButtonPressed -= StartShoot;
+            _playerInteractionUI.PlayerShootButtonPressed -= StartShoot;
         }
 
         private void StartShoot()

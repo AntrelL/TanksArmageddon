@@ -1,4 +1,4 @@
-using Source.Scripts.Release.UI;
+using Source.Scripts.Release.UI.ControllerParts;
 using UnityEngine;
 using YG;
 
@@ -21,16 +21,16 @@ namespace Source.Scripts.Release.Stuff
             }
         }
 
-        private void OnEnable()
+        public void Link(LevelEndUI levelEndUI)
         {
-            UIController.PlayerRewardReceived += SetPlayerBalance;
-            UIController.PlayerPointsReceived += SetPlayerPoints;
+            levelEndUI.PlayerRewardReceived += SetPlayerBalance;
+            levelEndUI.PlayerPointsReceived += SetPlayerPoints;
         }
 
-        private void OnDisable()
+        public void UnLink(LevelEndUI levelEndUI)
         {
-            UIController.PlayerRewardReceived -= SetPlayerBalance;
-            UIController.PlayerPointsReceived -= SetPlayerPoints;
+            levelEndUI.PlayerRewardReceived -= SetPlayerBalance;
+            levelEndUI.PlayerPointsReceived -= SetPlayerPoints;
         }
 
         public void IncreasePlayerHealth()

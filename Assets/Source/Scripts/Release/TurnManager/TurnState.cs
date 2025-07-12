@@ -27,7 +27,7 @@ namespace Source.Scripts.Release.TurnManager
 
         public event Action<bool> CanPlayerControl;
 
-        public event Action<bool> CanPlayerShoot;
+        public event Action<bool> PlayerCanShootChanged;
 
         public event Action<Transform> TurnStarted;
 
@@ -68,7 +68,7 @@ namespace Source.Scripts.Release.TurnManager
         public void SetPlayerControl(bool value)
         {
             CanPlayerControl?.Invoke(value);
-            CanPlayerShoot?.Invoke(value);
+            PlayerCanShootChanged?.Invoke(value);
         }
 
         public void SetPlayerTurn(bool isPlayerTurn)

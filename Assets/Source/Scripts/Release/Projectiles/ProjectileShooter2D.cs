@@ -26,7 +26,7 @@ namespace Source.Scripts.Release.Projectiles
 
         [Header("Ограничение угла (±) выстрела")]
         [SerializeField] private float _maxAngleDeviation;
-        
+
         private AudioManager _manager;
 
         public event Action<EnemyBullet> EnemyBulletSpawned;
@@ -35,7 +35,7 @@ namespace Source.Scripts.Release.Projectiles
         {
             _manager = FindObjectOfType<AudioManager>();
         }
-        
+
         public bool TryShootAtPlayerPosition()
         {
             float difficultyFactor = _turnState.DifficultyFactor;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Source.Scripts.Release.Projectiles;
-using Source.Scripts.Release.UI;
+using Source.Scripts.Release.UI.ControllerParts;
 using UnityEngine;
 
 namespace Source.Scripts.Release.TurnManager
@@ -22,14 +22,16 @@ namespace Source.Scripts.Release.TurnManager
             Action onShot = () => shot = true;
             Action onSkip = () => skip = true;
 
-            _state.UI.PlayerShootButtonPressed += onShot;
-            UIController.SkipTurnButtonPressed += onSkip;
+            PlayerInteractionUI playerInteractionUI = _state.UI.PlayerInteractionUI;
+
+            playerInteractionUI.PlayerShootButtonPressed += onShot;
+            playerInteractionUI.SkipTurnButtonPressed += onSkip;
 
             yield return new WaitUntil(() => shot || skip);
 
             _state.SetPlayerControl(false);
-            _state.UI.PlayerShootButtonPressed -= onShot;
-            UIController.SkipTurnButtonPressed -= onSkip;
+            playerInteractionUI.PlayerShootButtonPressed -= onShot;
+            playerInteractionUI.SkipTurnButtonPressed -= onSkip;
 
             if (!skip)
             {

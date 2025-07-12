@@ -26,7 +26,7 @@ namespace Source.Scripts.Release.Stuff
                 Destroy(gameObject);
             else
                 DontDestroyOnLoad(gameObject);
-            
+
             _instanceInitialized = true;
         }
 
@@ -39,7 +39,7 @@ namespace Source.Scripts.Release.Stuff
         {
             if (_backgroundMusicSource == null || _mainBackgroundMusic == null)
                 return;
-            
+
             _backgroundMusicSource.clip = _mainBackgroundMusic;
             _backgroundMusicSource.loop = true;
             _backgroundMusicSource.Play();

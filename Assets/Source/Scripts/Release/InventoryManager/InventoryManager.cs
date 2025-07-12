@@ -91,7 +91,7 @@ namespace Source.Scripts.Release.InventoryManager
             }
         }
 
-        private int GenerateRandomIndex() => 
+        private int GenerateRandomIndex() =>
             Random.Range(1, 5);
     }
 }

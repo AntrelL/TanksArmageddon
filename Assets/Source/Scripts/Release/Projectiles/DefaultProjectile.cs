@@ -13,7 +13,7 @@ namespace Source.Scripts.Release.Projectiles
         private const int MinWorldY = -50;
 
         private readonly bool _isDead;
-        
+
         [SerializeField] private ParticleSystem _groundCollisionFX;
         [SerializeField] private float _speed;
 
@@ -60,7 +60,7 @@ namespace Source.Scripts.Release.Projectiles
                 ProjectileTracker.Instance.ClearProjectile();
             }
         }
-        
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.TryGetComponent(out IImpactTarget impactTarget))

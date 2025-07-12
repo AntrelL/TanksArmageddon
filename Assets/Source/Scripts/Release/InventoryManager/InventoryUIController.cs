@@ -9,7 +9,7 @@ namespace Source.Scripts.Release.InventoryManager
         [SerializeField] private List<WeaponSlot> _weaponSlots;
 
         public List<WeaponSlot> Slots => _weaponSlots;
-        
+
         public void UpdateUI()
         {
             for (int i = 0; i < _weaponSlots.Count; i++)

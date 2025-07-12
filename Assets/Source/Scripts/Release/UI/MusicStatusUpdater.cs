@@ -1,11 +1,12 @@
 using Source.Scripts.Release.Stuff;
+using Source.Scripts.Release.UI.ControllerParts;
 using UnityEngine;
 
 namespace Source.Scripts.Release.UI
 {
     public class MusicStatusUpdater : MonoBehaviour
     {
-        [SerializeField] private UIController _uiController;
+        [SerializeField] private SoundUI _soundUI;
 
         private AudioManager _audioManager;
 
@@ -13,13 +14,13 @@ namespace Source.Scripts.Release.UI
         {
             _audioManager = FindObjectOfType<AudioManager>();
 
-            if (_audioManager.IsMusicOn == true)
+            if (_audioManager.IsMusicOn)
             {
-                _uiController.UnmuteSound();
+                _soundUI.UnmuteSound();
             }
             else
             {
-                _uiController.MuteSound();
+                _soundUI.MuteSound();
             }
         }
     }

@@ -2679,6 +2679,12 @@ GameObject:
   m_Component:
   - component: {fileID: 600745199}
   - component: {fileID: 600745200}
+  - component: {fileID: 600745203}
+  - component: {fileID: 600745204}
+  - component: {fileID: 600745205}
+  - component: {fileID: 600745206}
+  - component: {fileID: 600745207}
+  - component: {fileID: 600745208}
   - component: {fileID: 600745202}
   - component: {fileID: 600745201}
   m_Layer: 0
@@ -2737,30 +2743,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7494e4d2b97771144a0d0516a185b0ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _airdropNotifierCanvasGroup: {fileID: 112507358}
-  _pauseCanvasGroup: {fileID: 6809125380699488362}
-  _continueCanvasGroup: {fileID: 4083351741791479085}
-  _mainMenuCanvasGroup: {fileID: 79080342218644484}
-  _unmutedSoundCanvasGroup: {fileID: 3805311347391265408}
-  _mutedSoundCanvasGroup: {fileID: 1868473243528543611}
   _inventoryCanvasGroup: {fileID: 1869804871}
-  _levelFinishedCanvas: {fileID: 6140456712650664308}
-  _levelFailedCanvas: {fileID: 8443539823514980312}
   _playerMovementCanvas: {fileID: 630247929}
-  _playerShootButton: {fileID: 5769065162723444670}
-  _playerSkipTurnButton: {fileID: 1812816205}
-  _player: {fileID: 7719935703618628174}
-  _textGoals:
-  - {fileID: 1856352405756517842}
-  - {fileID: 1152352377396067984}
-  - {fileID: 4432716786462075380}
   _turnState: {fileID: 1325542179}
   _counterText: {fileID: 491983763}
-  _moneyRewardText: {fileID: 8924263560611432729}
-  _pointsRewardText: {fileID: 8695134998215547464}
-  _fadeDuration: 1
-  _visibleDuration: 1
-  _airdropSpawner: {fileID: 1325542178}
+  _mainMenuUI: {fileID: 600745203}
+  _soundUI: {fileID: 600745204}
+  _levelEndUI: {fileID: 600745205}
+  _sceneNavigator: {fileID: 600745206}
+  _playerInteractionUI: {fileID: 600745207}
 --- !u!114 &600745201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2802,6 +2793,100 @@ MonoBehaviour:
   _typewriter: {fileID: 600745201}
   _mobileOrPCTipIndex: 3
   _cameraController: {fileID: 1493516531}
+--- !u!114 &600745203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600745198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d3a61a413cf4b3a8a7cb1f3197d5451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pauseCanvasGroup: {fileID: 6809125380699488362}
+  _continueCanvasGroup: {fileID: 4083351741791479085}
+  _mainMenuCanvasGroup: {fileID: 79080342218644484}
+--- !u!114 &600745204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600745198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e209f046560436c82eebfd7e14c1443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unmutedSoundCanvasGroup: {fileID: 3805311347391265408}
+  _mutedSoundCanvasGroup: {fileID: 1868473243528543611}
+--- !u!114 &600745205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600745198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c043ccbe95e64f36be2c7439c6a5efc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levelFinishedCanvas: {fileID: 6140456712650664308}
+  _levelFailedCanvas: {fileID: 8443539823514980312}
+  _textGoals:
+  - {fileID: 1856352405756517842}
+  - {fileID: 1152352377396067984}
+  - {fileID: 4432716786462075380}
+  _moneyRewardText: {fileID: 8924263560611432729}
+  _pointsRewardText: {fileID: 8695134998215547464}
+  _playerHealth: {fileID: 7719935703618628174}
+  _turnState: {fileID: 1325542179}
+--- !u!114 &600745206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600745198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e542d51f0a7422699a1a2d7c98d8b11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &600745207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600745198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73faaebe62e447728b70d0249a862362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _turnState: {fileID: 1325542179}
+  _playerShootButton: {fileID: 5769065162723444670}
+  _playerSkipTurnButton: {fileID: 1812816205}
+--- !u!114 &600745208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600745198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86dd269ee1754b93bbf9ddc2b6121665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _airdropNotifierCanvasGroup: {fileID: 112507358}
+  _fadeDuration: 1
+  _visibleDuration: 1
+  _airdropSpawner: {fileID: 1325542178}
 --- !u!1 &630247929
 GameObject:
   m_ObjectHideFlags: 0
@@ -5599,7 +5684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7dc68052e3ed0544bc96c769df5abad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _uiController: {fileID: 600745200}
+  _soundUI: {fileID: 600745204}
 --- !u!114 &1325542178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6592,9 +6677,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 600745200}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: Win
+      - m_Target: {fileID: 600745205}
+        m_TargetAssemblyTypeName: Source.Scripts.Release.UI.ControllerParts.LevelEndUI,
+          Assembly-CSharp
+        m_MethodName: ShowWinnerScreen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7773,9 +7859,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 600745200}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: SkipTurnButton
+      - m_Target: {fileID: 600745207}
+        m_TargetAssemblyTypeName: Source.Scripts.Release.UI.ControllerParts.PlayerInteractionUI,
+          Assembly-CSharp
+        m_MethodName: OnSkipTurnButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9340,8 +9427,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 600745200}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+      - m_Target: {fileID: 600745203}
+        m_TargetAssemblyTypeName: Source.Scripts.Release.UI.ControllerParts.MainMenuUI,
+          Assembly-CSharp
         m_MethodName: CloseMainMenu
         m_Mode: 1
         m_Arguments:
@@ -10972,8 +11060,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 600745200}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+      - m_Target: {fileID: 600745206}
+        m_TargetAssemblyTypeName: Source.Scripts.Release.UI.ControllerParts.SceneNavigator,
+          Assembly-CSharp
         m_MethodName: OpenHangarScene
         m_Mode: 1
         m_Arguments:
@@ -11427,8 +11516,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 600745200}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+      - m_Target: {fileID: 600745206}
+        m_TargetAssemblyTypeName: Source.Scripts.Release.UI.ControllerParts.SceneNavigator,
+          Assembly-CSharp
         m_MethodName: OpenShopScene
         m_Mode: 1
         m_Arguments:
@@ -16215,7 +16305,7 @@ MonoBehaviour:
   _tank: {fileID: 2118787033623540613}
   _firePoint: {fileID: 8930454486068947888}
   _muzzleFlash: {fileID: 7776803419197191763}
-  _uiController: {fileID: 600745200}
+  _playerInteractionUI: {fileID: 600745207}
 --- !u!114 &1803363243680326103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17777,8 +17867,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 600745200}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+      - m_Target: {fileID: 600745206}
+        m_TargetAssemblyTypeName: Source.Scripts.Release.UI.ControllerParts.SceneNavigator,
+          Assembly-CSharp
         m_MethodName: OpenHangarScene
         m_Mode: 1
         m_Arguments:
@@ -20122,8 +20213,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 600745200}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+      - m_Target: {fileID: 600745204}
+        m_TargetAssemblyTypeName: Source.Scripts.Release.UI.ControllerParts.SoundUI,
+          Assembly-CSharp
         m_MethodName: UnmuteSound
         m_Mode: 1
         m_Arguments:
@@ -20346,8 +20438,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 600745200}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+      - m_Target: {fileID: 600745206}
+        m_TargetAssemblyTypeName: Source.Scripts.Release.UI.ControllerParts.SceneNavigator,
+          Assembly-CSharp
         m_MethodName: OpenHomeScene
         m_Mode: 1
         m_Arguments:
@@ -22336,8 +22429,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 600745200}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+      - m_Target: {fileID: 600745206}
+        m_TargetAssemblyTypeName: Source.Scripts.Release.UI.ControllerParts.SceneNavigator,
+          Assembly-CSharp
         m_MethodName: OpenHomeScene
         m_Mode: 1
         m_Arguments:
@@ -22797,8 +22891,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 600745200}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+      - m_Target: {fileID: 600745204}
+        m_TargetAssemblyTypeName: Source.Scripts.Release.UI.ControllerParts.SoundUI,
+          Assembly-CSharp
         m_MethodName: MuteSound
         m_Mode: 1
         m_Arguments:
@@ -23242,8 +23337,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 600745200}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+      - m_Target: {fileID: 600745203}
+        m_TargetAssemblyTypeName: Source.Scripts.Release.UI.ControllerParts.MainMenuUI,
+          Assembly-CSharp
         m_MethodName: CloseMainMenu
         m_Mode: 1
         m_Arguments:
@@ -23339,9 +23435,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 600745200}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: ShootButtonPressed
+      - m_Target: {fileID: 600745207}
+        m_TargetAssemblyTypeName: Source.Scripts.Release.UI.ControllerParts.PlayerInteractionUI,
+          Assembly-CSharp
+        m_MethodName: OnShootButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23671,8 +23768,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 600745200}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+      - m_Target: {fileID: 600745203}
+        m_TargetAssemblyTypeName: Source.Scripts.Release.UI.ControllerParts.MainMenuUI,
+          Assembly-CSharp
         m_MethodName: OpenMainMenu
         m_Mode: 1
         m_Arguments:
@@ -36471,8 +36569,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 600745200}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+      - m_Target: {fileID: 600745206}
+        m_TargetAssemblyTypeName: Source.Scripts.Release.UI.ControllerParts.SceneNavigator,
+          Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
@@ -36644,8 +36743,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 600745200}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+      - m_Target: {fileID: 600745206}
+        m_TargetAssemblyTypeName: Source.Scripts.Release.UI.ControllerParts.SceneNavigator,
+          Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
@@ -37253,8 +37353,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 600745200}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+      - m_Target: {fileID: 600745206}
+        m_TargetAssemblyTypeName: Source.Scripts.Release.UI.ControllerParts.SceneNavigator,
+          Assembly-CSharp
         m_MethodName: OpenHomeScene
         m_Mode: 1
         m_Arguments:
@@ -42198,8 +42299,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 600745200}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+      - m_Target: {fileID: 600745206}
+        m_TargetAssemblyTypeName: Source.Scripts.Release.UI.ControllerParts.SceneNavigator,
+          Assembly-CSharp
         m_MethodName: OpenHangarScene
         m_Mode: 1
         m_Arguments:
@@ -42676,8 +42778,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 600745200}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+      - m_Target: {fileID: 600745206}
+        m_TargetAssemblyTypeName: Source.Scripts.Release.UI.ControllerParts.SceneNavigator,
+          Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:

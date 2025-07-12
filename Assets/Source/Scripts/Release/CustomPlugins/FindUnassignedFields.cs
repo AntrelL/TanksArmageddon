@@ -9,7 +9,7 @@ namespace Source.Scripts.Release.CustomPlugins
     public class FindUnassignedFields : EditorWindow
     {
         private readonly List<Object> _objectsToPing = new List<Object>();
-        
+
         private string _results = "";
 
         [MenuItem("Tools/Find Unassigned Fields")]
@@ -17,7 +17,7 @@ namespace Source.Scripts.Release.CustomPlugins
         {
             GetWindow<FindUnassignedFields>("Find Unassigned Fields");
         }
-        
+
         private void OnGUI()
         {
             if (GUILayout.Button("Check Scene"))
@@ -68,13 +68,13 @@ namespace Source.Scripts.Release.CustomPlugins
                         {
                             var value = field.GetValue(component);
 
-                            if (value == null || 
+                            if (value == null ||
                                 (value is UnityEngine.Object unityObject && unityObject == null))
                             {
                                 string message = $"Unassigned field '{field.Name}' " +
                                                  $"in component '{component.GetType().Name}' " +
                                                  $"on object '{obj.name}'";
-                                
+
                                 _results += message + "\n";
                                 _objectsToPing.Add(obj);
                             }

@@ -6,7 +6,7 @@ namespace Source.Scripts.Release.Enemy
     public class EnemyMovement : MonoBehaviour
     {
         private readonly float _checkRaycastLength = 0.8f;
-        
+
         [SerializeField] private Rigidbody2D _rigidbody2D;
         [SerializeField] private float _movementForce = 15f;
         [SerializeField] private float _maxSpeed = 5f;
@@ -49,7 +49,7 @@ namespace Source.Scripts.Release.Enemy
             {
                 _rigidbody2D.AddForceAtPosition(
                     Vector2.right * (_moveDirection * _movementForce), _selectedPointPosition);
-                
+
                 _rigidbody2D.gravityScale = 10f;
                 hit = Physics2D.Raycast(
                     _centerPoint.position, -Vector2.up, _checkRaycastLength, _landLayer);
@@ -60,7 +60,7 @@ namespace Source.Scripts.Release.Enemy
             if (hit.collider != null)
             {
                 _rigidbody2D.gravityScale = 1f;
-                direction = Vector2.right * _moveDirection - 
+                direction = Vector2.right * _moveDirection -
                             Vector2.Dot(Vector2.right * _moveDirection, hit.normal) * hit.normal;
             }
             else

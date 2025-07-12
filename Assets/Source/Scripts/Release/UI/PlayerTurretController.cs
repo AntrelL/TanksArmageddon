@@ -21,12 +21,12 @@ namespace Source.Scripts.Release.UI
 
         private void OnEnable()
         {
-            _turnManager.CanPlayerShoot += OnCanPlayerShoot;
+            _turnManager.PlayerCanShootChanged += OnPlayerCanShootChanged;
         }
 
         private void OnDisable()
         {
-            _turnManager.CanPlayerShoot -= OnCanPlayerShoot;
+            _turnManager.PlayerCanShootChanged -= OnPlayerCanShootChanged;
             _turret.DOKill();
         }
 
@@ -41,7 +41,7 @@ namespace Source.Scripts.Release.UI
             return _turret.localEulerAngles.z;
         }
 
-        private void OnCanPlayerShoot(bool canShoot)
+        private void OnPlayerCanShootChanged(bool canShoot)
         {
             _angleSlider.interactable = canShoot;
         }

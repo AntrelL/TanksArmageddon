@@ -9,7 +9,7 @@ namespace Source.Scripts.Release.Enemy
     {
         private const float CombatAttemptTimeLimit = 3f;
         private const float LeftDirection = -1f;
-        
+
         [SerializeField] private EnemyMovement _movement;
         [SerializeField] private EnemyCombat _combat;
 
@@ -46,7 +46,7 @@ namespace Source.Scripts.Release.Enemy
                     yield return new WaitDestroy(_activeBullet);
                     yield break;
                 }
-                
+
                 yield return new WaitForSeconds(checkInterval);
                 elapsed += checkInterval;
             }

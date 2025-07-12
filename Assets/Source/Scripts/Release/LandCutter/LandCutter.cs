@@ -8,11 +8,11 @@ namespace Source.Scripts.Release.LandCutter
         private readonly LineFactory _lineFactory = new LineFactory();
         private readonly PointConnector _pointConnector = new PointConnector();
         private readonly CuttingToolkit _cuttingToolkit = new CuttingToolkit();
-        
+
         [SerializeField] private PolygonCollider2D _landCollider;
         [SerializeField] private PolygonCollider2D _circleCollider;
         [SerializeField] private int _testIterations = 10;
-        
+
         public void DoCut()
         {
             Line circleLine = _lineFactory.CreateFromCollider(_circleCollider, 0);

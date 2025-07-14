@@ -31,37 +31,44 @@ namespace Source.Scripts.Release.Stuff
             UpdateCardInfoUI();
         }
 
-        public void SelectAndUpgradeWeapon(int weaponIndex)
+        public void OnUpgradeWeaponButtonClicked(int weaponIndex) => 
+            TryUpgradeWeapon(weaponIndex);
+
+        private bool TryUpgradeWeapon(int weaponIndex)
         {
             _manager.PlayButtonClick();
 
-            int currentCardCount = YG2.saves.WeaponCardCounts[weaponIndex];
-            int currentLevel = YG2.saves.ClearWeaponsData[weaponIndex].UpgradeLevel;
+            var saves = YG2.saves;
+            var weaponData = saves.ClearWeaponsData[weaponIndex];
+            int currentLevel = weaponData.UpgradeLevel;
 
-            if (YG2.saves.ClearWeaponsData[weaponIndex].UpgradeLevel < _requiredCardsForNextLevel.Length)
-            {
-                int cardsNeeded = _requiredCardsForNextLevel[YG2.saves.ClearWeaponsData[weaponIndex].UpgradeLevel];
-
-                if (currentCardCount >= cardsNeeded)
-                {
-                    YG2.saves.WeaponCardCounts[weaponIndex] = currentCardCount - cardsNeeded;
-                    YG2.saves.ClearWeaponsData[weaponIndex].UpgradeLevel = currentLevel + 1;
-
-                    YG2.saves.ClearWeaponsData[weaponIndex].CurrentDamage = Mathf.RoundToInt(YG2.saves.ClearWeaponsData[weaponIndex].BaseDamage * _damageMultipliers[currentLevel]);
-
-                    YG2.SaveProgress();
-                    UpdateWeaponLevelText(weaponIndex);
-                    UpdateWeaponDamageText(weaponIndex);
-                    UpdateUpgradeIndicators();
-                    UpdateCardInfoUI();
-                }
-            }
-            else
+            if (currentLevel >= _requiredCardsForNextLevel.Length)
             {
                 YG2.SaveProgress();
+                return false;
             }
-        }
 
+            int currentCardCount = saves.WeaponCardCounts[weaponIndex];
+            int cardsNeeded = _requiredCardsForNextLevel[currentLevel];
+
+            if (currentCardCount < cardsNeeded)
+                return false;
+            
+            saves.WeaponCardCounts[weaponIndex] = currentCardCount - cardsNeeded;
+            weaponData.UpgradeLevel = currentLevel + 1;
+            weaponData.CurrentDamage = Mathf.RoundToInt(
+                weaponData.BaseDamage * _damageMultipliers[currentLevel]);
+
+            YG2.SaveProgress();
+            
+            UpdateWeaponLevelText(weaponIndex);
+            UpdateWeaponDamageText(weaponIndex);
+            UpdateUpgradeIndicators();
+            UpdateCardInfoUI();
+
+            return true;
+        }
+        
         private void UpdateUpgradeIndicators()
         {
             for (int i = 0; i < _upgradeIndicators.Length; i++)
@@ -106,7 +113,8 @@ namespace Source.Scripts.Release.Stuff
         {
             if (weaponIndex >= 0 && weaponIndex < _weaponDamageTexts.Length)
             {
-                _weaponDamageTexts[weaponIndex].text = $"{YG2.saves.ClearWeaponsData[weaponIndex].CurrentDamage}";
+                _weaponDamageTexts[weaponIndex].text = 
+                    $"{YG2.saves.ClearWeaponsData[weaponIndex].CurrentDamage}";
             }
         }
 

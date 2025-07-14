@@ -48,13 +48,7 @@ namespace Source.Scripts.Release.TurnManager
         public CameraController CameraController => _cameraController;
 
         public UIController UI => _uiController;
-
-        public void IncrementTurn() => _turnCount++;
-
-        public void NotifyTurnStarted(Transform t) => TurnStarted?.Invoke(t);
-
-        public void NotifyTurnCompleted() => CompletedTurns?.Invoke(_turnCount);
-
+        
         private void OnEnable()
         {
             _tutorialManager.TutorialEnded += SetPlayerControl;
@@ -65,6 +59,15 @@ namespace Source.Scripts.Release.TurnManager
             _tutorialManager.TutorialEnded -= SetPlayerControl;
         }
 
+        public void IncrementTurn() => 
+            _turnCount++;
+
+        public void NotifyTurnStarted(Transform t) => 
+            TurnStarted?.Invoke(t);
+
+        public void NotifyTurnCompleted() => 
+            CompletedTurns?.Invoke(_turnCount);
+        
         public void SetPlayerControl(bool value)
         {
             CanPlayerControl?.Invoke(value);

@@ -25,7 +25,7 @@ namespace Source.Scripts.Release.InventoryManager
                 _weaponSlots[i].gameObject.SetActive(false);
         }
 
-        public WeaponSlot GetSlot(int index) => 
+        public WeaponSlot GetSlot(int index) =>
             _weaponSlots[index];
     }
 }

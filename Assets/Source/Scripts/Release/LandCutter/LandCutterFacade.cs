@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Source.Scripts.Release.LandCutter
 {
-    public class LandCutter : MonoBehaviour
+    public class LandCutterFacade : MonoBehaviour
     {
         private readonly LineFactory _lineFactory = new LineFactory();
         private readonly PointConnector _pointConnector = new PointConnector();

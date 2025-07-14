@@ -30,7 +30,7 @@ namespace Source.Scripts.Release.InventoryManager
             return false;
         }
 
-        public int GetAmmo(int index) => 
+        public int GetAmmo(int index) =>
             _ammo.TryGetValue(index, out int count) ? count : 0;
     }
 }

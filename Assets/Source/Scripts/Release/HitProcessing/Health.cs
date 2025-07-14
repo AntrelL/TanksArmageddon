@@ -21,7 +21,7 @@ namespace Source.Scripts.Release.HitProcessing
 
         private void Awake()
         {
-            _manager = FindObjectOfType<AudioManager>();
+            _manager = AudioManager.Instance;
             _maxHealth = GetMaxHealth();
             _currentHealth = _maxHealth;
         }

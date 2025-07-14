@@ -19,10 +19,10 @@ namespace Source.Scripts.Release.Enemy
             }
         }
 
-        protected override void OnPlayHitEffect() => 
+        protected override void OnPlayHitEffect() =>
             TakeDamage(_combat.PlayerDamage);
 
-        protected override int GetMaxHealth() => 
+        protected override int GetMaxHealth() =>
             MaxHealth;
     }
 }

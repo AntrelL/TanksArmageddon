@@ -51,7 +51,7 @@ namespace Source.Scripts.Release.UI.ControllerParts
             _airdropNotifierCanvasGroup.alpha = alpha;
         }
 
-        private void OnSpawned()
+        private void OnSpawned(AirdropBox airdrop)
         {
             StartCoroutine(FadeRoutine());
         }

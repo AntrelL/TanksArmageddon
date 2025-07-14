@@ -19,7 +19,7 @@ namespace Source.Scripts.Release.Stuff
 
         private void Awake()
         {
-            _manager = FindObjectOfType<AudioManager>();
+            _manager = AudioManager.Instance;
         }
 
         private void Start()
@@ -31,7 +31,7 @@ namespace Source.Scripts.Release.Stuff
             UpdateCardInfoUI();
         }
 
-        public void OnUpgradeWeaponButtonClicked(int weaponIndex) => 
+        public void OnUpgradeWeaponButtonClicked(int weaponIndex) =>
             TryUpgradeWeapon(weaponIndex);
 
         private bool TryUpgradeWeapon(int weaponIndex)
@@ -53,14 +53,14 @@ namespace Source.Scripts.Release.Stuff
 
             if (currentCardCount < cardsNeeded)
                 return false;
-            
+
             saves.WeaponCardCounts[weaponIndex] = currentCardCount - cardsNeeded;
             weaponData.UpgradeLevel = currentLevel + 1;
             weaponData.CurrentDamage = Mathf.RoundToInt(
                 weaponData.BaseDamage * _damageMultipliers[currentLevel]);
 
             YG2.SaveProgress();
-            
+
             UpdateWeaponLevelText(weaponIndex);
             UpdateWeaponDamageText(weaponIndex);
             UpdateUpgradeIndicators();
@@ -68,7 +68,7 @@ namespace Source.Scripts.Release.Stuff
 
             return true;
         }
-        
+
         private void UpdateUpgradeIndicators()
         {
             for (int i = 0; i < _upgradeIndicators.Length; i++)
@@ -113,7 +113,7 @@ namespace Source.Scripts.Release.Stuff
         {
             if (weaponIndex >= 0 && weaponIndex < _weaponDamageTexts.Length)
             {
-                _weaponDamageTexts[weaponIndex].text = 
+                _weaponDamageTexts[weaponIndex].text =
                     $"{YG2.saves.ClearWeaponsData[weaponIndex].CurrentDamage}";
             }
         }

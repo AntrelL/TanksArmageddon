@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Source.Scripts.Release.Projectiles
 {
-    public class DefaultProjectile : MonoBehaviour
+    public class DefaultProjectile : MonoBehaviour, IBullet
     {
         private const float LandCutDelay = 0.001f;
         private const int MinWorldY = -50;
@@ -18,7 +18,7 @@ namespace Source.Scripts.Release.Projectiles
         [SerializeField] private float _speed;
 
         private Rigidbody2D _rigidbody;
-        private LandCutter.LandCutter _landCutter;
+        private LandCutterFacade _landCutter;
         private AudioManager _manager;
 
         private float _targetX;
@@ -30,7 +30,7 @@ namespace Source.Scripts.Release.Projectiles
 
         private void Awake()
         {
-            _manager = FindObjectOfType<AudioManager>();
+            _manager = AudioManager.Instance;
         }
 
         private void Start()
@@ -38,7 +38,6 @@ namespace Source.Scripts.Release.Projectiles
             _rigidbody = GetComponent<Rigidbody2D>();
             _rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
             _rigidbody.velocity = transform.right * _speed;
-            _landCutter = FindObjectOfType<LandCutter.LandCutter>();
             CurrentProjectile = transform;
         }
 
@@ -71,6 +70,11 @@ namespace Source.Scripts.Release.Projectiles
                 _landCutter.transform.position = transform.position;
                 Invoke(nameof(DoCut), LandCutDelay);
             }
+        }
+
+        public void SetLandCutter(LandCutterFacade landCutter)
+        {
+            _landCutter = landCutter;
         }
 
         private void OnHitImpactTarget(IImpactTarget impactTarget)

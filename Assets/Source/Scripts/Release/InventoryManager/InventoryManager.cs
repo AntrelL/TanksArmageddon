@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Source.Scripts.Release.Airdrop;
 using Source.Scripts.Release.Projectiles;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -11,27 +12,35 @@ namespace Source.Scripts.Release.InventoryManager
         [SerializeField] private InventoryUIController _ui;
         [SerializeField] private WeaponSelector _selector;
         [SerializeField] private AmmoManager _ammo;
-        [SerializeField] private AirdropHandler _airdrop;
+        [SerializeField] private AirdropSpawner _airdropSpawner;
         [SerializeField] private List<WeaponData> _weaponDataList;
         [SerializeField] private ProjectileTracker _projectileTracker;
 
         public event Action<int> UpdatePlayerDamage;
+
+        private void Awake()
+        {
+            _projectileTracker.ProjectileDestroyed += OnProjectileDestroyed;
+        }
 
         private void Start()
         {
             _ui.UpdateUI();
             _ui.HideAllExceptFirst();
 
-            _selector.WeaponSelected += damage => UpdatePlayerDamage?.Invoke(damage);
+            _selector.WeaponSelected += OnWeaponSelected;
             _selector.Initialize();
             _selector.SelectFirst();
-
-            _airdrop.Initialize(SetNewWeapon);
         }
 
-        private void Awake()
+        private void OnEnable()
         {
-            _projectileTracker.ProjectileDestroyed += OnProjectileDestroyed;
+            _airdropSpawner.Spawned += OnAirdropSpawned;
+        }
+
+        private void OnDisable()
+        {
+            _airdropSpawner.Spawned -= OnAirdropSpawned;
         }
 
         private void OnDestroy()
@@ -40,6 +49,8 @@ namespace Source.Scripts.Release.InventoryManager
             {
                 _projectileTracker.ProjectileDestroyed -= OnProjectileDestroyed;
             }
+
+            _selector.WeaponSelected -= OnWeaponSelected;
         }
 
         public void AdButtonPressed()
@@ -93,5 +104,19 @@ namespace Source.Scripts.Release.InventoryManager
 
         private int GenerateRandomIndex() =>
             Random.Range(1, 5);
+
+        private void OnWeaponSelected(int damage) =>
+            UpdatePlayerDamage?.Invoke(damage);
+
+        private void OnAirdropSpawned(AirdropBox airdrop)
+        {
+            airdrop.PlayerPickedUpAirdrop += OnPlayerPickedUpAirdrop;
+
+            void OnPlayerPickedUpAirdrop(int weaponIndex)
+            {
+                SetNewWeapon(weaponIndex);
+                airdrop.PlayerPickedUpAirdrop -= OnPlayerPickedUpAirdrop;
+            }
+        }
     }
 }

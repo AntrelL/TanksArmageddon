@@ -12,11 +12,11 @@ namespace Source.Scripts.Release.UI
 
         private AudioManager _manager;
 
-        public  event Action TextShowing;
+        public event Action TextShowing;
 
         private void Awake()
         {
-            _manager = FindObjectOfType<AudioManager>();
+            _manager = AudioManager.Instance;
         }
 
         public void HelpButtonPressed()

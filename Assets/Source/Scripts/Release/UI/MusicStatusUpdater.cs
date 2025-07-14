@@ -12,7 +12,7 @@ namespace Source.Scripts.Release.UI
 
         private void Start()
         {
-            _audioManager = FindObjectOfType<AudioManager>();
+            _audioManager = AudioManager.Instance;
 
             if (_audioManager.IsMusicOn)
             {

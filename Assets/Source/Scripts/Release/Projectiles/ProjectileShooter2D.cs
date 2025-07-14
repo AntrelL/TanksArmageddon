@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
 using Assets.Constructors.FuturisticTanks.Scripts;
+using Source.Scripts.Release.LandCutter;
 using Source.Scripts.Release.Stuff;
 using Source.Scripts.Release.TurnManager;
-using Source.Scripts.Release.UI;
 using UnityEngine;
 
 namespace Source.Scripts.Release.Projectiles
@@ -18,7 +18,7 @@ namespace Source.Scripts.Release.Projectiles
         [SerializeField] private ParticleSystem _muzzleFlash;
         [SerializeField] private Tank _enemyTank;
         [SerializeField] private TurnState _turnState;
-        [SerializeField] private CameraController _cameraController;
+        [SerializeField] private LandCutterFacade _landCutter;
 
         [Header("Поворот пушки")]
         [SerializeField] private Transform _turret;
@@ -33,7 +33,7 @@ namespace Source.Scripts.Release.Projectiles
 
         private void Awake()
         {
-            _manager = FindObjectOfType<AudioManager>();
+            _manager = AudioManager.Instance;
         }
 
         public bool TryShootAtPlayerPosition()
@@ -107,6 +107,7 @@ namespace Source.Scripts.Release.Projectiles
 
             GameObject bulletGO = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
 
+            bulletGO.GetComponent<IBullet>().SetLandCutter(_landCutter);
             Rigidbody2D rigidbody = bulletGO.GetComponent<Rigidbody2D>();
 
             float turretAngleDeg = _turret.eulerAngles.z;

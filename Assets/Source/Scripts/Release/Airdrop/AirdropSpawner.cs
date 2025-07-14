@@ -6,7 +6,7 @@ namespace Source.Scripts.Release.Airdrop
 {
     public class AirdropSpawner : MonoBehaviour
     {
-        [SerializeField] private GameObject _airDropPrefab;
+        [SerializeField] private AirdropBox _airDropPrefab;
         [SerializeField] private Transform _spawnPoint;
         [SerializeField] private PolygonCollider2D _land;
         [SerializeField] private int _spawnRate;
@@ -15,7 +15,7 @@ namespace Source.Scripts.Release.Airdrop
         private float _minX = 0;
         private float _maxX = 0;
 
-        public event Action Spawned;
+        public event Action<AirdropBox> Spawned;
 
         private void Start()
         {
@@ -74,8 +74,8 @@ namespace Source.Scripts.Release.Airdrop
         {
             if (_airDropPrefab != null)
             {
-                Instantiate(_airDropPrefab, _spawnPoint.position, Quaternion.identity);
-                Spawned?.Invoke();
+                AirdropBox airdrop = Instantiate(_airDropPrefab, _spawnPoint.position, Quaternion.identity);
+                Spawned?.Invoke(airdrop);
                 SetRandomSpawnPointX();
             }
         }
@@ -88,7 +88,7 @@ namespace Source.Scripts.Release.Airdrop
             _spawnPoint.position = newPosition;
         }
 
-        private void OnCompletedTurns(int count) => 
+        private void OnCompletedTurns(int count) =>
             TrySpawn(count);
     }
 }

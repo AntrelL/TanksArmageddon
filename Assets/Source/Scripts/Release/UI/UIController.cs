@@ -26,7 +26,7 @@ namespace Source.Scripts.Release.UI
 
         private void Awake()
         {
-            AudioManager audioManager = FindObjectOfType<AudioManager>();
+            AudioManager audioManager = AudioManager.Instance;
 
             _mainMenuUI.Init(audioManager);
             _soundUI.Init(audioManager);

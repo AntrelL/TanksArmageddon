@@ -1,4 +1,5 @@
 using Assets.Constructors.FuturisticTanks.Scripts;
+using Source.Scripts.Release.LandCutter;
 using Source.Scripts.Release.Projectiles;
 using Source.Scripts.Release.UI.ControllerParts;
 using UnityEngine;
@@ -12,12 +13,13 @@ namespace Source.Scripts.Release.Stuff
         [SerializeField] private Transform _firePoint;
         [SerializeField] private ParticleSystem _muzzleFlash;
         [SerializeField] private PlayerInteractionUI _playerInteractionUI;
+        [SerializeField] private LandCutterFacade _landCutter;
 
         private AudioManager _manager;
 
         private void Awake()
         {
-            _manager = FindObjectOfType<AudioManager>();
+            _manager = AudioManager.Instance;
         }
 
         private void OnEnable()
@@ -35,6 +37,7 @@ namespace Source.Scripts.Release.Stuff
             _manager.PlayProjectileShoot();
             _tank.Shot();
             GameObject bullet = Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+            bullet.GetComponent<IBullet>().SetLandCutter(_landCutter);
 
             ProjectileTracker.Instance?.RegisterProjectile(bullet.transform);
 

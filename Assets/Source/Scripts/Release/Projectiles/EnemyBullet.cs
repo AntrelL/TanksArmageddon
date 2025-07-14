@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Source.Scripts.Release.Projectiles
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class EnemyBullet : MonoBehaviour
+    public class EnemyBullet : MonoBehaviour, IBullet
     {
         private const float LandCutDelay = 0.001f;
         private const int MinPercentageValue = 0;
@@ -27,18 +27,13 @@ namespace Source.Scripts.Release.Projectiles
         [SerializeField] private ParticleSystem _groundCollisionFX;
 
         private AudioManager _manager;
-        private LandCutter.LandCutter _landCutter;
+        private LandCutterFacade _landCutter;
 
         public event Action Destroyed;
 
         private void Awake()
         {
-            _manager = FindObjectOfType<AudioManager>();
-        }
-
-        private void Start()
-        {
-            _landCutter = FindObjectOfType<LandCutter.LandCutter>();
+            _manager = AudioManager.Instance;
         }
 
         private void OnDestroy()
@@ -67,6 +62,11 @@ namespace Source.Scripts.Release.Projectiles
                 _manager.PlayTankHit();
                 Invoke(nameof(DoCut), LandCutDelay);
             }
+        }
+
+        public void SetLandCutter(LandCutterFacade landCutter)
+        {
+            _landCutter = landCutter;
         }
 
         private int GetRandomDamage()

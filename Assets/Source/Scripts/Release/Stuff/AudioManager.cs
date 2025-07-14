@@ -4,8 +4,6 @@ namespace Source.Scripts.Release.Stuff
 {
     public class AudioManager : MonoBehaviour
     {
-        private static bool _instanceInitialized;
-
         [Header("Audio Sources")]
         [SerializeField] private AudioSource _backgroundMusicSource;
         [SerializeField] private AudioSource _sfxSource;
@@ -18,16 +16,20 @@ namespace Source.Scripts.Release.Stuff
         [SerializeField] private AudioClip _tankHittedSound;
         [SerializeField] private AudioClip _buttonClickSound;
 
+        public static AudioManager Instance { get; private set; }
+
         public bool IsMusicOn { get; private set; } = true;
 
         private void Awake()
         {
-            if (_instanceInitialized)
-                Destroy(gameObject);
-            else
+            if (Instance == null)
+            {
+                Instance = this;
                 DontDestroyOnLoad(gameObject);
+                return;
+            }
 
-            _instanceInitialized = true;
+            Destroy(gameObject);
         }
 
         private void Start()

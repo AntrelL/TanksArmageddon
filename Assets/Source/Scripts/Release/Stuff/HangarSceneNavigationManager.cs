@@ -15,7 +15,7 @@ namespace Source.Scripts.Release.Stuff
 
         private void Awake()
         {
-            _manager = FindObjectOfType<AudioManager>();
+            _manager = AudioManager.Instance;
         }
 
         private void Start()

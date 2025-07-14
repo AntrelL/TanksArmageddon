@@ -88,6 +88,7 @@ namespace Source.Scripts.Release.Airdrop
             _spawnPoint.position = newPosition;
         }
 
-        private void OnCompletedTurns(int count) => TrySpawn(count);
+        private void OnCompletedTurns(int count) => 
+            TrySpawn(count);
     }
 }

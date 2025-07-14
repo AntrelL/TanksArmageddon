@@ -43,7 +43,8 @@ namespace Source.Scripts.Release.InventoryManager
             }
         }
 
-        public void SelectFirst() => Select(_ui.GetSlot(0));
+        public void SelectFirst() => 
+            Select(_ui.GetSlot(0));
 
         public void DeselectCurrent()
         {

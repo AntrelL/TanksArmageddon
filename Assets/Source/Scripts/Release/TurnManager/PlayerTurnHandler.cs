@@ -36,7 +36,9 @@ namespace Source.Scripts.Release.TurnManager
             if (!skip)
             {
                 bool projectileEnded = false;
-                void OnProjectileDestroyed() => projectileEnded = true;
+                
+                void OnProjectileDestroyed() => 
+                    projectileEnded = true;
 
                 ProjectileTracker.Instance.ProjectileDestroyed += OnProjectileDestroyed;
 
